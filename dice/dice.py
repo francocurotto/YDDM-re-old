@@ -26,3 +26,6 @@ def parse_dice_string(string):
     Parses a string containing the information of a dice
     object.
     """
+
+def create_random_dice_string():
+    

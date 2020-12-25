@@ -1,4 +1,4 @@
-from crests.crestcreator import CrestCreator
+from crests.crest_creator import CrestCreator
 
 class Side():
     """
@@ -14,6 +14,12 @@ class Side():
         self.crest = crest
         self.multiplier = multiplier
         self.crest_creator = CrestCreator()
+
+    def strngify(self):
+        """
+        Returns a string version of object.
+        """
+        return self.crest.char + str(self.multiplier)
 
 def parse_side_string(string):
     """
