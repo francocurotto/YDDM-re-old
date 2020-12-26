@@ -1,3 +1,4 @@
+import random
 from crests.crest_creator import CrestCreator
 
 class Side():
@@ -34,3 +35,25 @@ def parse_side_string(string):
         multiplier = 1
     else:
         multiplier = int(string[1:])
+
+    return crest, multiplier
+
+def create_random_nonsumon_side_string():
+    """
+    Creates a string that represents a random non-summon side.
+    The side multiplier can be any from 1 to 9.
+    """
+    # get the summon character from a crest creator
+    crest_chars = crest_creator().chars
+
+    # select a random non-summon crest
+    crest = random.choice(crest_chars[1:])
+        
+    # select a random multiplier
+    multiplier = random.randint(1,9)
+
+    # generate string
+    if multiplier <= 1:
+        return crest
+    
+    return crest + str(multiplier)

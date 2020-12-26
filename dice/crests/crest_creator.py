@@ -6,8 +6,8 @@ from magic_crest import MagicCrest
 from trat_crest import TrapCrest
 
 chars1 = "SMADGT"
-chars2 = "★⬆⚔⊚✡⨂"
-chars3 = "⭐🔁🗡🛡🔯⚡"
+chars2 = "★⬆⚔⊚✡⊗"
+chars3 = "⭐🔄🗡🛡🔯⚡"
 
 class CrestCreator():
     """
@@ -21,7 +21,6 @@ class CrestCreator():
                      self.chars[3] : DefenseCrest,
                      self.chars[4] : MagicCrest,
                      self.chars[5] : trapCrest}
-        self.revdict = dict([reversed(i) for i in d.items()])
 
     def create_crest(self, char):
         """
@@ -30,4 +29,3 @@ class CrestCreator():
         as a parameter to the crest itself.
         """
         return self.dict[char](char)
-
