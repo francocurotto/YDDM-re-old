@@ -1,7 +1,6 @@
 import random
-from side import Side
+from side import Side, create_random_nonsummon_side_string
 from crests.crest_creator import CrestCreator
-from crests.summon_crest import SummonCrest
 
 class Dice():
     """
@@ -22,12 +21,19 @@ class Dice():
         """
         Get the dice level from the dice sides.
         """
+        summon_char = CrestCreator().chars[0]
         summon_crests = 0
         for side in self.sides:
-            if side isinstance(side.crest, SummonCrest):
+            if side.crest.char == summon_char:
                 summon_crests += 1
 
         return 5 - summon_crests
+
+    def stringify(self):
+        """
+        Returns a string version of object.
+        """
+        return "".join([s.stringify() for s in self.sides])
 
     def roll(self):
         """
@@ -42,7 +48,7 @@ def parse_dice_string(string):
     object, and produces a list of the sides of the dice.
     """
     # get the crest characters for a crest creator
-    crest_chars = crest_creator().chars
+    crest_chars = CrestCreator().chars
 
     # first break the sring into a list of side strings
     side_strings = []
@@ -50,7 +56,7 @@ def parse_dice_string(string):
         if char in crest_chars:
             side_strings.append(char)
         else: # expected to be a digit
-            sides_string[-1] = sides.string[-1] + char
+            side_strings[-1] = side_strings[-1] + char
     
     # then convert the side strings into side objects
     side_list = []
@@ -73,7 +79,7 @@ def create_random_dice_string():
     summon_sides = 5 - level
     
     # get the summon character from a crest creator
-    summon_char = crest_creator().chars[0]
+    summon_char = CrestCreator().chars[0]
     
     # add the summon characters
     string += summon_char * summon_sides

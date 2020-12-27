@@ -14,12 +14,14 @@ class Side():
 
         self.crest = crest
         self.multiplier = multiplier
-        self.crest_creator = CrestCreator()
 
-    def strngify(self):
+    def stringify(self):
         """
         Returns a string version of object.
         """
+        if self.multiplier <= 1:
+            return self.crest.char
+
         return self.crest.char + str(self.multiplier)
 
 def parse_side_string(string):
@@ -28,7 +30,7 @@ def parse_side_string(string):
     object.
     """
     # extract crest from first char
-    crest = self.crest_creator.create_crest(string[0])
+    crest = CrestCreator().create_crest(string[0])
 
     # extract multiplier from following chars
     if len(string) <= 1:
@@ -38,13 +40,13 @@ def parse_side_string(string):
 
     return crest, multiplier
 
-def create_random_nonsumon_side_string():
+def create_random_nonsummon_side_string():
     """
     Creates a string that represents a random non-summon side.
     The side multiplier can be any from 1 to 9.
     """
     # get the summon character from a crest creator
-    crest_chars = crest_creator().chars
+    crest_chars = CrestCreator().chars
 
     # select a random non-summon crest
     crest = random.choice(crest_chars[1:])

@@ -3,7 +3,7 @@ from movement_crest import MovementCrest
 from attack_crest import AttackCrest
 from defense_crest import DefenseCrest
 from magic_crest import MagicCrest
-from trat_crest import TrapCrest
+from trap_crest import TrapCrest
 
 chars1 = "SMADGT"
 chars2 = "★⬆⚔⊚✡⊗"
@@ -20,7 +20,7 @@ class CrestCreator():
                      self.chars[2] : AttackCrest,
                      self.chars[3] : DefenseCrest,
                      self.chars[4] : MagicCrest,
-                     self.chars[5] : trapCrest}
+                     self.chars[5] : TrapCrest}
 
     def create_crest(self, char):
         """
