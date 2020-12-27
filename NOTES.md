@@ -7,7 +7,8 @@ printed in the terminal.
 Finish dice object and test. Should consider in the future a
 way to change the crest character at runtime. There is a bug
 where pretty unicode characters overlap with other characters,
-specifically sword and shield have this problem.\n
+specifically sword and shield have this problem.
+
 The next step is to implement the ddm-dice object and test it.
 After that we can go with the player object, the dicepool, and
 the "dice hand" (maybe change name).
