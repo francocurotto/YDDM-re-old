@@ -4,4 +4,8 @@ class TrapCrest(Crest):
     """
     A trap crest.
     """
-    pass
+    def __init__(self):
+        super().__init__()          
+        self.char_ascii   = "T"
+        self.char_unicode = "⊗"
+        self.char_emoji   = "⚡"

@@ -1,5 +1,10 @@
 import random
-from crests.crest_creator import CrestCreator
+from summon_crest import SummonCrest
+from movement_crest import MovementCrest
+from attack_crest import AttackCrest
+from defense_crest import DefenseCrest
+from magic_crest import MagicCrest
+from trap_crest import TrapCrest
 
 class Side():
     """
@@ -20,9 +25,9 @@ class Side():
         Returns a string version of object.
         """
         if self.multiplier <= 1:
-            return self.crest.char
+            return self.crest.stringify()
 
-        return self.crest.char + str(self.multiplier)
+        return self.crest.stringify() + str(self.multiplier)
 
 def parse_side_string(string):
     """
@@ -30,7 +35,7 @@ def parse_side_string(string):
     object.
     """
     # extract crest from first char
-    crest = CrestCreator().create_crest(string[0])
+    crest = crest_dict[string[0]]()
 
     # extract multiplier from following chars
     if len(string) <= 1:
@@ -45,8 +50,8 @@ def create_random_nonsummon_side_string():
     Creates a string that represents a random non-summon side.
     The side multiplier can be any from 1 to 9.
     """
-    # get the summon character from a crest creator
-    crest_chars = CrestCreator().chars
+    # get the characters that define the crests
+    crest_chars = list(crest_dict.keys())
 
     # select a random non-summon crest
     crest = random.choice(crest_chars[1:])
@@ -59,3 +64,10 @@ def create_random_nonsummon_side_string():
         return crest
     
     return crest + str(multiplier)
+
+crest_dict = {"S" : SummonCrest,
+              "M" : MovementCrest,
+              "A" : AttackCrest,
+              "D" : DefenseCrest,
+              "G" : MagicCrest,
+              "T" : TrapCrest}

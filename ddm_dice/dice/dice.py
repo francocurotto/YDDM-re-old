@@ -1,6 +1,8 @@
 import random
-from side import Side, create_random_nonsummon_side_string
-from crests.crest_creator import CrestCreator
+from side import Side
+from side import create_random_nonsummon_side_string
+from side import crest_dict
+from crests.summon_crest import SummonCrest
 
 class Dice():
     """
@@ -21,10 +23,10 @@ class Dice():
         """
         Get the dice level from the dice sides.
         """
-        summon_char = CrestCreator().chars[0]
+        summon_char = SummonCrest().char_ascii
         summon_crests = 0
         for side in self.sides:
-            if side.crest.char == summon_char:
+            if side.crest.char_ascii == summon_char:
                 summon_crests += 1
 
         return 5 - summon_crests
@@ -47,8 +49,8 @@ def parse_dice_string(string):
     Parses a string containing the information of a dice
     object, and produces a list of the sides of the dice.
     """
-    # get the crest characters for a crest creator
-    crest_chars = CrestCreator().chars
+    # get the crest characters for a crest dict
+    crest_chars = list(crest_dict.keys())
 
     # first break the sring into a list of side strings
     side_strings = []
@@ -78,8 +80,8 @@ def create_random_dice_string():
     level = random.randint(1,4)
     summon_sides = 5 - level
     
-    # get the summon character from a crest creator
-    summon_char = CrestCreator().chars[0]
+    # get the summon character from a crest dict
+    summon_char = list(crest_dict.keys())[0]
     
     # add the summon characters
     string += summon_char * summon_sides
