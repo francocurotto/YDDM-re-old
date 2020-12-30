@@ -1,4 +1,4 @@
-from crest import Crest
+from .crest import Crest
 
 class AttackCrest(Crest):
     """
@@ -8,4 +8,4 @@ class AttackCrest(Crest):
         super().__init__()          
         self.char_ascii   = "A"
         self.char_unicode = "⚔"
-        self.char_emoji   = "🗡 "
+        self.char_emoji   = "⚔️ "

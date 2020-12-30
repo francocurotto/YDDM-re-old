@@ -1,4 +1,4 @@
-from crest import Crest
+from .crest import Crest
 
 class MovementCrest(Crest):
     """
@@ -8,4 +8,4 @@ class MovementCrest(Crest):
         super().__init__()          
         self.char_ascii   = "M"
         self.char_unicode = "⬆" 
-        self.char_emoji   = "🔄" 
+        self.char_emoji   = "⬆️ " 

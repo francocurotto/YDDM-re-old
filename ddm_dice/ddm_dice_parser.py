@@ -1,5 +1,11 @@
-from summon.summon import Summon
+from summon.spellcaster import Spellcaster
+from summon.warrior import Warrior
+from summon.undead import Undead
+from summon.beast import Beast
+from summon.dragon import Dragon
+from summon.item import Item
 from dice.dice import Dice
+from ddm_dice import DdmDice
 
 class DdmDiceParser():
 
@@ -9,9 +15,9 @@ class DdmDiceParser():
         into a list of ddm dice objects.
         """
         ddm_dice_list = []
+        params = {}
         with open(filename) as file:
             for line in file:
-                params = {}
                 if line.startswith("NAME:"):
                     params["name"] = line[5:-1]
                 elif line.startswith("TYPE:"):
@@ -31,6 +37,7 @@ class DdmDiceParser():
                 else: # create ddm dice with parsed information
                     ddm_dice = self.create_ddm_dice(params)
                     ddm_dice_list.append(ddm_dice)
+                    params = {}
     
             # get the last dice
             ddm_dice = self.create_ddm_dice(params)
@@ -52,15 +59,12 @@ class DdmDiceParser():
             summon = Undead(params)
         elif params["type"] == "Beast":
             summon = Beast(params)
-        elif param["type"] == "Dragon":
+        elif params["type"] == "Dragon":
             summon = Dragon(params)
-        elif params["type"] = "Item":
+        elif params["type"] == "Item":
             summon = Item(params)
 
-        # next get dice
-        dice = Dice(params["dice"])
-
         # create the ddm dice
-        ddm_dice = DdmDice(summon, dice)
+        ddm_dice = DdmDice(summon, params["dice"])
 
         return ddm_dice

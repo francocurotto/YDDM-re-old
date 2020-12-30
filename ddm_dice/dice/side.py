@@ -1,10 +1,21 @@
 import random
-from summon_crest import SummonCrest
-from movement_crest import MovementCrest
-from attack_crest import AttackCrest
-from defense_crest import DefenseCrest
-from magic_crest import MagicCrest
-from trap_crest import TrapCrest
+
+import sys
+# import for local test
+if sys.argv[0] == "test_dice.py":
+    from crests.summon_crest import SummonCrest
+    from crests.movement_crest import MovementCrest
+    from crests.attack_crest import AttackCrest
+    from crests.defense_crest import DefenseCrest
+    from crests.magic_crest import MagicCrest
+    from crests.trap_crest import TrapCrest
+else:
+    from .crests.summon_crest import SummonCrest
+    from .crests.movement_crest import MovementCrest
+    from .crests.attack_crest import AttackCrest
+    from .crests.defense_crest import DefenseCrest
+    from .crests.magic_crest import MagicCrest
+    from .crests.trap_crest import TrapCrest
 
 class Side():
     """

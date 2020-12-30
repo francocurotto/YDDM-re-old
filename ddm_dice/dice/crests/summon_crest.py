@@ -1,4 +1,4 @@
-from crest import Crest
+from .crest import Crest
 
 class SummonCrest(Crest):
     """

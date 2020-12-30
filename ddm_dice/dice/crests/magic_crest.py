@@ -1,4 +1,4 @@
-from crest import Crest
+from .crest import Crest
 
 class MagicCrest(Crest):
     """
@@ -8,4 +8,4 @@ class MagicCrest(Crest):
         super().__init__()          
         self.char_ascii   = "G"
         self.char_unicode = "✡"
-        self.char_emoji   = "🔯"
+        self.char_emoji   = "✡️ "

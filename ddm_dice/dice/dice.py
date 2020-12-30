@@ -1,8 +1,18 @@
 import random
-from side import Side
-from side import create_random_nonsummon_side_string
-from side import crest_dict
-from crests.summon_crest import SummonCrest
+
+import sys
+# import for local test
+if sys.argv[0] == "test_dice.py":
+    from side import Side
+    from side import create_random_nonsummon_side_string
+    from side import crest_dict
+    from crests.summon_crest import SummonCrest
+# import for rest of the system
+else:
+    from .side import Side
+    from .side import create_random_nonsummon_side_string
+    from .side import crest_dict
+    from .crests.summon_crest import SummonCrest
 
 class Dice():
     """
