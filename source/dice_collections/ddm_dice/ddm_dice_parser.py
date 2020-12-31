@@ -1,11 +1,21 @@
-from summon.spellcaster import Spellcaster
-from summon.warrior import Warrior
-from summon.undead import Undead
-from summon.beast import Beast
-from summon.dragon import Dragon
-from summon.item import Item
-from dice.dice import Dice
-from ddm_dice import DdmDice
+try:  # relative import for standard use
+    from .summon.spellcaster import Spellcaster
+    from .summon.warrior import Warrior
+    from .summon.undead import Undead
+    from .summon.beast import Beast
+    from .summon.dragon import Dragon
+    from .summon.item import Item
+    from .dice.dice import Dice
+    from .ddm_dice import DdmDice
+except ImportError: # absolute import for local test
+    from summon.spellcaster import Spellcaster
+    from summon.warrior import Warrior
+    from summon.undead import Undead
+    from summon.beast import Beast
+    from summon.dragon import Dragon
+    from summon.item import Item
+    from dice.dice import Dice
+    from ddm_dice import DdmDice
 
 class DdmDiceParser():
 
