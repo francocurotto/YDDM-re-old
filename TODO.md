@@ -1,0 +1,6 @@
+- Test DicePool
+- Implement DiceHand
+- Implement CrestPool
+- Implement DiceHandRoll?
+- Implement Player
+- Test Dicepool+DiceHand+CrestPool+Player
