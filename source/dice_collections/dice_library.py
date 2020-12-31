@@ -21,12 +21,12 @@ class DiceLibrary():
 
         return string
 
-    def stringify_dice(self, dicenum):
+    def stringify_dice(self, i):
         """
         Return the string version of ddm dice in position
-        dicenum from the dice library.
+        i from the dice library.
         """
-        return self.list[dicenum].stringify()
+        return self.list[i].stringify()
 
 
         

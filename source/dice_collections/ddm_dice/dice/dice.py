@@ -38,18 +38,18 @@ class Dice():
 
         return 5 - summon_crests
 
-    def stringify(self):
-        """
-        Returns a string version of object.
-        """
-        return "".join([s.stringify() for s in self.sides])
-
     def roll(self):
         """
         Simulates a dice roll by selecting a random element
         from the dice sides list.
         """
         return random.choice(self.sides)
+
+    def stringify(self):
+        """
+        Returns a string version of object.
+        """
+        return "".join([s.stringify() for s in self.sides])
 
 def parse_dice_string(string):
     """

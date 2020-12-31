@@ -12,6 +12,12 @@ class DdmDice():
             print("WARNING: dice level doesn't match with" +
                 " summon level.")
 
+    def roll(self):
+        """
+        Roll the dice from the ddm-dice.
+        """
+        return self.dice.roll()
+
     def stringify(self):
         """
         Returns a string version of object.
