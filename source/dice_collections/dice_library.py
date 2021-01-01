@@ -8,6 +8,21 @@ class DiceLibrary():
     def __init__(self, filename):
         self.list = DdmDiceParser().parse_ddm_dices(filename)
 
+    def get_dice(self, i):
+        """
+        Get the dice at index i.
+        """
+        result = {}
+        try:
+            ddm_dice = self.list[i]
+            result["dice"] = ddm_dice
+        except IndexError:
+            result["success"] = False
+            result["message"] = "Invalid index for library."
+
+        result["success"] = True
+        return result
+
     def stringify(self):
         """
         Returns a string version of object.
@@ -15,7 +30,7 @@ class DiceLibrary():
         string = ""
         for i, dice in enumerate(self.list):
             # add dice number
-            string += str(i) + ". "
+            string += str(i).rjust(3) + ". "
             # add dice short string
             string += dice.stringify_short() + "\n"
 
@@ -27,6 +42,3 @@ class DiceLibrary():
         i from the dice library.
         """
         return self.list[i].stringify()
-
-
-        

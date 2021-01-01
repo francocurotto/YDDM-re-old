@@ -21,3 +21,11 @@ progress.
 Now the next steps is a little bit more funny: player, 
 dicepool and dicehand (for now is dice hand). The real fun 
 will start when we start to program the dungeon place.
+
+# 2021-01-01
+Happy new year! I finished my implementation of the dice hand 
+but I haven't test it yet. I think is better to switch into
+making the real ddm database just so I don't have to make up
+many fake dice for the test. It won't include special 
+abilities for now just beacause it is to difficult and to 
+early for that.

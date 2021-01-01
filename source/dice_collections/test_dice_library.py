@@ -24,11 +24,13 @@ while True:
     elif command[0] == "d": # print a specific dice
         try:
             dicenum = int(command[1:])
-            ddm_dice = library.list[dicenum]
         except ValueError:
             print("Couldn't interpret the dice number.\n")
             continue
-        except IndexError:
-            print("Dice number out of range.\n")
-            continue
-        print(ddm_dice.stringify() + "\n")
+        result = library.get_dice(dicenum)
+        if result["success"]:
+            print(result["dice"].stringify() + "\n")
+        else:
+            print(result["message"] + "\n")
+
+print("Bye!")

@@ -1,6 +1,6 @@
-- Test DicePool
-- Implement DiceHand
+- create real ddm database??
+- test dice hand
 - Implement CrestPool
-- Implement DiceHandRoll?
+- Test crest pool
 - Implement Player
 - Test Dicepool+DiceHand+CrestPool+Player

@@ -1,8 +1,8 @@
 import copy
+import logging
 from dice_library import DiceLibrary
 
-
-class DiceSet(DiceSet):
+class DiceSet(DiceLibrary):
     """
     Set of dice with a limit in the number of dice. Used as
     parent of dice pool and dice hand.
@@ -15,7 +15,7 @@ class DiceSet(DiceSet):
             # if limit is not respeted, revert to empty list
             if self.list != self.limit: 
                 self.limit =[]
-                self.print_creation_from_file_warning()
+                self.creating_from_file_warning()
         else: # create empty list
             self.list = []
 
@@ -24,22 +24,33 @@ class DiceSet(DiceSet):
         Add a ddm-dice into the dice set. If the dice set
         is full, ignore the dice and print a message.
         """
+        result = {}
         if not self.is_full():
             # use copy to avoid tampering with original dice
-            copy_dice = copy.deepcopy(dice)
+            dice_copy = copy.deepcopy(dice)
             self.list.append(dice_copy)
+            result["success"] = True
         else:
-            print(self.name + " full.")
+            result["success"] = False
+            result["message"] = self.name + " full."
+
+        return result
 
     def remove_dice(self, i):
         """
         Remove dice from dice set with index i. If index is
         not valid, ignore dice and print a message.
         """
+        result = {}
         try:
             del(self.list[i])
         except IndexError:
-            print("Invalid index in " + self.name + ".")
+            result["success"] = False
+            result["message"] = "Invalid index in " + \
+                self.name + "."
+
+        result["success"] = True
+        return result
 
     def is_full(self):
         """
@@ -47,7 +58,8 @@ class DiceSet(DiceSet):
         """
         return len(self.list) >= self.limit
             
-    def print_creating_from_file_warning(self):
-        print("WARNING: Dice set created from file, but " +
-        "the number of dice is different than expected for " +
-        "set (" + str(self.limit) "). Reverting to empty set.")
+    def creating_from_file_warning(self):
+        logging.warning("Dice set created from file, but " + \
+        "the number of dice is different than expected " + \
+        "for set (" + str(self.limit) + "). Reverting to" + \
+        "empty set.")

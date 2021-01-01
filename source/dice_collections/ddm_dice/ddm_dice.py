@@ -1,29 +1,28 @@
-class DdmDice():
+import logging
+try:  # relative import for standard use
+    from .dice.dice import Dice
+except ImportError: # absolute import for local test
+    from dice.dice import Dice
+
+class DdmDice(Dice):
     """
-    A dice from the game cosisting in a normal dice plus a
-    summon type (monster or item).
+    A dice from the game behaves as normal dice except it
+    also has summon type (monster or item).
     """
-    def __init__(self, summon, dice):
+    def __init__(self, string, summon):
+        super().__init__(string)
         self.summon = summon
-        self.dice = dice
 
-        if summon.level != dice.level:
-            
-            print("WARNING: dice level doesn't match with" +
+        if self.level != summon.level:
+            logging.warning("dice level doesn't match with" +
                 " summon level.")
-
-    def roll(self):
-        """
-        Roll the dice from the ddm-dice.
-        """
-        return self.dice.roll()
 
     def stringify(self):
         """
         Returns a string version of object.
         """
         string  = self.summon.stringify() + "\n"
-        string += "DICE:    " + self.dice.stringify()
+        string += "DICE:    " + super().stringify()
 
         return string
 
@@ -32,6 +31,6 @@ class DdmDice():
         Returns a one-liner string version of object.
         """
         string  = self.summon.stringify_short() + " "
-        string += self.dice.stringify() 
+        string += super().stringify() 
 
         return string

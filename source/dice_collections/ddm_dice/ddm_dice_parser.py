@@ -5,7 +5,6 @@ try:  # relative import for standard use
     from .summon.beast import Beast
     from .summon.dragon import Dragon
     from .summon.item import Item
-    from .dice.dice import Dice
     from .ddm_dice import DdmDice
 except ImportError: # absolute import for local test
     from summon.spellcaster import Spellcaster
@@ -14,7 +13,6 @@ except ImportError: # absolute import for local test
     from summon.beast import Beast
     from summon.dragon import Dragon
     from summon.item import Item
-    from dice.dice import Dice
     from ddm_dice import DdmDice
 
 class DdmDiceParser():
@@ -43,7 +41,7 @@ class DdmDiceParser():
                 elif line.startswith("ABTY:"):
                     params["ability"] = line[5:-1]
                 elif line.startswith("DICE:"):
-                    params["dice"] = Dice(line[5:-1])
+                    params["dice"] = line[5:-1]
                 else: # create ddm dice with parsed information
                     ddm_dice = self.create_ddm_dice(params)
                     ddm_dice_list.append(ddm_dice)
@@ -75,6 +73,6 @@ class DdmDiceParser():
             summon = Item(params)
 
         # create the ddm dice
-        ddm_dice = DdmDice(summon, params["dice"])
+        ddm_dice = DdmDice(params["dice"], summon)
 
         return ddm_dice
