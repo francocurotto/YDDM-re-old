@@ -59,7 +59,7 @@ def parse_dice_string(string):
     # get the crest characters for a crest dict
     crest_chars = list(crest_dict.keys())
 
-    # first break the sring into a list of side strings
+    # first break the string into a list of side strings
     side_strings = []
     for char in string:
         if char in crest_chars:

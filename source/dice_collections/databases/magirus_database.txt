@@ -1,0 +1,1284 @@
+NOTE: Data extracted from https://gamefaqs.gamespot.com/gba/471247-yu-gi-oh-dungeon-dice-monsters/faqs/31548
+
+#######################################
+ #===================================#
+ #=                                 =#
+ #=             8. Dice             =#
+ #=                                 =#
+ #===================================#
+#######################################
+
+I'll list them in the order that they appear in Yugi's Grandpa's shop,
+left to right, top to bottom.
+
+++++++++++++++++++++++++++++++
+ +==========================+
+ +=CREST LEGEND:            +
+ +==========================+
+ +=   S = SUMMON CREST     =+
+ +=   M = MOVEMNT CREST    =+
+ +=   A = ATTACK CREST     =+
+ +=   D = DEFENSE CREST    =+
+ +=   P = MAGIC CREST      =+
+ +=   T = TRAP CREST       =+
+ +=   # = NUMBER OF CRESTS =+
+ +==========================+
+++++++++++++++++++++++++++++++
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: B. eye White Dragon
+Type: Dragon
+Level: 4
+Hearts: 5
+Attack: 40
+Defense: 30
+Crests: S, M, M2, A4, D, P
+Special ability (ies): Fly  
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Mystical Elf
+Type: Spellcaster
+Level: 1
+Hearts: 2 
+Attack: 10
+Defense: 20 
+Crests: S, S, S, S, M2, P4
+Special ability (ies): Restores 1 heart to all allies. (dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Hitotsu-me Giant
+Type: Beast
+Level: 2
+Hearts: 1
+Attack: 20
+Defense: 10
+Crests: S, S, S, A2, D2, P
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Baby Dragon
+Type: Dragon
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, A, P
+Special ability (ies): Fly, No family pros or cons.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Ryu-kishin
+Type: Spellcaster
+Level: 2
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, M, A2, A2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Feral Imp
+Type: Spellcaster
+Level: 2
+Hearts: 1
+Attack: 10
+Defense: 20
+Crests: S, S, S, M3, A5, D
+Special ability (ies): Prevents all flying. (In play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Winged Dragon #1
+Type: Dragon
+Level: 2
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, M2, M3, P
+Special ability (ies): Fly, Prevents all tunneling. (In play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Mushroom Man
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, A2, P
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Shadow Specter
+Type: Undead
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, A2, P
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Swamp Battleguard 
+Type: Warrior
+Level: 2
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, S, M2, A2, T
+Special ability (ies): Attack crests raises attack by 10 once a turn.
+(on attack) [A X 1]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Battle Steer
+Type: Beast
+Level: 2
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, S, M3, D, T4
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Flame Swordsman
+Type: Warrior
+Level: 2
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, S, M, M2, A2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Time Wizard
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 0
+Defense: 10 
+Crests: S, S, S, S, M2, M3
+Special ability (ies): Destroys monster with least attack. (dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: R Leg of Forbidden 
+Type: Spellcaster
+Level: 3
+Hearts: 1
+Attack: 10
+Defense: 0
+Crests: S, S, M2, M3, A2, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: L Leg of Forbidden 
+Type: Spellcaster
+Level: 3
+Hearts: 1
+Attack: 10
+Defense: 0
+Crests: S, S, M2, A, D, P
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: R Arm of forbidden
+Type: Spellcaster
+Level: 3
+Hearts: 1
+Attack: 10
+Defense: 0
+Crests: S, S, M2, M3, A4, D2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: L Arm of forbidden
+Type: Spellcaster
+Level: 3
+Hearts: 1
+Attack: 10
+Defense: 0
+Crests: S, S, M, M3, A, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Exodia of Forbidden
+Type: Spellcaster
+Level: 4
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, M, M7, A2, D4, T
+Special ability (ies): Automatic win if the 4 limbs exist. (Dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Summoned Skull
+Type: Spellcaster
+Level: 4
+Hearts: 4
+Attack: 40
+Defense: 20
+Crests: S, M3, M4, A, D, P
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Battle Ox
+Type: Beast
+Level: 2
+Hearts: 2 
+Attack: 20
+Defense: 20
+Crests: S, S, S, M2, D, P2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Beaver Warrior
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, A2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Rock Ogre Grotto #1
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, P2, T
+Special ability (ies): Raises defense of all spellcaster monsters by 10
+(in play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Zombie Warrior
+Type: Undead
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, A, D2
+Special ability (ies): Raises attack of all Zombie monsters by 10. (in play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Koumori Dragon
+Type: Dragon
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 20
+Crests: S, S, S, M, A, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Saggi the Dark Clown
+Type: Spellcaster 
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, D, T
+Special ability (ies): Reduces damage to one ally by 10. [D X 2]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Dark Magician 
+Type: Spellcaster
+Level: 4
+Hearts: 3
+Attack: 40
+Defense: 20
+Crests: S, M2, A, D2, P, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: The Snake Hair
+Type: Undead
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M, P
+Special ability (ies): Fly, Raises defense of all zombie monsters by 10.
+(in play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Gaia the Dragon Champion
+Type: Dragon
+Level: 4
+Hearts: 4
+Attack: 40
+Defense: 30
+Crests: S, M4, A3, D, P2, T
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Gaia The Fierce Knight
+Type: Warrior
+Level: 4
+Hearts: 4
+Attack: 40
+Defense: 20
+Crests: S, M, A, D, P3, T 
+Special ability (ies): Able to attack flying monsters.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Curse of Dragon
+Type: Dragon
+Level: 3
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, M, M3, A, D3
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Dragon Piper
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 0
+Defense: 10
+Crests: S, S, S, S, D, P
+Special ability (ies): Limits Dragon monsters 1 move/ 2 turns. (in play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Celtic Guardian
+Type: Warrior
+Level: 2
+Hearts: 1
+Attack: 20
+Defense: 10
+Crests: S, S, S, M3, P3, T	
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Faceless Mage
+Type: Spellcaster
+Level: 3
+Hearts: 1
+Attack: 20
+Defense: 30
+Crests: S, S, M3, M3, A, D2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Karbonala Warrior
+Type: Warrior
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, T
+Special ability (ies): Raises attack of all warriors by 10. (in play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Rogue Doll
+Type: Spellcaster
+Level: 3
+Hearts: 2
+Attack: 30
+Defense: 20
+Crests: S, S, M, A, A, D
+Special ability (ies): Restores 1 heart to 2 allied monsters. (Dimension)
+[P X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Sangan
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, D2, P4
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Killer Needle
+Type: Beast 
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M, A
+Special ability (ies): Able to attack flying monsters
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Giant Flea
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 20
+Defense: 10
+Crests: S, S, S, S, M, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Larvae Moth
+Type: Beast
+Level: 1
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, S, S, M, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Great Moth
+Type: Beast
+Level: 3
+Hearts: 4
+Attack: 30
+Defense: 30
+Crests: S, S, M, M2, A, D
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name:  Kuriboh
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, A4, D2 
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Mammoth Graveyard
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M5, P2
+Special ability (ies): Tunneling, 
+Raises attack of all Beats monsters by 10. (in play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Harpie Lady 
+Type: Beast
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 10
+Crests: S, S, S, M, M, P3
+Special ability (ies): Fly,
+Destroys one tunneling monster. (Dimension) [P X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Harpie Lady Sisters
+Type: Beast
+Level: 3
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, M2, A3, D, T2
+Special ability (ies): Destroys all tunnellers. (Dimension) [P X 4]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Perfectly Ultimate
+Type: Beast
+Level: 4
+Hearts: 5
+Attack: 40
+Defense: 40
+Crests: S, M4, A2, D, T, T2
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Thousand Dragon
+Type: Dragon
+Level: 2
+Hearts: 2
+Attack: 30
+Defense: 20
+Crests: S, S, S, M2, A7, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Jellyfish 
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M, P2
+Special ability (ies): Raises defense of all Beast monsters by 10 (In Play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Cocoon of Evolution
+Type: Beast
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 40
+Crests: S, S, S, A, P, T3
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Giant rock soldier
+Type: Spellcaster
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 30
+Crests: S, S, S, M2, D2, T
+Special ability (ies): Removes one obstacle. [P X 2]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Red-eyes B. Dragon
+Type: Dragon
+Level: 4
+Hearts: 3
+Attack: 40
+Defense: 20
+Crests: S, M2, A, D2, P2, T2
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Castle of D. Magic
+Type: Spellcaster
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 20
+Crests: S, S, S, M, D, D
+Special ability (ies): Reduces damage by 20 when attacked. [D X 2]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Metal Guardian
+Type: Spellcaster
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 30
+Crests: S, S, S, M, A, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Mystic Horseman
+Type: Beast
+Level: 2
+Hearts: 4
+Attack: 20
+Defense: 10
+Crests: S, S, S, M2, A, D
+Special ability (ies): Adds damage to attack once per turn. [P X 1]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Rapid Horseman
+Type: Beast
+Level: 3
+Hearts: 4 
+Attack: 30
+Defense: 20
+Crests: S, S, M2, A2, D, P
+Special ability (ies): Attack crest raises attack by 10 up to twice/turn.
+(In attack) [A X ?] 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Clown Zombie
+Type: Undead
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, T4
+Special ability (ies): Tunneling, No family pros or cons.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Pumpking the King of Ghosts
+Type: Undead
+Level: 3
+Hearts: 3
+Attack: 20
+Defense: 30
+Crests: S, S, M, A2, D3, P2
+Special ability (ies): Reduces damage by 30 when attacked. [D X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Battle Warrior
+Type: Warrior
+Level: 1
+Hearts: 2
+Attack: 20
+Defense: 10
+Crests: S, S, S, S, A, P
+Special ability (ies): Adds 1 attacks crest to own crest pool. (Dimension)
+Able to attack flying monsters.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: The 13th Grave
+Type: Undead
+Level: 2
+Hearts: 1
+Attack: 0
+Defense: 10
+Crests: S, S, S, M7, A, P
+Special ability (ies): Tunneling, Removes 1 heart from enemy and self. [P X 2]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Petit Dragon
+Type: Dragon
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, A, T
+Special ability (ies): Raises attack of dragon monsters by 10. (In Play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Aqua Madoor
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 20
+Crests: S, S, S, S, A2, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: B. Skull Dragon
+Type: Dragon
+Level: 4
+Hearts: 4
+Attack: 40
+Defense: 40
+Crests: S, M3, A, A, D3, P
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Beautiful Headhuntress
+Type: Warrior
+Level: 3
+Hearts: 2
+Attack: 10
+Defense: 10
+Crests: S, S, M4, D, D, P2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Yaranzo 
+Type: Undead 
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 10
+Crests: S, S, S, M2, A, D
+Special ability (ies): Trades 3 crests in own pool for 1. (Dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Kanan the Swordmistress
+Type: Warrior
+Level: 2
+Hearts: 1
+Attack: 20
+Defense: 10
+Crests: S, S, S, M2, D, D, 
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Stuffed Animal
+Type: Warrior
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Three-legged zombies
+Type: Undead
+Level: 1
+Hearts: 1
+Attack: 20
+Defense: 10
+Crests: S, S, S, S, A, D4
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Flying Penguin
+Type: Beast
+Level: 2
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, D, P, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Millennium Shield
+Type: Warrior
+Level: 3
+Hearts: 1
+Attack: 0
+Defense: 40
+Crests: S, S, M3, A, A3, D4
+Special ability (ies): This item can't move.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Black Luster Soldier
+Type: Warrior
+Level: 4
+Hearts: 5
+Attack: 40 
+Defense: 30
+Crests: S, M2, A, D, P, T2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Fiend's Mirror 
+Type: Spellcaster
+Level: 2
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, A, D2, T2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Jirai Gumo
+Type: Beast
+Level: 1
+Hearts: 2
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, D6, P
+Special ability (ies): Tunneling
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Sanga of the Thunder
+Type: Spellcaster
+Level: 4
+Hearts: 3
+Attack: 30
+Defense: 30
+Crests: S, M, M3, A3, D, T
+Special ability (ies): Shifts damage to an ally [T X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Kazejin
+Type: Spellcaster
+Level: 4
+Hearts: 3
+Attack: 30
+Defense: 30
+Crests: S, M3, A, D, P, T
+Special ability (ies): Shifts damage to an ally [T X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Suijin
+Type: Beast 
+Level: 4
+Hearts: 3
+Attack: 30
+Defense: 30
+Crests: S, M, A, D2, P, T
+Special ability (ies): Shifts damage to an ally [T X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Gate Guardian
+Type: Warrior
+Level: 4
+Hearts: 5
+Attack: 40
+Defense: 40
+Crests: S, M2, A, D2, P3, T2
+Special ability (ies): Shifts damage to an ally.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Ryu-kishin Powered
+Type: Spellcaster
+Level: 2
+Hearts: 2
+Attack: 30
+Defense: 20
+Crests: S, S, S, M3, A, D
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: B. eye Ultimate Dragon
+Type: Dragon
+Level: 4
+Hearts: 6
+Attack: 50
+Defense: 40
+Crests: S, M, A, D, P2, T
+Special ability (ies): Movement limited to 1 square per turn.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Parrot Dragon
+Type: Dragon
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, T
+Special ability (ies): Fly, 
+Raises defense of all dragon monsters by 10. (In play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Mystic Lamp
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, P, P
+Special ability (ies): Raises defense of all spellcaster monsters by 
+10. (In play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Pendulum Machine
+Type: Spellcaster
+Level: 3
+Hearts: 2
+Attack: 20
+Defense: 30
+Crests: S, S, M, A, P3, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Zoa
+Type: Spellcaster
+Level: 3
+Hearts: 2
+Attack: 30
+Defense: 20
+Crests: S, S, M4, A, D, D2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Metal Zoa
+Type: Spellcaster
+Level: 4
+Hearts: 3
+Attack: 30
+Defense: 30
+Crests: S, M8, A, D8, P, T4
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Dancing Elf
+Type: Warrior
+Level: 1
+Hearts: 2
+Attack: 20
+Defense: 10
+Crests: S, S, S, S, A, T 
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Man-eater Bug
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M, A2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Gemini Elf
+Type: Spellcaster
+Level: 3
+Hearts: 1 
+Attack: 40
+Defense: 10
+Crests: S, S, M, A, D3, T4
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Skelengel
+Type: Warrior
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M, P 
+Special ability (ies): Raises defense of all warrior monsters by 10 (In Play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Hane-Hane
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, D4, P 
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Penguin soldier
+Type: Beast
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, M3
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Twin-headed Thunder Dragon
+Type: Dragon
+Level: 3
+Hearts: 2
+Attack: 40
+Defense: 20
+Crests: S, S, M, A2, P2, T2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Witch's Apprentice
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M2, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Meteor Dragon
+Type: Dragon
+Level: 3
+Hearts: 3
+Attack: 30 
+Defense: 30
+Crests: S, S, M3, M4, D, P
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Meteor B. Dragon
+Type: Dragon
+Level: 4
+Hearts: 3
+Attack: 40
+Defense: 20
+Crests: S, M, A, D, P, T
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Dokurorider
+Type: Undead
+Level: 3
+Hearts: 2
+Attack: 20
+Defense: 20
+Crests: S, S, M, A, D2, P2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Magician of Black Chaos
+Type: Spellcaster
+Level: 4
+Hearts: 4
+Attack: 40
+Defense: 30
+Crests: S, M, A2, D, P, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Slot machine
+Type: Spellcaster
+Level: 3
+Hearts: 3
+Attack: 20
+Defense: 20
+Crests: S, S, M2, A2, D, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Red Archery Girl
+Type: Warrior
+Level: 1
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, M, D2
+Special ability (ies):  N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Dark-eyes Illusionist
+Type: Spellcaster
+Level: 4
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, M, A2, D2, P, T3
+Special ability (ies): Negates attack & effect on 1 ally [T X 5]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Relinquished
+Type: Spellcaster
+Level: 1
+Hearts: 1
+Attack: 0
+Defense: 0
+Crests: S, S, S, S, D, T3 
+Special ability (ies): Sacrifices self to steal 1 enemy. [P X 10]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Thousand-eyes Restrict
+Type: Spellcaster
+Level: 4
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, M2, A, D2, P5, T
+Special ability (ies): Gain control of 1 foe/turn. [P X 8]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Lord of D.
+Type: Spellcaster
+Level: 2
+Hearts: 1 
+Attack: 10
+Defense: 10
+Crests: S, S, S, M, A, P2 
+Special ability (ies): Protects all dragon monsters. (In Play)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: R. eye B. M. Dragon
+Type: Dragon
+Level: 4
+Hearts: 3
+Attack: 40
+Defense: 40
+Crests: S, M2, A, D, P3, T2
+Special ability (ies): Fly
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Barrel Dragon
+Type: Dragon
+Level: 4
+Hearts: 4
+Attack: 30
+Defense: 30
+Crests: S, M6, D, P, T2, T2
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Jinzo
+Type: Warrior
+Level: 3
+Hearts: 1
+Attack: 10
+Defense: 10
+Crests: S, S, M, A3, D2, T
+Special ability (ies): N/A
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Dark Magician Girl
+Type: Spellcaster
+Level: 3
+Hearts: 2
+Attack: 20
+Defense: 10
+Crests: S, S, M, A, D, T
+Special ability (ies): Obtains Attack and Defense of all destroyed spellcaster
+monsters. (Dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Twin-Headed Dragon
+Type: Dragon
+Level: 1
+Hearts: 2
+Attack: 10
+Defense: 10
+Crests: S, S, S, S, D, P2
+Special ability (ies): Tunneling, Adds 1 trap crest to own crest pool.
+(Dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Gator Dragon
+Type: Dragon
+Level: 2
+Hearts: 3
+Attack: 10
+Defense: 10
+Crests: S, S, S, M, D, T
+Special ability (ies): Reduces attack damage by Defense crest X 10. [D X ?]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Blast Lizard
+Type: Beast
+Level: 2
+Hearts: 2
+Attack: 10
+Defense: 10
+Crests: S, S, S, A, D, T4
+Special ability (ies): Destroys 1 foe Add 1 magic crest/level. [P X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Knight of Twin Swords
+Type: Warrior
+Level: 2
+Hearts: 3
+Attack: 10
+Defense: 10
+Crests: S, S, S, M, A, D
+Special ability (ies): Moves 2 squares for 1 movement crests.
+Attacks 1 foe up to 3 times/turn. (on attack) [A X ?]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Thunder Ball
+Type: Spellcaster
+Level: 3
+Hearts: 3
+Attack: 10
+Defense: 10
+Crests: S, S, M, M3, A2, D2
+Special ability (ies): Rolls to destroy one foe.
+Add 1 defense crest per level. [P X 3]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Magician Dragon
+Type: Dragon
+Level: 3
+Hearts: 4
+Attack: 20
+Defense: 10
+Crests: S, S, M4, A, D, D3
+Special ability (ies): Adds enemy defense to own defense. [T X 3]
+Destroys all within 3 x 3 grid. [P X 3]  
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Strike Ninja
+Type: Warrior
+Level: 3
+Hearts: 2
+Attack: 20
+Defense: 10
+Crests: S, S, M, M3, A, D
+Special ability (ies): Moves 3 squares for 1 movement crest.
+Protects self from attacks and effects. [T X 2]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Mighty Mage
+Type: Spellcaster
+Level: 4
+Hearts: 5
+Attack: 30
+Defense: 20
+Crests: S, M2, M4, A, P, T
+Special ability (ies): Attacks an enemy 2 squares away. {P X 1]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Crocozaurus
+Type: Beast
+Level: 4
+Hearts: 5
+Attack: 30
+Defense: 20
+Crests: S, M, A2, D, P, T3
+Special ability (ies): Attack crests raises attack by 10 max. 3 times/turn.
+(on attack) [A X ?]
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Orgoth the Relentless
+Type: Warrior
+Level: 3
+Hearts: 3
+Attack: 20
+Defense: 20
+Crests: S, S, M, M3, A2, D
+Special ability (ies): Raises attack by 10.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Medical Aid Kit
+Type: Item
+Level: 2
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, M5, A, T
+Special ability (ies): Restores 2 hearts to a monster.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Exploding Disk
+Type: Item
+Level: 3
+Hearts: N/A
+Attack: N/A
+Defense: N/A 
+Crests: S, S, M2, M3, D2, P2
+Special ability (ies): Removes 2 hearts from a monster.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Time Machine
+Type: Item
+Level: 1
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, S, D, T
+Special ability (ies): Returns monster to its last lactation.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Energy Disk
+Type: Item
+Level: 1
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, S, M3, M4
+Special ability (ies): Raises a monster's attack by 20.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Trap Bandit
+Type: Item
+Level: 1
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, S, M, T
+Special ability (ies): Destroys 1 trap crest in own crest pool.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Declaration of Despair
+Type: Item
+Level: 1
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, S, M2, P
+Special ability (ies): Destroys 1 magic crest in own crest pool.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Gluminizer 
+Type: Item
+Level: 2
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, M2, A, D2
+Special ability (ies): Doubles movement cost for all. (Dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Resurrection Scroll
+Type: Item
+Level: 2
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, S, M2, P2, T
+Special ability (ies): Resurrects 1 destroyed ally.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Warp Vortex
+Type: Item
+Level: 3
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, S, M, A, D, T
+Special ability (ies): Moves Monster to another Vortex. (Dimension)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+Name: Crater Creator
+Type: Item
+Level: 4
+Hearts: N/A
+Attack: N/A
+Defense: N/A
+Crests: S, M4, A, A2, D, P4
+Special ability (ies): Destroys all monsters in the dungeon.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _

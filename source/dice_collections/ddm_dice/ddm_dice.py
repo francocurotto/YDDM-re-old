@@ -15,7 +15,7 @@ class DdmDice(Dice):
 
         if self.level != summon.level:
             logging.warning("dice level doesn't match with" +
-                " summon level.")
+                " summon level for " + summon.name)
 
     def stringify(self):
         """

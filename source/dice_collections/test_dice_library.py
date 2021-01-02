@@ -10,7 +10,7 @@ Input d to display the whole library.\n\
 Input d<number> to display a specific dice.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("ddm_dice/test_monsters.txt")
+library = DiceLibrary("databases/my_database.txt")
 
 while True:
     command = input(">")

@@ -15,7 +15,7 @@ Input r<number> to add a dice from the pool.\n\
 Input f to fill the dice pool with random dice.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("ddm_dice/test_monsters.txt")
+library = DiceLibrary("databases/my_database.txt")
 pool = DicePool()
 
 def get_dicenum(string):

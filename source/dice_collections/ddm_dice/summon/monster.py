@@ -49,11 +49,11 @@ class Monster(Summon):
         # level value
         string += str(self.level) + " "
         # attack value
-        string += str(self.attack)
+        string += str(self.attack).rjust(2)
         #attack icon
         string += self.chars["attack"] + " "
         # defense value
-        string += str(self.defense)
+        string += str(self.defense).rjust(2)
         # defense icon
         string += self.chars["defense"] + " "
         # life value

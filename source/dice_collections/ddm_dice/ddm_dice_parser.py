@@ -48,8 +48,9 @@ class DdmDiceParser():
                     params = {}
     
             # get the last dice
-            ddm_dice = self.create_ddm_dice(params)
-            ddm_dice_list.append(ddm_dice)
+            if params: # is not empty
+                ddm_dice = self.create_ddm_dice(params)
+                ddm_dice_list.append(ddm_dice)
         
         return ddm_dice_list
 
