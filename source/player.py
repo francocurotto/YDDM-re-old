@@ -10,3 +10,4 @@ class Player():
         self.dice_pool = DicePool()
         self.dice_hand = DiceHand()
         self.crest_pool = CrestPool()
+        self.summons = []

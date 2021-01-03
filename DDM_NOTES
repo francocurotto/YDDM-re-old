@@ -1,0 +1,14 @@
+# Dice Dimensions
+
+### ##  ##  ##   #   #  ##  #   #   #   #
+ #   ##  #   #  ### ##   #  ### ##  ##  #
+ #   #   ##  #   #   ##  ##  #   ##  ## ##
+ #   #   #   ##  #   #    #  #   #    #  #
+                                         #
+
+# Summon probability:
+Formula: (9 * n^2 + n^3) / 108, n=summon_crests
+Level 1 (4 crests): 74%
+Level 2 (3 crests): 50%
+Level 3 (2 crests): 26%
+Level 4 (1 crest ): 7.4%
