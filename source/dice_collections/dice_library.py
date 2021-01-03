@@ -28,11 +28,20 @@ class DiceLibrary():
         Returns a string version of object.
         """
         string = ""
-        for i, dice in enumerate(self.list):
-            # add dice number
-            string += str(i).rjust(3) + ". "
-            # add dice short string
-            string += dice.stringify_short() + "\n"
+        for i in range(len(self.list)):
+            string += self.stringify_dice_short(i)
+
+        return string
+
+    def stringify_dice_short(self, i):
+        """
+        Return the short string version of ddm dice in 
+        position i from the dice library.
+        """
+        # add dice number
+        string = str(i).rjust(3) + ". "
+        # add dice short string
+        string += self.list[i].stringify_short() + "\n"
 
         return string
 

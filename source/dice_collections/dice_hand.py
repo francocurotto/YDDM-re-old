@@ -1,5 +1,4 @@
 from dice_set import DiceSet
-from ddm_dice.dicd.crests.summon_crest import SummonCrest
 
 class DiceHand(DiceSet):
     """
@@ -78,13 +77,9 @@ def rolled_lvl_x(ds_pair, x):
     Returns True is dice rolled a summon crest with level x.
     ds_pair is a pair of a dice and a rolled side of the dice.
     """
-    # check if side is a summon crest
-    summon_char = SummonCrest().char_ascii
-    rolled_char = side.crest.char_ascii
-    is_summon = summon_char == rolled_char
+    # separate pair
+    dice = ds_pair[0]
+    sice = ds_pair[1]
 
-    # check if level is x
-    is_level_x = dice.level == x
-
-    return is_summon and is_level_x
+    return side.crest.is_summon() and dice.level == x
 

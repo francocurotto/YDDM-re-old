@@ -37,6 +37,8 @@ class Item(Summon):
         string += self.chars["type"]
         # level value
         string += str(self.level)
+        # whitespace to fill for the atk,def,life
+        string += 15*" "
 
         return string
 

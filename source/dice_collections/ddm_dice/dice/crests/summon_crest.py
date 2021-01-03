@@ -9,3 +9,9 @@ class SummonCrest(Crest):
         self.char_ascii   = "S"
         self.char_unicode = "★"
         self.char_emoji   = "⭐"
+
+    def is_summon(self):
+        """
+        Assert summon type.
+        """
+        return True

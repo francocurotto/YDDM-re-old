@@ -4,12 +4,10 @@ try: # relative import for standard use
     from .side import Side
     from .side import create_random_nonsummon_side_string
     from .side import crest_dict
-    from .crests.summon_crest import SummonCrest
 except ImportError: # absolute import for local test
     from side import Side
     from side import create_random_nonsummon_side_string
     from side import crest_dict
-    from crests.summon_crest import SummonCrest
 
 class Dice():
     """
@@ -30,10 +28,9 @@ class Dice():
         """
         Get the dice level from the dice sides.
         """
-        summon_char = SummonCrest().char_ascii
         summon_crests = 0
         for side in self.sides:
-            if side.crest.char_ascii == summon_char:
+            if side.crest.is_summon:
                 summon_crests += 1
 
         return 5 - summon_crests

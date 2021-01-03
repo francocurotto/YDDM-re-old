@@ -1,6 +1,4 @@
-- create real ddm database??
 - test dice hand
-- Implement CrestPool
-- Test crest pool
+- Test crest_pool + ddm_dice
 - Implement Player
 - Test Dicepool+DiceHand+CrestPool+Player

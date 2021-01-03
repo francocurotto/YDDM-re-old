@@ -9,3 +9,9 @@ class AttackCrest(Crest):
         self.char_ascii   = "A"
         self.char_unicode = "⚔"
         self.char_emoji   = "⚔️ "
+
+    def get_pool_slot(self, pool):
+        """
+        Get the attack crest pool slot.
+        """
+        return pool.attack

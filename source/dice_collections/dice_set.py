@@ -30,6 +30,7 @@ class DiceSet(DiceLibrary):
             dice_copy = copy.deepcopy(dice)
             self.list.append(dice_copy)
             result["success"] = True
+
         else:
             result["success"] = False
             result["message"] = self.name + " full."
@@ -44,12 +45,13 @@ class DiceSet(DiceLibrary):
         result = {}
         try:
             del(self.list[i])
+            result["success"] = True
+
         except IndexError:
             result["success"] = False
             result["message"] = "Invalid index in " + \
                 self.name + "."
 
-        result["success"] = True
         return result
 
     def is_full(self):

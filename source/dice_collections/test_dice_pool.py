@@ -33,6 +33,9 @@ while True:
     
     # display something
     if command[0] == "d":
+        if len(command) <= 1: # special case of invalid cmd
+            print("\n")
+            continue
         if command[1] == "l": # display library
             set = library 
         elif command[1] == "p": # display pool

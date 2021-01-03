@@ -7,6 +7,20 @@ class Crest():
                             # 2: print as unicode
                             # 3: print as emoji
 
+    def add_to_pool(self, pool, multiplier):
+        """
+        Add the appropiate number of crests to the 
+        corresponding crest pool slot.
+        """
+        slot = self.get_pool_slot(pool)
+        slot += multiplier
+
+    def is_summon(self):
+        """
+        Negate summon type (overwritten is SummonCrest).
+        """
+        return False
+
     def stringify(self):
         """
         Returns a string version of object.
