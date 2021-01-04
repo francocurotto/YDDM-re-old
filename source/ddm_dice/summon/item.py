@@ -38,7 +38,7 @@ class Item(Summon):
         # level value
         string += str(self.level)
         # whitespace to fill for the atk,def,life
-        if self.print_type == 3:
+        if self.print_type == "emoji":
             string += 15*" "
         else: 
             string += 12*" "

@@ -8,7 +8,8 @@ from ddm_dice import DdmDice
 
 class DdmDiceParser():
     def __init__(self):
-        self.print_type = "ascii"
+        #self.print_type = "ascii"
+        self.print_type = "emoji"
 
     def parse_ddm_dices(self, filename):
         """

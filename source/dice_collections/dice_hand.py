@@ -29,15 +29,15 @@ class DiceHand(DiceSet):
             # get the rolled sides
             result["sides"] = []
             for dice in self.list:
-                results["sides"].append(dice.roll())
+                result["sides"].append(dice.roll())
 
             # get possible summons
             summons = self.get_summons(result["sides"])
             result["summons"] = summons
 
-            results["success"] = True
+            result["success"] = True
 
-        return results
+        return result
 
     def get_summons(self, sides):
         """
@@ -57,7 +57,7 @@ class DiceHand(DiceSet):
             
             # filter ds_pairs to be summon crests of current
             # level
-            filt_ds_pairs = filter(f, ds_zip)
+            filt_ds_pairs = list(filter(f, ds_zip))
 
             # check summon condition: 2 or more summon crests
             # of the same level
@@ -79,7 +79,7 @@ def rolled_lvl_x(ds_pair, x):
     """
     # separate pair
     dice = ds_pair[0]
-    sice = ds_pair[1]
+    side = ds_pair[1]
 
     return side.crest.is_summon() and dice.level == x
 

@@ -1,8 +1,8 @@
-from dice_collections.ddm_dice.dice.crests.movement_crest import MovementCrest
-from dice_collections.ddm_dice.dice.crests.attack_crest import AttackCrest
-from dice_collections.ddm_dice.dice.crests.defense_crest import DefenseCrest
-from dice_collections.ddm_dice.dice.crests.magic_crest import MagicCrest
-from dice_collections.ddm_dice.dice.crests.trap_crest import TrapCrest
+from ddm_dice.crests.movement_crest import MovementCrest
+from ddm_dice.crests.attack_crest import AttackCrest
+from ddm_dice.crests.defense_crest import DefenseCrest
+from ddm_dice.crests.magic_crest import MagicCrest
+from ddm_dice.crests.trap_crest import TrapCrest
 
 class CrestPool():
     """

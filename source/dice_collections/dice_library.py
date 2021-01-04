@@ -16,11 +16,12 @@ class DiceLibrary():
         try:
             ddm_dice = self.list[i]
             result["dice"] = ddm_dice
+            result["success"] = True
+
         except IndexError:
             result["success"] = False
             result["message"] = "Invalid index for library."
 
-        result["success"] = True
         return result
 
     def stringify(self):
