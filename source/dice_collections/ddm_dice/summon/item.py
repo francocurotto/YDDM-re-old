@@ -10,7 +10,7 @@ class Item(Summon):
         self.ability = params["ability"]
 
         # display icons
-        self.chars_ascii  .update({"type" : "?"})
+        self.chars_ascii  .update({"type" : "I"})
         self.chars_unicode.update({"type" : "⍰"})
         self.chars_emoji  .update({"type" : "❓"})
 
@@ -38,7 +38,10 @@ class Item(Summon):
         # level value
         string += str(self.level)
         # whitespace to fill for the atk,def,life
-        string += 15*" "
+        if self.print_type == 3:
+            string += 15*" "
+        else: 
+            string += 12*" "
 
         return string
 

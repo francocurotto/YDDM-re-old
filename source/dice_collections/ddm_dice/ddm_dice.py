@@ -13,7 +13,7 @@ class DdmDice(Dice):
         super().__init__(string)
         self.summon = summon
 
-        if self.level != summon.level:
+        if self.level != self.summon.level:
             logging.warning("dice level doesn't match with" +
                 " summon level for " + summon.name)
 

@@ -3,7 +3,7 @@ class Crest():
     A generic crest from a dice's side.
     """
     def __init__(self):
-        self.print_type = 3 # 1: print as ascii
+        self.print_type = 1 # 1: print as ascii
                             # 2: print as unicode
                             # 3: print as emoji
 

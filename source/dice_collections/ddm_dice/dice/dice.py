@@ -30,7 +30,7 @@ class Dice():
         """
         summon_crests = 0
         for side in self.sides:
-            if side.crest.is_summon:
+            if side.crest.is_summon():
                 summon_crests += 1
 
         return 5 - summon_crests
