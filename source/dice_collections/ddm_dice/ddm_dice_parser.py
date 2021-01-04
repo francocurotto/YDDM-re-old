@@ -16,6 +16,8 @@ except ImportError: # absolute import for local test
     from ddm_dice import DdmDice
 
 class DdmDiceParser():
+    def __init__(self):
+        self.print_type = "ascii"
 
     def parse_ddm_dices(self, filename):
         """
@@ -43,6 +45,7 @@ class DdmDiceParser():
                 elif line.startswith("DICE:"):
                     params["dice"] = line[5:-1]
                 else: # create ddm dice with parsed information
+                    params["print_type"] = self.print_type
                     ddm_dice = self.create_ddm_dice(params)
                     ddm_dice_list.append(ddm_dice)
                     params = {}
@@ -74,6 +77,7 @@ class DdmDiceParser():
             summon = Item(params)
 
         # create the ddm dice
-        ddm_dice = DdmDice(params["dice"], summon)
+        ddm_dice = DdmDice(params["dice"], summon, 
+            self.print_type)
 
         return ddm_dice

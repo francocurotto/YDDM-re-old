@@ -2,10 +2,8 @@ class Crest():
     """
     A generic crest from a dice's side.
     """
-    def __init__(self):
-        self.print_type = 1 # 1: print as ascii
-                            # 2: print as unicode
-                            # 3: print as emoji
+    def __init__(self, print_type="ascii"):
+        self.print_type = print_type
 
     def add_to_pool(self, pool, multiplier):
         """
@@ -25,9 +23,9 @@ class Crest():
         """
         Returns a string version of object.
         """
-        if self.print_type == 1:
+        if self.print_type == "ascii":
             return self.char_ascii
-        elif self.print_type == 2:
+        elif self.print_type == "unicode":
             return self.char_unicode
-        elif self.print_type == 3:
+        elif self.print_type == "emoji":
             return self.char_emoji

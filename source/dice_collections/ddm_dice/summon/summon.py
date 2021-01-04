@@ -10,9 +10,7 @@ class Summon():
         self.chars_ascii   = {}
         self.chars_unicode = {}
         self.chars_emoji   = {}
-        self.print_type = 1 # 1: print as ascii
-                            # 2: print as unicode
-                            # 3: print as emoji
+        self.print_type = params["print_type"]
 
         self.chars = self.select_chars()
 
@@ -21,9 +19,9 @@ class Summon():
         Select the type of characters that will be used when
         printing summon information.
         """
-        if self.print_type == 1:
+        if self.print_type == "ascii":
             return self.chars_ascii
-        elif self.print_type == 2:
+        elif self.print_type == "unicode":
             return self.chars_unicode
-        elif self.print_type == 3:
+        elif self.print_type == "emoji":
             return self.chars_emoji

@@ -9,8 +9,8 @@ class DdmDice(Dice):
     A dice from the game behaves as normal dice except it
     also has summon type (monster or item).
     """
-    def __init__(self, string, summon):
-        super().__init__(string)
+    def __init__(self, string, summon, print_type):
+        super().__init__(string, print_type)
         self.summon = summon
 
         if self.level != self.summon.level:

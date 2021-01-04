@@ -16,12 +16,12 @@ class Dice():
     NOTE: I use singular dice instead of die because it's just
     most natural for me. Sorry for all the affected.
     """
-    def __init__(self, string):
+    def __init__(self, string, print_type):
         """
         Creates a dice object by parsing a string with the
         dice information.
         """
-        self.sides = parse_dice_string(string)
+        self.sides = parse_dice_string(string, print_type)
         self.level = self.get_level()
 
     def get_level(self):
@@ -48,7 +48,7 @@ class Dice():
         """
         return "".join([s.stringify() for s in self.sides])
 
-def parse_dice_string(string):
+def parse_dice_string(string, print_type):
     """
     Parses a string containing the information of a dice
     object, and produces a list of the sides of the dice.
@@ -67,7 +67,7 @@ def parse_dice_string(string):
     # then convert the side strings into side objects
     side_list = []
     for side_string in side_strings:
-        side_list.append(Side(side_string))
+        side_list.append(Side(side_string, print_type))
 
     return side_list
 
