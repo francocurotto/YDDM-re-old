@@ -1,19 +1,10 @@
 import random
-
-try: # relative import for standard use
-    from .crests.summon_crest import SummonCrest
-    from .crests.movement_crest import MovementCrest
-    from .crests.attack_crest import AttackCrest
-    from .crests.defense_crest import DefenseCrest
-    from .crests.magic_crest import MagicCrest
-    from .crests.trap_crest import TrapCrest
-except ImportError: # absolute import for local test
-    from crests.summon_crest import SummonCrest
-    from crests.movement_crest import MovementCrest
-    from crests.attack_crest import AttackCrest
-    from crests.defense_crest import DefenseCrest
-    from crests.magic_crest import MagicCrest
-    from crests.trap_crest import TrapCrest
+from crests.summon_crest import SummonCrest
+from crests.movement_crest import MovementCrest
+from crests.attack_crest import AttackCrest
+from crests.defense_crest import DefenseCrest
+from crests.magic_crest import MagicCrest
+from crests.trap_crest import TrapCrest
 
 class Side():
     """

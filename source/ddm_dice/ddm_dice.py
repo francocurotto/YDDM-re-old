@@ -1,16 +1,13 @@
 import logging
-try:  # relative import for standard use
-    from .dice.dice import Dice
-except ImportError: # absolute import for local test
-    from dice.dice import Dice
+from dice import Dice
 
 class DdmDice(Dice):
     """
     A dice from the game behaves as normal dice except it
     also has summon type (monster or item).
     """
-    def __init__(self, string, summon, print_type):
-        super().__init__(string, print_type)
+    def __init__(self, dice_string, summon, print_type):
+        super().__init__(dice_string, print_type)
         self.summon = summon
 
         if self.level != self.summon.level:

@@ -1,10 +1,6 @@
 """
 Script for testing the dice object and its internal attributes.
 """
-# setup the pythonpath in order to avoid ModuleNotFoundError.
-import os, sys
-sys.path.insert(0, os.getcwd()+"/crests")
-
 from dice import Dice, create_random_dice_string
 
 print("Welcome to the dice test.\n\n\
@@ -25,7 +21,7 @@ while True:
 
     if command == "c": # create random dice
         dice_string = create_random_dice_string()
-        dice = Dice(dice_string)
+        dice = Dice(dice_string, "ascii")
         print("Dice created: " + dice.stringify())
         print("Dice level: " + str(dice.level))
 

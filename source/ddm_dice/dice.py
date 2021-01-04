@@ -1,13 +1,7 @@
 import random
-
-try: # relative import for standard use
-    from .side import Side
-    from .side import create_random_nonsummon_side_string
-    from .side import crest_dict
-except ImportError: # absolute import for local test
-    from side import Side
-    from side import create_random_nonsummon_side_string
-    from side import crest_dict
+from side import Side
+from side import create_random_nonsummon_side_string
+from side import crest_dict
 
 class Dice():
     """

@@ -1,19 +1,10 @@
-try:  # relative import for standard use
-    from .summon.spellcaster import Spellcaster
-    from .summon.warrior import Warrior
-    from .summon.undead import Undead
-    from .summon.beast import Beast
-    from .summon.dragon import Dragon
-    from .summon.item import Item
-    from .ddm_dice import DdmDice
-except ImportError: # absolute import for local test
-    from summon.spellcaster import Spellcaster
-    from summon.warrior import Warrior
-    from summon.undead import Undead
-    from summon.beast import Beast
-    from summon.dragon import Dragon
-    from summon.item import Item
-    from ddm_dice import DdmDice
+from summon.spellcaster import Spellcaster
+from summon.warrior import Warrior
+from summon.undead import Undead
+from summon.beast import Beast
+from summon.dragon import Dragon
+from summon.item import Item
+from ddm_dice import DdmDice
 
 class DdmDiceParser():
     def __init__(self):
@@ -52,6 +43,7 @@ class DdmDiceParser():
     
             # get the last dice
             if params: # is not empty
+                params["print_type"] = self.print_type
                 ddm_dice = self.create_ddm_dice(params)
                 ddm_dice_list.append(ddm_dice)
         
@@ -77,7 +69,8 @@ class DdmDiceParser():
             summon = Item(params)
 
         # create the ddm dice
-        ddm_dice = DdmDice(params["dice"], summon, 
-            self.print_type)
+        dice_string = params["dice"]
+        print_type = self.print_type
+        ddm_dice = DdmDice(dice_string, summon, print_type)
 
         return ddm_dice

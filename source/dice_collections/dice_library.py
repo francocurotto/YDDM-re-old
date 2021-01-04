@@ -1,4 +1,4 @@
-from ddm_dice.ddm_dice_parser import DdmDiceParser
+from ddm_dice_parser import DdmDiceParser
 
 class DiceLibrary():
     """

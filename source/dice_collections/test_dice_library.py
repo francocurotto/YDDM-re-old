@@ -1,3 +1,5 @@
+import sys
+sys.path.append("../ddm_dice")
 from dice_library import DiceLibrary
 
 print("Welcome to the dice library test.\n\n\
@@ -10,7 +12,7 @@ Input d to display the whole library.\n\
 Input d<number> to display a specific dice.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("databases/my_database.txt")
+library = DiceLibrary("../databases/my_database.txt")
 
 while True:
     command = input(">")
