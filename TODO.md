@@ -1,4 +1,2 @@
-- test dice hand
-- Test crest_pool + ddm_dice
 - Implement Player
 - Test Dicepool+DiceHand+CrestPool+Player

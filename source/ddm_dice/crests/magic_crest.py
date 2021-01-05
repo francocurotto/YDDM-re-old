@@ -10,8 +10,8 @@ class MagicCrest(Crest):
         self.char_unicode = "✡"
         self.char_emoji   = "✡️ "
 
-    def get_pool_slot(self, pool):
+    def add_to_pool(self, pool, multiplier):
         """
-        Get the magic crest pool slot.
+        Add the magic crest to pool.
         """
-        return pool.magic
+        pool.magic += multiplier

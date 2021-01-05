@@ -10,8 +10,8 @@ class TrapCrest(Crest):
         self.char_unicode = "⊗"
         self.char_emoji   = "⚡"
 
-    def get_pool_slot(self, pool):
+    def add_to_pool(self, pool, multiplier):
         """
-        Get the trap crest pool slot.
+        Add the trap crest to pool.
         """
-        return pool.trap
+        pool.trap += multiplier

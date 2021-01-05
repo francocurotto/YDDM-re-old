@@ -15,3 +15,10 @@ class SummonCrest(Crest):
         Assert summon type.
         """
         return True
+
+    def add_to_pool(self, pool, multiplier):
+        """
+        Since this is a summon crests, don't add anything
+        to the crest pool.
+        """
+        pass

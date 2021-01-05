@@ -1,27 +1,27 @@
-from ddm_dice.crests.movement_crest import MovementCrest
-from ddm_dice.crests.attack_crest import AttackCrest
-from ddm_dice.crests.defense_crest import DefenseCrest
-from ddm_dice.crests.magic_crest import MagicCrest
-from ddm_dice.crests.trap_crest import TrapCrest
+from crests.movement_crest import MovementCrest
+from crests.attack_crest import AttackCrest
+from crests.defense_crest import DefenseCrest
+from crests.magic_crest import MagicCrest
+from crests.trap_crest import TrapCrest
 
 class CrestPool():
     """
     The crest pool from a player.
     """
-    def __init__(self):
+    def __init__(self, print_type):
         self.movement = 0
         self.attack   = 0
         self.defense  = 0
         self.magic    = 0
         self.trap     = 0
+        self.print_type = print_type
 
     def add_crests(self, side):
         """
         Adds the crests from the a dice side to the crest 
         pool.
         """
-        if not side.crest.is_summon():
-            side.crest.add_to_pool(self, multiplier)
+        side.crest.add_to_pool(self, side.multiplier)
 
     def stringify(self):
         """
@@ -29,20 +29,20 @@ class CrestPool():
         """
         string = ""
         # movement crests
-        string += MovementCrest().stringify() + ":"
-        string += str(self.movement) + "\n"
+        string += MovementCrest(self.print_type).stringify()
+        string += ": " + str(self.movement) + "\n"
         # attack crests
-        string += AttackCrests.stringify() + ":"
-        string += str(self.attack) + "\n"
+        string += AttackCrest(self.print_type).stringify()
+        string += ": " + str(self.attack) + "\n"
         # defense crests
-        string += DefenseCrests.stringify() + ":"
-        string += str(self.defense) + "\n"
+        string += DefenseCrest(self.print_type).stringify()
+        string += ": " + str(self.defense) + "\n"
         # magic crests
-        string += MagicCrests.stringify() + ":"
-        string += str(self.magic) + "\n"
+        string += MagicCrest(self.print_type).stringify()
+        string += ": " + str(self.magic) + "\n"
         # trap crests
-        string += TrapCrests.stringify() + ":"
-        string += str(self.trap) + "\n"
+        string += TrapCrest(self.print_type).stringify()
+        string += ": " + str(self.trap) + "\n"
         
         return string
 
@@ -50,6 +50,8 @@ class CrestPool():
         """
         Returns a one-liner string version of object.
         """
-        long_string = self.stringify()
-        string = long_string.replace("\n"," ")
+        string = self.stringify()
+        string = string.replace(": ", ":")  # remove spaces
+        string = string.replace(":  ", ":") # after ":"
+        string = string.replace("\n"," ")
         return string

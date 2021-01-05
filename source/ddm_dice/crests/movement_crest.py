@@ -10,8 +10,8 @@ class MovementCrest(Crest):
         self.char_unicode = "⬆" 
         self.char_emoji   = "⬆️ " 
 
-    def get_pool_slot(self, pool):
+    def add_to_pool(self, pool, multiplier):
         """
-        Get the movement crest pool slot.
+        Add the movement crest to pool.
         """
-        return pool.movement
+        pool.movement += multiplier
