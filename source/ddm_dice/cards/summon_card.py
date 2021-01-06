@@ -1,6 +1,7 @@
-class Summon():
+class SummonCard():
     """
-    Generic summon class parent of monsters and items.
+    Generic summon card class parent of monster and item 
+    cards.
     """
     def __init__(self, params):
         self.name = params["name"]
@@ -17,7 +18,7 @@ class Summon():
     def select_chars(self):
         """
         Select the type of characters that will be used when
-        printing summon information.
+        printing card information.
         """
         if self.print_type == "ascii":
             return self.chars_ascii

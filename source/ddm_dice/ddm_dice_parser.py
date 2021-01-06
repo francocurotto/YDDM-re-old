@@ -1,15 +1,15 @@
-from summon.spellcaster import Spellcaster
-from summon.warrior import Warrior
-from summon.undead import Undead
-from summon.beast import Beast
-from summon.dragon import Dragon
-from summon.item import Item
+from cards.spellcaster_card import SpellcasterCard
+from cards.warrior_card import WarriorCard
+from cards.undead_card import UndeadCard
+from cards.beast_card import BeastCard
+from cards.dragon_card import DragonCard
+from cards.item_card import ItemCard
 from ddm_dice import DdmDice
 
 class DdmDiceParser():
     def __init__(self):
-        #self.print_type = "ascii"
-        self.print_type = "emoji"
+        self.print_type = "ascii"
+        #self.print_type = "emoji"
 
     def parse_ddm_dices(self, filename):
         """
@@ -36,18 +36,13 @@ class DdmDiceParser():
                     params["ability"] = line[5:-1]
                 elif line.startswith("DICE:"):
                     params["dice"] = line[5:-1]
-                else: # create ddm dice with parsed information
+                    
+                    # create ddm dice with parsed information
                     params["print_type"] = self.print_type
                     ddm_dice = self.create_ddm_dice(params)
                     ddm_dice_list.append(ddm_dice)
                     params = {}
     
-            # get the last dice
-            if params: # is not empty
-                params["print_type"] = self.print_type
-                ddm_dice = self.create_ddm_dice(params)
-                ddm_dice_list.append(ddm_dice)
-        
         return ddm_dice_list
 
     def create_ddm_dice(self, params):
@@ -55,23 +50,23 @@ class DdmDiceParser():
         Creates ddm object from a dictionary of appropiate
         parameters.
         """
-        # first get summon
+        # first get card
         if params["type"] == "Spellcaster":
-            summon = Spellcaster(params)
+            card = SpellcasterCard(params)
         elif params["type"] == "Warrior":
-            summon = Warrior(params)
+            card = WarriorCard(params)
         elif params["type"] == "Undead":
-            summon = Undead(params)
+            card = UndeadCard(params)
         elif params["type"] == "Beast":
-            summon = Beast(params)
+            card = BeastCard(params)
         elif params["type"] == "Dragon":
-            summon = Dragon(params)
+            card = DragonCard(params)
         elif params["type"] == "Item":
-            summon = Item(params)
+            card = ItemCard(params)
 
         # create the ddm dice
         dice_string = params["dice"]
         print_type = self.print_type
-        ddm_dice = DdmDice(dice_string, summon, print_type)
+        ddm_dice = DdmDice(dice_string, card, print_type)
 
         return ddm_dice

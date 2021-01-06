@@ -6,19 +6,19 @@ class DdmDice(Dice):
     A dice from the game behaves as normal dice except it
     also has summon type (monster or item).
     """
-    def __init__(self, dice_string, summon, print_type):
+    def __init__(self, dice_string, card, print_type):
         super().__init__(dice_string, print_type)
-        self.summon = summon
+        self.card = card
 
-        if self.level != self.summon.level:
+        if self.level != self.card.level:
             logging.warning("dice level doesn't match with" +
-                " summon level for " + summon.name)
+                " card level for " + card.name)
 
     def stringify(self):
         """
         Returns a string version of object.
         """
-        string  = self.summon.stringify() + "\n"
+        string  = self.card.stringify() + "\n"
         string += "DICE:    " + super().stringify()
 
         return string
@@ -27,7 +27,7 @@ class DdmDice(Dice):
         """
         Returns a one-liner string version of object.
         """
-        string  = self.summon.stringify_short() + " "
+        string  = self.card.stringify_short() + " "
         string += super().stringify() 
 
         return string

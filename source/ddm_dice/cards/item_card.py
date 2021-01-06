@@ -1,8 +1,8 @@
-from .summon import Summon
+from .summon_card import SummonCard
 
-class Item(Summon):
+class ItemCard(SummonCard):
     """
-    An item summon.
+    An item card.
     """
     def __init__(self, params):
         super().__init__(params)

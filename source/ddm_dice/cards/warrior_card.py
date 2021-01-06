@@ -1,8 +1,8 @@
-from .monster import Monster
+from .monster_card import MonsterCard
 
-class Warrior(Monster):
+class WarriorCard(MonsterCard):
     """
-    A monster of type warrior.
+    A monster card of type warrior.
     """
     def __init__(self, params):
         super().__init__(params)

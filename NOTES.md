@@ -43,3 +43,13 @@ sense bot it will be the first time that the code starts
 looking kinda like a game. Actually, now that I think about it
 maybe is a good idea if the monsters can actually fight 
 ::thinking face::
+
+# 2021-01-06
+I thought it a lot and I think it is a good idea to implement
+actual summon (monsters and items) before the dungeon board.
+I decided to do some renaming because summon make more sense
+as the acutal piece that is in the game rather that the 
+information that is in the ddm dice. For that information,
+I decided to rename the class Card, as the card with all the
+information that will be summoned. Since this is a little bit
+scary, I created a new branch.

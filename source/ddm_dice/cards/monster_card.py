@@ -1,8 +1,8 @@
-from .summon import Summon
+from .summon_card import SummonCard
 
-class Monster(Summon):
+class MonsterCard(SummonCard):
     """
-    Generic typeless monster.
+    Generic typeless monster card.
     """
     def __init__(self, params):
         super().__init__(params)
