@@ -46,7 +46,7 @@ while True:
             for side in roll_result["sides"]:
                 print(side.stringify())
             print("\nAvailable summons:")
-            for summon in roll_result["summons"]:
-                print(summon.stringify()+"\n")
+            for dim in roll_result["dimensions"]:
+                print(dim.card.stringify()+"\n")
 
 print("Bye!")

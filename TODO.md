@@ -1,4 +1,3 @@
-- Implement card
 - Implement summons
 - Implement Player
 - Test Dicepool+DiceHand+CrestPool+Player

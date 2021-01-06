@@ -13,12 +13,13 @@ class DiceHand(DiceSet):
         Make a roll of the dice hand. The returned object is
         a dictionary with the following format.
         result = {
-        "success" : (bool) True if roll was performed
-                    successfully.
-        "sides"   : (list) list of sides rolled.
-        "summons" : (list) list of resulting summons.
-        "message" : (str) Relevant print string, usually for
-                    when the roll is unsuccessful.}
+        "success" :   (bool) True if roll was performed
+                      successfully.
+        "sides"     : (list) list of sides rolled.
+        "dimension" : (list) list of dice available to 
+                      dimension.
+        "message"   : (str) Relevant print string, usually for
+                      when the roll is unsuccessful.}
         """
         result = {}
         if not self.is_full():
@@ -32,54 +33,45 @@ class DiceHand(DiceSet):
                 result["sides"].append(dice.roll())
 
             # get possible summons
-            summons = self.get_summons(result["sides"])
-            result["summons"] = summons
-
+            dimensions = self.get_dimensions(result["sides"])
+            result["dimensions"] = dimensions
             result["success"] = True
 
         return result
 
-    def get_summons(self, sides):
+    def get_dimensions(self, sides):
         """
-        Check for summons from rolled sides of the dice hand.
-        This should never be called with an incompleted dice
-        hand, and the sides and dice from the dice hand
-        should be in the same order. Returns a list of 
-        possible summons (clould be an empty list).
+        Check for dice dimensions from rolled sides of the 
+        dice hand. This should never be called with an 
+        incompleted dice hand, and the sides and dice from the 
+        dice hand should be in the same order. Returns a list 
+        of possible dice dimensions (clould be an empty list).
         """
-        # zip combining dice with rolled side
-        ds_zip = zip(self.list, sides)
-
         # check for all levels
         for level in range(1,5):
-            # generate filter function
-            f = lambda ds_pair : rolled_lvl_x(ds_pair, level)
-            
-            # filter ds_pairs to be summon crests of current
+            # dice that rolled a summon crest of a specific 
             # level
-            filt_ds_pairs = list(filter(f, ds_zip))
+            summon_dice = []
+            
+            # go through dice roll (is expected that dice and 
+            # side are in order) 
+            for dice, side in zip(self.list, sides):
+                if rolled_summon_level(dice, side, level):
+                    summon_dice.append(dice)
 
-            # check summon condition: 2 or more summon crests
-            # of the same level
-            if len(filt_ds_pairs) >= 2:
-                # return list of summons if condition is met
-                summons = []
-                for ds_pair in filt_ds_pairs:
-                    dice = ds_pair[0]
-                    summons.append(dice.summon)
-                return summons
+            # check dimension condition: 2 or more summon 
+            # crests of the same level
+            if len(summon_dice) >= 2:
+                # return dice available to dimension
+                return summon_dice
                 
         # no summon was found
         return []
         
-def rolled_lvl_x(ds_pair, x):
+def rolled_summon_level(dice, side, level):
     """
-    Returns True is dice rolled a summon crest with level x.
-    ds_pair is a pair of a dice and a rolled side of the dice.
+    Returns True is dice rolled a summon crest with specified 
+    level.
     """
-    # separate pair
-    dice = ds_pair[0]
-    side = ds_pair[1]
-
-    return side.crest.is_summon() and dice.level == x
+    return side.crest.is_summon() and dice.level == level
 
