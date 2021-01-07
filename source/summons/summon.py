@@ -1,11 +1,7 @@
-from ddm_dice.cards import SummonCard
-
 class Summon():
     """
     Generic summon that is played in the board of the game.
     """
-    name_crop = SummonCard.name_crop
-
     def __init__(self, card):
         # attributes extracted from card
         self.name = card.name
