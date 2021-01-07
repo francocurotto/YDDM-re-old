@@ -6,7 +6,8 @@ class Player():
     """
     A player in the game.
     """
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self.dice_pool = DicePool()
         self.dice_hand = DiceHand()
         self.crest_pool = CrestPool()

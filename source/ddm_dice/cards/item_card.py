@@ -44,7 +44,3 @@ class ItemCard(SummonCard):
             string += 12*" "
 
         return string
-
-
-
-
