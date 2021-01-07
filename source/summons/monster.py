@@ -14,6 +14,4 @@ class Monster(Summon):
         """
         Returns a one-liner string version of object.
         """
-        #TODO
-
-
+        TODO

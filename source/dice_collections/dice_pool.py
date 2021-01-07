@@ -1,4 +1,5 @@
 import random
+from colorama import Fore
 from dice_set import DiceSet
 
 class DicePool(DiceSet):
@@ -47,14 +48,12 @@ class DicePool(DiceSet):
 
     def stringify_dice_short(self, i):
         """
-        Same as dice library, but add a * if dice is used.
+        Same as dice library, but change style if dice is 
+        used.
         """
         string = super().stringify_dice_short(i)
         # if dice is used, stringify as used dice
         if self.list[i] in self.used:
-            string = "*" + string
-        else:
-            string = " " + string
+            string = Fore.RED + string
 
         return string
-        
