@@ -1,4 +1,5 @@
 from .monster_card import MonsterCard
+from undead import Undead
 
 class UndeadCard(MonsterCard):
     """
@@ -12,3 +13,9 @@ class UndeadCard(MonsterCard):
         self.chars_ascii  .update({"type" : "U"})
         self.chars_unicode.update({"type" : "U"})
         self.chars_emoji  .update({"type" : "🧟"})
+
+    def summon(self):
+        """
+        Return the monster as a summon.
+        """
+        return Undead(self)

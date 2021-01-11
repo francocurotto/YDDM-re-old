@@ -1,4 +1,5 @@
 from .summon_card import SummonCard
+from item import Item
 
 class ItemCard(SummonCard):
     """
@@ -13,6 +14,12 @@ class ItemCard(SummonCard):
         self.chars_ascii  .update({"type" : "I"})
         self.chars_unicode.update({"type" : "⍰"})
         self.chars_emoji  .update({"type" : "❓"})
+
+    def summon(self):
+        """
+        Return the monster as a summon.
+        """
+        return Item(self)
 
     def stringify(self):
         """

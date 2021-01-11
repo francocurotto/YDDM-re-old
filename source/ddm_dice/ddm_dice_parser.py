@@ -7,9 +7,8 @@ from cards.item_card import ItemCard
 from ddm_dice import DdmDice
 
 class DdmDiceParser():
-    def __init__(self):
-        self.print_type = "ascii"
-        #self.print_type = "emoji"
+    def __init__(self, print_type="emoji"):
+        self.print_type = print_type
 
     def parse_ddm_dices(self, filename):
         """

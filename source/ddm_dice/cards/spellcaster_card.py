@@ -1,4 +1,5 @@
 from .monster_card import MonsterCard
+from spellcaster import Spellcaster
 
 class SpellcasterCard(MonsterCard):
     """
@@ -12,3 +13,9 @@ class SpellcasterCard(MonsterCard):
         self.chars_ascii  .update({"type" : "S"})
         self.chars_unicode.update({"type" : "S"})
         self.chars_emoji  .update({"type" : "🧙"})
+    
+    def summon(self):
+        """
+        Return the monster as a summon.
+        """
+        return Spellcaster(self)

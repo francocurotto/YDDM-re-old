@@ -18,13 +18,14 @@ class DiceHand(DiceSet):
         "sides"     : (list) list of sides rolled.
         "dimension" : (list) list of dice available to 
                       dimension.
-        "message"   : (str) Relevant print string, usually for
-                      when the roll is unsuccessful.}
+        "message"   : (str) Relevant print string, usually 
+                      for when the roll is unsuccessful.}
         """
         result = {}
         if not self.is_full():
             result["success"] = False
-            result["message"] = "Dice hand not yet completed."
+            result["message"] = "Dice hand not yet\n\
+                completed."
        
         else:
             # get the rolled sides
@@ -43,9 +44,10 @@ class DiceHand(DiceSet):
         """
         Check for dice dimensions from rolled sides of the 
         dice hand. This should never be called with an 
-        incompleted dice hand, and the sides and dice from the 
-        dice hand should be in the same order. Returns a list 
-        of possible dice dimensions (clould be an empty list).
+        incompleted dice hand, and the sides and dice from 
+        the dice hand should be in the same order. Returns a 
+        list of possible dice dimensions (clould be an empty 
+        list).
         """
         # check for all levels
         for level in range(1,5):

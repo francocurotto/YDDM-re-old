@@ -1,4 +1,5 @@
 from colorama import Fore
+from summon import Summon
 
 class Monster(Summon):
     """
@@ -15,6 +16,7 @@ class Monster(Summon):
     def attack_monster(self, attacked, result):
         """
         """
+        pass
         #TODO
 
     def stringify_short(self):

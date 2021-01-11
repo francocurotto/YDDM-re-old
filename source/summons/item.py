@@ -1,3 +1,5 @@
+from summon import Summon
+
 class Item(Summon):
     """
     An item in the board.

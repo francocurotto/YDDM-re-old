@@ -1,4 +1,5 @@
 from .monster_card import MonsterCard
+from beast import Beast
 
 class BeastCard(MonsterCard):
     """
@@ -12,3 +13,9 @@ class BeastCard(MonsterCard):
         self.chars_ascii  .update({"type" : "B"})
         self.chars_unicode.update({"type" : "B"})
         self.chars_emoji  .update({"type" : "🐺"})
+
+    def summon(self):
+        """
+        Return the monster as a summon.
+        """
+        return Beast(self)

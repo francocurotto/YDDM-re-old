@@ -5,8 +5,9 @@ class DiceLibrary():
     A collection of all dice available for the player to make
     its dice pool (can be all dice in the game).
     """
-    def __init__(self, filename):
-        self.list = DdmDiceParser().parse_ddm_dices(filename)
+    def __init__(self, filename, print_type="emoji"):
+        parser = DdmDiceParser(print_type)
+        self.list = parser.parse_ddm_dices(filename)
 
     def get_dice(self, i):
         """

@@ -1,4 +1,5 @@
 from .monster_card import MonsterCard
+from dragon import Dragon
 
 class DragonCard(MonsterCard):
     """
@@ -12,3 +13,9 @@ class DragonCard(MonsterCard):
         self.chars_ascii  .update({"type" : "D"})
         self.chars_unicode.update({"type" : "D"})
         self.chars_emoji  .update({"type" : "🐲"})
+
+    def summon(self):
+        """
+        Return the monster as a summon.
+        """
+        return Dragon(self)
