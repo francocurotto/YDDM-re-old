@@ -1,3 +1,5 @@
-- Implement summons
-- Implement Player
 - Test Dicepool+DiceHand+CrestPool+Player
+    - Implement player add_dice_to_hand()
+    - Implement player remove_dice_from_hand()
+    - Implement player add_roll_to_crest_pool()
+    - Implement player_test summon_command()

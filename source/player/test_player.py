@@ -64,8 +64,8 @@ def player_loop(player, opponent):
     Hand commands:\n\
     \th a #: add dice from dice pool at position # to dice\n\
              hand.\n\
-    \th r #: remove dice from hand at position #.\n\
-    \tr    : roll dice hand\n"
+    \th d #: remove dice from hand at position #.\n\
+    \th r  : roll dice hand\n"
 
     while True:
         command = input(">")
@@ -81,12 +81,62 @@ def player_loop(player, opponent):
             exit()
 
         # display case
-        elif cmd_list[0] == "d":
-            try:
-                dsp_cmd = cmd_list[1]
-                display_commands(player, opponent, dsp_cmd)
-            except IndexError:
-                pass
+        elif cmd_list[0] == "d" and len(cmd_list) == 2:
+            dsp_cmd = cmd_list[1]
+            display_commands(player, opponent, dsp_cmd)
+
+        # hand case
+        elif cmd_list[0] == "h" and len(cmd_list) == 3:
+            try: # convert indext into int
+                i = int(cmd_list[2]) # dice index
+                hand_commands(player, cmd_list[1], i)
+            except ValueError:
+                continue
+       
+        # roll dice hand
+        elif cmd_list[0] == "h" andlen(cmd_list) == 2:
+            if cmd_list[1] == "r":
+                success = roll_command(player, opponent)
+
+                # if successful roll, finish turn
+                if success:
+                    break
+
+def hand_command(player, command, i):
+    # add dice from dice pool to dice hand
+    if cmd_list[1] == "a":
+        result = player.add_dice_to_hand(i)
+        if not result["success"]:
+            print(result["message"])
+                
+    # remove dice from dice hand
+    elif cmd_list[1] == "d":
+        result = player.remove_dice_from_hand(i)
+        if not result["success"]:
+            print(result["message"])
+            
+def roll_command(player, opponent):
+    result == player.dice_hand.roll()
+    
+    if result["success"]: # roll succeded
+        print("Roll result:")
+        for side in result["sides"]:
+            print(side.stringify())
+            player.add_roll_to_crest_pool(result["sides"])
+
+        # check for summon
+        if result["dimension"]: # is not empty
+            dimension = result["dimension"]
+            summon_command(player, opponent, dimension)
+
+        return True
+
+    else: # roll failed
+        print(result["message"])
+        return False
+
+def summon_command(player, opponent, dimension):
+    pass # TODO
 
 def display_commands(player, opponent, command):        
     if command == "p": # display pool     
