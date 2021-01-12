@@ -23,8 +23,15 @@ class DicePool(DiceSet):
 
     def use_dice(self, i):
         """
-        Return dice at position i and mark it as used. Used to
-        fill dice hand.
+        Return dice at position i and mark it as used. Used 
+        to fill dice hand. Return dictionary format:
+        result = {
+        "success" : (bool) True if action was performed
+                    successfully.
+        "dice"    : (dice) dice used.
+        "message" : (str) Relevant print string, usually 
+                    for when the action is unsuccessful.}
+        }
         """
         result = {}
         try:

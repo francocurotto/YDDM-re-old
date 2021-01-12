@@ -1,5 +1,6 @@
 import sys
 sys.path.append("../ddm_dice")
+sys.path.append("../summons")
 from dice_library import DiceLibrary
 
 print("Welcome to the dice library test.\n\n\

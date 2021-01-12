@@ -21,7 +21,7 @@ while True:
 
     if command == "c": # create random dice
         dice_string = create_random_dice_string()
-        dice = Dice(dice_string, "ascii")
+        dice = Dice(dice_string, "emoji")
         print("Dice created: " + dice.stringify())
         print("Dice level: " + str(dice.level))
 

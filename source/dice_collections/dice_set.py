@@ -23,6 +23,14 @@ class DiceSet(DiceLibrary):
         """
         Add a ddm-dice into the dice set. If the dice set
         is full, ignore the dice and print a message.
+        Return dictionary format:
+        result = {
+        "success" : (bool) True if action was performed
+                    successfully.
+        "message" : (str) Relevant print string, usually 
+                    for when the action is unsuccessful.}
+        }
+
         """
         result = {}
         if not self.is_full():

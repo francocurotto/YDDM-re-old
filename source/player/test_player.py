@@ -31,6 +31,9 @@ player2.dice_pool.fill_random(library)
 player_list = [player1, player2]
 
 def main():
+    """
+    Main loop.
+    """
     # main loop
     i = False # player index
     while True:
@@ -103,6 +106,9 @@ def player_loop(player, opponent):
                     break
 
 def hand_command(player, command, i):
+    """
+    Handles commands that add and remove dice from dice hand.
+    """
     # add dice from dice pool to dice hand
     if cmd_list[1] == "a":
         result = player.add_dice_to_hand(i)
@@ -116,6 +122,9 @@ def hand_command(player, command, i):
             print(result["message"])
             
 def roll_command(player, opponent):
+    """
+    Handles a roll command.
+    """
     result == player.dice_hand.roll()
     
     if result["success"]: # roll succeded
@@ -139,6 +148,9 @@ def summon_command(player, opponent, dimension):
     pass # TODO
 
 def display_commands(player, opponent, command):        
+    """
+    Handles display commands.
+    """
     if command == "p": # display pool     
         print(player.dice_pool.stringify())
     elif command == "h": # display hand

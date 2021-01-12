@@ -13,7 +13,7 @@ class DiceHand(DiceSet):
         Make a roll of the dice hand. The returned object is
         a dictionary with the following format.
         result = {
-        "success" :   (bool) True if roll was performed
+        "success"   : (bool) True if roll was performed
                       successfully.
         "sides"     : (list) list of sides rolled.
         "dimension" : (list) list of dice available to 

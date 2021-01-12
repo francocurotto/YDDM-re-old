@@ -1,6 +1,8 @@
 """
 Script for testing a ddm dice object.
 """
+import sys
+sys.path.append("../summons")
 import random
 from ddm_dice_parser import DdmDiceParser
 
@@ -15,7 +17,7 @@ Input ss to show dice info in short form.\n\
 Input q to quit.\n")
 
 # create ddm dice list
-parser = DdmDiceParser()
+parser = DdmDiceParser("emoji")
 ddm_dice_list = parser.parse_ddm_dices("test_monsters.txt")
 
 ddm_dice = None
