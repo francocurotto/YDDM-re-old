@@ -41,7 +41,14 @@ class Player():
         self.dice_pool.release_dice(result["dice"])
         result = {"success" : True}
         
-        return success
+        return result
+
+    def add_roll_to_crest_pool(self, sides):
+        """
+        Add the roll result to the crest pool.
+        """
+        for side in sides:
+            self.crest_pool.add_crests(side)
 
     def stringify_summons(self):
         """
@@ -49,6 +56,7 @@ class Player():
         """
         string = ""
         for summon in self.summons:
-            string += summon.strinigy_short()
+            string += summon.stringify_short()
+        string += "\n"
 
         return string

@@ -10,16 +10,16 @@ where pretty unicode characters overlap with other characters,
 specifically sword and shield have this problem.
 
 The next step is to implement the ddm-dice object and test it.
-After that we can go with the player object, the dicepool, and
-the "dice hand" (maybe change name).
+After that we can go with the player object, the dice pool, 
+and the "dice hand" (maybe change name).
 
 # 2020-12-30
 Finish tests if ddm-dice object. Of course, the object will
-continue to have new funcionalities as the game development
+continue to have new functionalities as the game development
 progress. 
 
 Now the next steps is a little bit more funny: player, 
-dicepool and dicehand (for now is dice hand). The real fun 
+dice pool and dice hand (for now is dice hand). The real fun 
 will start when we start to program the dungeon place.
 
 # 2021-01-01
@@ -27,7 +27,7 @@ Happy new year! I finished my implementation of the dice hand
 but I haven't test it yet. I think is better to switch into
 making the real ddm database just so I don't have to make up
 many fake dice for the test. It won't include special 
-abilities for now just beacause it is to difficult and to 
+abilities for now just because it is to difficult and to 
 early for that.
 
 # 2021-01-05
@@ -48,8 +48,20 @@ maybe is a good idea if the monsters can actually fight
 I thought it a lot and I think it is a good idea to implement
 actual summon (monsters and items) before the dungeon board.
 I decided to do some renaming because summon make more sense
-as the acutal piece that is in the game rather that the 
+as the actual piece that is in the game rather that the 
 information that is in the ddm dice. For that information,
 I decided to rename the class Card, as the card with all the
 information that will be summoned. Since this is a little bit
 scary, I created a new branch.
+
+# 2021-01-14
+Al lot of progress. I implemented the cards and merge it to 
+master, now I'm making the player_test script. When finish a
+simple game of who can summon more will be tested. I'm almost 
+done. After that I plan to do 2 things: implement monsters 
+that can fight each other, using the corresponding crests of
+attack and defense, and so a more sophisticated game state 
+logic to track the state of the game, that will be the 
+skeleton of the actual game. Also a command class that parse 
+generic user text commands. With that we'll actually have a
+funny little game.

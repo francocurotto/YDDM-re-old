@@ -15,8 +15,8 @@ Input h for a list of available commands at any given\n\
 time.\n")
 
 # geterate dice library in order to fill the dice pools
-#print_type = "emoji"
-print_type = "ascii"
+print_type = "emoji"
+#print_type = "ascii"
 lib_filename = "../databases/my_database.txt"
 library = DiceLibrary(lib_filename, print_type)
 
@@ -130,30 +130,33 @@ def roll_command(player, opponent):
     """
     result = player.dice_hand.roll()
     
-    if result["success"]: # roll succeded
-        print("Roll result:")
-        for side in result["sides"]:
-            print(side.stringify())
-            player.add_roll_to_crest_pool(result["sides"])
-
-        # check for summon
-        if result["dimension"]: # is not empty
-            dimension = result["dimension"]
-            summon_command(player, opponent, dimension)
-
-        return True
-
-    else: # roll failed
+    if not result["success"]: # roll failed
         print(result["message"])
         return False
 
-def summon_command(player, opponent, dimension):
+    # roll succeded
+    print("Roll result:" + result["string"] + "\n")
+    for side in result["sides"]:
+        player.add_roll_to_crest_pool(result["sides"])
+
+    # check for summon
+    dimensions = result["dimensions"]
+    if not result["dimensions"].is_empty():
+        used_dice = summon_command(player, dimensions)
+
+    # release unused dice from dice pool
+    for dice in dimensions.list:
+        if dice is not used_dice:
+            player.dice_pool.release_dice(dice)
+
+    return True
+
+def summon_command(player, dimensions):
     """
     State for summoning a monster/item.
     """
     print("Available summons:")
-    for dice in dimension:
-        print(dice.stringify_short())
+    print(dimensions.stringify())
 
     # selection loop
     while True:
@@ -170,15 +173,23 @@ def summon_command(player, opponent, dimension):
         except ValueError:
             continue
 
-        # the the dice
-        result = player.dice_hand.get_dice(i)
+        # get the summoned dice
+        print("")
+        result = dimensions.get_dice(i)
         if not result["success"]:
             print(result["message"])
             continue
 
         # add summon to player list
-        summon = result["dice"].card.summon
+        dice = result["dice"]
+        summon = dice.card.summon()
         player.summons.append(summon)
+
+        # return used dice
+        return dice
+    
+    # return none as no dice was used
+    return None
 
 def display_commands(player, opponent, command):        
     """

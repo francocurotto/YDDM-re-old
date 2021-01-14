@@ -26,7 +26,7 @@ class Monster(Summon):
         # name, cropped at name_crop characters
         string = self.name[:self.card.name_crop]
         # whitespace to fill chars if name is too short
-        string = string.ljust(self.name_crop+1)
+        string = string.ljust(self.card.name_crop+1)
         # summon type icon
         string += self.chars["type"]
         # level value
@@ -46,6 +46,8 @@ class Monster(Summon):
         string += str(self.card.life)
         # life icon
         string += self.chars["life"]
+
+        return string
 
 def get_attr_styled(current, original):
     """

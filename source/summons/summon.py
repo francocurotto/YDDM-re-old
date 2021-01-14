@@ -20,4 +20,3 @@ class Summon():
         Returns one-liner string version of object.
         """
         return self.card.stringify_short()
-

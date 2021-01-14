@@ -16,7 +16,8 @@ class DiceHand(DiceSet):
         "success"   : (bool) True if roll was performed
                       successfully.
         "sides"     : (list) list of sides rolled.
-        "dimension" : (list) list of dice available to 
+        "string"    : (str) string version of roll result.
+        "dimension" : (DiceSet) set of dice available to 
                       dimension.
         "message"   : (str) Relevant print string, usually 
                       for when the roll is unsuccessful.}
@@ -30,8 +31,12 @@ class DiceHand(DiceSet):
         else:
             # get the rolled sides
             result["sides"] = []
+            string = ""
             for dice in self.list:
-                result["sides"].append(dice.roll())
+                side = dice.roll()
+                result["sides"].append(side)
+                string += side.stringify() + " "
+            result["string"] = string
 
             # get possible summons
             dimensions = self.get_dimensions(result["sides"])
@@ -53,22 +58,22 @@ class DiceHand(DiceSet):
         for level in range(1,5):
             # dice that rolled a summon crest of a specific 
             # level
-            summon_dice = []
+            summon_dice = DiceSet(3)
             
             # go through dice roll (is expected that dice and 
             # side are in order) 
             for dice, side in zip(self.list, sides):
                 if rolled_summon_level(dice, side, level):
-                    summon_dice.append(dice)
+                    summon_dice.add_dice(dice)
 
             # check dimension condition: 2 or more summon 
             # crests of the same level
-            if len(summon_dice) >= 2:
+            if len(summon_dice.list) >= 2:
                 # return dice available to dimension
                 return summon_dice
                 
         # no summon was found
-        return []
+        return DiceSet(3)
         
 def rolled_summon_level(dice, side, level):
     """

@@ -29,7 +29,6 @@ class DiceSet(DiceLibrary):
         "message" : (str) Relevant print string, usually 
                     for when the action is unsuccessful.}
         }
-
         """
         result = {}
         if not self.is_full():
@@ -59,7 +58,8 @@ class DiceSet(DiceLibrary):
             return result
 
         # get dice index
-        i = self.list.index(result["dice"])
+        dice = result["dice"]
+        i = self.list.index(dice)
         
         # remove dice
         del(self.list[i])
@@ -73,6 +73,12 @@ class DiceSet(DiceLibrary):
         Check if dice set is full.
         """
         return len(self.list) >= self.limit
+
+    def is_empty(self):
+        """
+        Check if dice set is empty.
+        """
+        return len(self.list) == 0
             
     def creating_from_file_warning(self):
         logging.warning("Dice set created from file, but " + \
