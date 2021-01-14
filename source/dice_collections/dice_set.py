@@ -1,4 +1,3 @@
-import copy
 import logging
 from dice_library import DiceLibrary
 
@@ -34,9 +33,7 @@ class DiceSet(DiceLibrary):
         """
         result = {}
         if not self.is_full():
-            # use copy to avoid tampering with original dice
-            dice_copy = copy.deepcopy(dice)
-            self.list.append(dice_copy)
+            self.list.append(dice)
             result["success"] = True
 
         else:
@@ -48,17 +45,26 @@ class DiceSet(DiceLibrary):
     def remove_dice(self, i):
         """
         Remove dice from dice set with index i. If index is
-        not valid, ignore dice and print a message.
+        not valid, ignore it and add a message to result.
+        Return dictionary format:
+        result = {
+        "success" : (bool) True if action was performed
+                    successfully.
+        "message" : (str) Relevant print string, usually 
+                    for when the action is unsuccessful.}
+        }
         """
-        result = {}
-        try:
-            del(self.list[i])
-            result["success"] = True
+        result = self.get_dice(i)
+        if not result["success"]:
+            return result
 
-        except IndexError:
-            result["success"] = False
-            result["message"] = "Invalid index in " + \
-                self.name + "."
+        # get dice index
+        i = self.list.index(result["dice"])
+        
+        # remove dice
+        del(self.list[i])
+        result["success"] = True
+        result["dice"] = dice
 
         return result
 

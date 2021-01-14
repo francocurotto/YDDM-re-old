@@ -1,3 +1,4 @@
+import copy
 from ddm_dice_parser import DdmDiceParser
 
 class DiceLibrary():
@@ -16,12 +17,29 @@ class DiceLibrary():
         result = {}
         try:
             ddm_dice = self.list[i]
-            result["dice"] = ddm_dice
-            result["success"] = True
-
+ 
         except IndexError:
             result["success"] = False
-            result["message"] = "Invalid index for library."
+            result["message"] = "Invalid index."
+            return result
+
+        result["dice"] = ddm_dice
+        result["success"] = True
+
+        return result
+
+    def get_dice_copy(self, i):
+        """
+        Same as get_dice but copy de dice instead of using
+        the reference.
+        """
+        result = self.get_dice(i)
+        if not result["success"]:
+            return result
+
+        # make copy of dice
+        dice_copy = copy.deepcopy(result["dice"])
+        result["dice"] = dice_copy
 
         return result
 

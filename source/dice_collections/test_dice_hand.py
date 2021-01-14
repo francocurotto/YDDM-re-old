@@ -14,7 +14,7 @@ Input r to roll the dice hand.\n\
 Input dr to display the roll result.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("../databases/my_database.txt")
+library = DiceLibrary("../databases/my_database.txt", "ascii")
 hand = DiceHand()
 
 # get a prefined set of dice to the dice hand

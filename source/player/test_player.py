@@ -15,7 +15,8 @@ Input h for a list of available commands at any given\n\
 time.\n")
 
 # geterate dice library in order to fill the dice pools
-print_type = "emoji"
+#print_type = "emoji"
+print_type = "ascii"
 lib_filename = "../databases/my_database.txt"
 library = DiceLibrary(lib_filename, print_type)
 
@@ -97,7 +98,7 @@ def player_loop(player, opponent):
                 continue
        
         # roll dice hand
-        elif cmd_list[0] == "h" andlen(cmd_list) == 2:
+        elif cmd_list[0] == "h" and len(cmd_list) == 2:
             if cmd_list[1] == "r":
                 success = roll_command(player, opponent)
 
@@ -105,27 +106,29 @@ def player_loop(player, opponent):
                 if success:
                     break
 
-def hand_command(player, command, i):
+def hand_commands(player, command, i):
     """
     Handles commands that add and remove dice from dice hand.
     """
     # add dice from dice pool to dice hand
-    if cmd_list[1] == "a":
+    if command == "a":
         result = player.add_dice_to_hand(i)
         if not result["success"]:
             print(result["message"])
                 
     # remove dice from dice hand
-    elif cmd_list[1] == "d":
+    elif command == "d":
         result = player.remove_dice_from_hand(i)
         if not result["success"]:
             print(result["message"])
+
+    print("")
             
 def roll_command(player, opponent):
     """
     Handles a roll command.
     """
-    result == player.dice_hand.roll()
+    result = player.dice_hand.roll()
     
     if result["success"]: # roll succeded
         print("Roll result:")
@@ -145,7 +148,37 @@ def roll_command(player, opponent):
         return False
 
 def summon_command(player, opponent, dimension):
-    pass # TODO
+    """
+    State for summoning a monster/item.
+    """
+    print("Available summons:")
+    for dice in dimension:
+        print(dice.stringify_short())
+
+    # selection loop
+    while True:
+        print("Select a dice to dimension [q to quit].")
+        command = input(">")
+
+        # quit without summon
+        if command == "q":
+            break
+        
+        # get dice index
+        try:
+            i = int(command)
+        except ValueError:
+            continue
+
+        # the the dice
+        result = player.dice_hand.get_dice(i)
+        if not result["success"]:
+            print(result["message"])
+            continue
+
+        # add summon to player list
+        summon = result["dice"].card.summon
+        player.summons.append(summon)
 
 def display_commands(player, opponent, command):        
     """

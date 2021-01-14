@@ -1,5 +1,5 @@
 import random
-from colorama import Fore
+from colorama import Fore, Style
 from dice_set import DiceSet
 
 class DicePool(DiceSet):
@@ -18,8 +18,10 @@ class DicePool(DiceSet):
         """
         # add random dices until the dice pull is full
         while not self.is_full():
-            random_dice = random.choice(dice_library.list)
-            self.add_dice(random_dice)
+            # random index
+            i = random.choice(range(len(dice_library.list)))
+            result = dice_library.get_dice_copy(i)
+            self.add_dice(result["dice"])
 
     def use_dice(self, i):
         """
@@ -33,17 +35,23 @@ class DicePool(DiceSet):
                     for when the action is unsuccessful.}
         }
         """
+        # get dice
+        result = self.get_dice(i)
+        if not result["success"]:
+            return result
+
+        # check if dice is already used
+        dice = result["dice"]
         result = {}
-        try:
-            dice = self.list[i]
-            self.used.append(dice)
-            result["success"] = True
-            result["dice"] = dice
-        
-        except IndexError:
+        if dice in self.used:
             result["success"] = False
-            result["message"] = "Invalid index in " + \
-                self.name + "."
+            result["message"] = "Dice already used."
+            return result
+
+        # if not used marked as used now
+        self.used.append(dice)
+        result["success"] = True
+        result["dice"] = dice
 
         return result
 
@@ -61,6 +69,6 @@ class DicePool(DiceSet):
         string = super().stringify_dice_short(i)
         # if dice is used, stringify as used dice
         if self.list[i] in self.used:
-            string = Fore.RED + string
+            string = Fore.RED + string + Style.RESET_ALL
 
         return string

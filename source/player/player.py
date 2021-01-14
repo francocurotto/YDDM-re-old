@@ -15,7 +15,7 @@ class Player():
 
     def add_dice_to_hand(self, i):
         """
-        Add dice at position i from dice pool to dice hand.
+        Add dice at position i in dice pool to dice hand.
         Handles case of index error in dice pool.
         """
         result = self.dice_pool.use_dice(i)
@@ -26,6 +26,22 @@ class Player():
         result = self.dice_hand.add_dice(dice)
 
         return result
+
+    def remove_dice_from_hand(self, i):
+        """
+        Remove dice at position i in dice hand and make it 
+        available in dice pool again. 
+        """
+        # remove dice from hand
+        result = self.dice_hand.remove_dice(i)
+        if not result["success"]:
+            return result
+
+        # realease dice in dice pool
+        self.dice_pool.release_dice(result["dice"])
+        result = {"success" : True}
+        
+        return success
 
     def stringify_summons(self):
         """

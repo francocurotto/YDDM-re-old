@@ -61,10 +61,11 @@ while True:
     elif command[0] == "a":
         # get dice number from command
         dicenum = get_dicenum(command[1:])
-        if dicenum is None: continue
+        if dicenum is None: 
+            continue
 
         # get dice from library
-        result = library.get_dice(dicenum)
+        result = library.get_dice_copy(dicenum)
         if not result["success"]:
             print(result["message"] + "\n")
             continue
