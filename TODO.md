@@ -1,5 +1,5 @@
 - Test Dicepool+DiceHand+CrestPool+Player
-    - fix crest pool triplicated
     - fix dice hand not reseting after summon
+    - fix summon print
     - add quick roll functionality
     - add wining condition of 10 summons
