@@ -15,7 +15,8 @@ Input dc to display the crest pool.\n\
 Input ds to display the crest pool in short format.")
 
 # create an initial random dice and crest pool
-print_type = "emoji"
+#print_type = "emoji"
+print_type = "ascii"
 dice = Dice(create_random_dice_string(), print_type)
 pool = CrestPool(print_type)
 

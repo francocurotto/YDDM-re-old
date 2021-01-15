@@ -54,4 +54,5 @@ class CrestPool():
         string = string.replace(": ", ":")  # remove spaces
         string = string.replace(":  ", ":") # after ":"
         string = string.replace("\n"," ")
+        string += "\n" # add final line break
         return string

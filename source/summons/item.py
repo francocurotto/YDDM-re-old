@@ -6,5 +6,5 @@ class Item(Summon):
     """
     def __init__(self, card):
         # attributes extracted from card
-        super().__init__(self, card)
+        super().__init__(card)
         self.ability = self.card.ability

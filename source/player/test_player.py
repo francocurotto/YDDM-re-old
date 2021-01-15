@@ -15,8 +15,8 @@ Input h for a list of available commands at any given\n\
 time.\n")
 
 # geterate dice library in order to fill the dice pools
-print_type = "emoji"
-#print_type = "ascii"
+#print_type = "emoji"
+print_type = "ascii"
 lib_filename = "../databases/my_database.txt"
 library = DiceLibrary(lib_filename, print_type)
 
@@ -136,18 +136,21 @@ def roll_command(player, opponent):
 
     # roll succeded
     print("Roll result:" + result["string"] + "\n")
-    for side in result["sides"]:
-        player.add_roll_to_crest_pool(result["sides"])
+    player.add_roll_to_crest_pool(result["sides"])
 
     # check for summon
     dimensions = result["dimensions"]
     if not result["dimensions"].is_empty():
         used_dice = summon_command(player, dimensions)
+        
+        # remove used dice from hand
+        if used_dice is not None:
+            i = player.dice_hand.list.index(used_dice)
+            player.dice_hand.remove_dice(i)
 
-    # release unused dice from dice pool
-    for dice in dimensions.list:
-        if dice is not used_dice:
-            player.dice_pool.release_dice(dice)
+    # release dice in dice hand from dice pool
+    for dice in player.dice_hand.list:
+        player.dice_pool.release_dice(dice)
 
     return True
 
@@ -204,9 +207,9 @@ def display_commands(player, opponent, command):
     elif command == "s": # display summons
         print(player.stringify_summons())
     elif command == "oc": # display opponent crest pool
-        print(opponent.crest_pool.stringify())
+        print(opponent.crest_pool.stringify_short())
     elif command == "os": # display opponent summons
-        print(opponent.stringify_summons())
+        print(opponent.stringify_summons_short())
 
 if __name__ == "__main__":
     main()

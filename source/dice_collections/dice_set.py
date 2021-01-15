@@ -68,6 +68,15 @@ class DiceSet(DiceLibrary):
 
         return result
 
+    def empty(self):
+        """
+        Empty set by constinuously calling delete dice.
+        This could also be implemented as list = [], but
+        that may indice bugs in the future.
+        """
+        for i in range(len(self.list)):
+            self.remove_dice(i)
+
     def is_full(self):
         """
         Check if dice set is full.
