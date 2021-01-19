@@ -1,4 +1,3 @@
 - Test Dicepool+DiceHand+CrestPool+Player
     - add quick roll functionality
     - add wining condition of 10 summons
-    - distiguish between dice added to hand and dice summoned

@@ -1,5 +1,4 @@
 import random
-from colorama import Fore, Style
 from dice_set import DiceSet
 
 class DicePool(DiceSet):
@@ -61,14 +60,14 @@ class DicePool(DiceSet):
         """
         self.used.remove(dice)
 
-    def stringify_dice_short(self, i):
-        """
-        Same as dice library, but change style if dice is 
-        used.
-        """
-        string = super().stringify_dice_short(i)
-        # if dice is used, stringify as used dice
-        if self.list[i] in self.used:
-            string = Fore.RED + string + Style.RESET_ALL
+    #def stringify_dice_short(self, i):
+    #    """
+    #    Same as dice library, but change style if dice is 
+    #    used.
+    #    """
+    #    string = super().stringify_dice_short(i)
+    #    # if dice is used, stringify as used dice
+    #    if self.list[i] in self.used:
+    #        string = Fore.RED + string + Style.RESET_ALL
 
-        return string
+    #    return string

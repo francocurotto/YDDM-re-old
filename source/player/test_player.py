@@ -119,14 +119,15 @@ def hand_commands(player, command, i):
         result = player.add_dice_to_hand(i)
         if not result["success"]:
             print(result["message"])
+        print("")
                 
     # remove dice from dice hand
     elif command == "d":
         result = player.remove_dice_from_hand(i)
         if not result["success"]:
             print(result["message"])
+        print("")
 
-    print("")
             
 def roll_command(player):
     """
@@ -203,7 +204,7 @@ def display_commands(player, opponent, command):
     Handles display commands.
     """
     if command == "p": # display pool     
-        print(player.dice_pool.stringify())
+        print(player.stringify_pool())
     elif command == "h": # display hand
         print(player.dice_hand.stringify())
     elif command == "c": # display crest pool

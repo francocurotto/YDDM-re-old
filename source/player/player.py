@@ -1,4 +1,4 @@
-import copy
+from colorama import Fore, Style
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from crest_pool import CrestPool
@@ -7,9 +7,12 @@ class Player():
     """
     A player in the game.
     """
+    summon_limit = 10
+
     def __init__(self, name, print_type="emoji"):
         self.name = name
-        self.dice_pool = DicePool()
+        self.color = None
+        self.dice_pool = DicePool(self.color)
         self.dice_hand = DiceHand()
         self.crest_pool = CrestPool(print_type)
         self.summons = []
@@ -63,6 +66,31 @@ class Player():
         """
         for side in sides:
             self.crest_pool.add_crests(side)
+
+    def stringify_pool(self):
+        """
+        Return string version of dice pool, colorized to
+        distinguish between used dice (dimensioned), dice in 
+        the dice hand, and normal pool dice.
+        """
+        string = ""
+        for i, dice in enumerate(self.dice_pool.list):
+            dice_str = self.dice_pool.stringify_dice_short(i)
+            
+            # case dimentioned
+            if dice in self.dice_hand.list:
+                dice_str = Fore.GREEN + dice_str
+                dice_str = dice_str + Style.RESET_ALL
+
+            # case in hand
+            elif dice in self.dice_pool.used:
+                dice_str = Fore.BLACK + dice_str
+                dice_str = Style.BRIGHT + dice_str
+                dice_str = dice_str + Style.RESET_ALL
+
+            string += dice_str
+        
+        return string
 
     def stringify_summons(self):
         """
