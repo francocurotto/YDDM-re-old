@@ -41,7 +41,30 @@ class DiceSet(DiceLibrary):
 
         return result
 
-    def remove_dice(self, i):
+    def remove_dice(self, dice):
+        """
+        Remove dice from dice set. If dice is not present,
+        ignore it and add message to the result.
+        Return dictionary format:
+        result = {
+        "success" : (bool) True if action was performed
+                    successfully.
+        "message" : (str) Relevant print string, usually 
+                    for when the action is unsuccessful.}
+        }
+        """
+        try:
+            i = self.list.index(dice)
+        except ValueError:
+            result = {}
+            result["success"] = False
+            result["message"] = "dice not in set."
+            return result
+
+        return self.remove_dice_idx(i)
+
+
+    def remove_dice_idx(self, i):
         """
         Remove dice from dice set with index i. If index is
         not valid, ignore it and add a message to result.
@@ -53,16 +76,18 @@ class DiceSet(DiceLibrary):
                     for when the action is unsuccessful.}
         }
         """
-        result = self.get_dice(i)
-        if not result["success"]:
+        result = {}
+
+        # remove dice
+        try:
+            dice = self.list[i]
+            del(self.list[i])
+
+        except IndexError:
+            result["success"] = False
+            result["message"] = "Invalid index."
             return result
 
-        # get dice index
-        dice = result["dice"]
-        i = self.list.index(dice)
-        
-        # remove dice
-        del(self.list[i])
         result["success"] = True
         result["dice"] = dice
 
@@ -74,8 +99,8 @@ class DiceSet(DiceLibrary):
         This could also be implemented as list = [], but
         that may indice bugs in the future.
         """
-        for i in range(len(self.list)):
-            self.remove_dice(i)
+        for dice in self.list:
+            self.remove_dice(dice)
 
     def is_full(self):
         """

@@ -46,6 +46,8 @@ class Monster(Summon):
         string += str(self.card.life)
         # life icon
         string += self.chars["life"]
+        # newline
+        string += "\n"
 
         return string
 

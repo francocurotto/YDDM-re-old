@@ -1,3 +1,4 @@
+import copy
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from crest_pool import CrestPool
@@ -33,15 +34,28 @@ class Player():
         available in dice pool again. 
         """
         # remove dice from hand
-        result = self.dice_hand.remove_dice(i)
+        result = self.dice_hand.remove_dice_idx(i)
         if not result["success"]:
             return result
 
-        # realease dice in dice pool
+        # release dice in dice pool
         self.dice_pool.release_dice(result["dice"])
         result = {"success" : True}
         
         return result
+
+    def empty_hand(self):
+        """
+        Remove all dice from hand and release them in dice 
+        pool.
+        """
+        while True:
+            result = self.remove_dice_from_hand(0)
+            
+            # remove will fail when there are no more dice
+            # in dice hand
+            if not result["success"]:
+                break
 
     def add_roll_to_crest_pool(self, sides):
         """

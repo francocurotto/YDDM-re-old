@@ -25,8 +25,8 @@ class DiceHand(DiceSet):
         result = {}
         if not self.is_full():
             result["success"] = False
-            result["message"] = "Dice hand not yet\n\
-                completed."
+            result["message"] = "Dice hand not yet " + \
+                "completed."
        
         else:
             # get the rolled sides

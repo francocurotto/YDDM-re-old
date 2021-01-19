@@ -23,8 +23,8 @@ class DiceLibrary():
             result["message"] = "Invalid index."
             return result
 
-        result["dice"] = ddm_dice
         result["success"] = True
+        result["dice"] = ddm_dice
 
         return result
 

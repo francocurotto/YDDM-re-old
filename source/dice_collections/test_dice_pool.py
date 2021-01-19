@@ -14,7 +14,7 @@ Input dl<number> to display a dice from the library.\n\
 Input dp to display the dice pool.\n\
 Input dp<number> to display a dice from the dice pool.\n\
 Input a<number> to add a dice from the library to the pool.\n\
-Input r<number> to add a dice from the pool.\n\
+Input r<number> to remove a dice from the pool.\n\
 Input f to fill the dice pool with random dice.\n\
 Input q to quit.\n")
 
@@ -84,7 +84,7 @@ while True:
         if dicenum is None: continue
 
         # remove dice from pool
-        result = pool.remove_dice(dicenum)
+        result = pool.remove_dice_idx(dicenum)
         if result["success"]:
             print("Dice removed to pool.\n")
         else:

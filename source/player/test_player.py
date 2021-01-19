@@ -75,6 +75,10 @@ def player_loop(player, opponent):
         command = input(">")
         cmd_list = command.split()
 
+        # no command
+        if command == "":
+            continue
+
         # help text
         if command == "h":
             print(help_text)
@@ -100,7 +104,7 @@ def player_loop(player, opponent):
         # roll dice hand
         elif cmd_list[0] == "h" and len(cmd_list) == 2:
             if cmd_list[1] == "r":
-                success = roll_command(player, opponent)
+                success = roll_command(player)
 
                 # if successful roll, finish turn
                 if success:
@@ -124,14 +128,14 @@ def hand_commands(player, command, i):
 
     print("")
             
-def roll_command(player, opponent):
+def roll_command(player):
     """
     Handles a roll command.
     """
     result = player.dice_hand.roll()
     
     if not result["success"]: # roll failed
-        print(result["message"])
+        print(result["message"] + "\n")
         return False
 
     # roll succeded
@@ -146,13 +150,10 @@ def roll_command(player, opponent):
         # if a monster/item was summon
         if used_dice is not None:
             # remove used dice (without releasing in pool)
-            i = player.dice_hand.list.index(used_dice)
-            player.dice_hand.remove_dice(i)
+            player.dice_hand.remove_dice(used_dice)
 
-        # release dice in dice hand for dice pool
-        for dice in player.dice_hand.list:
-            i = player.dice_hand.list.index(dice)
-            player.remove_dice_from_hand(i)
+            # release dice in dice hand for dice pool
+            player.empty_hand()
 
     return True
 
@@ -170,6 +171,7 @@ def summon_command(player, dimensions):
 
         # quit without summon
         if command == "q":
+            print("")
             break
         
         # get dice index
