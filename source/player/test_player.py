@@ -44,6 +44,7 @@ def main():
         print(player.name + " turn.")
 
         # call player loop
+        print(player.stringify_pool())
         player_loop(player, opponent)
 
         # check win condition
@@ -54,9 +55,9 @@ def main():
         i = not i
 
     # declare winner
-    print(player.name + "is the winner!\n" + \
-        "He summoned " + player.summon_limit + \
-        "monsters/items")
+    print(player.name + " is the winner!\n" + \
+        "He summoned " + str(player.summon_limit) + \
+        " monsters/items")
     
 def player_loop(player, opponent):
     """
@@ -75,10 +76,10 @@ def player_loop(player, opponent):
     "    d oc: display opponent crest pool\n" + \
     "    d os: display opponent summons\n\n" + \
     "Hand commands:\n" + \
-    "    h a #  : add dice from dice pool at position\n" + \
+    "    a #    : add dice from dice pool at position\n" + \
     "             # to dice hand\n" + \
-    "    h d #  : remove dice from hand at position #\n" + \
-    "    h r    : roll dice hand\n" + \
+    "    d #    : remove dice from hand at position #\n" + \
+    "    r      : roll dice hand\n" + \
     "    r # # #: ignore current dice at dice hand and\n" + \
     "             roll dice at positions # # #\n" + \
     "             (quick roll)\n\n"
@@ -106,7 +107,7 @@ def player_loop(player, opponent):
             display_commands(player, opponent, dsp_cmd)
 
         # hand case
-        elif cmd_list[0] == "h" and len(cmd_list) == 3:
+        elif cmd_list[0] in ["a","d"] and len(cmd_list) == 2:
             try: # convert indext into int
                 i = int(cmd_list[2]) # dice index
                 hand_commands(player, cmd_list[1], i)
@@ -114,21 +115,20 @@ def player_loop(player, opponent):
                 continue
        
         # roll dice hand
-        elif cmd_list[0] == "h" and len(cmd_list) == 2:
-            if cmd_list[1] == "r":
-                success = roll_command(player)
+        elif command == "r":
+            success = roll_command(player)
 
-                # if successful roll, finish turn
-                if success:
-                    break
+            # if successful roll, finish turn
+            if success:
+                break
 
         # quick roll dice
-        elif cmd_list[0] == "r" and len(cmd_list) == 4:
+        elif cmd_list[0] == "r":
             try: # convert indeces into int
                 i1 = int(cmd_list[1])
                 i2 = int(cmd_list[2])
                 i3 = int(cmd_list[3])
-            except ValueError:
+            except (ValueError, IndexError):
                 continue
 
             success = quickroll_command(player, i1, i2, i3)
@@ -190,11 +190,17 @@ def quickroll_command(player, i1, i2, i3):
     """
     indeces = [i1, i2, i3]
 
-    # first check if dice are not used yet
+    # get the dice
     for i in indeces:
         result = player.dice_pool.get_dice(i)
-        if result["dice"] in player.dice_pool.used:
-            print("Dice already used.\n")
+        
+        # first check if the indeces are correct 
+        if not result["success"]:
+            return False
+
+        # then check that the dice are not dimensioned yet
+        if result["dice"] in player.dice_bin.list:
+            print("Dice already dimensioned.\n")
             return False
 
     # empty hand
@@ -243,6 +249,9 @@ def summon_command(player, dimensions):
         dice = result["dice"]
         summon = dice.card.summon()
         player.summons.append(summon)
+
+        # add used dice to dice bin
+        player.dice_bin.add_dice(dice)
 
         # return used dice
         return dice

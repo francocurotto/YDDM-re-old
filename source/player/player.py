@@ -1,6 +1,7 @@
 from colorama import Fore, Style
 from dice_pool import DicePool
 from dice_hand import DiceHand
+from dice_set import DiceSet
 from crest_pool import CrestPool
 
 class Player():
@@ -12,8 +13,9 @@ class Player():
     def __init__(self, name, print_type="emoji"):
         self.name = name
         self.color = None
-        self.dice_pool = DicePool(self.color)
+        self.dice_pool = DicePool()
         self.dice_hand = DiceHand()
+        self.dice_bin = DiceSet(self.summon_limit)
         self.crest_pool = CrestPool(print_type)
         self.summons = []
 
@@ -22,11 +24,26 @@ class Player():
         Add dice at position i in dice pool to dice hand.
         Handles case of index error in dice pool.
         """
-        result = self.dice_pool.use_dice(i)
+        # first get dice
+        result = self.dice_pool.get_dice(i)
         if not result["success"]:
             return result
         
         dice = result["dice"]
+
+        # check if dice is in bin
+        if dice in self.dice_bin.list:
+            result["success"] = False
+            result["message"] = "Dice already dimensioned."
+            return result
+
+        # check if dice is in hand already
+        if dice in self.dice_hand.list:
+            result["success"] = False
+            result["message"] = "Dice already in hand."
+            return result
+
+        # finally, add dice to hand
         result = self.dice_hand.add_dice(dice)
 
         return result
@@ -41,8 +58,6 @@ class Player():
         if not result["success"]:
             return result
 
-        # release dice in dice pool
-        self.dice_pool.release_dice(result["dice"])
         result = {"success" : True}
         
         return result
@@ -77,13 +92,13 @@ class Player():
         for i, dice in enumerate(self.dice_pool.list):
             dice_str = self.dice_pool.stringify_dice_short(i)
             
-            # case dimentioned
+            # case in hand
             if dice in self.dice_hand.list:
                 dice_str = Fore.GREEN + dice_str
                 dice_str = dice_str + Style.RESET_ALL
 
-            # case in hand
-            elif dice in self.dice_pool.used:
+            # case dimensioned
+            elif dice in self.dice_bin.list:
                 dice_str = Fore.BLACK + dice_str
                 dice_str = Style.BRIGHT + dice_str
                 dice_str = dice_str + Style.RESET_ALL
