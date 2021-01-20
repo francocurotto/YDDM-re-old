@@ -98,6 +98,6 @@ class Player():
         """
         string = ""
         for summon in self.summons:
-            string += summon.stringify_short()
+            string += summon.stringify_short() + "\n"
 
         return string

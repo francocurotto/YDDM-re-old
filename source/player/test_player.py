@@ -44,32 +44,44 @@ def main():
         print(player.name + " turn.")
 
         # call player loop
-        result = player_loop(player, opponent)
+        player_loop(player, opponent)
+
+        # check win condition
+        if len(player.summons) >= player.summon_limit:
+            break
 
         # update player index
         i = not i
+
+    # declare winner
+    print(player.name + "is the winner!\n" + \
+        "He summoned " + player.summon_limit + \
+        "monsters/items")
     
 def player_loop(player, opponent):
     """
     Loops throught the turn of a player. Return a dictionary
     with the result of the loop.
     """
-    help_text = "\
-    General commands:\n\
-    \th   : print help\n\
-    \tq   : quit game\n\n\
-    Display commands:\n\
-    \td p : display pool\n\
-    \td h : display hand\n\
-    \td c : display crest pool\n\
-    \td s : display summons\n\
-    \td oc: display opponent crest pool\n\
-    \td os: display opponent summons\n\n\
-    Hand commands:\n\
-    \th a #: add dice from dice pool at position # to dice\n\
-             hand.\n\
-    \th d #: remove dice from hand at position #.\n\
-    \th r  : roll dice hand\n"
+    help_text = \
+    "General commands:\n" + \
+    "    h   : print help\n" + \
+    "    q   : quit game\n\n" + \
+    "Display commands:\n" + \
+    "    d p : display pool\n" + \
+    "    d h : display hand\n" + \
+    "    d c : display crest pool\n" + \
+    "    d s : display summons\n" + \
+    "    d oc: display opponent crest pool\n" + \
+    "    d os: display opponent summons\n\n" + \
+    "Hand commands:\n" + \
+    "    h a #  : add dice from dice pool at position\n" + \
+    "             # to dice hand\n" + \
+    "    h d #  : remove dice from hand at position #\n" + \
+    "    h r    : roll dice hand\n" + \
+    "    r # # #: ignore current dice at dice hand and\n" + \
+    "             roll dice at positions # # #\n" + \
+    "             (quick roll)\n\n"
 
     while True:
         command = input(">")
@@ -110,6 +122,21 @@ def player_loop(player, opponent):
                 if success:
                     break
 
+        # quick roll dice
+        elif cmd_list[0] == "r" and len(cmd_list) == 4:
+            try: # convert indeces into int
+                i1 = int(cmd_list[1])
+                i2 = int(cmd_list[2])
+                i3 = int(cmd_list[3])
+            except ValueError:
+                continue
+
+            success = quickroll_command(player, i1, i2, i3)
+
+            # if successful roll, finish turn
+            if success:
+                break
+
 def hand_commands(player, command, i):
     """
     Handles commands that add and remove dice from dice hand.
@@ -128,7 +155,6 @@ def hand_commands(player, command, i):
             print(result["message"])
         print("")
 
-            
 def roll_command(player):
     """
     Handles a roll command.
@@ -157,6 +183,31 @@ def roll_command(player):
             player.empty_hand()
 
     return True
+
+def quickroll_command(player, i1, i2, i3):
+    """
+    Handles quick roll command.
+    """
+    indeces = [i1, i2, i3]
+
+    # first check if dice are not used yet
+    for i in indeces:
+        result = player.dice_pool.get_dice(i)
+        if result["dice"] in player.dice_pool.used:
+            print("Dice already used.\n")
+            return False
+
+    # empty hand
+    player.dice_hand.empty()
+
+    # fill dice hand with dice
+    for i in indeces:
+        hand_commands(player, "a", i)
+
+    # roll dice
+    success = roll_command(player)
+
+    return success
 
 def summon_command(player, dimensions):
     """

@@ -1,3 +1,5 @@
 - Test Dicepool+DiceHand+CrestPool+Player
-    - add quick roll functionality
-    - add wining condition of 10 summons
+    - fix quick roll when using dice already in hand
+- transfer functionalities from test_player to player?
+- is dice hand really necesary if dice for roll can be selected directly from dice pool?
+- or maybe keep dice hand and dice pool but make player handle dice in pool availability
