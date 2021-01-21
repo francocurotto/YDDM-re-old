@@ -1,5 +1,1 @@
-- Test Dicepool+DiceHand+CrestPool+Player
-    - fix "dice hand full" message when used quick roll with dice hand full
-- transfer functionalities from test_player to player? (will this fix multiple newline in quickroll?)
-- is dice hand really necesary if dice for roll can be selected directly from dice pool?
-- or maybe keep dice hand and dice pool but make player handle dice in pool availability
+- Transfer functionalities from test_player to player? (will this fix multiple newline in quickroll?)

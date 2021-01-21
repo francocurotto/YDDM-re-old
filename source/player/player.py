@@ -48,27 +48,13 @@ class Player():
 
         return result
 
-    def remove_dice_from_hand(self, i):
-        """
-        Remove dice at position i in dice hand and make it 
-        available in dice pool again. 
-        """
-        # remove dice from hand
-        result = self.dice_hand.remove_dice_idx(i)
-        if not result["success"]:
-            return result
-
-        result = {"success" : True}
-        
-        return result
-
     def empty_hand(self):
         """
         Remove all dice from hand and release them in dice 
         pool.
         """
         while True:
-            result = self.remove_dice_from_hand(0)
+            result = self.dice_hand.remove_dice_idx(0)
             
             # remove will fail when there are no more dice
             # in dice hand

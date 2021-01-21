@@ -15,16 +15,17 @@ class Dice():
         Creates a dice object by parsing a string with the
         dice information.
         """
-        self.sides = parse_dice_string(string, print_type)
-        self.level = self.get_level()
+        self.level = self.get_level(string)
+        self.sides = self.parse_dice_string(string, 
+            print_type)
 
-    def get_level(self):
+    def get_level(self, string):
         """
-        Get the dice level from the dice sides.
+        Get the dice level from the dice string.
         """
         summon_crests = 0
-        for side in self.sides:
-            if side.crest.is_summon():
+        for char in string:
+            if char == "S":
                 summon_crests += 1
 
         return 5 - summon_crests
@@ -42,28 +43,30 @@ class Dice():
         """
         return "".join([s.stringify() for s in self.sides])
 
-def parse_dice_string(string, print_type):
-    """
-    Parses a string containing the information of a dice
-    object, and produces a list of the sides of the dice.
-    """
-    # get the crest characters for a crest dict
-    crest_chars = list(crest_dict.keys())
+    def parse_dice_string(self, string, print_type):
+        """
+        Parses a string containing the information of a dice
+        object, and produces a list of the sides of the dice.
+        """
+        # get the crest characters for a crest dict
+        crest_chars = list(crest_dict.keys())
 
-    # first break the string into a list of side strings
-    side_strings = []
-    for char in string:
-        if char in crest_chars:
-            side_strings.append(char)
-        else: # expected to be a digit
-            side_strings[-1] = side_strings[-1] + char
+        # first break the string into a list of side strings
+        side_strings = []
+        for char in string:
+            if char in crest_chars:
+                side_strings.append(char)
+                if char == "S": # add level as multiplier
+                    side_strings[-1] += str(self.level)
+            else: # expected to be a digit
+                side_strings[-1] += char
     
-    # then convert the side strings into side objects
-    side_list = []
-    for side_string in side_strings:
-        side_list.append(Side(side_string, print_type))
+        # then convert the side strings into side objects
+        side_list = []
+        for side_string in side_strings:
+            side_list.append(Side(side_string, print_type))
 
-    return side_list
+        return side_list
 
 def create_random_dice_string():
     """

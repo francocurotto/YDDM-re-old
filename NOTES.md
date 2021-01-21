@@ -65,3 +65,17 @@ logic to track the state of the game, that will be the
 skeleton of the actual game. Also a command class that parse 
 generic user text commands. With that we'll actually have a
 funny little game.
+
+# 2021-01-21
+I've got really delayed with the test_player script, mainly
+because I refactored dice_pool and player so that it is
+player that handles used dice and dimensioned dice (make 
+more sense). Now I'm really almost ready. The game is 
+actually functional, it's just that I have to transfer 
+functionalities from test_player to player, in order to make
+test scripts as simple as possible. Aside of the next steps
+mentioned on 2021-01-14, I want to also add a Dungeon Master
+so you can actually attack it and win the game in the same 
+way as the actual YDDM game. That is a lot of work, I must
+be sure to implement in progressively. I think I should start 
+with the game states and reimplement test_player.

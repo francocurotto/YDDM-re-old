@@ -24,8 +24,8 @@ class Side():
         """
         Returns a string version of object.
         """
-        if self.multiplier <= 1:
-            return self.crest.stringify()
+        #if self.multiplier <= 1:
+        #    return self.crest.stringify()
 
         return self.crest.stringify() + str(self.multiplier)
 

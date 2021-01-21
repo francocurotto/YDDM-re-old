@@ -85,7 +85,10 @@ def player_loop(player, opponent):
     "             (quick roll)\n\n"
 
     while True:
-        command = input(">")
+        try:
+            command = input(">")
+        except:
+            command = "q"
         cmd_list = command.split()
 
         # no command
@@ -109,8 +112,8 @@ def player_loop(player, opponent):
         # hand case
         elif cmd_list[0] in ["a","d"] and len(cmd_list) == 2:
             try: # convert indext into int
-                i = int(cmd_list[2]) # dice index
-                hand_commands(player, cmd_list[1], i)
+                i = int(cmd_list[1]) # dice index
+                hand_commands(player, cmd_list[0], i)
             except ValueError:
                 continue
        
@@ -150,7 +153,7 @@ def hand_commands(player, command, i):
                 
     # remove dice from dice hand
     elif command == "d":
-        result = player.remove_dice_from_hand(i)
+        result = player.dice_hand.remove_dice_idx(i)
         if not result["success"]:
             print(result["message"])
         print("")
@@ -204,11 +207,11 @@ def quickroll_command(player, i1, i2, i3):
             return False
 
     # empty hand
-    player.dice_hand.empty()
+    player.empty_hand()
 
     # fill dice hand with dice
     for i in indeces:
-        hand_commands(player, "a", i)
+        result = player.add_dice_to_hand(i)
 
     # roll dice
     success = roll_command(player)
