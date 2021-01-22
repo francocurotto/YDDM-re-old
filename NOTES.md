@@ -79,3 +79,14 @@ so you can actually attack it and win the game in the same
 way as the actual YDDM game. That is a lot of work, I must
 be sure to implement in progressively. I think I should start 
 with the game states and reimplement test_player.
+
+# 2022-01-22
+Finally done with test player. Now to the next, the roadmap
+is something like this:
+- implement states and command_prompt and commands
+- reimplement test_player (as test_player2)
+- implement attacks
+- implement dungeon master
+- implement the basic game (without the dungeon yet)
+Why I'm doing this list here? I should paste it in the TODO
+file.
