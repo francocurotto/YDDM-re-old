@@ -41,7 +41,7 @@ class Dice():
         """
         Returns a string version of object.
         """
-        return "".join([s.stringify() for s in self.sides])
+        return ",".join([s.stringify() for s in self.sides])
 
     def parse_dice_string(self, string, print_type):
         """

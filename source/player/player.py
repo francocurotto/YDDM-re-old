@@ -47,7 +47,7 @@ class Player():
 
         return result
 
-    def quick_add_hand(self, i1, i2, i3):
+    def add_dice_to_hand_quick(self, i1, i2, i3):
         """
         Add three dice to hand hand given three index to from 
         dice in dice pool to roll. Must check if index are 
@@ -64,11 +64,11 @@ class Player():
             if not result["success"]:
                 return result
 
-            result = {}
             # then check that the dice are not dimensioned yet
-            if result["dice"] in player.dice_bin.list:
+            if result["dice"] in self.dice_bin.list:
+                result = {}
                 result["success"] = False
-                result["message"] = 
+                result["message"] = \
                     "Dice already dimensioned."
                 return result
 

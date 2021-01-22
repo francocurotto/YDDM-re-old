@@ -56,7 +56,7 @@ def main():
 
     # declare winner
     print(player.name + " is the winner!\n" + \
-        "He summoned " + str(player.summon_limit) + \
+        "He/She summoned " + str(player.summon_limit) + \
         " monsters/items")
     
 def player_loop(player, opponent):
@@ -68,13 +68,13 @@ def player_loop(player, opponent):
     "General commands:\n" + \
     "    h   : print help\n" + \
     "    q   : quit game\n\n" + \
-    "Display commands:\n" + \
-    "    d p : display pool\n" + \
-    "    d h : display hand\n" + \
-    "    d c : display crest pool\n" + \
-    "    d s : display summons\n" + \
-    "    d oc: display opponent crest pool\n" + \
-    "    d os: display opponent summons\n\n" + \
+    "Print commands:\n" + \
+    "    p p : display pool\n" + \
+    "    p h : display hand\n" + \
+    "    p c : display crest pool\n" + \
+    "    p s : display summons\n" + \
+    "    p oc: display opponent crest pool\n" + \
+    "    p os: display opponent summons\n\n" + \
     "Hand commands:\n" + \
     "    a #    : add dice from dice pool at position\n" + \
     "             # to dice hand\n" + \
@@ -104,10 +104,10 @@ def player_loop(player, opponent):
             print("Bye!")
             exit()
 
-        # display case
-        elif cmd_list[0] == "d" and len(cmd_list) == 2:
+        # print case
+        elif cmd_list[0] == "p" and len(cmd_list) == 2:
             dsp_cmd = cmd_list[1]
-            display_commands(player, opponent, dsp_cmd)
+            print_commands(player, opponent, dsp_cmd)
 
         # hand case
         elif cmd_list[0] in ["a","d"] and len(cmd_list) == 2:
@@ -183,7 +183,7 @@ def quickroll_command(player, i1, i2, i3):
     Handles quick roll command.
     """
     # add dice to hand
-    result = player.quick_add_dice_to_hand(i1, i2, i3)
+    result = player.add_dice_to_hand_quick(i1, i2, i3)
     if not result["success"]:
         print(result["message"] + "\n")
         return False
@@ -225,10 +225,11 @@ def summon_command(player, dimensions):
 
         # summon dice
         player.dimension_dice(result["dice"])
+        break
 
-def display_commands(player, opponent, command):        
+def print_commands(player, opponent, command):        
     """
-    Handles display commands.
+    Handles print commands.
     """
     if command == "p": # display pool     
         print(player.stringify_pool())
