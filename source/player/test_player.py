@@ -15,8 +15,8 @@ Input h for a list of available commands at any given\n\
 time.\n")
 
 # geterate dice library in order to fill the dice pools
-print_type = "emoji"
-#print_type = "ascii"
+#print_type = "emoji"
+print_type = "ascii"
 lib_filename = "../databases/my_database.txt"
 library = DiceLibrary(lib_filename, print_type)
 
@@ -162,7 +162,7 @@ def roll_command(player):
     """
     Handles a roll command.
     """
-    result = player.dice_hand.roll()
+    result = player.roll_hand()
     
     if not result["success"]: # roll failed
         print(result["message"] + "\n")
@@ -170,20 +170,11 @@ def roll_command(player):
 
     # roll succeded
     print("Roll result:" + result["string"] + "\n")
-    player.add_roll_to_crest_pool(result["sides"])
 
     # check for summon
     dimensions = result["dimensions"]
-    if not result["dimensions"].is_empty():
-        used_dice = summon_command(player, dimensions)
-        
-        # if a monster/item was summon
-        if used_dice is not None:
-            # remove used dice (without releasing in pool)
-            player.dice_hand.remove_dice(used_dice)
-
-            # release dice in dice hand for dice pool
-            player.empty_hand()
+    if not dimensions.is_empty():
+        summon_command(player, dimensions)
 
     return True
 
@@ -191,27 +182,11 @@ def quickroll_command(player, i1, i2, i3):
     """
     Handles quick roll command.
     """
-    indeces = [i1, i2, i3]
-
-    # get the dice
-    for i in indeces:
-        result = player.dice_pool.get_dice(i)
-        
-        # first check if the indeces are correct 
-        if not result["success"]:
-            return False
-
-        # then check that the dice are not dimensioned yet
-        if result["dice"] in player.dice_bin.list:
-            print("Dice already dimensioned.\n")
-            return False
-
-    # empty hand
-    player.empty_hand()
-
-    # fill dice hand with dice
-    for i in indeces:
-        result = player.add_dice_to_hand(i)
+    # add dice to hand
+    result = player.quick_add_dice_to_hand(i1, i2, i3)
+    if not result["success"]:
+        print(result["message"] + "\n")
+        return False
 
     # roll dice
     success = roll_command(player)
@@ -248,19 +223,8 @@ def summon_command(player, dimensions):
             print(result["message"])
             continue
 
-        # add summon to player list
-        dice = result["dice"]
-        summon = dice.card.summon()
-        player.summons.append(summon)
-
-        # add used dice to dice bin
-        player.dice_bin.add_dice(dice)
-
-        # return used dice
-        return dice
-    
-    # return none as no dice was used
-    return None
+        # summon dice
+        player.dimension_dice(result["dice"])
 
 def display_commands(player, opponent, command):        
     """

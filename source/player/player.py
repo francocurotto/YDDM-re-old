@@ -22,7 +22,6 @@ class Player():
     def add_dice_to_hand(self, i):
         """
         Add dice at position i in dice pool to dice hand.
-        Handles case of index error in dice pool.
         """
         # first get dice
         result = self.dice_pool.get_dice(i)
@@ -47,6 +46,71 @@ class Player():
         result = self.dice_hand.add_dice(dice)
 
         return result
+
+    def quick_add_hand(self, i1, i2, i3):
+        """
+        Add three dice to hand hand given three index to from 
+        dice in dice pool to roll. Must check if index are 
+        correct and if necessary empty the hand if it already 
+        hace dice in it.
+        """
+        indeces = [i1, i2, i3]
+
+        # get the dice
+        for i in indeces:
+            result = self.dice_pool.get_dice(i)
+            
+            # check if the indeces are correct
+            if not result["success"]:
+                return result
+
+            result = {}
+            # then check that the dice are not dimensioned yet
+            if result["dice"] in player.dice_bin.list:
+                result["success"] = False
+                result["message"] = 
+                    "Dice already dimensioned."
+                return result
+
+        # empty hand
+        self.empty_hand()
+
+        # fill dice hand with dice indeces
+        for i in indeces:
+            self.add_dice_to_hand(i)
+
+        return {"success" : True}
+
+    def roll_hand(self):
+        """
+        Roll dice in hand, and add roll to crest poll.
+        """
+        result = self.dice_hand.roll()
+
+        if not result["success"]: # roll failed
+            return result
+
+        # is success add roll to crest pool
+        self.add_roll_to_crest_pool(result["sides"])
+
+        return result
+
+    def dimension_dice(self, dice):
+        """
+        Dimension dice from dice hand. It involves:
+        1. creating a summon from dice
+        2. discarting dice to the dice bin
+        3. empty dice hand
+        """
+        # summon card from dice
+        summon = dice.card.summon()
+        self.summons.append(summon)
+
+        # discard summoned dice into dice bin
+        self.dice_bin.add_dice(dice)
+
+        # empty dice hand
+        self.empty_hand()
 
     def empty_hand(self):
         """
