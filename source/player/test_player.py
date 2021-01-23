@@ -69,12 +69,12 @@ def player_loop(player, opponent):
     "    h   : print help\n" + \
     "    q   : quit game\n\n" + \
     "Print commands:\n" + \
-    "    p p : display pool\n" + \
-    "    p h : display hand\n" + \
-    "    p c : display crest pool\n" + \
-    "    p s : display summons\n" + \
-    "    p oc: display opponent crest pool\n" + \
-    "    p os: display opponent summons\n\n" + \
+    "    p p : print pool\n" + \
+    "    p h : print hand\n" + \
+    "    p c : print crest pool\n" + \
+    "    p s : print summons\n" + \
+    "    p oc: print opponent crest pool\n" + \
+    "    p os: print opponent summons\n\n" + \
     "Hand commands:\n" + \
     "    a #    : add dice from dice pool at position\n" + \
     "             # to dice hand\n" + \

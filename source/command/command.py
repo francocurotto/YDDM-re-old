@@ -14,28 +14,49 @@ class Command():
             except ValueError:
                 pass
 
-    def get_item(self, i):
+    def get_param(self, i):
         """
-        Get item from command at position i. Return None if
-        index is out of range.
+        Get parameter from command at position i. Return None 
+        if index is out of range.
         """
         try:
             return self.list[i]
         except IndexError:
             return None
 
-    def is_equal(self, value, i=0):
+    def equals_param(self, i, value):
         """
-        Check if command item at position i is equal to input
-        value. By default check first item.
+        Check if command parameter at position i is equal to 
+        input value.
         """
-        return self.get_item(i) == value
+        return self.get_param(i) == value
+
+    def equals(self, *argv):
+        """
+        Check if inputs are all equals and in the same order
+        than command parameters.
+        """
+        return self.list == argv
 
     def is_int(self, i):
         """
         Check if command item at position i is int.
         """
-        return isinstance(self.get_item(i), int)
+        return isinstance(self.get_param(i), int)
+
+    def is_empty(self):
+        """
+        Return True if command list is empty.
+        """
+        return len(self.list) == 0
+
+    def subcommand(self, i):
+        """
+        Creates a new command that is a subset of command,
+        with parameters starting at i from old command.
+        """
+        new_params = self.list[i:]
+        return Command(" ".join(map(str, new_params)))
 
 def run_prompt():
     """
