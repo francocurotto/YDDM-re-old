@@ -44,18 +44,34 @@ class Command():
         """
         return isinstance(self.get_param(i), int)
 
+    def are_params_int(self):    
+        """
+        Check if all the parameters in the command are ints.
+        Empty command is considered invalid.
+        """
+        # check empty list
+        if self.is_empty():
+            return False
+
+        for param in self.list:
+            if not isinstance(param, int):
+                return False
+
+        return True
+
     def is_empty(self):
         """
         Return True if command list is empty.
         """
         return len(self.list) == 0
 
-    def subcommand(self, i):
+    def subcommand(self, start, end=self.len):
         """
         Creates a new command that is a subset of command,
-        with parameters starting at i from old command.
+        with parameters starting at start and ending at end
+        (default till last param) of the param list.
         """
-        new_params = self.list[i:]
+        new_params = self.list[start:end]
         return Command(" ".join(map(str, new_params)))
 
 def run_prompt():
