@@ -13,25 +13,31 @@ class SummonState(PromptState):
         """
         As intial action, print available dimensions.
         """
+        print("Available summons:")
         print(self.dimensions.stringify())
+        print("Select with number [s: skip].")
 
     def parse_command(self, command):
         """
         Parse command obtained by prompt.
         """
         # generic commands
-        super().parse_commands(command)
+        super().parse_command(command)
 
         # print available summons command
-        if command.equals("p", "s"):
+        if command.equals("p", "as"):
             print(self.dimensions.stringify())
             return False
+
+        if command.equals("s"):
+            print("")
+            return True
 
         # dimension dice
         if command.len == 1 and command.is_int(0):
             i = command.list[0]
             result = self.dimensions.get_dice(i)
-            if not result["success"]
+            if not result["success"]:
                 print(result["message"])
                 return False
 
@@ -40,6 +46,7 @@ class SummonState(PromptState):
 
 help_text = "\
 Summon commands: \n\
-    p s: print available summons \n\
-    #  : dimension dice \n\
-\n"
+    p as: print available summons \n\
+    s   : skip dimension \n\
+    #   : dimension dice \n\
+"

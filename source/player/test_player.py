@@ -24,7 +24,7 @@ library = DiceLibrary(lib_filename, print_type)
 player1 = Player("Player 1", print_type)
 player2 = Player("Player 2", print_type)
 
-# generate random dice pools randomly
+# generate random dice pools
 player1.dice_pool.fill_random(library)
 player2.dice_pool.fill_random(library)
 

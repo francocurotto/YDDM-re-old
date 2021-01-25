@@ -1,4 +1,5 @@
 from prompt_state import PromptState
+from summon_state import SummonState
 
 class RollState(PromptState):
     """
@@ -22,7 +23,7 @@ class RollState(PromptState):
         super().parse_command(command)
 
         # add command
-        elif command.equals_param(0, "a"):
+        if command.equals_param(0, "a"):
             subcommand = command.subcommand(1)
             self.run_add_command(subcommand)
             return False
@@ -34,12 +35,12 @@ class RollState(PromptState):
             return False
 
         # roll command
-        elif command.equals_param("r"):
+        elif command.equals_param(0, "r"):
             subcommand = command.subcommand(1)
             success = self.parse_roll_command(subcommand)
             return success
 
-    def run_add_command(command):
+    def run_add_command(self, command):
         """
         Run command that add a dice from dice pool to dice
         hand.
@@ -55,7 +56,7 @@ class RollState(PromptState):
         
         print("")
 
-    def run_getback_command(command):
+    def run_getback_command(self, command):
         """
         Run command that get back a dice from dice hand to 
         the dice pool.
@@ -66,16 +67,16 @@ class RollState(PromptState):
 
         # sort params in order to avoid IdexError in 
         # chopped list
-        sorted_params = sorted(command.list)
+        sorted_params = sorted(command.list, reverse=True)
 
         for i in sorted_params:
-            result = player.dice_hand.remove_dice_idx(i)
+            result = self.player.dice_hand.remove_dice_idx(i)
             if not result["success"]:
                 print(result["message"])
 
         print("")
         
-    def parse_roll_command(command):
+    def parse_roll_command(self, command):
         """
         Distinguish between a normal roll command (no 
         paramenters) and a quick roll command (three int
@@ -92,7 +93,7 @@ class RollState(PromptState):
         # invalid command
         return False
 
-    def run_roll_command(command):
+    def run_roll_command(self):
         """
         Run command that roll dice hand. Must differenciate
         between roll command with or without int parameters.
@@ -111,12 +112,12 @@ class RollState(PromptState):
         dimensions = result["dimensions"]
         if not dimensions.is_empty():
             summon_state = SummonState(self.player, 
-                self.opponent)
-            summon_state.start(player, dimensions)
+                self.opponent, dimensions)
+            summon_state.start()
 
         return True
 
-    def run_quick_roll_command(command):
+    def run_quick_roll_command(self, command):
         """
         Add the three dice in command to dice hand and then
         run roll command.
@@ -129,8 +130,7 @@ class RollState(PromptState):
             return False
 
         # call run roll command without parameters
-        command = command.subcommand(0,1)
-        return self.run_roll_command(command)
+        return self.run_roll_command()
 
 help_text = "\
 Hand commands: \n\
@@ -142,4 +142,4 @@ Hand commands: \n\
     r # # #  : ignore current dice at dice hand and \n\
                roll dice at positions # # # \n\
                (quick roll) \n\
-\n"
+"

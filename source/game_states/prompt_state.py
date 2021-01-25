@@ -34,8 +34,11 @@ class PromptState():
         Parse the command obtained from prompt.
         """
         if command.equals("q"):
+            # TODO: finish in a more elegant way
+            # e.g. add a forfit flag in player that is
+            # checked by the duel loop
             print("bye!")
-            return True
+            exit()
 
         elif command.equals("h"):
             print(self.help_text)

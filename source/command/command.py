@@ -36,7 +36,7 @@ class Command():
         Check if inputs are all equals and in the same order
         than command parameters.
         """
-        return self.list == argv
+        return self.list == list(argv)
 
     def is_int(self, i):
         """
@@ -65,12 +65,17 @@ class Command():
         """
         return len(self.list) == 0
 
-    def subcommand(self, start, end=self.len):
+    def subcommand(self, start, end=None):
         """
         Creates a new command that is a subset of command,
         with parameters starting at start and ending at end
         (default till last param) of the param list.
         """
+        # if end is not defined, command list end
+        if end is None:
+            end = self.len
+
+        # get new parameter list
         new_params = self.list[start:end]
         return Command(" ".join(map(str, new_params)))
 
