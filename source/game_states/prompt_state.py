@@ -31,14 +31,12 @@ class PromptState():
 
     def parse_command(self, command):
         """
-        Parse the command obtained from prompt.
+        Parse the command obtained from prompt. Return True 
+        if player is done with prompt state.
         """
         if command.equals("q"):
-            # TODO: finish in a more elegant way
-            # e.g. add a forfit flag in player that is
-            # checked by the duel loop
-            print("bye!")
-            exit()
+            self.player.forfeited = True
+            return True
 
         elif command.equals("h"):
             print(self.help_text)
@@ -70,7 +68,7 @@ class PromptState():
 help_text = "\
 General commands: \n\
     h   : print help \n\
-    q   : quit game \n\
+    q   :  forfeit the duel \n\
 \n\
 Print commands: \n\
     p p : print pool \n\

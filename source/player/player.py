@@ -18,6 +18,7 @@ class Player():
         self.dice_bin = DiceSet(self.summon_limit)
         self.crest_pool = CrestPool(print_type)
         self.summons = []
+        self.foreited = False
 
     def add_dice_to_hand(self, i):
         """

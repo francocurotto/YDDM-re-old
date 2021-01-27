@@ -80,7 +80,7 @@ way as the actual YDDM game. That is a lot of work, I must
 be sure to implement in progressively. I think I should start 
 with the game states and reimplement test_player.
 
-# 2022-01-22
+# 2021-01-22
 Finally done with test player. Now to the next, the roadmap
 is something like this:
 - implement states and command_prompt and commands
@@ -90,3 +90,14 @@ is something like this:
 - implement the basic game (without the dungeon yet)
 Why I'm doing this list here? I should paste it in the TODO
 file.
+
+# 2021-01-27
+Forgot to mention but in 2021-01-25 I finish the
+implementation of the commands and command prompt, and
+refactor test player in order to use game states (roll_state,
+summon_state). Now I'm implementing attacks, but I realized
+that I need to implement a summon_set, similar to dice_set,
+in order to easily select monsters from the already summoned.
+This means that most likely I will have to refactor dice_set
+and dice_library, and do some regresion test commenting some
+of my progress of today.

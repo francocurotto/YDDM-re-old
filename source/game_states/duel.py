@@ -7,6 +7,7 @@ sys.path.append("../command")
 from player import Player
 from dice_library import DiceLibrary
 from roll_state import RollState
+from attack_state import AttackState
 
 class Duel():
     """
@@ -16,6 +17,7 @@ class Duel():
         self.players = [player1, player2]
         self.library = library
         self.print_type = print_type
+        self.first_turn = True
 
     def start(self):
         """
@@ -33,22 +35,37 @@ class Duel():
             # run roll state
             RollState(player, opponent).start()
 
-            # check win condition
-            if self.duel_finished(player):
+            # check finish condition
+            if self.duel_finished(player, opponent):
                 break
+
+            # run roll state (skip in first turn)
+            if not self.first_turn:
+                AttackState(player, opponent).start()
+
+            # check finish condition
+            if self.duel_finished(player, opponent):
+                break
+
+            # after first iteration, no longer in first turn
+            self.first_turn = False
 
             # update player index
             i = not i
 
-    def duel_finished(self, player):
+    def duel_finished(self, player, opponent):
         """
         Check finish condition for duel. This can be a win
         condition from a player or a forfit condition.
         """
-        if len(player.summons) >= player.summon_limit:
-            print(player.name + " is the winner!\n" + \
-                "He/She summoned " + \
-                str(player.summon_limit) + " monsters/items")
+        # Forfeit condition
+        if player.forfeited:
+            print(player.name + " forfeited.")
+            return True
+
+        # normal win condition (dungeon master beaten)
+        if opponent.master.is_dead():
+            print(player.name + " is the winner!")
             return True
 
         return False

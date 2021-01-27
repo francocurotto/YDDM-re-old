@@ -13,11 +13,13 @@ class RollState(PromptState):
         """
         As inital action, print current player pool.
         """
+        print("Roll phase.")
         print(self.player.stringify_pool())
 
     def parse_command(self, command):
         """
-        Parse the command obtained from prompt.
+        Parse the command obtained from prompt. Return True 
+        if player is done with state.
         """
         # generic commands
         super().parse_command(command)
@@ -80,7 +82,7 @@ class RollState(PromptState):
         """
         Distinguish between a normal roll command (no 
         paramenters) and a quick roll command (three int
-        paramters).
+        paramters). Return True if roll is successfull.
         """
         # normal roll
         if command.is_empty():
@@ -97,6 +99,7 @@ class RollState(PromptState):
         """
         Run command that roll dice hand. Must differenciate
         between roll command with or without int parameters.
+        Return true if roll is successfull.
         """
         # Go, dice roll!
         result = self.player.roll_hand()
@@ -120,7 +123,7 @@ class RollState(PromptState):
     def run_quick_roll_command(self, command):
         """
         Add the three dice in command to dice hand and then
-        run roll command.
+        run roll command. Return True if roll is successfull.
         """
         # add dice to dice hand
         indeces = command.list
