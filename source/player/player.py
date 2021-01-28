@@ -1,7 +1,7 @@
 from colorama import Fore, Style
 from dice_pool import DicePool
 from dice_hand import DiceHand
-from dice_set import DiceSet
+from dice_list import DiceList
 from crest_pool import CrestPool
 from monster_lord import MonsterLord
 
@@ -14,9 +14,9 @@ class Player():
     def __init__(self, name, print_type="emoji"):
         self.name = name
         self.color = None
-        self.dice_pool = DicePool()
-        self.dice_hand = DiceHand()
-        self.dice_bin = DiceSet(self.summon_limit)
+        self.dice_pool = DicePool(print_type)
+        self.dice_hand = DiceHand(print_type)
+        self.dice_bin = DiceList(print_type=print_type)
         self.crest_pool = CrestPool(print_type)
         self.summons = []
         self.monster_lord = MonsterLord()
@@ -27,11 +27,11 @@ class Player():
         Add dice at position i in dice pool to dice hand.
         """
         # first get dice
-        result = self.dice_pool.get_dice(i)
+        result = self.dice_pool.get(i)
         if not result["success"]:
             return result
         
-        dice = result["dice"]
+        dice = result["item"]
 
         # check if dice is in bin
         if dice in self.dice_bin.list:
@@ -46,7 +46,7 @@ class Player():
             return result
 
         # finally, add dice to hand
-        result = self.dice_hand.add_dice(dice)
+        result = self.dice_hand.add(dice)
 
         return result
 
@@ -61,14 +61,14 @@ class Player():
 
         # get the dice
         for i in indeces:
-            result = self.dice_pool.get_dice(i)
+            result = self.dice_pool.get(i)
             
             # check if the indeces are correct
             if not result["success"]:
                 return result
 
             # then check that the dice are not dimensioned yet
-            if result["dice"] in self.dice_bin.list:
+            if result["item"] in self.dice_bin.list:
                 result = {}
                 result["success"] = False
                 result["message"] = \
@@ -110,7 +110,7 @@ class Player():
         self.summons.append(summon)
 
         # discard summoned dice into dice bin
-        self.dice_bin.add_dice(dice)
+        self.dice_bin.add(dice)
 
         # empty dice hand
         self.empty_hand()
@@ -121,7 +121,7 @@ class Player():
         pool.
         """
         while True:
-            result = self.dice_hand.remove_dice_idx(0)
+            result = self.dice_hand.remove_idx(0)
             
             # remove will fail when there are no more dice
             # in dice hand

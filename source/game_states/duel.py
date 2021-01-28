@@ -1,11 +1,11 @@
 import sys
-sys.path.append("../dice_collections")
+sys.path.append("../ddm_list")
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
 sys.path.append("../player")
 sys.path.append("../command")
 from player import Player
-from dice_library import DiceLibrary
+from dice_list import DiceList
 from roll_state import RollState
 #from attack_state import AttackState
 
@@ -13,9 +13,8 @@ class Duel():
     """
     A YDDM duel.
     """
-    def __init__(self, player1, player2, library):
+    def __init__(self, player1, player2):
         self.players = [player1, player2]
-        self.library = library
         self.print_type = print_type
         self.first_turn = True
 
@@ -85,7 +84,8 @@ if __name__ == "__main__":
     
     # generate dice library
     lib_filename = "../databases/my_database.txt"
-    library = DiceLibrary(lib_filename, print_type)
+    library = DiceList(print_type=print_type,
+        filename=lib_filename)
 
     # generate players
     player1 = Player("Player 1", print_type)
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     player2.dice_pool.fill_random(library)
         
     # generate duel
-    duel = Duel(player1, player2, library)
+    duel = Duel(player1, player2)
 
     # start duel
     duel.start()

@@ -72,7 +72,7 @@ class RollState(PromptState):
         sorted_params = sorted(command.list, reverse=True)
 
         for i in sorted_params:
-            result = self.player.dice_hand.remove_dice_idx(i)
+            result = self.player.dice_hand.remove_idx(i)
             if not result["success"]:
                 print(result["message"])
 

@@ -1,12 +1,13 @@
-from dice_set import DiceSet
+from dice_list import DiceList
 
-class DiceHand(DiceSet):
+class DiceHand(DiceList):
     """
     Set of 3 dice used in a turn to make a roll.
     """
-    def __init__(self):
-        super().__init__(3)
+    def __init__(self, print_type="emoji"):
+        super().__init__(3,print_type=print_type)
         self.name = "dice hand"
+        self.itemname = "dice"
 
     def roll(self):
         """
@@ -17,7 +18,7 @@ class DiceHand(DiceSet):
                       successfully.
         "sides"     : (list) list of sides rolled.
         "string"    : (str) string version of roll result.
-        "dimension" : (DiceSet) set of dice available to 
+        "dimension" : (DiceList) set of dice available to 
                       dimension.
         "message"   : (str) Relevant print string, usually 
                       for when the roll is unsuccessful.}
@@ -58,13 +59,13 @@ class DiceHand(DiceSet):
         for level in range(1,5):
             # dice that rolled a summon crest of a specific 
             # level
-            summon_dice = DiceSet(3)
+            summon_dice = DiceList(3)
             
             # go through dice roll (is expected that dice and 
             # side are in order) 
             for dice, side in zip(self.list, sides):
                 if rolled_summon_level(dice, side, level):
-                    summon_dice.add_dice(dice)
+                    summon_dice.add(dice)
 
             # check dimension condition: 2 or more summon 
             # crests of the same level
@@ -73,7 +74,7 @@ class DiceHand(DiceSet):
                 return summon_dice
                 
         # no summon was found
-        return DiceSet(3)
+        return DiceList(3)
         
 def rolled_summon_level(dice, side, level):
     """

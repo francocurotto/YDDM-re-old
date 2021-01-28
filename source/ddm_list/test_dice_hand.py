@@ -1,7 +1,7 @@
 import sys
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
-from dice_library import DiceLibrary
+from dice_list import DiceList
 from dice_hand import DiceHand
 
 print("Welcome to the dice hand test.\n\n\
@@ -14,13 +14,14 @@ Input r to roll the dice hand.\n\
 Input dr to display the roll result.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("../databases/my_database.txt", "ascii")
+library = DiceList(print_type="emoji", 
+    filename="../databases/my_database.txt")
 hand = DiceHand()
 
 # get a prefined set of dice to the dice hand
-hand.add_dice(library.get_dice(1)["dice"])
-hand.add_dice(library.get_dice(3)["dice"])
-hand.add_dice(library.get_dice(7)["dice"])
+hand.add(library.get(1)["item"])
+hand.add(library.get(3)["item"])
+hand.add(library.get(7)["item"])
 
 roll_result = None
 while True:

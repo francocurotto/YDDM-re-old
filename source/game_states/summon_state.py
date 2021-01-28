@@ -33,12 +33,13 @@ class SummonState(PromptState):
         # dimension dice
         if command.len == 1 and command.is_int(0):
             i = command.list[0]
-            result = self.dimensions.get_dice(i)
+            result = self.dimensions.get(i)
             if not result["success"]:
                 print(result["message"])
                 return False
 
-            self.player.dimension_dice(result["dice"])
+            self.player.dimension_dice(result["item"])
+            print("")
             return True
 
         # generic commands

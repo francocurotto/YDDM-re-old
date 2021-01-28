@@ -1,7 +1,7 @@
 import sys
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
-from dice_library import DiceLibrary
+from dice_list import DiceList
 from dice_pool import DicePool
 
 print("Welcome to the dice pool test.\n\n\
@@ -18,7 +18,8 @@ Input r<number> to remove a dice from the pool.\n\
 Input f to fill the dice pool with random dice.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("../databases/my_database.txt")
+library = DiceList(print_type="emoji", 
+    filename="../databases/my_database.txt")
 pool = DicePool()
 
 def get_dicenum(string):
@@ -51,9 +52,9 @@ while True:
         else: # print a specific dice
             dicenum = get_dicenum(command[2:])
             if dicenum is None: continue
-            result = set.get_dice(dicenum)
+            result = set.get(dicenum)
             if result["success"]:
-                print(result["dice"].stringify() + "\n")
+                print(result["item"].stringify() + "\n")
             else:
                 print(result["message"] + "\n")
 
@@ -65,13 +66,13 @@ while True:
             continue
 
         # get dice from library
-        result = library.get_dice_copy(dicenum)
+        result = library.get_copy(dicenum)
         if not result["success"]:
             print(result["message"] + "\n")
             continue
 
         # add dice to pool
-        result = pool.add_dice(result["dice"])
+        result = pool.add(result["item"])
         if result["success"]:
             print("Dice added to pool.\n")
         else:
@@ -84,7 +85,7 @@ while True:
         if dicenum is None: continue
 
         # remove dice from pool
-        result = pool.remove_dice_idx(dicenum)
+        result = pool.remove_idx(dicenum)
         if result["success"]:
             print("Dice removed to pool.\n")
         else:

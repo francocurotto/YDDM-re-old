@@ -13,7 +13,7 @@ Input d to display the whole library.\n\
 Input d<number> to display a specific dice.\n\
 Input q to quit.\n")
 
-library = DiceList(print_type="ascii", 
+library = DiceList(print_type="emoji", 
     filename="../databases/my_database.txt")
 
 while True:

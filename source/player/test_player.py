@@ -1,10 +1,10 @@
 from itertools import cycle
 import sys
-sys.path.append("../dice_collections")
+sys.path.append("../ddm_list")
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
 from player import Player
-from dice_library import DiceLibrary
+from dice_list import DiceList
 
 print("Welcome to the player test.\n\
 Here two players will alternate turns filling their dice\n\
@@ -18,7 +18,8 @@ time.\n")
 print_type = "emoji"
 #print_type = "ascii"
 lib_filename = "../databases/my_database.txt"
-library = DiceLibrary(lib_filename, print_type)
+library = DiceList(print_type=print_type, 
+    filename=lib_filename)
 
 # generate players
 player1 = Player("Player 1", print_type)

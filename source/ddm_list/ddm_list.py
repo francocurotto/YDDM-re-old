@@ -66,20 +66,45 @@ class DdmList():
         Remove item from list. If item not present, 
         ignore operation and return message.
         """
-        pass
+        # check if item is in list
+        if item in self.list:
+            i = self.list.index(item)
+            return self.remove_idx(i)
+
+        # if not, operation unsuccessfull
+        else:
+            result = {}
+            result["message"] = self.itemname + \
+                " not in " + self.name + "."
+            result["success"] = False
+            return result
 
     def remove_idx(self, i):
         """
         Remove item at index i. If index out of range, ignore
         operation and return message.
         """
-        pass
+        result = {}
+
+        # check if index is valid
+        if 0 <= i < len(self.list):
+            dice = self.list[i]
+            del(self.list[i])
+            result["item"] = dice
+            result["success"] = True
+        
+        # if invalid, operation unsuccessfull
+        else:
+            result["message"] = "Invalid index."
+            result["success"] = False
+
+        return result
 
     def is_full(self):
         """
         Check if list is full.
         """
-        return len(self.list) > self.limit
+        return len(self.list) >= self.limit
 
     def is_empty(self):
         """
