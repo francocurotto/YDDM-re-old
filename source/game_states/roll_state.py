@@ -21,9 +21,6 @@ class RollState(PromptState):
         Parse the command obtained from prompt. Return True 
         if player is done with state.
         """
-        # generic commands
-        super().parse_command(command)
-
         # add command
         if command.equals_param(0, "a"):
             subcommand = command.subcommand(1)
@@ -41,6 +38,9 @@ class RollState(PromptState):
             subcommand = command.subcommand(1)
             success = self.parse_roll_command(subcommand)
             return success
+
+        # generic commands
+        return super().parse_command(command)
 
     def run_add_command(self, command):
         """
@@ -109,7 +109,7 @@ class RollState(PromptState):
             return False
 
         # roll succeded
-        print("Roll result:" + result["string"] + "\n")
+        print("Roll result: " + result["string"] + "\n")
 
         # check for summon
         dimensions = result["dimensions"]

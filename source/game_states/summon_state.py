@@ -21,9 +21,6 @@ class SummonState(PromptState):
         """
         Parse command obtained by prompt.
         """
-        # generic commands
-        super().parse_command(command)
-
         # print available summons command
         if command.equals("p", "as"):
             print(self.dimensions.stringify())
@@ -43,6 +40,9 @@ class SummonState(PromptState):
 
             self.player.dimension_dice(result["dice"])
             return True
+
+        # generic commands
+        return super().parse_command(command)
 
 help_text = "\
 Summon commands: \n\

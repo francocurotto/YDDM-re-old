@@ -3,6 +3,7 @@ from dice_pool import DicePool
 from dice_hand import DiceHand
 from dice_set import DiceSet
 from crest_pool import CrestPool
+from monster_lord import MonsterLord
 
 class Player():
     """
@@ -18,7 +19,8 @@ class Player():
         self.dice_bin = DiceSet(self.summon_limit)
         self.crest_pool = CrestPool(print_type)
         self.summons = []
-        self.foreited = False
+        self.monster_lord = MonsterLord()
+        self.forfeited = False
 
     def add_dice_to_hand(self, i):
         """

@@ -34,10 +34,12 @@ class PromptState():
         Parse the command obtained from prompt. Return True 
         if player is done with prompt state.
         """
+        # quit (forfeit) command)
         if command.equals("q"):
             self.player.forfeited = True
             return True
 
+        # help text command
         elif command.equals("h"):
             print(self.help_text)
             return False
@@ -47,6 +49,9 @@ class PromptState():
             subcommand = command.subcommand(1)
             self.run_print_command(subcommand)
             return False
+
+        # if command not recognized, stay in loop
+        return False
 
     def run_print_command(self, command):
         """

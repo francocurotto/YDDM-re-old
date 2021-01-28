@@ -7,7 +7,7 @@ sys.path.append("../command")
 from player import Player
 from dice_library import DiceLibrary
 from roll_state import RollState
-from attack_state import AttackState
+#from attack_state import AttackState
 
 class Duel():
     """
@@ -40,8 +40,8 @@ class Duel():
                 break
 
             # run roll state (skip in first turn)
-            if not self.first_turn:
-                AttackState(player, opponent).start()
+            #if not self.first_turn:
+            #    AttackState(player, opponent).start()
 
             # check finish condition
             if self.duel_finished(player, opponent):
@@ -63,8 +63,8 @@ class Duel():
             print(player.name + " forfeited.")
             return True
 
-        # normal win condition (dungeon master beaten)
-        if opponent.master.is_dead():
+        # normal win condition (monster lord beaten)
+        if opponent.monster_lord.is_dead():
             print(player.name + " is the winner!")
             return True
 

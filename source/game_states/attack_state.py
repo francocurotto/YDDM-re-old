@@ -24,9 +24,6 @@ class AttackState(PromptState):
         Parse the command obtained from prompt. Return True 
         if player is done with state.
         """
-        # generic commands
-        super().parse_commands(command)
-
         # finish attack phase command
         if command.equals("f"):
             return True
@@ -39,6 +36,9 @@ class AttackState(PromptState):
         # DM attack command
         elif command.len == 1 and command.params_are_int():
             return self.run_dm_attack_command(command)
+
+        # generic commands
+        return super().parse_commands(command)
 
     def run_attack_command(self, command):
         """
