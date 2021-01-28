@@ -10,7 +10,7 @@ class DdmDiceParser():
     def __init__(self, print_type):
         self.print_type = print_type
 
-    def parse_ddm_dices(self, filename):
+    def parse_ddm_dice(self, filename):
         """
         Read a file with a ddm dice database and converts it
         into a list of ddm dice objects.

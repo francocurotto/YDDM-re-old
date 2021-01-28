@@ -1,9 +1,9 @@
 import sys
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
-from dice_library import DiceLibrary
+from dice_list import DiceList
 
-print("Welcome to the dice library test.\n\n\
+print("Welcome to the dice list test.\n\n\
 Here you can display a whole dice library in short version,\n\
 or a single dice from the library in long version. The\n\
 specific library is harcoded as a filename in the test.")
@@ -13,7 +13,8 @@ Input d to display the whole library.\n\
 Input d<number> to display a specific dice.\n\
 Input q to quit.\n")
 
-library = DiceLibrary("../databases/my_database.txt")
+library = DiceList(print_type="ascii", 
+    filename="../databases/my_database.txt")
 
 while True:
     command = input(">")
@@ -30,9 +31,9 @@ while True:
         except ValueError:
             print("Couldn't interpret the dice number.\n")
             continue
-        result = library.get_dice(dicenum)
+        result = library.get(dicenum)
         if result["success"]:
-            print(result["dice"].stringify() + "\n")
+            print(result["item"].stringify() + "\n")
         else:
             print(result["message"] + "\n")
 
