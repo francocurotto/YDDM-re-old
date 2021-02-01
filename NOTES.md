@@ -101,3 +101,12 @@ in order to easily select monsters from the already summoned.
 This means that most likely I will have to refactor dice_set
 and dice_library, and do some regresion test commenting some
 of my progress of today.
+
+# 2021-02-01
+Finish the implementation of summon_set as wel as the 
+refactor previously mentioned. Now hoping to finish the 
+attack logic soon. For now I will implement the GBA game 
+rules for attacks (use of type advantages and retaliation 
+damage for attacking defending monsters), but in the furute 
+one should be able to modifiy these rules (in this case, 
+disable them). Not sure how I'll implement it though.
