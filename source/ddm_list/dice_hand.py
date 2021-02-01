@@ -5,9 +5,8 @@ class DiceHand(DiceList):
     Set of 3 dice used in a turn to make a roll.
     """
     def __init__(self, print_type="emoji"):
-        super().__init__(3,print_type=print_type)
+        super().__init__(print_type, 3)
         self.name = "dice hand"
-        self.itemname = "dice"
 
     def roll(self):
         """

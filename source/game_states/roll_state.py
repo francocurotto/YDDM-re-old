@@ -18,29 +18,26 @@ class RollState(PromptState):
 
     def parse_command(self, command):
         """
-        Parse the command obtained from prompt. Return True 
-        if player is done with state.
+        Parse the command obtained from prompt.
         """
         # add command
         if command.equals_param(0, "a"):
             subcommand = command.subcommand(1)
             self.run_add_command(subcommand)
-            return False
 
         # get back command
         elif command.equals_param(0, "b"):
             subcommand = command.subcommand(1)
             self.run_getback_command(subcommand)
-            return False
 
         # roll command
         elif command.equals_param(0, "r"):
             subcommand = command.subcommand(1)
             success = self.parse_roll_command(subcommand)
-            return success
 
         # generic commands
-        return super().parse_command(command)
+        else:
+            super().parse_command(command)
 
     def run_add_command(self, command):
         """
@@ -67,7 +64,7 @@ class RollState(PromptState):
         if not command.are_params_int():
             return
 
-        # sort params in order to avoid IdexError in 
+        # sort params in order to avoid IndexError in 
         # chopped list
         sorted_params = sorted(command.list, reverse=True)
 
@@ -86,14 +83,11 @@ class RollState(PromptState):
         """
         # normal roll
         if command.is_empty():
-            return self.run_roll_command()
+            self.run_roll_command()
 
         # quick roll command
-        if command.len == 3 and command.are_params_int():
-            return self.run_quick_roll_command(command)
-
-        # invalid command
-        return False
+        elif command.len == 3 and command.are_params_int():
+            self.run_quick_roll_command(command)
 
     def run_roll_command(self):
         """
@@ -106,7 +100,6 @@ class RollState(PromptState):
         
         if not result["success"]: # roll failed
             print(result["message"] + "\n")
-            return False
 
         # roll succeded
         print("Roll result: " + result["string"] + "\n")
@@ -118,7 +111,8 @@ class RollState(PromptState):
                 self.opponent, dimensions)
             summon_state.start()
 
-        return True
+        # indicate that state is finished
+        self.finish = True
 
     def run_quick_roll_command(self, command):
         """
@@ -130,10 +124,9 @@ class RollState(PromptState):
         result = self.player.add_dice_to_hand_quick(*indeces)
         if not result["success"]:
             print(result["message"])
-            return False
 
         # call run roll command without parameters
-        return self.run_roll_command()
+        self.run_roll_command()
 
 help_text = "\
 Hand commands: \n\

@@ -26,19 +26,19 @@ class AttackState(PromptState):
         """
         # finish attack phase command
         if command.equals("f"):
-            return True
+            self.finish =  True
 
         # attack command
         elif command.len == 2 and command.params_are_int():
             self.run_attack_command(command)
-            return False
         
-        # DM attack command
+        # ML attack command
         elif command.len == 1 and command.params_are_int():
-            return self.run_dm_attack_command(command)
+            self.run_ml_attack_command(command)
 
         # generic commands
-        return super().parse_commands(command)
+        else:
+            super().parse_commands(command)
 
     def run_attack_command(self, command):
         """
@@ -50,50 +50,53 @@ class AttackState(PromptState):
         if not result["success"]:
             print(result["message"])
             return
-        attacker = result["monster"]
+
+        attacker = result["item"]
 
         # then get opponent monster
         result = self.opponent.get_monster(command.list[1])
         if not result["success"]:
             print(result["message"])
             return
-        attacked = result["monster"]
+
+        attacked = result["item"]
 
         # then get defense flag
-        defense_state = DefenseState(self.player, 
-            self.opponent, attacker, attacked)
-        defend = defense_state.get_answer()
+        defense_state = DefenseState(self.opponent)
+        defense_state.start()
+        defend = defense_state.defend
 
         # do the attack
-        result = self.player.attack(attacker, attacked, 
-            defend)
-        print(result["message"])
+        message = attacker.attack_monster(attacked, defend)
+        print(message)
 
-def run_attack_dm_command(self, command):
+        #TODO check if any of the monsters is dead
+
+def run_attack_ml_command(self, command):
         """
         Run command that makes a player monster to attack the
-        opponent dungeon master.
+        opponent monster lord.
         """
         # first get player monster
         result = self.player.get_monster(command.list[0])
         if not result["success"]:
             print(result["message"])
             return
-        attacker = result["monster"]
+
+        attacker = result["item"]
 
         # then check that opponent has no monster left
         if self.opponent.has_monsters():
-            print("Cannot attack DM. Opponent still has \
+            print("Cannot attack ML. Opponent still has \
                 monsters left.")
             return
 
         # do the attack
-        result = self.player.attack_dm(attacker, 
-            self.opponent)
+        result = attacker.attack_ml(attacker, self.opponent)
         print(result["message"])
         
         # check opponent dm is dead
-        return self.opponent.is_dead()
+        self.finish = self.opponent.is_dead()
 
 help_text = "\
 Attack commands: \n\
@@ -101,5 +104,5 @@ Attack commands: \n\
            monster's #2 \n\
     #    : player's monster # attacks opponent \n\
            dungeon master \n\
-    f    : finish phase.
+    f    : finish phase.\n\
 "

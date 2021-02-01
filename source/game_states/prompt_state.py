@@ -8,6 +8,7 @@ class PromptState():
         self.player = player
         self.opponent = opponent
         self.help_text = help_text
+        self.finish = False
 
     def start(self):
         """
@@ -17,11 +18,9 @@ class PromptState():
         self.run_initial_action()
 
         # state loop
-        while True:
+        while not self.finish:
             command = run_prompt()
-            finish = self.parse_command(command)
-            if finish:
-                break
+            self.parse_command(command)
         
     def run_initial_action(self):
         """
@@ -37,21 +36,16 @@ class PromptState():
         # quit (forfeit) command)
         if command.equals("q"):
             self.player.forfeited = True
-            return True
+            self.finish = True
 
         # help text command
         elif command.equals("h"):
             print(self.help_text)
-            return False
 
         # print command
         elif command.equals_param(0, "p"):
             subcommand = command.subcommand(1)
             self.run_print_command(subcommand)
-            return False
-
-        # if command not recognized, stay in loop
-        return False
 
     def run_print_command(self, command):
         """
@@ -64,11 +58,11 @@ class PromptState():
         elif command.equals("c"): # display crest pool
             print(self.player.crest_pool.stringify_short())
         elif command.equals("s"): # display summons
-            print(self.player.stringify_summons())
+            print(self.player.summon_list.stringify())
         elif command.equals("oc"): # display op. crest pool
             print(self.opponent.crest_pool.stringify_short())
         elif command.equals("os"): # display op. summons
-            print(self.opponent.stringify_summons())
+            print(self.opponent.summon_list.stringify())
 
 help_text = "\
 General commands: \n\

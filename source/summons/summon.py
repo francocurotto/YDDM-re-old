@@ -8,6 +8,18 @@ class Summon():
         self.level = card.level
         self.chars = card.chars
         self.card = card
+
+    def is_monster(self):
+        """
+        Default is method.
+        """
+        return False
+
+    def is_item(self):
+        """
+        Default is method.
+        """
+        return False
     
     def stringify(self):
         """

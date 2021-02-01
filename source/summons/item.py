@@ -8,3 +8,6 @@ class Item(Summon):
         # attributes extracted from card
         super().__init__(card)
         self.ability = self.card.ability
+
+    def is_item(self):
+        return True

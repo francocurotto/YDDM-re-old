@@ -2,6 +2,7 @@ from colorama import Fore, Style
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from dice_list import DiceList
+from summon_list import SummonList
 from crest_pool import CrestPool
 from monster_lord import MonsterLord
 
@@ -16,9 +17,9 @@ class Player():
         self.color = None
         self.dice_pool = DicePool(print_type)
         self.dice_hand = DiceHand(print_type)
-        self.dice_bin = DiceList(print_type=print_type)
+        self.dice_bin = DiceList(print_type)
         self.crest_pool = CrestPool(print_type)
-        self.summons = []
+        self.summon_list = SummonList(print_type)
         self.monster_lord = MonsterLord()
         self.forfeited = False
 
@@ -67,7 +68,7 @@ class Player():
             if not result["success"]:
                 return result
 
-            # then check that the dice are not dimensioned yet
+            # check that the dice are not dimensioned yet
             if result["item"] in self.dice_bin.list:
                 result = {}
                 result["success"] = False
@@ -107,7 +108,7 @@ class Player():
         """
         # summon card from dice
         summon = dice.card.summon()
-        self.summons.append(summon)
+        self.summon_list.add(summon)
 
         # discard summoned dice into dice bin
         self.dice_bin.add(dice)
@@ -135,6 +136,45 @@ class Player():
         for side in sides:
             self.crest_pool.add_crests(side)
 
+    def get_monster(self, i):
+        """
+        Get a monster from player summon list. If index is
+        for a item, ignore procedure and return message.
+        """
+        result = self.summon_list.get(i)
+        
+        # check for successful get
+        if not result["success"]:
+            return result
+
+        # check if summon is monster
+        if result["item"].is_item():
+            result = {}
+            result["message"] = "Summon selected is not a \
+                                 monster"
+            result["success"] = False
+            return result
+
+        # successfull operation
+        return result
+
+    def has_monsters(self):
+        """
+        Return true if player has at least one monster 
+        summoned.
+        """
+        # if not summons at all return false
+        if self.summon_list.is_empty():
+            return False
+
+        # iterate through summons
+        for summon in self.summon_list.list:
+            if summon.is_monster():
+                return True
+
+        # if not summon found return false
+        return False
+
     def stringify_pool(self):
         """
         Return string version of dice pool, colorized to
@@ -158,14 +198,4 @@ class Player():
 
             string += dice_str
         
-        return string
-
-    def stringify_summons(self):
-        """
-        Return a string version of summon list.
-        """
-        string = ""
-        for summon in self.summons:
-            string += summon.stringify_short() + "\n"
-
         return string

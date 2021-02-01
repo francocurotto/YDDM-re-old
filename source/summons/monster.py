@@ -13,11 +13,87 @@ class Monster(Summon):
         self.life = self.card.life
         self.ability = self.card.ability
 
-    def attack_monster(self, attacked, result):
+    def attack_monster(self, attacked, defending):
         """
+        Attack the attacked monster. The defend flag 
+        indicates if the monster is defending or not.
         """
+        # case defending monster
+        if defending:
+            message = self.attack_defending_monster(attacked)
+        # case non-defending monster
+        else:
+            message = self.attack_nondefending_monster,
+                attacked)
+
+        return message
+
+    def attack_defending_monster(self, attacked):
+        """
+        Attack a monster that is defending defending.
+        """
+        # get the attacking power considering type advanteges
+        # (if in the rules)
+        power, message = self.get_attacking_power(attacked)
+        message += attaker.name + " defends with " + \
+            str(attacker.defense) "."
+
+        # if attack surpass defense, inflict damage in 
+        # attaked monster
+        if power > attacked.defense:
+            damage = power - attacked.defense
+            attacked.life -= damage
+            message += attacked.name + " received " + \
+                str(damage) + " points of damage."
+
+        # if defense surpass attack, get retaliation damage
+        # in attacker monster
+        elif power < attacked.defense:
+            damage = attacked.defense - power
+            message += self.get_retaliation_damage(damage)
+        
+        # attack and defense are equal
+        else:
+            message += "No damage inflicted."
+
+        return message
+
+    def attack_nondefending_monster(self, attacked):
+        """
+        Attack a monster that is not defending.
+        """
+        # get the attacking power considering type advanteges
+        # (if in the rules)
+        power, message = self.get_attacking_power(attacked)
+
+        # inflict damage in attaked monster
+        damage = power
+        attacked.life -= damage
+        message += attacked.name + " received " + \
+            str(damage) + " points of damage."
+
+        return message
+
+    def get_attacking_power(attacked):
+        """
+        Get attaking power when attacking attacked monster,
+        considering types advantages, if in the rules.
+        """
+        #TODO: implement
+        #TODO: apply diferent rules
         pass
-        #TODO
+
+    def get_retaliation_damage(self, damage):
+        """
+        Inflict the damage for attacking a defending monster
+        that has higher defense that the attack of the 
+        attacker. Note: should consider different rules.
+        """
+        #TODO: implement
+        #TODO: apply different rules
+
+    def is_monster(self):
+        return True
 
     def stringify_short(self):
         """
