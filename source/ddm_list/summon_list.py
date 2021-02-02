@@ -4,9 +4,8 @@ class SummonList(DdmList):
     """
     List of summons that a player summons during the game.
     """
-    def __init__(self, print_type):
-        super().__init__(print_type)
-        self.itemname = "summon"
+    def __init__(self):
+        super().__init__("summon list", "summon")
         
     def stringify(self):
         """

@@ -6,10 +6,9 @@ class DiceList(DdmList):
     List of dice. Used as parent of dice library, dice pool 
     and dice hand.
     """
-    def __init__(self, print_type, limit=float("inf"),    
+    def __init__(self, name="dicelist", limit=float("inf"),
                  filename=None):
-        super().__init__(print_type, limit)
-        self.itemname = "dice"
+        super().__init__(name, "dice", limit)
         
         # fill from file if given
         if filename is not None:
@@ -20,7 +19,7 @@ class DiceList(DdmList):
         Fill dice list from dice obtained from file.
         """
         # generate list of dice from parser
-        parser = DdmDiceParser(self.print_type)
+        parser = DdmDiceParser()
         dice_list = parser.parse_ddm_dice(filename)
 
         # add dice to dice list

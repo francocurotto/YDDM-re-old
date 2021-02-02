@@ -23,7 +23,7 @@ class Monster(Summon):
             message = self.attack_defending_monster(attacked)
         # case non-defending monster
         else:
-            message = self.attack_nondefending_monster,
+            message = self.attack_nondefending_monster(
                 attacked)
 
         return message
@@ -36,7 +36,7 @@ class Monster(Summon):
         # (if in the rules)
         power, message = self.get_attacking_power(attacked)
         message += attaker.name + " defends with " + \
-            str(attacker.defense) "."
+            str(attacker.defense) + "."
 
         # if attack surpass defense, inflict damage in 
         # attaked monster

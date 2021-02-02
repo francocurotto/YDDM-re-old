@@ -7,8 +7,6 @@ from cards.item_card import ItemCard
 from ddm_dice import DdmDice
 
 class DdmDiceParser():
-    def __init__(self, print_type):
-        self.print_type = print_type
 
     def parse_ddm_dice(self, filename):
         """
@@ -37,7 +35,6 @@ class DdmDiceParser():
                     params["dice"] = line[5:-1]
                     
                     # create ddm dice with parsed information
-                    params["print_type"] = self.print_type
                     ddm_dice = self.create_ddm_dice(params)
                     ddm_dice_list.append(ddm_dice)
                     params = {}
@@ -65,7 +62,6 @@ class DdmDiceParser():
 
         # create the ddm dice
         dice_string = params["dice"]
-        print_type = self.print_type
-        ddm_dice = DdmDice(dice_string, card, print_type)
+        ddm_dice = DdmDice(dice_string, card)
 
         return ddm_dice

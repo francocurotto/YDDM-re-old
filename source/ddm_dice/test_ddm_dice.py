@@ -17,8 +17,8 @@ Input ss to show dice info in short form.\n\
 Input q to quit.\n")
 
 # create ddm dice list
-parser = DdmDiceParser("emoji")
-ddm_dice_list = parser.parse_ddm_dices("test_monsters.txt")
+parser = DdmDiceParser()
+ddm_dice_list = parser.parse_ddm_dice("test_monsters.txt")
 
 ddm_dice = None
 while True:

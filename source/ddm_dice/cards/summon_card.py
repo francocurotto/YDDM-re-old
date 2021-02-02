@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 class SummonCard():
     """
     Generic summon card class parent of monster and item 
@@ -12,7 +15,6 @@ class SummonCard():
         self.chars_ascii   = {}
         self.chars_unicode = {}
         self.chars_emoji   = {}
-        self.print_type = params["print_type"]
 
         self.chars = self.select_chars()
 
@@ -21,9 +23,15 @@ class SummonCard():
         Select the type of characters that will be used when
         printing card information.
         """
-        if self.print_type == "ascii":
+        # weird import here so that the print_type parameter
+        # can be changed at runtime
+        from settings import print_type
+
+        from settings import print_type
+        
+        if print_type == "ascii":
             return self.chars_ascii
-        elif self.print_type == "unicode":
+        elif print_type == "unicode":
             return self.chars_unicode
-        elif self.print_type == "emoji":
+        elif print_type == "emoji":
             return self.chars_emoji

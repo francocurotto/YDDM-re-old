@@ -12,14 +12,14 @@ class Player():
     """
     summon_limit = 10
 
-    def __init__(self, name, print_type="emoji"):
+    def __init__(self, name):
         self.name = name
         self.color = None
-        self.dice_pool = DicePool(print_type)
-        self.dice_hand = DiceHand(print_type)
-        self.dice_bin = DiceList(print_type)
-        self.crest_pool = CrestPool(print_type)
-        self.summon_list = SummonList(print_type)
+        self.dice_pool = DicePool()
+        self.dice_hand = DiceHand()
+        self.dice_bin = DiceList()
+        self.crest_pool = CrestPool()
+        self.summon_list = SummonList()
         self.monster_lord = MonsterLord()
         self.forfeited = False
 

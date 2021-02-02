@@ -7,9 +7,10 @@ class DdmList():
     The result are usually used to indicate if an action was
     successfull or not, by returning a result dictionary.
     """
-    def __init__(self, print_type, limit=float("inf")):
+    def __init__(self, name, itemname, limit=float("inf")):
         self.list = []
-        self.print_type = print_type
+        self.name = name
+        self.itemname = itemname
         self.limit = limit
 
     def get(self, i):

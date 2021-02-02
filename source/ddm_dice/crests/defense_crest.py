@@ -4,8 +4,7 @@ class DefenseCrest(Crest):
     """
     A defense crest.
     """
-    def __init__(self, print_type):
-        super().__init__(print_type)          
+    def __init__(self):
         self.char_ascii   = "D"
         self.char_unicode = "⊚"
         self.char_emoji   = "🛡️ "

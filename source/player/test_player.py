@@ -15,15 +15,12 @@ Input h for a list of available commands at any given\n\
 time.\n")
 
 # geterate dice library in order to fill the dice pools
-print_type = "emoji"
-#print_type = "ascii"
 lib_filename = "../databases/my_database.txt"
-library = DiceList(print_type=print_type, 
-    filename=lib_filename)
+library = DiceList(filename=lib_filename)
 
 # generate players
-player1 = Player("Player 1", print_type)
-player2 = Player("Player 2", print_type)
+player1 = Player("Player 1")
+player2 = Player("Player 2")
 
 # generate random dice pools
 player1.dice_pool.fill_random(library)

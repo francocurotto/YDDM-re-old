@@ -15,10 +15,8 @@ Input dc to display the crest pool.\n\
 Input ds to display the crest pool in short format.")
 
 # create an initial random dice and crest pool
-print_type = "emoji"
-#print_type = "ascii"
-dice = Dice(create_random_dice_string(), print_type)
-pool = CrestPool(print_type)
+dice = Dice(create_random_dice_string())
+pool = CrestPool()
 
 while True:
     print("")
@@ -28,7 +26,7 @@ while True:
         break
 
     elif command == "c": # create new random dice
-        dice = Dice(create_random_dice_string(), print_type)
+        dice = Dice(create_random_dice_string())
 
     elif command == "dd":
         print("Dice: " + dice.stringify())

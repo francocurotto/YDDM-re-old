@@ -4,8 +4,7 @@ class AttackCrest(Crest):
     """
     An attack crest.
     """
-    def __init__(self, print_type):
-        super().__init__(print_type)          
+    def __init__(self):
         self.char_ascii   = "A"
         self.char_unicode = "⚔"
         self.char_emoji   = "⚔️ "

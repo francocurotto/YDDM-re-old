@@ -110,3 +110,7 @@ rules for attacks (use of type advantages and retaliation
 damage for attacking defending monsters), but in the furute 
 one should be able to modifiy these rules (in this case, 
 disable them). Not sure how I'll implement it though.
+
+# 2021-02-02
+Minor modification. Now print_type is defined as a global 
+variable, or game parameter.

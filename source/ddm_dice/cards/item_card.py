@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from .summon_card import SummonCard
 from item import Item
 
@@ -12,7 +14,7 @@ class ItemCard(SummonCard):
 
         # display icons
         self.chars_ascii  .update({"type" : "I"})
-        self.chars_unicode.update({"type" : "⍰"})
+        self.chars_unicode.update({"type" : "I"})
         self.chars_emoji  .update({"type" : "❓"})
 
     def summon(self):
@@ -36,6 +38,10 @@ class ItemCard(SummonCard):
         """
         Returns a one-liner string version of object.
         """
+        # weird import here so that the print_type parameter
+        # can be changed at runtime
+        from settings import print_type
+        
         # name, cropped at name_crop characters
         string = self.name[:self.name_crop]
         # whitespace to fill chars if name is too short
@@ -45,7 +51,7 @@ class ItemCard(SummonCard):
         # level value
         string += str(self.level)
         # whitespace to fill for the atk,def,life
-        if self.print_type == "emoji":
+        if print_type == "emoji":
             string += 15*" "
         else: 
             string += 12*" "

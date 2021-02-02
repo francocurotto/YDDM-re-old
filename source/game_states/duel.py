@@ -1,9 +1,11 @@
 import sys
+sys.path.append("..")
 sys.path.append("../ddm_list")
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
 sys.path.append("../player")
 sys.path.append("../command")
+import settings
 from player import Player
 from dice_list import DiceList
 from roll_state import RollState
@@ -15,7 +17,6 @@ class Duel():
     """
     def __init__(self, player1, player2):
         self.players = [player1, player2]
-        self.print_type = print_type
         self.first_turn = True
 
     def start(self):
@@ -69,27 +70,26 @@ class Duel():
 
         return False
         
-def get_print_type():
+def set_print_type():
     """
-    Get the print type for the game from command line input
+    Set the print type for the game from command line input.
+    If not given or invalid, use default
     """
     print_types = ["ascii", "unicode", "emoji"]
     if len(sys.argv) >= 2 and sys.argv[1] in print_types:
-        return sys.argv[1]
-    return "emoji"
+        settings.print_type = sys.argv[1]
 
 if __name__ == "__main__":
-    # get print type
-    print_type = get_print_type()
+    # set print type if given as cmdline input
+    set_print_type()
     
     # generate dice library
     lib_filename = "../databases/my_database.txt"
-    library = DiceList(print_type=print_type,
-        filename=lib_filename)
+    library = DiceList(filename=lib_filename)
 
     # generate players
-    player1 = Player("Player 1", print_type)
-    player2 = Player("Player 2", print_type)
+    player1 = Player("Player 1")
+    player2 = Player("Player 2")
 
     # fill dice pool of players with random dice
     player1.dice_pool.fill_random(library)
