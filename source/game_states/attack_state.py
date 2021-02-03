@@ -8,16 +8,16 @@ class AttackState(PromptState):
         super().__init__(player, opponent)
         self.help_text = self.help_text + help_text
 
-    def run_initial_state(self):
+    def run_initial_action(self):
         """
         As initial actions, print player and opponent 
         summons.
         """
         print("Attack phase.")
         print(self.player.name + " summons:")
-        print(self.player.stringify_summons())
+        print(self.player.summon_list.stringify())
         print(self.opponent.name + " summons:")
-        print(self.opponent.stringify_summons())
+        print(self.opponent.summon_list.stringify())
 
     def parse_command(self, command):
         """
@@ -26,19 +26,20 @@ class AttackState(PromptState):
         """
         # finish attack phase command
         if command.equals("f"):
+            print("")
             self.finish =  True
 
         # attack command
-        elif command.len == 2 and command.params_are_int():
+        elif command.len == 2 and command.are_params_int():
             self.run_attack_command(command)
         
         # ML attack command
-        elif command.len == 1 and command.params_are_int():
-            self.run_ml_attack_command(command)
+        elif command.len == 1 and command.are_params_int():
+            self.run_attack_ml_command(command)
 
         # generic commands
         else:
-            super().parse_commands(command)
+            super().parse_command(command)
 
     def run_attack_command(self, command):
         """
@@ -79,7 +80,7 @@ class AttackState(PromptState):
         message = self.opponent.check_for_casualties()
         print(message, end="")
 
-def run_attack_ml_command(self, command):
+    def run_attack_ml_command(self, command):
         """
         Run command that makes a player monster to attack the
         opponent monster lord.
@@ -87,7 +88,7 @@ def run_attack_ml_command(self, command):
         # first get player monster
         result = self.player.get_monster(command.list[0])
         if not result["success"]:
-            print(result["message"])
+            print(result["message"]+"\n")
             return
 
         attacker = result["item"]
@@ -95,7 +96,7 @@ def run_attack_ml_command(self, command):
         # then check that opponent has no monster left
         if self.opponent.has_monsters():
             print("Cannot attack ML. Opponent still has \
-                monsters left.")
+                monsters left.\n")
             return
 
         # do the attack
@@ -103,7 +104,7 @@ def run_attack_ml_command(self, command):
         print(message)
         
         # check opponent dm is dead
-        self.finish = self.opponent.is_dead()
+        self.finish = self.opponent.monster_lord.is_dead()
 
 help_text = "\
 Attack commands: \n\

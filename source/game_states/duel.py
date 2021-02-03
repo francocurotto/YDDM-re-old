@@ -9,7 +9,7 @@ import settings
 from player import Player
 from dice_list import DiceList
 from roll_state import RollState
-#from attack_state import AttackState
+from attack_state import AttackState
 
 class Duel():
     """
@@ -40,8 +40,8 @@ class Duel():
                 break
 
             # run roll state (skip in first turn)
-            #if not self.first_turn:
-            #    AttackState(player, opponent).start()
+            if not self.first_turn:
+                AttackState(player, opponent).start()
 
             # check finish condition
             if self.duel_finished(player, opponent):

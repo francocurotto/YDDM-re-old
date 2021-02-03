@@ -18,9 +18,9 @@ class MonsterLord():
         self.chars_unicode = {"type"    : "♛",
                               "heart"   : "♥",
                               "noheart" : "♡"}
-        self.chars_emoji = {"emoji"   : "👑",
-                            "heart"   : "",
-                            "noheart" : ""}
+        self.chars_emoji = {"type"    : "👑",
+                            "heart"   : "❤️ ",
+                            "noheart" : "🖤"}
 
         self.chars = self.select_chars()
 
