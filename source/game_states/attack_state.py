@@ -60,6 +60,9 @@ class AttackState(PromptState):
             return
 
         attacked = result["item"]
+        
+        # inform the battle situation
+        print(attacker.stringify_prebattle(attacked))
 
         # then get defense flag
         defense_state = DefenseState(self.opponent)
@@ -70,7 +73,11 @@ class AttackState(PromptState):
         message = attacker.attack_monster(attacked, defend)
         print(message)
 
-        #TODO check if any of the monsters is dead
+        # check if any of the monsters is dead
+        message = self.player.check_for_casualties()
+        print(message, end="")
+        message = self.opponent.check_for_casualties()
+        print(message, end="")
 
 def run_attack_ml_command(self, command):
         """
@@ -92,8 +99,8 @@ def run_attack_ml_command(self, command):
             return
 
         # do the attack
-        result = attacker.attack_ml(attacker, self.opponent)
-        print(result["message"])
+        message = attacker.attack_ml(self.opponent)
+        print(message)
         
         # check opponent dm is dead
         self.finish = self.opponent.is_dead()

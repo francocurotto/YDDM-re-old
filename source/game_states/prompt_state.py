@@ -57,12 +57,20 @@ class PromptState():
             print(self.player.dice_hand.stringify())
         elif command.equals("c"): # display crest pool
             print(self.player.crest_pool.stringify_short())
-        elif command.equals("s"): # display summons
-            print(self.player.summon_list.stringify())
         elif command.equals("oc"): # display op. crest pool
             print(self.opponent.crest_pool.stringify_short())
+        elif command.equals("s"): # display summons
+            print(self.player.summon_list.stringify())
         elif command.equals("os"): # display op. summons
             print(self.opponent.summon_list.stringify())
+        elif command.equals("m"): # display monster lord
+            print(self.player.monster_lord.stringify())
+        elif command.equals("om"): # display op. monster lord
+            print(self.opponent.monster_lord.stringify())
+        elif command.equals("g"): # display graveyard
+            print(self.player.graveyard.stringify())
+        elif command.equals("og"): # display op. graveyard
+            print(self.opponent.graveyard.stringify())
 
 help_text = "\
 General commands: \n\
@@ -73,7 +81,11 @@ Print commands: \n\
     p p : print pool \n\
     p h : print hand \n\
     p c : print crest pool \n\
-    p s : print summons \n\
     p oc: print opponent crest pool \n\
+    p s : print summons \n\
     p os: print opponent summons \n\
+    p m : print monster lord \n\
+    p om: print opponent monster lord \n\
+    p g : print graveyard \n\
+    p og: print opponent graveyard \n\
 \n"

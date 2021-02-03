@@ -8,6 +8,7 @@ class MagicCrest(Crest):
         self.char_ascii   = "G"
         self.char_unicode = "✡"
         self.char_emoji   = "✡️ "
+        super().__init__()
 
     def add_to_pool(self, pool, multiplier):
         """

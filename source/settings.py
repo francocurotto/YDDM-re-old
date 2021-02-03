@@ -4,5 +4,5 @@ print_type = "emoji"
 #print_type = "ascii"
 
 # rules settings
-types_adv = True
-retal_dam = True
+type_adv  = True
+retal_dmg = True

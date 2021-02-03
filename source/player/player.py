@@ -20,6 +20,7 @@ class Player():
         self.dice_bin = DiceList()
         self.crest_pool = CrestPool()
         self.summon_list = SummonList()
+        self.graveyard = SummonList("graveyard")
         self.monster_lord = MonsterLord()
         self.forfeited = False
 
@@ -174,6 +175,33 @@ class Player():
 
         # if not summon found return false
         return False
+
+    def check_for_casualities():
+        """
+        Iterates through summons and check if any monster is
+        dead. For every dead monster, send it to the,
+        graveyard and add a message to the return string.
+        """
+        string = ""
+
+        for summons in self.summon_list.list:
+            # check first if it is monster
+            if summon.is_monster():
+                # now chevck if it is dead
+                if summon.life <= 0:
+                    self.send_to_graveyard(summon)
+                    string += summon.name + " is dead.\n"
+
+        return string
+
+    def send_to_graveyard(self, monster):
+        """
+        Remove monster from summoned list and send it to 
+        graveyard. It is assumed that the monster is in the 
+        summoned list.
+        """
+        self.summon_list.remove(monster)
+        self.graveryard.add(monster)
 
     def stringify_pool(self):
         """

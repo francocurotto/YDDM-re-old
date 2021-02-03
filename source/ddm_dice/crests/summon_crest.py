@@ -8,6 +8,7 @@ class SummonCrest(Crest):
         self.char_ascii   = "S"
         self.char_unicode = "★"
         self.char_emoji   = "⭐"
+        super().__init__()
 
     def is_summon(self):
         """

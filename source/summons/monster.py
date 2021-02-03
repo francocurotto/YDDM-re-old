@@ -1,4 +1,7 @@
+import sys
+sys.path.append("..")
 from colorama import Fore
+from settings import type_adv, retal_dmg
 from summon import Summon
 
 class Monster(Summon):
@@ -34,9 +37,9 @@ class Monster(Summon):
         """
         # get the attacking power considering type advanteges
         # (if in the rules)
-        power, message = self.get_attacking_power(attacked)
-        message += attaker.name + " defends with " + \
-            str(attacker.defense) + "."
+        power = self.get_attacking_power(attacked)
+        message += attaked.name + " defends with " + \
+            str(attacked.defense) + "."
 
         # if attack surpass defense, inflict damage in 
         # attaked monster
@@ -50,7 +53,7 @@ class Monster(Summon):
         # in attacker monster
         elif power < attacked.defense:
             damage = attacked.defense - power
-            message += self.get_retaliation_damage(damage)
+            message = self.inflict_retaliation_damage(damage)
         
         # attack and defense are equal
         else:
@@ -64,36 +67,113 @@ class Monster(Summon):
         """
         # get the attacking power considering type advanteges
         # (if in the rules)
-        power, message = self.get_attacking_power(attacked)
+        power = self.get_attacking_power(attacked)
 
         # inflict damage in attaked monster
-        damage = power
-        attacked.life -= damage
+        attacked.life -= power
         message += attacked.name + " received " + \
-            str(damage) + " points of damage."
+            str(power) + " points of damage."
 
         return message
 
-    def get_attacking_power(attacked):
+    def get_attacking_power(self, attacked):
         """
         Get attaking power when attacking attacked monster,
-        considering types advantages, if in the rules.
+        considering type advantages, if in the rules.
         """
-        #TODO: implement
-        #TODO: apply diferent rules
-        pass
+        # if type advantage is enabled
+        if type_adv:
+            # case advantage
+            if self.has_advantage(attacked):
+                return self.attack + 10
+            # case disadvantage
+            elif self.has_disadvantage(attacked):
+                return self.attack - 10
+            # case neutral
+            else:
+                return self.attack
+        # case type advantage is disabled
+        else:
+            return self.attack
 
-    def get_retaliation_damage(self, damage):
+    def inflict_retaliation_damage(self, damage):
         """
         Inflict the damage for attacking a defending monster
         that has higher defense that the attack of the 
         attacker. Note: should consider different rules.
         """
-        #TODO: implement
-        #TODO: apply different rules
+        # case retaliation damage is activated
+        if retal_dmg:
+            self.life -= damage
+            message = self.name + " received " + str(damage) \
+                + "points of damage in retaliation."
+        # case retaliation damage deactivated
+        else:
+            message = "No damage inflicted."
+
+        return message
+            
+    def has_advantage(self, attacked):
+        """
+        Check if monster has type advantage over attacked 
+        monster. This can be implemented easily by checking
+        the reverse condition, ie, if the attacked has 
+        disadvantage (tht is already implemented).
+        """
+        return attacked.has_disadvantage(self)
+
+    # default advantage functions
+    def has_advantage_over_spellcaster(self):
+        return False
+    def has_advantage_over_warrior(self):
+        return False
+    def has_advantage_over_undead(self):
+        return False
+    def has_advantage_over_beast(self):
+        return False
+    def has_advantage_over_dragon(self):
+        return False
+
+    def attack_ml(self, opponent):
+        """
+        Attack the opponent monster lord, directly removing
+        one of its hearts.
+        """
+        # attack monster lord
+        opponent.monster_lord.hearts -= 1
+
+        # create information string
+        string = self.name + " attacked " + opponent.name + \
+            " Monster Lord directly.\n"
+        string += opponent.monster_lord.stringify()
+
+        return string
 
     def is_monster(self):
         return True
+
+    def stringify_prebattle(self, attacked):
+        """
+        Return a string that describes an attack on an 
+        opponent monster so that the opponent can make a 
+        decision to defend or not.
+        """
+        string = ""
+
+        # type advantage information, if in the rules
+        if self.has_advantage(attaked) and type_adv:
+            string += self.name + " has advantage over " \
+                + attacked.name + "."
+        if self.has_disadvantage(attaked) and type_adv:
+            string += self.name + " has disadvantage over " \
+                + attacked.name + "."
+
+        # attaking power information
+        power = self.get_attaking_power(attacked)
+        string += self.name + "attacking with " + str(power) \
+            + " power."
+
+        return string
 
     def stringify_short(self):
         """

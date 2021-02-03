@@ -26,8 +26,6 @@ class SummonCard():
         # weird import here so that the print_type parameter
         # can be changed at runtime
         from settings import print_type
-
-        from settings import print_type
         
         if print_type == "ascii":
             return self.chars_ascii

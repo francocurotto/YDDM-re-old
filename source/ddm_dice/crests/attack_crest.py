@@ -8,6 +8,7 @@ class AttackCrest(Crest):
         self.char_ascii   = "A"
         self.char_unicode = "⚔"
         self.char_emoji   = "⚔️ "
+        super().__init__()
 
     def add_to_pool(self, pool, multiplier):
         """

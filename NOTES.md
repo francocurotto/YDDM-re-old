@@ -114,3 +114,8 @@ disable them). Not sure how I'll implement it though.
 # 2021-02-02
 Minor modification. Now print_type is defined as a global 
 variable, or game parameter.
+
+# 2021-02-03
+Finished attack state in a rush, but it will need considerable 
+testing to remove all the eventual errors. I'll report when 
+that is done.
