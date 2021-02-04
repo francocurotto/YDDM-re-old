@@ -149,9 +149,9 @@ class Player():
         cooldown, reset its state.
         """
         for monster in self.monster_list.list:
-            monster.is_cooldown = False
+            monster.in_cooldown = False
 
-    def check_for_casualities():
+    def check_for_casualities(self):
         """
         Iterates through monsters and check if any monster is
         dead. For every dead monster, send it to the,
@@ -174,7 +174,7 @@ class Player():
         summoned list.
         """
         self.monster_list.remove(monster)
-        self.graveryard.add(monster)
+        self.graveyard.add(monster)
 
     def stringify_pool(self):
         """

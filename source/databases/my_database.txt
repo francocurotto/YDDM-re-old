@@ -358,7 +358,7 @@ LIFE:40
 ABTY:Fly
 DICE:SSMM2AD
 
-NAME: Kuriboh
+NAME:Kuriboh
 TYPE:Spellcaster
 LEVL:1
 ATTK:10

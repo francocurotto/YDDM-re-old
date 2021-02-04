@@ -61,7 +61,7 @@ class Monster(Summon):
         # (if in the rules)
         power = self.get_attacking_power(attacked)
         message = attacked.name + " defends with " + \
-            str(attacked.defense) + "."
+            str(attacked.defense) + ".\n"
 
         # if attack surpass defense, inflict damage in 
         # attacked monster
@@ -80,7 +80,7 @@ class Monster(Summon):
         
         # attack and defense are equal
         else:
-            message += "No damage inflicted."
+            message += "No damage inflicted.\n"
 
         return message
 

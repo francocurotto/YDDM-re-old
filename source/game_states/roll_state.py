@@ -100,6 +100,7 @@ class RollState(PromptState):
         
         if not result["success"]: # roll failed
             print(result["message"] + "\n")
+            return
 
         # roll succeded
         print("Roll result: " + result["string"] + "\n")

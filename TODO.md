@@ -1,3 +1,5 @@
 - Test the game with attack mechanics
+    - Fix printing newlines
+    - add attack crest cost for attacking
 - Refactor attack (monster/ml) and (defending/nondefendig) to avoid code duplication?
 - Refactor game_states to make them indepentend of display format (possible?)

@@ -84,10 +84,10 @@ class AttackState(PromptState):
         print(message)
 
         # check if any of the monsters is dead
-        message = self.player.check_for_casualties()
-        print(message, end="")
-        message = self.opponent.check_for_casualties()
-        print(message, end="")
+        message = self.player.check_for_casualities()
+        print(message)
+        message = self.opponent.check_for_casualities()
+        print(message)
 
     def run_attack_ml_command(self, command):
         """

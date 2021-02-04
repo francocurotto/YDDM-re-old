@@ -40,7 +40,7 @@ class DefenseState(PromptState):
 
         # generic commands
         else:
-            super().parse_commands(command)
+            super().parse_command(command)
 
 help_text = "\
 Defense commands: \n\
