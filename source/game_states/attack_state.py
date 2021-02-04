@@ -14,7 +14,7 @@ class AttackState(PromptState):
         As initial actions, print player and opponent 
         summons.
         """
-        print("Attack phase.")
+        print("Attack phase. [f: finish]")
         print(self.player.name + " monsters:")
         print(self.player.monster_list.stringify())
         print(self.opponent.name + " monsters:")
@@ -60,7 +60,7 @@ class AttackState(PromptState):
 
         # if monster has already attacked, deny attack
         if attacker.in_cooldown:
-            print(monster.name + " has already attacked.")
+            print(attacker.name + " has already attacked.\n")
             return
 
         # then get opponent monster
@@ -74,7 +74,8 @@ class AttackState(PromptState):
         print(attacker.stringify_prebattle(attacked))
 
         # then get defense flag
-        defense_state = DefenseState(self.opponent)
+        defense_state = DefenseState(self.player, 
+            self.opponent)
         defense_state.start()
         defend = defense_state.defend
 
@@ -105,7 +106,7 @@ class AttackState(PromptState):
 
         # if monster has already attacked, deny attack
         if attacker.in_cooldown:
-            print(monster.name + " has already attacked.")
+            print(attacker.name + " has already attacked.\n")
             return
 
         # then check that opponent has no monster left

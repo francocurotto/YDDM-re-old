@@ -5,26 +5,26 @@ class DefenseState(PromptState):
     State where the opponent is asked if he wants to defend
     from the player attack.
     """
-    def __init__(player, opponent):
+    def __init__(self, player, opponent):
         super().__init__(player, opponent)
         self.help_text = self.help_text + help_text
 
-    def run_initial_state():
+    def run_initial_action(self):
         """
         As initial action, ask the opponent if he/she wants
         to defend or not.
         """
         # first check if oppontent has crests to defend
-        if self.opponent.dice_pool.defense == 0:
-            print(self.opponent.name + " has no defend \
-                  crests.")
+        if self.opponent.crest_pool.defense == 0:
+            print(self.opponent.name + " has no defense " + \
+                  "crests.")
             self.defend = False
             self.finish = True
         else:
-            print(self.opponent.name + ", do you want to \
-                  defend the attack? [y/n]")
+            print(self.opponent.name + ", do you want " +
+                  "to defend the attack? [y/n]")
 
-    def parse_commands(self, command):
+    def parse_command(self, command):
         """
         Parse the command obtained from prompt.
         """

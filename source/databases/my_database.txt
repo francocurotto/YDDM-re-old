@@ -4,14 +4,14 @@ LEVL:4
 ATTK:40
 DEFS:30
 LIFE:50
-ABTY:Fly  
+ABTY:Fly
 DICE:SMM2A4DG
 
 NAME:Mystical Elf
 TYPE:Spellcaster
 LEVL:1
 ATTK:10
-DEFS:20 
+DEFS:20
 LIFE:20
 ABTY:Restores 1 heart to all allies. (dimension)
 DICE:SSSSM2G4
@@ -79,7 +79,7 @@ LIFE:10
 ABTY:N/A
 DICE:SSSSA2G
 
-NAME:Swamp Battleguard 
+NAME:Swamp Battleguard
 TYPE:Warrior
 LEVL:2
 ATTK:20
@@ -110,12 +110,12 @@ NAME:Time Wizard
 TYPE:Spellcaster
 LEVL:1
 ATTK:0
-DEFS:10 
+DEFS:10
 LIFE:10
 ABTY:Destroys monster with least attack. (dimension)
 DICE:SSSSM2M3
 
-NAME:R Leg of Forbidden 
+NAME:R Leg of Forbidden
 TYPE:Spellcaster
 LEVL:3
 ATTK:10
@@ -124,7 +124,7 @@ LIFE:10
 ABTY:N/A
 DICE:SSM2M3A2D
 
-NAME:L Leg of Forbidden 
+NAME:L Leg of Forbidden
 TYPE:Spellcaster
 LEVL:3
 ATTK:10
@@ -133,7 +133,7 @@ LIFE:10
 ABTY:N/A
 DICE:SSM2ADG
 
-NAME:R Arm of forbidden
+NAME:R Arm of Forbidden
 TYPE:Spellcaster
 LEVL:3
 ATTK:10
@@ -142,7 +142,7 @@ LIFE:10
 ABTY:N/A
 DICE:SSM2M3A4D2
 
-NAME:L Arm of forbidden
+NAME:L Arm of Forbidden
 TYPE:Spellcaster
 LEVL:3
 ATTK:10
@@ -223,7 +223,7 @@ LIFE:10
 ABTY:Reduces damage to one ally by 10. [D X 2]
 DICE:SSSSDT
 
-NAME:Dark Magician 
+NAME:Dark Magician
 TYPE:Spellcaster
 LEVL:4
 ATTK:40
@@ -376,7 +376,7 @@ LIFE:10
 ABTY:Tunneling,  Raises attack of all Beats monsters by 10. (in play)
 DICE:SSSSM5G2
 
-NAME:Harpie Lady 
+NAME:Harpie Lady
 TYPE:Beast
 LEVL:2
 ATTK:10
@@ -412,7 +412,7 @@ LIFE:20
 ABTY:N/A
 DICE:SSSM2A7D
 
-NAME:Jellyfish 
+NAME:Jellyfish
 TYPE:Beast
 LEVL:1
 ATTK:10
@@ -481,7 +481,7 @@ LEVL:3
 ATTK:30
 DEFS:20
 LIFE:40
-ABTY:Attack crest raises attack by 10 up to twice/turn. (In attack) [A X ?] 
+ABTY:Attack crest raises attack by 10 up to twice/turn. (In attack) [A X ?]
 DICE:SSM2A2DG
 
 NAME:Clown Zombie
@@ -556,7 +556,7 @@ LIFE:20
 ABTY:N/A
 DICE:SSM4DDG2
 
-NAME:Yaranzo 
+NAME:Yaranzo
 TYPE:Undead
 LEVL:2
 ATTK:10
@@ -613,13 +613,13 @@ DICE:SSM3AA3D4
 NAME:Black Luster Soldier
 TYPE:Warrior
 LEVL:4
-ATTK:40 
+ATTK:40
 DEFS:30
 LIFE:50
 ABTY:N/A
 DICE:SM2ADGT2
 
-NAME:Fiend's Mirror 
+NAME:Fiend's Mirror
 TYPE:Spellcaster
 LEVL:2
 ATTK:10
@@ -811,7 +811,7 @@ DICE:SSSSM2T
 NAME:Meteor Dragon
 TYPE:Dragon
 LEVL:3
-ATTK:30 
+ATTK:30
 DEFS:30
 LIFE:30
 ABTY:Fly
@@ -985,7 +985,7 @@ LEVL:3
 ATTK:20
 DEFS:10
 LIFE:40
-ABTY:Adds enemy defense to own defense. [T X 3] Destroys all within 3 x 3 grid. [P X 3]  
+ABTY:Adds enemy defense to own defense. [T X 3] Destroys all within 3 x 3 grid. [P X 3]
 DICE:SSM4ADD3
 
 NAME:Strike Ninja
@@ -1060,7 +1060,7 @@ LEVL:1
 ABTY:Destroys 1 magic crest in own crest pool.
 DICE:SSSSM2G
 
-NAME:Gluminizer 
+NAME:Gluminizer
 TYPE:Item
 LEVL:2
 ABTY:Doubles movement cost for all. (Dimension)

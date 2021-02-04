@@ -43,15 +43,15 @@ class Monster(Summon):
         # attack monster lord
         opponent.monster_lord.hearts -= 1
 
+        # monster enter cooldown
+        self.in_cooldown = True
+
         # create information string
         string = self.name + " attacked " + opponent.name + \
             " Monster Lord directly.\n"
         string += opponent.monster_lord.stringify()
 
         return string
-
-    def is_monster(self):
-        return True
 
     def attack_defending_monster(self, attacked):
         """
@@ -60,7 +60,7 @@ class Monster(Summon):
         # get the attacking power considering type advanteges
         # (if in the rules)
         power = self.get_attacking_power(attacked)
-        message += attacked.name + " defends with " + \
+        message = attacked.name + " defends with " + \
             str(attacked.defense) + "."
 
         # if attack surpass defense, inflict damage in 
@@ -75,7 +75,8 @@ class Monster(Summon):
         # in attacker monster
         elif power < attacked.defense:
             damage = attacked.defense - power
-            message = self.inflict_retaliation_damage(damage)
+            message += self.inflict_retaliation_damage(
+                damage)
         
         # attack and defense are equal
         else:
@@ -93,7 +94,7 @@ class Monster(Summon):
 
         # inflict damage in attacked monster
         attacked.life -= power
-        message += attacked.name + " received " + \
+        message = attacked.name + " received " + \
             str(power) + " points of damage."
 
         return message
@@ -127,8 +128,9 @@ class Monster(Summon):
         # case retaliation damage is activated
         if retal_dmg:
             self.life -= damage
-            message = self.name + " received " + str(damage) \
-                + "points of damage in retaliation."
+            message = self.name + " received " + \
+                str(damage) + \
+                "points of damage in retaliation."
         # case retaliation damage deactivated
         else:
             message = "No damage inflicted."
@@ -143,6 +145,9 @@ class Monster(Summon):
         disadvantage (tht is already implemented).
         """
         return attacked.has_disadvantage(self)
+
+    def is_monster(self):
+        return True
 
     # default advantage functions
     def has_advantage_over_spellcaster(self):
@@ -174,7 +179,7 @@ class Monster(Summon):
 
         # attaking power information
         power = self.get_attacking_power(attacked)
-        string += self.name + " attacking with " + \
+        string += self.name + " is attacking with " + \
             str(power) + " points."
 
         return string
