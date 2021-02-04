@@ -9,12 +9,13 @@ class Monster(Summon):
     A monster in the board.
     """
     def __init__(self, card):
-        # attributes extracted from card
         super().__init__(card)
+        # attributes extracted from card
         self.attack = self.card.attack
         self.defense = self.card.defense
         self.life = self.card.life
         self.ability = self.card.ability
+        self.in_cooldown = False
 
     def attack_monster(self, attacked, defending):
         """
@@ -29,7 +30,28 @@ class Monster(Summon):
             message = self.attack_nondefending_monster(
                 attacked)
 
+        # monster enters cooldown
+        self.in_cooldown = True
+
         return message
+
+    def attack_ml(self, opponent):
+        """
+        Attack the opponent monster lord, directly removing
+        one of its hearts.
+        """
+        # attack monster lord
+        opponent.monster_lord.hearts -= 1
+
+        # create information string
+        string = self.name + " attacked " + opponent.name + \
+            " Monster Lord directly.\n"
+        string += opponent.monster_lord.stringify()
+
+        return string
+
+    def is_monster(self):
+        return True
 
     def attack_defending_monster(self, attacked):
         """
@@ -38,11 +60,11 @@ class Monster(Summon):
         # get the attacking power considering type advanteges
         # (if in the rules)
         power = self.get_attacking_power(attacked)
-        message += attaked.name + " defends with " + \
+        message += attacked.name + " defends with " + \
             str(attacked.defense) + "."
 
         # if attack surpass defense, inflict damage in 
-        # attaked monster
+        # attacked monster
         if power > attacked.defense:
             damage = power - attacked.defense
             attacked.life -= damage
@@ -69,7 +91,7 @@ class Monster(Summon):
         # (if in the rules)
         power = self.get_attacking_power(attacked)
 
-        # inflict damage in attaked monster
+        # inflict damage in attacked monster
         attacked.life -= power
         message += attacked.name + " received " + \
             str(power) + " points of damage."
@@ -134,24 +156,6 @@ class Monster(Summon):
     def has_advantage_over_dragon(self):
         return False
 
-    def attack_ml(self, opponent):
-        """
-        Attack the opponent monster lord, directly removing
-        one of its hearts.
-        """
-        # attack monster lord
-        opponent.monster_lord.hearts -= 1
-
-        # create information string
-        string = self.name + " attacked " + opponent.name + \
-            " Monster Lord directly.\n"
-        string += opponent.monster_lord.stringify()
-
-        return string
-
-    def is_monster(self):
-        return True
-
     def stringify_prebattle(self, attacked):
         """
         Return a string that describes an attack on an 
@@ -161,17 +165,17 @@ class Monster(Summon):
         string = ""
 
         # type advantage information, if in the rules
-        if self.has_advantage(attaked) and type_adv:
+        if self.has_advantage(attacked) and type_adv:
             string += self.name + " has advantage over " \
-                + attacked.name + "."
-        if self.has_disadvantage(attaked) and type_adv:
+                + attacked.name + ".\n"
+        if self.has_disadvantage(attacked) and type_adv:
             string += self.name + " has disadvantage over " \
-                + attacked.name + "."
+                + attacked.name + ".\n"
 
         # attaking power information
-        power = self.get_attaking_power(attacked)
-        string += self.name + "attacking with " + str(power) \
-            + " power."
+        power = self.get_attacking_power(attacked)
+        string += self.name + " attacking with " + \
+            str(power) + " points."
 
         return string
 

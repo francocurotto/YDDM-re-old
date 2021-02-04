@@ -5,8 +5,8 @@ class DicePool(DiceList):
     """
     Set of 15 dice used by a player to play the game.
     """
-    def __init__(self, filename=None):
-        super().__init__("dice pool", 15, filename)
+    def __init__(self):
+        super().__init__("dice pool", 15)
 
     def fill_random(self, dice_library):
         """

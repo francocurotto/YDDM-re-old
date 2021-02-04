@@ -113,3 +113,43 @@ class DdmList():
         Check if list is empty.
         """
         return len(self.list) == 0
+
+    def stringify(self):
+        """
+        Returns a string version of object.
+        """
+        string = ""
+        for i in range(len(self.list)):
+            string += self.stringify_short(i)
+
+        return string
+
+    def stringify_short(self, i):
+        """
+        Return the short string version of item at position i 
+        from the DdmList.
+        """
+        # add summon number
+        string = str(i).rjust(3) + ". "
+        # add dice short string
+        string += self.list[i].stringify_short() + "\n"
+
+        return string
+
+    def stringify_item(self, i):
+        """
+        Return the string version of item at position i from 
+        the dice library.
+        """
+        return self.list[i].stringify()
+
+# quick child class too short to have their own file
+class MonsterList(DdmList):
+    def __init__(self):
+        super().__init__("monster list", "monster")
+class ItemList(DdmList):
+    def __init__(self):
+        super().__init__("item list", "item")
+class Graveyard(DdmList):
+    def __init__(self):
+        super().__init__("graveyard", "summon")

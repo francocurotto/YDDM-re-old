@@ -2,7 +2,9 @@ from colorama import Fore, Style
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from dice_list import DiceList
-from summon_list import SummonList
+from ddm_list import MonsterList
+from ddm_list import ItemList
+from ddm_list import Graveyard
 from crest_pool import CrestPool
 from monster_lord import MonsterLord
 
@@ -19,8 +21,9 @@ class Player():
         self.dice_hand = DiceHand()
         self.dice_bin = DiceList()
         self.crest_pool = CrestPool()
-        self.summon_list = SummonList()
-        self.graveyard = SummonList("graveyard")
+        self.monster_list = MonsterList()
+        self.item_list = ItemList()
+        self.graveyard = Graveyard()
         self.monster_lord = MonsterLord()
         self.forfeited = False
 
@@ -109,7 +112,10 @@ class Player():
         """
         # summon card from dice
         summon = dice.card.summon()
-        self.summon_list.add(summon)
+        if summon.is_monster():
+            self.monster_list.add(summon)
+        elif summon.is_item():
+            self.item_list.add(summon)
 
         # discard summoned dice into dice bin
         self.dice_bin.add(dice)
@@ -137,60 +143,27 @@ class Player():
         for side in sides:
             self.crest_pool.add_crests(side)
 
-    def get_monster(self, i):
+    def decooldown_monsters(self):
         """
-        Get a monster from player summon list. If index is
-        for a item, ignore procedure and return message.
+        Used when a turn starts, all monsters that were in
+        cooldown, reset its state.
         """
-        result = self.summon_list.get(i)
-        
-        # check for successful get
-        if not result["success"]:
-            return result
-
-        # check if summon is monster
-        if result["item"].is_item():
-            result = {}
-            result["message"] = "Summon selected is not a \
-                                 monster"
-            result["success"] = False
-            return result
-
-        # successfull operation
-        return result
-
-    def has_monsters(self):
-        """
-        Return true if player has at least one monster 
-        summoned.
-        """
-        # if not summons at all return false
-        if self.summon_list.is_empty():
-            return False
-
-        # iterate through summons
-        for summon in self.summon_list.list:
-            if summon.is_monster():
-                return True
-
-        # if not summon found return false
-        return False
+        for monster in self.monster_list.list:
+            monster.is_cooldown = False
 
     def check_for_casualities():
         """
-        Iterates through summons and check if any monster is
+        Iterates through monsters and check if any monster is
         dead. For every dead monster, send it to the,
         graveyard and add a message to the return string.
         """
         string = ""
 
-        for summons in self.summon_list.list:
-            # check first if it is monster
-            if summon.is_monster():
-                # now chevck if it is dead
-                if summon.life <= 0:
-                    self.send_to_graveyard(summon)
-                    string += summon.name + " is dead.\n"
+        for monster in self.monster_list.list:
+            # check if monster is dead
+            if monster.life <= 0:
+                self.send_to_graveyard(monster)
+                string += monster.name + " is dead.\n"
 
         return string
 
@@ -200,7 +173,7 @@ class Player():
         graveyard. It is assumed that the monster is in the 
         summoned list.
         """
-        self.summon_list.remove(monster)
+        self.monster_list.remove(monster)
         self.graveryard.add(monster)
 
     def stringify_pool(self):
@@ -211,7 +184,7 @@ class Player():
         """
         string = ""
         for i, dice in enumerate(self.dice_pool.list):
-            dice_str = self.dice_pool.stringify_dice_short(i)
+            dice_str = self.dice_pool.stringify_short(i)
             
             # case in hand
             if dice in self.dice_hand.list:
@@ -227,3 +200,18 @@ class Player():
             string += dice_str
         
         return string
+
+    def stringify_summons(self):
+        """
+        Returns a string version of player summons, that is,
+        simply a combinations of player monsters and player
+        items.
+        """
+        string = ""
+        string += "Monsters:\n"
+        string += self.monster_list.stringify()
+        string += "\n"
+        string += "Items:\n"
+        string += self.item_list.stringify()
+        return string
+

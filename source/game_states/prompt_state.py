@@ -60,12 +60,20 @@ class PromptState():
         elif command.equals("oc"): # display op. crest pool
             print(self.opponent.crest_pool.stringify_short())
         elif command.equals("s"): # display summons
-            print(self.player.summon_list.stringify())
+            print(self.player.stringify_summons())
         elif command.equals("os"): # display op. summons
-            print(self.opponent.summon_list.stringify())
-        elif command.equals("m"): # display monster lord
+            print(self.opponent.stringify_summons())
+        elif command.equals("m"): # display monsters
+            print(self.player.monster_list.stringify())
+        elif command.equals("om"): # display op. monsters
+            print(self.opponent.monster_list.stringify())
+        elif command.equals("i"): # display items
+            print(self.player.item_list.stringify())
+        elif command.equals("oi"): # display op. items
+            print(self.opponent.item_list.stringify())
+        elif command.equals("ml"): # display monster lord
             print(self.player.monster_lord.stringify())
-        elif command.equals("om"): # display op. monster lord
+        elif command.equals("oml"): # display op. monster lord
             print(self.opponent.monster_lord.stringify())
         elif command.equals("g"): # display graveyard
             print(self.player.graveyard.stringify())
@@ -78,14 +86,18 @@ General commands: \n\
     q   :  forfeit the duel \n\
 \n\
 Print commands: \n\
-    p p : print pool \n\
-    p h : print hand \n\
-    p c : print crest pool \n\
-    p oc: print opponent crest pool \n\
-    p s : print summons \n\
-    p os: print opponent summons \n\
-    p m : print monster lord \n\
-    p om: print opponent monster lord \n\
-    p g : print graveyard \n\
-    p og: print opponent graveyard \n\
+    p p  : print pool \n\
+    p h  : print hand \n\
+    p c  : print crest pool \n\
+    p oc : print opponent crest pool \n\
+    p s  : print summons \n\
+    p os : print opponent summons \n\
+    p m  : print monsters \n\
+    p om : print opponent monsters \n\
+    p i  : print items \n\
+    p oi : print opponent items \n\
+    p ml : print monster lord \n\
+    p oml: print opponent monster lord \n\
+    p g  : print graveyard \n\
+    p og : print opponent graveyard \n\
 \n"

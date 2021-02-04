@@ -32,6 +32,9 @@ class Duel():
             opponent = self.players[not i]
             print(player.name + " turn.")
 
+            # decooldown player monsters
+            player.decooldown_monsters()
+
             # run roll state
             RollState(player, opponent).start()
 
@@ -85,7 +88,8 @@ if __name__ == "__main__":
     
     # generate dice library
     lib_filename = "../databases/my_database.txt"
-    library = DiceList(filename=lib_filename)
+    library = DiceList()
+    library.fill_from_file(lib_filename)
 
     # generate players
     player1 = Player("Player 1")

@@ -1,4 +1,5 @@
 from prompt_state import PromptState
+from defense_state import DefenseState
 
 class AttackState(PromptState):
     """
@@ -14,10 +15,10 @@ class AttackState(PromptState):
         summons.
         """
         print("Attack phase.")
-        print(self.player.name + " summons:")
-        print(self.player.summon_list.stringify())
-        print(self.opponent.name + " summons:")
-        print(self.opponent.summon_list.stringify())
+        print(self.player.name + " monsters:")
+        print(self.player.monster_list.stringify())
+        print(self.opponent.name + " monsters:")
+        print(self.opponent.monster_list.stringify())
 
     def parse_command(self, command):
         """
@@ -46,20 +47,27 @@ class AttackState(PromptState):
         Run command that makes a player monster to attack an
         opponent monster.
         """
+        # get command indeces
+        i0 = command.list[0]
+        i1 = command.list[1]
+
         # first get player monster
-        result = self.player.get_monster(command.list[0])
+        result = self.player.monster_list.get(i0)
         if not result["success"]:
             print(result["message"])
             return
-
         attacker = result["item"]
 
+        # if monster has already attacked, deny attack
+        if attacker.in_cooldown:
+            print(monster.name + " has already attacked.")
+            return
+
         # then get opponent monster
-        result = self.opponent.get_monster(command.list[1])
+        result = self.opponent.monster_list.get(i1)
         if not result["success"]:
             print(result["message"])
             return
-
         attacked = result["item"]
         
         # inform the battle situation
@@ -85,18 +93,25 @@ class AttackState(PromptState):
         Run command that makes a player monster to attack the
         opponent monster lord.
         """
+        # get command index
+        i = command.list[0]
+
         # first get player monster
-        result = self.player.get_monster(command.list[0])
+        result = self.player.monster_list.get(i)
         if not result["success"]:
             print(result["message"]+"\n")
             return
-
         attacker = result["item"]
 
+        # if monster has already attacked, deny attack
+        if attacker.in_cooldown:
+            print(monster.name + " has already attacked.")
+            return
+
         # then check that opponent has no monster left
-        if self.opponent.has_monsters():
-            print("Cannot attack ML. Opponent still has \
-                monsters left.\n")
+        if not self.opponent.monster_list.is_empty():
+            print("Cannot attack ML. Opponent still has " +
+                "monsters left.\n")
             return
 
         # do the attack

@@ -1,4 +1,4 @@
-from prompt_State import PromptState
+from prompt_state import PromptState
 
 class DefenseState(PromptState):
     """
@@ -6,7 +6,7 @@ class DefenseState(PromptState):
     from the player attack.
     """
     def __init__(player, opponent):
-        super().__init__(player, opponent):
+        super().__init__(player, opponent)
         self.help_text = self.help_text + help_text
 
     def run_initial_state():

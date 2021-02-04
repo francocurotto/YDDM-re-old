@@ -18,7 +18,8 @@ Input r<number> to remove a dice from the pool.\n\
 Input f to fill the dice pool with random dice.\n\
 Input q to quit.\n")
 
-library = DiceList(filename="../databases/my_database.txt")
+library = DiceList()
+library.fill_from_file("../databases/my_database.txt")
 pool = DicePool()
 
 def get_dicenum(string):

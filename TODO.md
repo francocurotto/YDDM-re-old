@@ -1,1 +1,3 @@
 - Test the game with attack mechanics
+- Refactor attack (monster/ml) and (defending/nondefendig) to avoid code duplication?
+- Refactor game_states to make them indepentend of display format (possible?)
