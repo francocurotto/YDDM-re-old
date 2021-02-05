@@ -161,9 +161,12 @@ class Player():
 
         for monster in self.monster_list.list:
             # check if monster is dead
+            strlist = []
             if monster.life <= 0:
                 self.send_to_graveyard(monster)
-                string += monster.name + " is dead.\n"
+                strlist.append(monster.name + " is dead.")
+            
+        string = "\n".join(strlist)
 
         return string
 
@@ -182,7 +185,7 @@ class Player():
         distinguish between used dice (dimensioned), dice in 
         the dice hand, and normal pool dice.
         """
-        string = ""
+        strlist = []
         for i, dice in enumerate(self.dice_pool.list):
             dice_str = self.dice_pool.stringify_short(i)
             
@@ -197,7 +200,9 @@ class Player():
                 dice_str = Style.BRIGHT + dice_str
                 dice_str = dice_str + Style.RESET_ALL
 
-            string += dice_str
+            strlist.append(dice_str)
+
+        string = "\n".join(strlist)
         
         return string
 

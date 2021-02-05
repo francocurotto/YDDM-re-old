@@ -32,7 +32,7 @@ while True:
 
     # display hand
     elif command == "dh":
-        print(hand.stringify())
+        print(hand.stringify()+ "\n")
 
     # roll
     elif command == "r":

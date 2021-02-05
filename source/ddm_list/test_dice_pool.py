@@ -47,7 +47,7 @@ while True:
         else: # skip
             continue
         if len(command) == 2: # print the whole set
-            print(set.stringify())
+            print(set.stringify() + "\n")
 
         else: # print a specific dice
             dicenum = get_dicenum(command[2:])

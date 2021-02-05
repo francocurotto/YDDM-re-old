@@ -23,7 +23,7 @@ while True:
         break
 
     if command == "d": # print the whole library
-        print(library.stringify())
+        print(library.stringify() + "\n")
 
     elif command[0] == "d": # print a specific dice
         try:

@@ -56,7 +56,6 @@ class MonsterLord():
         # dead hearts
         for _ in range(3 - self.hearts):
             string += self.chars["noheart"]
-        string += "\n"
 
         return string
             

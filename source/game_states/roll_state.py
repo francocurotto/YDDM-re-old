@@ -18,7 +18,8 @@ class RollState(PromptState):
 
     def parse_command(self, command):
         """
-        Parse the command obtained from prompt.
+        Parse the command obtained by prompt. Return True if
+        command is valid.
         """
         # add command
         if command.equals_param(0, "a"):
@@ -37,7 +38,10 @@ class RollState(PromptState):
 
         # generic commands
         else:
-            super().parse_command(command)
+            return super().parse_command(command)
+
+        # valid command
+        return True
 
     def run_add_command(self, command):
         """
@@ -99,11 +103,11 @@ class RollState(PromptState):
         result = self.player.roll_hand()
         
         if not result["success"]: # roll failed
-            print(result["message"] + "\n")
+            print(result["message"])
             return
 
         # roll succeded
-        print("Roll result: " + result["string"] + "\n")
+        print("Roll result: " + result["string"])
 
         # check for summon
         dimensions = result["dimensions"]
@@ -129,7 +133,7 @@ class RollState(PromptState):
         # call run roll command without parameters
         self.run_roll_command()
 
-help_text = "\
+help_text = "\n\n\
 Hand commands: \n\
     a # [# #]: add 1/2/3 dice from dice pool at positions \n\
                # to dice hand \n\
@@ -138,5 +142,4 @@ Hand commands: \n\
     r        : roll dice hand \n\
     r # # #  : ignore current dice at dice hand and \n\
                roll dice at positions # # # \n\
-               (quick roll) \n\
-"
+               (quick roll)"

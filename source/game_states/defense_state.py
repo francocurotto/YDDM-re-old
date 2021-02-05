@@ -26,7 +26,8 @@ class DefenseState(PromptState):
 
     def parse_command(self, command):
         """
-        Parse the command obtained from prompt.
+        Parse the command obtained by prompt. Return True if
+        command is valid.
         """
         # opponent defends
         if command.equals("y"):
@@ -40,7 +41,10 @@ class DefenseState(PromptState):
 
         # generic commands
         else:
-            super().parse_command(command)
+            return super().parse_command(command)
+
+        # valid command
+        return True
 
 help_text = "\
 Defense commands: \n\

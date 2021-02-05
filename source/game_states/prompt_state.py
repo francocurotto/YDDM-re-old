@@ -16,27 +16,25 @@ class PromptState():
         """
         # run action at the start of running the state
         self.run_initial_action()
+        print("")
 
         # state loop
         while not self.finish:
             command = run_prompt()
-            self.parse_command(command)
+            valid = self.parse_command(command)
+            if valid:
+                print("")
         
-    def run_initial_action(self):
-        """
-        Dummy initial action.
-        """
-        pass
-
     def parse_command(self, command):
         """
         Parse the command obtained from prompt. Return True 
-        if player is done with prompt state.
+        if player command is valid.
         """
         # quit (forfeit) command)
         if command.equals("q"):
             self.player.forfeited = True
             self.finish = True
+            print(self.player.name + " forfeited.")
 
         # help text command
         elif command.equals("h"):
@@ -46,6 +44,13 @@ class PromptState():
         elif command.equals_param(0, "p"):
             subcommand = command.subcommand(1)
             self.run_print_command(subcommand)
+        
+        # invalid command
+        else:
+            return False
+
+        # valid command
+        return True
 
     def run_print_command(self, command):
         """
@@ -99,5 +104,4 @@ Print commands: \n\
     p ml : print monster lord \n\
     p oml: print opponent monster lord \n\
     p g  : print graveyard \n\
-    p og : print opponent graveyard \n\
-\n"
+    p og : print opponent graveyard"

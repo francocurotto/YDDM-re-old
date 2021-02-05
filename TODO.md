@@ -1,5 +1,5 @@
 - Test the game with attack mechanics
-    - Fix printing newlines
+    - Fix printing newlines for substates (summon and defense)
+    - Refactor attack (monster/ml) and (defending/nondefendig) to avoid code duplication?
     - add attack crest cost for attacking
-- Refactor attack (monster/ml) and (defending/nondefendig) to avoid code duplication?
 - Refactor game_states to make them indepentend of display format (possible?)

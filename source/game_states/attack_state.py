@@ -23,11 +23,10 @@ class AttackState(PromptState):
     def parse_command(self, command):
         """
         Parse the command obtained from prompt. Return True 
-        if player is done with state.
+        if command is valid.
         """
         # finish attack phase command
         if command.equals("f"):
-            print("")
             self.finish =  True
 
         # attack command
@@ -40,7 +39,10 @@ class AttackState(PromptState):
 
         # generic commands
         else:
-            super().parse_command(command)
+            return super().parse_command(command)
+        
+        # valid command
+        return True
 
     def run_attack_command(self, command):
         """
@@ -60,7 +62,7 @@ class AttackState(PromptState):
 
         # if monster has already attacked, deny attack
         if attacker.in_cooldown:
-            print(attacker.name + " has already attacked.\n")
+            print(attacker.name + " has already attacked.")
             return
 
         # then get opponent monster
@@ -100,19 +102,19 @@ class AttackState(PromptState):
         # first get player monster
         result = self.player.monster_list.get(i)
         if not result["success"]:
-            print(result["message"]+"\n")
+            print(result["message"])
             return
         attacker = result["item"]
 
         # if monster has already attacked, deny attack
         if attacker.in_cooldown:
-            print(attacker.name + " has already attacked.\n")
+            print(attacker.name + " has already attacked.")
             return
 
         # then check that opponent has no monster left
         if not self.opponent.monster_list.is_empty():
             print("Cannot attack ML. Opponent still has " +
-                "monsters left.\n")
+                "monsters left.")
             return
 
         # do the attack
@@ -120,13 +122,14 @@ class AttackState(PromptState):
         print(message)
         
         # check opponent dm is dead
-        self.finish = self.opponent.monster_lord.is_dead()
+        if self.opponent.monster_lord.is_dead():
+            self.finished = True
+            print(player.name + " is the winner!")
 
-help_text = "\
+help_text = "\n\n\
 Attack commands: \n\
     #1 #2: player's monster #1 attacks opponent \n\
            monster's #2 \n\
     #    : player's monster # attacks opponent \n\
            dungeon master \n\
-    f    : finish phase.\n\
-"
+    f    : finish phase."

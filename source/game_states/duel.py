@@ -63,12 +63,10 @@ class Duel():
         """
         # Forfeit condition
         if player.forfeited:
-            print(player.name + " forfeited.")
             return True
 
         # normal win condition (monster lord beaten)
         if opponent.monster_lord.is_dead():
-            print(player.name + " is the winner!")
             return True
 
         return False

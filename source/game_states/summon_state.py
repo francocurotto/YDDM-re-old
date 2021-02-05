@@ -19,14 +19,14 @@ class SummonState(PromptState):
 
     def parse_command(self, command):
         """
-        Parse command obtained by prompt.
+        Parse command obtained by prompt. Return True if
+        command is valid.
         """
         # print available summons command
         if command.equals("p", "as"):
             print(self.dimensions.stringify())
 
         elif command.equals("s"):
-            print("")
             self.finish = True
 
         # dimension dice
@@ -38,16 +38,17 @@ class SummonState(PromptState):
                 return 
 
             self.player.dimension_dice(result["item"])
-            print("")
             self.finish = True
 
         # generic commands
         else:
-            super().parse_command(command)
+            return super().parse_command(command)
 
-help_text = "\
+        # valid command
+        return True
+
+help_text = "\n\n\
 Summon commands: \n\
     p as: print available summons \n\
     s   : skip dimension \n\
-    #   : dimension dice \n\
-"
+    #   : dimension dice"

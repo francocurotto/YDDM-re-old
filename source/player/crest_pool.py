@@ -41,7 +41,7 @@ class CrestPool():
         string += ": " + str(self.magic) + "\n"
         # trap crests
         string += TrapCrest().stringify()
-        string += ": " + str(self.trap) + "\n"
+        string += ": " + str(self.trap)
         
         return string
 
@@ -53,5 +53,4 @@ class CrestPool():
         string = string.replace(": ", ":")  # remove spaces
         string = string.replace(":  ", ":") # after ":"
         string = string.replace("\n"," ")
-        string += "\n" # add final line break
         return string

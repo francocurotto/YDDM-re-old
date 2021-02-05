@@ -118,9 +118,9 @@ class DdmList():
         """
         Returns a string version of object.
         """
-        string = ""
-        for i in range(len(self.list)):
-            string += self.stringify_short(i)
+        indeces = range(len(self.list))
+        strlist = [self.stringify_short(i) for i in indeces]
+        string = "\n".join(strlist)
 
         return string
 
@@ -132,7 +132,7 @@ class DdmList():
         # add summon number
         string = str(i).rjust(3) + ". "
         # add dice short string
-        string += self.list[i].stringify_short() + "\n"
+        string += self.list[i].stringify_short()
 
         return string
 
