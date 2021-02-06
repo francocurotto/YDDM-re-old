@@ -1,5 +1,4 @@
 - Test the game with attack mechanics
-    - Fix printing newlines for substates (summon and defense)
-    - Refactor attack (monster/ml) and (defending/nondefendig) to avoid code duplication?
-    - add attack crest cost for attacking
+    - add indication for cooldown monsters
+    - revert skip_newline solutions as it didn't worked
 - Refactor game_states to make them indepentend of display format (possible?)

@@ -32,9 +32,6 @@ class Duel():
             opponent = self.players[not i]
             print(player.name + " turn.")
 
-            # decooldown player monsters
-            player.decooldown_monsters()
-
             # run roll state
             RollState(player, opponent).start()
 
@@ -52,6 +49,9 @@ class Duel():
 
             # after first iteration, no longer in first turn
             self.first_turn = False
+
+            # decooldown player monsters
+            player.decooldown_monsters()
 
             # update player index
             i = not i

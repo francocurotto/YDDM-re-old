@@ -143,6 +143,43 @@ class Player():
         for side in sides:
             self.crest_pool.add_crests(side)
 
+    def prepare_attack(self, i):
+        """
+        Prepares for an attack by:
+            1. getting the monster at index i
+            2. checking that monster is not in cooldown
+            3. checking that player has attack crests,
+                and substract crest in that case.
+        Returns a dictionary with the result.
+        """
+        # 1. get monster
+        result = self.monster_list.get(i)
+        if not result["success"]:
+            return result
+        attacker = result["item"]
+
+        # 2. check if monster is in cooldown
+        result = {}
+        if attacker.in_cooldown:
+            result["message"] = attacker.name + " has " + \
+                "already attacked."
+            result["success"] = False
+            return result
+        
+        # 3. verify attack crest
+        if self.crest_pool.attack == 0:
+            result["message"] = self.name + " has no " + \
+                "attack crests."
+            result["success"] = False
+            return result
+
+        # if everything is ok, substract crest and return 
+        # success
+        self.crest_pool.attack -= 1
+        result["attacker"] = attacker
+        result["success"] = True
+        return result
+
     def decooldown_monsters(self):
         """
         Used when a turn starts, all monsters that were in

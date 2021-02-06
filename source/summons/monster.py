@@ -22,13 +22,18 @@ class Monster(Summon):
         Attack the attacked monster. The defend flag 
         indicates if the monster is defending or not.
         """
+        # first get attacking power, considering type adv.
+        power = self.get_attacking_power(attacked)
+
         # case defending monster
         if defending:
-            message = self.attack_defending_monster(attacked)
+            message = self.attack_defending_monster(attacked,
+                power)
         # case non-defending monster
         else:
-            message = self.attack_nondefending_monster(
-                attacked)
+            attacked.life -= power
+            message = attacked.name + " received " + \
+                str(power) + " points of damage."
 
         # monster enters cooldown
         self.in_cooldown = True
@@ -53,13 +58,12 @@ class Monster(Summon):
 
         return string
 
-    def attack_defending_monster(self, attacked):
+    def attack_defending_monster(self, attacked, power):
         """
-        Attack a monster that is defending defending.
+        Attack a monster that is defending with power attack
+        points.
         """
-        # get the attacking power considering type advanteges
-        # (if in the rules)
-        power = self.get_attacking_power(attacked)
+        # defending message
         message = attacked.name + " defends with " + \
             str(attacked.defense) + ".\n"
 
@@ -81,21 +85,6 @@ class Monster(Summon):
         # attack and defense are equal
         else:
             message += "No damage inflicted.\n"
-
-        return message
-
-    def attack_nondefending_monster(self, attacked):
-        """
-        Attack a monster that is not defending.
-        """
-        # get the attacking power considering type advanteges
-        # (if in the rules)
-        power = self.get_attacking_power(attacked)
-
-        # inflict damage in attacked monster
-        attacked.life -= power
-        message = attacked.name + " received " + \
-            str(power) + " points of damage."
 
         return message
 

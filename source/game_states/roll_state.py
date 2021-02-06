@@ -57,8 +57,6 @@ class RollState(PromptState):
             if not result["success"]:
                 print(result["message"])
         
-        print("")
-
     def run_getback_command(self, command):
         """
         Run command that get back a dice from dice hand to 
@@ -76,8 +74,6 @@ class RollState(PromptState):
             result = self.player.dice_hand.remove_idx(i)
             if not result["success"]:
                 print(result["message"])
-
-        print("")
         
     def parse_roll_command(self, command):
         """
@@ -112,6 +108,7 @@ class RollState(PromptState):
         # check for summon
         dimensions = result["dimensions"]
         if not dimensions.is_empty():
+            self.skip_newline = True
             summon_state = SummonState(self.player, 
                 self.opponent, dimensions)
             summon_state.start()

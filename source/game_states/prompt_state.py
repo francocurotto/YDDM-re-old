@@ -9,6 +9,7 @@ class PromptState():
         self.opponent = opponent
         self.help_text = help_text
         self.finish = False
+        self.skip_newline = False
 
     def start(self):
         """
@@ -22,7 +23,7 @@ class PromptState():
         while not self.finish:
             command = run_prompt()
             valid = self.parse_command(command)
-            if valid:
+            if valid and not self.skip_newline:
                 print("")
         
     def parse_command(self, command):

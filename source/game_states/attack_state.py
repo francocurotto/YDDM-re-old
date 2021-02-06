@@ -54,28 +54,24 @@ class AttackState(PromptState):
         i1 = command.list[1]
 
         # first get player monster
-        result = self.player.monster_list.get(i0)
+        result = self.player.prepare_attack(i0)
         if not result["success"]:
             print(result["message"])
             return
-        attacker = result["item"]
-
-        # if monster has already attacked, deny attack
-        if attacker.in_cooldown:
-            print(attacker.name + " has already attacked.")
-            return
-
+        attacker = result["attacker"]
+        
         # then get opponent monster
         result = self.opponent.monster_list.get(i1)
         if not result["success"]:
             print(result["message"])
             return
         attacked = result["item"]
-        
+
         # inform the battle situation
         print(attacker.stringify_prebattle(attacked))
 
         # then get defense flag
+        self.skip_newline = True
         defense_state = DefenseState(self.player, 
             self.opponent)
         defense_state.start()
@@ -100,16 +96,11 @@ class AttackState(PromptState):
         i = command.list[0]
 
         # first get player monster
-        result = self.player.monster_list.get(i)
+        result = self.player.prepare_attack(i)
         if not result["success"]:
             print(result["message"])
             return
-        attacker = result["item"]
-
-        # if monster has already attacked, deny attack
-        if attacker.in_cooldown:
-            print(attacker.name + " has already attacked.")
-            return
+        attacker = result["attacker"]
 
         # then check that opponent has no monster left
         if not self.opponent.monster_list.is_empty():
@@ -124,7 +115,7 @@ class AttackState(PromptState):
         # check opponent dm is dead
         if self.opponent.monster_lord.is_dead():
             self.finished = True
-            print(player.name + " is the winner!")
+            print(self.player.name + " is the winner!")
 
 help_text = "\n\n\
 Attack commands: \n\
