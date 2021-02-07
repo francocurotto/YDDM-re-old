@@ -118,7 +118,7 @@ class Monster(Summon):
             self.life -= damage
             message = self.name + " received " + \
                 str(damage) + \
-                "points of damage in retaliation."
+                " points of damage in retaliation."
         # case retaliation damage deactivated
         else:
             message = "No damage inflicted."

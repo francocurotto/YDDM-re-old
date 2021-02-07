@@ -118,9 +118,13 @@ class RollState(PromptState):
         # check for summon
         dimensions = result["dimensions"]
         if not dimensions.is_empty():
-            summon_state = SummonState(self.player, 
-                self.opponent, dimensions)
-            summon_state.start()
+            if not self.player.can_dimension():
+                print(self.player.name + " reached " + \
+                    "dimension limit.")
+            else:
+                summon_state = SummonState(self.player, 
+                    self.opponent, dimensions)
+                summon_state.start()
 
         # indicate that state is finished
         self.finish = True
