@@ -9,7 +9,6 @@ class PromptState():
         self.opponent = opponent
         self.help_text = help_text
         self.finish = False
-        self.skip_newline = False
 
     def start(self):
         """
@@ -23,7 +22,7 @@ class PromptState():
         while not self.finish:
             command = run_prompt()
             valid = self.parse_command(command)
-            if valid and not self.skip_newline:
+            if valid:
                 print("")
         
     def parse_command(self, command):
@@ -36,22 +35,20 @@ class PromptState():
             self.player.forfeited = True
             self.finish = True
             print(self.player.name + " forfeited.")
+            return True
 
         # help text command
         elif command.equals("h"):
             print(self.help_text)
+            return True
 
         # print command
         elif command.equals_param(0, "p"):
             subcommand = command.subcommand(1)
-            self.run_print_command(subcommand)
+            return self.run_print_command(subcommand)
         
         # invalid command
-        else:
-            return False
-
-        # valid command
-        return True
+        return False
 
     def run_print_command(self, command):
         """
@@ -85,6 +82,10 @@ class PromptState():
             print(self.player.graveyard.stringify())
         elif command.equals("og"): # display op. graveyard
             print(self.opponent.graveyard.stringify())
+        else: # invalid command
+            return False
+        # valid command
+        return True
 
 help_text = "\
 General commands: \n\

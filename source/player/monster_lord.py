@@ -1,6 +1,4 @@
-import sys
-sys.path.append("")
-from colorama import Fore, Style
+from functions import grayout
 
 class MonsterLord():
     """
@@ -11,10 +9,7 @@ class MonsterLord():
         self.hearts = 3
         self.chars_ascii = {"type"    : "ML",
                             "heart"   : "<3",
-                            "noheart" : Fore.BLACK + \
-                                        Style.BRIGHT +  \
-                                        "<3" + \
-                                        Style.RESET_ALL}
+                            "noheart" : grayout("<3")}
         self.chars_unicode = {"type"    : "♛",
                               "heart"   : "♥",
                               "noheart" : "♡"}
@@ -58,4 +53,3 @@ class MonsterLord():
             string += self.chars["noheart"]
 
         return string
-            

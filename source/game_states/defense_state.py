@@ -33,18 +33,17 @@ class DefenseState(PromptState):
         if command.equals("y"):
             self.defend = True
             self.finish = True
+            return True
 
         # opponent does not defend
         elif command.equals("n"):
             self.defend = False
             self.finish = True
+            return True
 
         # generic commands
         else:
             return super().parse_command(command)
-
-        # valid command
-        return True
 
 help_text = "\
 Defense commands: \n\

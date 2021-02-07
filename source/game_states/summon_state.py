@@ -25,9 +25,11 @@ class SummonState(PromptState):
         # print available summons command
         if command.equals("p", "as"):
             print(self.dimensions.stringify())
+            return True
 
         elif command.equals("s"):
             self.finish = True
+            return True
 
         # dimension dice
         elif command.len == 1 and command.is_int(0):
@@ -35,17 +37,15 @@ class SummonState(PromptState):
             result = self.dimensions.get(i)
             if not result["success"]:
                 print(result["message"])
-                return 
+                return True
 
             self.player.dimension_dice(result["item"])
             self.finish = True
+            return True
 
         # generic commands
         else:
             return super().parse_command(command)
-
-        # valid command
-        return True
 
 help_text = "\n\n\
 Summon commands: \n\

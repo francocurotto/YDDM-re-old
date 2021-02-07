@@ -1,7 +1,6 @@
-import sys
-sys.path.append("..")
 from colorama import Fore
 from settings import type_adv, retal_dmg
+from functions import color
 from summon import Summon
 
 class Monster(Summon):
@@ -205,12 +204,14 @@ class Monster(Summon):
 
 def get_attr_styled(current, original):
     """
-    get the string version of an attribute (attack or defense)
-    styled in a way to show buff, debuff or normal case.
+    get the string version of an attribute (attack or 
+    defense) styled in a way to show buff, debuff or normal
+    case.
     """
+    string = str(current)
     if current > original: # buff style
-        return Fore.CYAN + str(current).rjust(2)
+        string = color(string, Fore.CYAN)
     elif current < original: # debuff style
-        return Fore.red + str(current).rjust(2)
-    else: # normal style
-        return str(current).rjust(2)
+        string = color(string, Fore.RED)
+
+    return string.rjust(2)

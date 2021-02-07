@@ -1,4 +1,2 @@
 - Test the game with attack mechanics
-    - add indication for cooldown monsters
-    - revert skip_newline solutions as it didn't worked
 - Refactor game_states to make them indepentend of display format (possible?)

@@ -1,8 +1,9 @@
-from colorama import Fore, Style
+from colorama import Fore
+from functions import color, grayout
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from dice_list import DiceList
-from ddm_list import MonsterList
+from monster_list import MonsterList
 from ddm_list import ItemList
 from ddm_list import Graveyard
 from crest_pool import CrestPool
@@ -228,14 +229,11 @@ class Player():
             
             # case in hand
             if dice in self.dice_hand.list:
-                dice_str = Fore.GREEN + dice_str
-                dice_str = dice_str + Style.RESET_ALL
+                dice_str = color(dice_str, Fore.GREEN)
 
             # case dimensioned
             elif dice in self.dice_bin.list:
-                dice_str = Fore.BLACK + dice_str
-                dice_str = Style.BRIGHT + dice_str
-                dice_str = dice_str + Style.RESET_ALL
+                dice_str = grayout(dice_str)
 
             strlist.append(dice_str)
 

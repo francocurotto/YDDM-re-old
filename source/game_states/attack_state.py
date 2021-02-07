@@ -28,22 +28,22 @@ class AttackState(PromptState):
         # finish attack phase command
         if command.equals("f"):
             self.finish =  True
+            return True
 
         # attack command
         elif command.len == 2 and command.are_params_int():
             self.run_attack_command(command)
+            return True
         
         # ML attack command
         elif command.len == 1 and command.are_params_int():
             self.run_attack_ml_command(command)
+            return True
 
         # generic commands
         else:
             return super().parse_command(command)
         
-        # valid command
-        return True
-
     def run_attack_command(self, command):
         """
         Run command that makes a player monster to attack an
@@ -71,7 +71,6 @@ class AttackState(PromptState):
         print(attacker.stringify_prebattle(attacked))
 
         # then get defense flag
-        self.skip_newline = True
         defense_state = DefenseState(self.player, 
             self.opponent)
         defense_state.start()
