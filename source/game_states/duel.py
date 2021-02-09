@@ -30,7 +30,7 @@ class Duel():
             # sort out current and opponent player
             player   = self.players[i]
             opponent = self.players[not i]
-            print(player.name + " turn.")
+            print("\n" + player.name + " turn.")
 
             # run roll state
             RollState(player, opponent).start()
@@ -41,6 +41,7 @@ class Duel():
 
             # run roll state (skip in first turn)
             if not self.first_turn:
+                print("")
                 AttackState(player, opponent).start()
 
             # check finish condition

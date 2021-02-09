@@ -15,10 +15,7 @@ class AttackState(PromptState):
         summons.
         """
         print("Attack phase. [f: finish]")
-        print(self.player.name + " monsters:")
-        print(self.player.monster_list.stringify())
-        print(self.opponent.name + " monsters:")
-        print(self.opponent.monster_list.stringify())
+        print(self.stringify_state())
 
     def parse_command(self, command):
         """
@@ -67,6 +64,10 @@ class AttackState(PromptState):
             return
         attacked = result["item"]
 
+        # if everything went okay at this point the attack is
+        # confirmed, so decrease the attack crest from player
+        self.player.crest_pool.attack -= 1
+
         # inform the battle situation
         print(attacker.stringify_prebattle(attacked))
 
@@ -82,9 +83,15 @@ class AttackState(PromptState):
 
         # check if any of the monsters is dead
         message = self.player.check_for_casualities()
-        print(message)
+        if message:
+            print(message)
         message = self.opponent.check_for_casualities()
-        print(message)
+        if message:
+            print(message)
+        print("")
+        
+        # print state info
+        print(self.stringify_state())
 
     def run_attack_ml_command(self, command):
         """
@@ -107,14 +114,42 @@ class AttackState(PromptState):
                 "monsters left.")
             return
 
+        # if everything went okay at this point the attack is
+        # confirmed, so decrease the attack crest from player
+        self.player.crest_pool.attack -= 1
+
         # do the attack
         message = attacker.attack_ml(self.opponent)
         print(message)
         
-        # check opponent dm is dead
+        # check if opponent dm is dead
         if self.opponent.monster_lord.is_dead():
-            self.finished = True
+            self.finish = True
             print(self.player.name + " is the winner!")
+            return
+
+        # print state info
+        print("")
+        print(self.stringify_state())
+
+    def stringify_state(self):
+        """
+        Create a string with relevant information in for the
+        state.
+        """
+        string  = self.player.name + " crests:\n"
+        string += self.player.crest_pool.stringify_short()
+        string += "\n"
+        string += self.player.name + " monsters:\n"
+        mlstr = self.player.monster_list.stringify()
+        if mlstr:
+            string += mlstr + "\n"
+        string += "\n"
+        string += self.opponent.name + " monsters:"
+        mlstr = self.opponent.monster_list.stringify()
+        if mlstr:
+            string += "\n" + mlstr
+        return string 
 
 help_text = "\n\n\
 Attack commands: \n\

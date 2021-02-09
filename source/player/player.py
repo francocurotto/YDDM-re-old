@@ -184,9 +184,7 @@ class Player():
             result["success"] = False
             return result
 
-        # if everything is ok, substract crest and return 
-        # success
-        self.crest_pool.attack -= 1
+        # if everything is ok, return  success
         result["attacker"] = attacker
         result["success"] = True
         return result
@@ -205,11 +203,9 @@ class Player():
         dead. For every dead monster, send it to the,
         graveyard and add a message to the return string.
         """
-        string = ""
-
+        # check if monster is dead
+        strlist = []
         for monster in self.monster_list.list:
-            # check if monster is dead
-            strlist = []
             if monster.life <= 0:
                 self.send_to_graveyard(monster)
                 strlist.append(monster.name + " is dead.")

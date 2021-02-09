@@ -31,6 +31,7 @@ class DefenseState(PromptState):
         """
         # opponent defends
         if command.equals("y"):
+            self.opponent.crest_pool.defense -= 1
             self.defend = True
             self.finish = True
             return True

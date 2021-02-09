@@ -16,14 +16,14 @@ class PromptState():
         """
         # run action at the start of running the state
         self.run_initial_action()
-        print("")
 
         # state loop
+        valid = True
         while not self.finish:
-            command = run_prompt()
-            valid = self.parse_command(command)
             if valid:
                 print("")
+            command = run_prompt()
+            valid = self.parse_command(command)
         
     def parse_command(self, command):
         """
