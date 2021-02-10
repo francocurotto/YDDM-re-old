@@ -99,16 +99,16 @@ summon_state). Now I'm implementing attacks, but I realized
 that I need to implement a summon_set, similar to dice_set,
 in order to easily select monsters from the already summoned.
 This means that most likely I will have to refactor dice_set
-and dice_library, and do some regresion test commenting some
+and dice_library, and do some regression test commenting some
 of my progress of today.
 
 # 2021-02-01
-Finish the implementation of summon_set as wel as the 
+Finish the implementation of summon_set as well as the 
 refactor previously mentioned. Now hoping to finish the 
 attack logic soon. For now I will implement the GBA game 
 rules for attacks (use of type advantages and retaliation 
-damage for attacking defending monsters), but in the furute 
-one should be able to modifiy these rules (in this case, 
+damage for attacking defending monsters), but in the future 
+one should be able to modify these rules (in this case, 
 disable them). Not sure how I'll implement it though.
 
 # 2021-02-02
@@ -119,3 +119,14 @@ variable, or game parameter.
 Finished attack state in a rush, but it will need 
 considerable testing to remove all the eventual errors. I'll 
 report when that is done.
+
+# 2021-02-10
+FINALLY finished testing attack state. It got pretty polished
+if you ask me. You can basically play a simple DDM game that
+only involves summons, attacks and defenses, it is pretty 
+simple but you can play! Before I move to implementing the 
+dungeon (uff), I want to refactor the game_states (fuuun) so
+that I completely separates the game logic with the inputs 
+and outputs, that way it should be easy to replace the basic
+command line interface with something like urwid (one day, 
+hopefully).
