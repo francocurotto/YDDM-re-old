@@ -184,7 +184,7 @@ class Player():
             result["success"] = False
             return result
 
-        # if everything is ok, return  success
+        # if everything is ok, return success
         result["attacker"] = attacker
         result["success"] = True
         return result

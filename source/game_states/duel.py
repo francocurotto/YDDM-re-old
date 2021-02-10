@@ -29,7 +29,7 @@ class Duel():
             # sort out current and opponent player
             player   = self.players[i]
             opponent = self.players[not i]
-            print("\n" + player.name + " turn.")
+            print("\n*** " + player.name + " TURN ***")
 
             # run roll state
             RollState(player, opponent).start()

@@ -13,7 +13,7 @@ class RollState(PromptState):
         """
         As inital action, print current player pool.
         """
-        print("Roll phase.")
+        print("<ROLL PHASE>")
         print(self.player.stringify_pool())
 
     def parse_command(self, command):

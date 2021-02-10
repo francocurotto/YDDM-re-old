@@ -1,3 +1,4 @@
+from functions import color
 from prompt_state import PromptState
 from defense_state import DefenseState
 
@@ -14,7 +15,7 @@ class AttackState(PromptState):
         As initial actions, print player and opponent 
         summons.
         """
-        print("Attack phase. [f: finish]")
+        print("<ATTACK PHASE> [f: finish]")
         print(self.stringify_state())
 
     def parse_command(self, command):
@@ -70,6 +71,7 @@ class AttackState(PromptState):
             # check if opponent dm is dead
             if self.opponent.monster_lord.is_dead():
                 self.finish = True
+                print("")
                 print(self.player.name + " is the winner!")
                 return
 
@@ -134,14 +136,13 @@ class AttackState(PromptState):
         string += self.player.crest_pool.stringify_short()
         string += "\n"
         string += self.player.name + " monsters:\n"
-        mlstr = self.player.monster_list.stringify()
-        if mlstr:
-            string += mlstr + "\n"
+        string += self.player.monster_list.stringify()
+        string += "\n\n"
+        string += self.opponent.name + " crests:\n"
+        string += self.opponent.crest_pool.stringify_short()
         string += "\n"
-        string += self.opponent.name + " monsters:"
-        mlstr = self.opponent.monster_list.stringify()
-        if mlstr:
-            string += "\n" + mlstr
+        string += self.opponent.name + " monsters:\n"
+        string += self.opponent.monster_list.stringify()
         return string 
 
 def is_attack_command(command):
