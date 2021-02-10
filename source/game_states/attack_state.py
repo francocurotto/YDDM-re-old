@@ -28,42 +28,59 @@ class AttackState(PromptState):
             return True
 
         # attack command
-        elif command.len == 2 and command.are_params_int():
+        elif is_attack_command(command):
             self.run_attack_command(command)
             return True
         
-        # ML attack command
-        elif command.len == 1 and command.are_params_int():
-            self.run_attack_ml_command(command)
-            return True
-
         # generic commands
         else:
             return super().parse_command(command)
         
     def run_attack_command(self, command):
         """
-        Run command that makes a player monster to attack an
-        opponent monster.
+        Run command that makes a player monster attack.
         """
-        # get command indeces
+        # get monster index
         i0 = command.list[0]
-        i1 = command.list[1]
 
-        # first get player monster
+        # get player monster
         result = self.player.prepare_attack(i0)
         if not result["success"]:
             print(result["message"])
             return
         attacker = result["attacker"]
-        
-        # then get opponent monster
-        result = self.opponent.monster_list.get(i1)
-        if not result["success"]:
-            print(result["message"])
-            return
-        attacked = result["item"]
+            
+        # distinguish between monster attack and ML attack
+        if command.len == 2: # monster attack
+            # get opponent monster
+            i1 = command.list[1]
+            result = self.opponent.monster_list.get(i1)
+            if not result["success"]:
+                print(result["message"])
+                return
+            attacked = result["item"]
+            
+            # perform the attack
+            self.attack_monster(attacker, attacked)
 
+        else: # command.len == 1 (ML attack)            
+            # perform the attack
+            self.attack_monster_lord(attacker)
+
+            # check if opponent dm is dead
+            if self.opponent.monster_lord.is_dead():
+                self.finish = True
+                print(self.player.name + " is the winner!")
+                return
+
+        # print state info
+        print("")
+        print(self.stringify_state())
+
+    def attack_monster(self, attacker, attacked):
+        """
+        Make attacker monster attack attacked monster.
+        """
         # if everything went okay at this point the attack is
         # confirmed, so decrease the attack crest from player
         self.player.crest_pool.attack -= 1
@@ -82,33 +99,19 @@ class AttackState(PromptState):
         print(message)
 
         # check if any of the monsters is dead
-        message = self.player.check_for_casualities()
+        message = self.player.check_for_casualties()
         if message:
             print(message)
-        message = self.opponent.check_for_casualities()
+        message = self.opponent.check_for_casualties()
         if message:
             print(message)
-        print("")
-        
-        # print state info
-        print(self.stringify_state())
 
-    def run_attack_ml_command(self, command):
+    def attack_monster_lord(self, attacker):
         """
-        Run command that makes a player monster to attack the
-        opponent monster lord.
+        Make attacker monster attack the opponent monster 
+        lord.
         """
-        # get command index
-        i = command.list[0]
-
-        # first get player monster
-        result = self.player.prepare_attack(i)
-        if not result["success"]:
-            print(result["message"])
-            return
-        attacker = result["attacker"]
-
-        # then check that opponent has no monster left
+        # check that opponent has no monster left
         if not self.opponent.monster_list.is_empty():
             print("Cannot attack ML. Opponent still has " +
                 "monsters left.")
@@ -121,16 +124,6 @@ class AttackState(PromptState):
         # do the attack
         message = attacker.attack_ml(self.opponent)
         print(message)
-        
-        # check if opponent dm is dead
-        if self.opponent.monster_lord.is_dead():
-            self.finish = True
-            print(self.player.name + " is the winner!")
-            return
-
-        # print state info
-        print("")
-        print(self.stringify_state())
 
     def stringify_state(self):
         """
@@ -150,6 +143,14 @@ class AttackState(PromptState):
         if mlstr:
             string += "\n" + mlstr
         return string 
+
+def is_attack_command(command):
+    """
+    Check if a command is an attack command, either and 
+    attack to an opponent monster or to the dungeon master.
+    """
+    correct_len = 1 <= command.len <= 2
+    return correct_len and command.are_params_int()
 
 help_text = "\n\n\
 Attack commands: \n\

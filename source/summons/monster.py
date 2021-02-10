@@ -83,7 +83,7 @@ class Monster(Summon):
         
         # attack and defense are equal
         else:
-            message += "No damage inflicted.\n"
+            message += "No damage inflicted."
 
         return message
 

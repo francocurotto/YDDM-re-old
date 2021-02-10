@@ -17,7 +17,6 @@ class Duel():
     """
     def __init__(self, player1, player2):
         self.players = [player1, player2]
-        self.first_turn = True
 
     def start(self):
         """
@@ -39,17 +38,16 @@ class Duel():
             if self.duel_finished(player, opponent):
                 break
 
-            # run roll state (skip in first turn)
-            if not self.first_turn:
-                print("")
-                AttackState(player, opponent).start()
+            # run attack state
+            print("")
+            AttackState(player, opponent).start()
 
             # check finish condition
             if self.duel_finished(player, opponent):
                 break
 
             # after first iteration, no longer in first turn
-            self.first_turn = False
+            first_turn = False
 
             # decooldown player monsters
             player.decooldown_monsters()
