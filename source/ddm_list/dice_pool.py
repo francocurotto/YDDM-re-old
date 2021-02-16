@@ -17,5 +17,5 @@ class DicePool(DiceList):
         while not self.is_full():
             # random index
             i = random.choice(range(len(dice_library.list)))
-            result = dice_library.get_copy(i)
-            self.add(result["item"])
+            dice = dice_library.get_copy(i)
+            self.add(dice)

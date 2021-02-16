@@ -10,48 +10,40 @@ class DiceHand(DiceList):
     def roll(self):
         """
         Make a roll of the dice hand. The returned object is
-        a dictionary with the following format.
-        result = {
-        "success"   : (bool) True if roll was performed
-                      successfully.
-        "sides"     : (list) list of sides rolled.
-        "string"    : (str) string version of roll result.
-        "dimension" : (DiceList) set of dice available to 
-                      dimension.
-        "message"   : (str) Relevant print string, usually 
-                      for when the roll is unsuccessful.}
+        a RollResult that report the result of the roll.
         """
-        result = {}
+        # if hand is not full, return default
         if not self.is_full():
-            result["success"] = False
-            result["message"] = "Dice hand not yet " + \
-                "completed."
+            self.message = "Dice hand not yet completed."
+            return RollResult()
        
         else:
             # get the rolled sides
-            result["sides"] = []
-            string = ""
+            sides = []
             for dice in self.list:
-                side = dice.roll()
-                result["sides"].append(side)
-                string += side.stringify() + " "
-            result["string"] = string
+                sides.append(dice.roll())
 
-            # get possible summons
-            dimensions = self.get_dimensions(result["sides"])
-            result["dimensions"] = dimensions
-            result["success"] = True
+            # generate roll result
+            roll_result = RollResult(self.list, sides)
 
-        return result
+        return roll_result
 
-    def get_dimensions(self, sides):
+class RollResult():
+    """
+    Represents the result of a dice roll. As constructor 
+    parameters receives the rolled dice and the sides of the 
+    rolls in the same order.
+    """
+    def __init__(self, dices=[], sides=[]):
+        self.dices = dices
+        self.sides = sides
+        self.dimensions = self.get_dimensions()
+
+    def get_dimensions(self):
         """
         Check for dice dimensions from rolled sides of the 
-        dice hand. This should never be called with an 
-        incompleted dice hand, and the sides and dice from 
-        the dice hand should be in the same order. Returns a 
-        list of possible dice dimensions (clould be an empty 
-        list).
+        roll result. Returns a list of possible dice 
+        dimensions (clould be an empty list).
         """
         # check for all levels
         for level in range(1,5):
@@ -61,7 +53,7 @@ class DiceHand(DiceList):
             
             # go through dice roll (is expected that dice and 
             # side are in order) 
-            for dice, side in zip(self.list, sides):
+            for dice, side in zip(self.dices, self.sides):
                 if rolled_summon_level(dice, side, level):
                     summon_dice.add(dice)
 
@@ -73,6 +65,13 @@ class DiceHand(DiceList):
                 
         # no summon was found
         return DiceList(3)
+
+    def stringify_sides(self):
+        """
+        Return a string version of sides rolled.
+        """
+        strlist = [side.stringify() for side in self.sides]
+        return " ".join(strlist)
         
 def rolled_summon_level(dice, side, level):
     """

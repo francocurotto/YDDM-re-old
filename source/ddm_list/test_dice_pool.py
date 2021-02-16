@@ -52,11 +52,11 @@ while True:
         else: # print a specific dice
             dicenum = get_dicenum(command[2:])
             if dicenum is None: continue
-            result = set.get(dicenum)
-            if result["success"]:
-                print(result["item"].stringify() + "\n")
+            dice = set.get(dicenum)
+            if dice is not None:
+                print(dice.stringify() + "\n")
             else:
-                print(result["message"] + "\n")
+                print(set.message + "\n")
 
     # add dice to pool
     elif command[0] == "a":
@@ -66,17 +66,17 @@ while True:
             continue
 
         # get dice from library
-        result = library.get_copy(dicenum)
-        if not result["success"]:
-            print(result["message"] + "\n")
+        dice = library.get_copy(dicenum)
+        if dice is None:
+            print(library.message + "\n")
             continue
 
         # add dice to pool
-        result = pool.add(result["item"])
-        if result["success"]:
+        success = pool.add(dice)
+        if success:
             print("Dice added to pool.\n")
         else:
-            print(result["message"] + "\n")
+            print(pool.message + "\n")
                 
     # remove dice from dice pool
     elif command[0] == "r":
@@ -85,11 +85,11 @@ while True:
         if dicenum is None: continue
 
         # remove dice from pool
-        result = pool.remove_idx(dicenum)
-        if result["success"]:
+        dice = pool.remove_idx(dicenum)
+        if dice is not None:
             print("Dice removed to pool.\n")
         else:
-            print(result["message"] + "\n")
+            print(pool.message + "\n")
 
     # fill with random dice
     elif command == "f":

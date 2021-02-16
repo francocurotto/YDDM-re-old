@@ -5,68 +5,53 @@ class DdmList():
     A generic list of item in the game with handy methods
     that communicate results to the classes that use it.
     The result are usually used to indicate if an action was
-    successfull or not, by returning a result dictionary.
+    successfull or not, by returning a boolean or item in 
+    list.
     """
     def __init__(self, name, itemname, limit=float("inf")):
         self.list = []
         self.name = name
         self.itemname = itemname
         self.limit = limit
+        self.message = ""
 
     def get(self, i):
         """
         Get item at index i. If index out of range, ignore
-        operation and return message.
+        operation and return None and update message.
         """
-        result = {}
-
         # check if index is valid
         if 0 <= i < len(self.list):
-            result["item"] = self.list[i]
-            result["success"] = True
+            return self.list[i]
 
-        # if invalid, operation unsuccessfull
-        else:
-            result["message"] = "Invalid index."
-            result["success"] = False
-
-        return result
+        # if invalid return none
+        self.message = "Invalid index."
+        return None
 
     def get_copy(self, i):
         """
         Get a (deep) copy of the item at index i.
         """
-        result = self.get(i)
-        if not result["success"]:
-            return result
-
-        result["item"] = copy.deepcopy(result["item"])
-
-        return result
+        return copy.deepcopy(self.get(i))
 
     def add(self, item):
         """
-        Add item to list. If list if full, ignore operation
-        and return message.
+        Add item to list. If list if full, return false and 
+        update message.
         """
-        result = {}
-
         # check if list is full
         if not self.is_full():
             self.list.append(item)
-            result["success"] = True
+            return True
 
         # if full, operation unsuccessfull
-        else:
-            result["message"] = self.name + " full."
-            result["success"] = False
-
-        return result
+        self.message = self.name + " full."
+        return False
 
     def remove(self, item):
         """
-        Remove item from list. If item not present, 
-        ignore operation and return message.
+        Remove item from list. If item not present, return 
+        none and update message.
         """
         # check if item is in list
         if item in self.list:
@@ -74,33 +59,24 @@ class DdmList():
             return self.remove_idx(i)
 
         # if not, operation unsuccessfull
-        else:
-            result = {}
-            result["message"] = self.itemname + \
-                " not in " + self.name + "."
-            result["success"] = False
-            return result
+        self.message = self.itemname + " not in " + \
+            self.name + "."
+        return None
 
     def remove_idx(self, i):
         """
-        Remove item at index i. If index out of range, ignore
-        operation and return message.
+        Remove item at index i. If index out of range, return 
+        none and update message.
         """
-        result = {}
+        # get item to remove
+        item = self.get(i)
 
-        # check if index is valid
-        if 0 <= i < len(self.list):
-            dice = self.list[i]
+        # if item found, remove item
+        if item is not None:
             del(self.list[i])
-            result["item"] = dice
-            result["success"] = True
-        
-        # if invalid, operation unsuccessfull
-        else:
-            result["message"] = "Invalid index."
-            result["success"] = False
 
-        return result
+        # return item
+        return item
 
     def is_full(self):
         """

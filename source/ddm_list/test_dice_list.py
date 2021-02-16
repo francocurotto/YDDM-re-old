@@ -31,10 +31,10 @@ while True:
         except ValueError:
             print("Couldn't interpret the dice number.\n")
             continue
-        result = library.get(dicenum)
-        if result["success"]:
-            print(result["item"].stringify() + "\n")
+        dice = library.get(dicenum)
+        if dice is not None:
+            print(dice.stringify() + "\n")
         else:
-            print(result["message"] + "\n")
+            print(library.message + "\n")
 
 print("Bye!")
