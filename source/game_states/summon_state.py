@@ -1,6 +1,7 @@
-from prompt_state import PromptState
+from duel_dubstate import DuelSubtate
+from attack_state import AttackState
 
-class SummonState(PromptState):
+class SummonState(DuelSubstate):
     """
     State when player summon a monster/item after a roll.
     """
@@ -9,39 +10,64 @@ class SummonState(PromptState):
         self.dimensions = dimensions
         self.help_text = self.help_text + help_text
 
-    def run_initial_action(self):
+    def initial_message(self):
         """
-        As intial action, print available dimensions.
+        As intial message: available dimensions.
         """
-        print("Available summons:")
-        print(self.dimensions.stringify())
-        print("Select with number [s: skip].")
+        message = "Available summons:\n" + \
+            self.dimensions.stringify() + "\n" + \
+            "Select with number [s: skip].\n\n"
 
-    def parse_command(self, command):
+    def update(self, command):
         """
-        Parse command obtained by prompt. Return True if
-        command is valid.
+        Update state given command. Return result dictionary
+        with the necessary information for parent state.
         """
         # print available summons command
         if command.equals("p", "as"):
-            print(self.dimensions.stringify())
-            return True
+            result = self.default_result()
+            message = self.dimensions.stringify() + "\n"
+            result["message"] = message
+            return result
 
         elif command.equals("s"):
-            self.finish = True
+            next_state = AttackState(self.player, 
+                self.opponent)
+            message = "\n"
+            message2 = next_state.initial_message()
+
+            # generate result
+            result["nextstate"] = next_state
+            result["message"] = message
+            result["message2"] = message2
+
             return True
 
-        # dimension dice
+        # dice dimension
         elif command.len == 1 and command.is_int(0):
-            i = command.list[0]
-            result = self.dimensions.get(i)
-            if not result["success"]:
-                print(result["message"])
-                return True
+            result = self.default_result()
 
+            # get dice to dimension
+            i = command.list[0]
+            get_result = self.dimensions.get(i)
+            if not get_result["success"]:
+                message = get_result["message"] + "\n"
+                result["message"] = message
+                return result
+
+            # dimension the dice!
             self.player.dimension_dice(result["item"])
-            self.finish = True
-            return True
+
+            next_state = AttackState(self.player, 
+                self.opponent)
+            message = "\n"
+            message2 = next_state.intial_message()
+            # generate result
+            result["nextstate"] = next_state
+            result["message"] = message
+            result["message2"] = message2
+
+            return result
 
         # generic commands
         else:

@@ -1,8 +1,8 @@
 from functions import color
-from prompt_state import PromptState
+from duel_substate import DuelSubstate
 from defense_state import DefenseState
 
-class AttackState(PromptState):
+class AttackState(DuelSubstate):
     """
     State where player can attack an opponent monster.
     """
@@ -10,18 +10,18 @@ class AttackState(PromptState):
         super().__init__(player, opponent)
         self.help_text = self.help_text + help_text
 
-    def run_initial_action(self):
+    def initial_message(self):
         """
-        As initial actions, print player and opponent 
+        As initial message print player and opponent 
         summons.
         """
-        print("<ATTACK PHASE> [f: finish]")
-        print(self.stringify_state())
+        message = "<ATTACK PHASE> [f: finish]\n" + \
+            self.stringify_state() + "\n\n"
 
-    def parse_command(self, command):
+    def update(self, command):
         """
-        Parse the command obtained from prompt. Return True 
-        if command is valid.
+        Update state given command. Return result dictionary
+        with the necessary information for parent state.
         """
         # finish attack phase command
         if command.equals("f"):

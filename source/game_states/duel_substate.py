@@ -1,91 +1,84 @@
 from command import run_prompt
 
-class PromptState():
+class DuelSubstate():
     """
-    Generic game state that initializes a command prompt.
+    Generic duel substate.
     """
     def __init__(self, player, opponent):
         self.player = player
         self.opponent = opponent
         self.help_text = help_text
-        self.finish = False
 
-    def start(self):
+    def update(self, command):
         """
-        Start prompt state.
+        Update state given command. Return result dictionary
+        with the necessary information for parent state.
         """
-        # run action at the start of running the state
-        self.run_initial_action()
+        # create result
+        result = self.default_result()
 
-        # state loop
-        valid = True
-        while not self.finish:
-            if valid:
-                print("")
-            command = run_prompt()
-            valid = self.parse_command(command)
-        
-    def parse_command(self, command):
-        """
-        Parse the command obtained from prompt. Return True 
-        if player command is valid.
-        """
-        # quit (forfeit) command)
+        # quit (forfeit) command
         if command.equals("q"):
             self.player.forfeited = True
-            self.finish = True
-            print(self.player.name + " forfeited.")
-            return True
 
         # help text command
         elif command.equals("h"):
-            print(self.help_text)
-            return True
+            result["message"] = self.help_text + "\n"
 
         # print command
         elif command.equals_param(0, "p"):
             subcommand = command.subcommand(1)
-            return self.run_print_command(subcommand)
-        
-        # invalid command
-        return False
+            result["message"] = self.get_print(subcommand)
 
-    def run_print_command(self, command):
+        return result
+
+    def get_print(self, command):
         """
-        Handles print command.
+        Get asked print message.
         """
         if command.equals("p"): # display pool     
-            print(self.player.stringify_pool())
+            msg = self.player.stringify_pool()
         elif command.equals("h"): # display hand
-            print(self.player.dice_hand.stringify())
+            msg = self.player.dice_hand.stringify()
         elif command.equals("c"): # display crest pool
-            print(self.player.crest_pool.stringify_short())
+            msg = self.player.crest_pool.stringify_short()
         elif command.equals("oc"): # display op. crest pool
-            print(self.opponent.crest_pool.stringify_short())
+            msg = self.opponent.crest_pool.stringify_short()
         elif command.equals("s"): # display summons
-            print(self.player.stringify_summons())
+            msg = self.player.stringify_summons()
         elif command.equals("os"): # display op. summons
-            print(self.opponent.stringify_summons())
+            msg = self.opponent.stringify_summons()
         elif command.equals("m"): # display monsters
-            print(self.player.monster_list.stringify())
+            msg = self.player.monster_list.stringify()
         elif command.equals("om"): # display op. monsters
-            print(self.opponent.monster_list.stringify())
+            msg = self.opponent.monster_list.stringify()
         elif command.equals("i"): # display items
-            print(self.player.item_list.stringify())
+            msg = self.player.item_list.stringify()
         elif command.equals("oi"): # display op. items
-            print(self.opponent.item_list.stringify())
+            msg = self.opponent.item_list.stringify()
         elif command.equals("ml"): # display monster lord
-            print(self.player.monster_lord.stringify())
+            msg = self.player.monster_lord.stringify()
         elif command.equals("oml"): # display op. monster lord
-            print(self.opponent.monster_lord.stringify())
+            msg = self.opponent.monster_lord.stringify()
         elif command.equals("g"): # display graveyard
-            print(self.player.graveyard.stringify())
+            msg = self.player.graveyard.stringify()
         elif command.equals("og"): # display op. graveyard
-            print(self.opponent.graveyard.stringify())
+            msg = self.opponent.graveyard.stringify()
         else: # invalid command
-            return False
-        # valid command
-        return True
+            return ""
+
+        return msg + "\n"
+
+    def default_result(self):
+        """
+        Generates the default result for an update.
+        """
+        result = {}
+        result["nextstate"] = self
+        result["message"]   = ""
+        result["message2"]  = ""
+
+        return result
 
 help_text = "\
 General commands: \n\

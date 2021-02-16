@@ -1,7 +1,7 @@
-from prompt_state import PromptState
+from duel_substate import DuelSubtate
 from summon_state import SummonState
 
-class RollState(PromptState):
+class RollState(DuelSubstate):
     """
     State when player has to roll its dice hand.
     """
@@ -9,17 +9,17 @@ class RollState(PromptState):
         super().__init__(player, opponent)
         self.help_text = self.help_text + help_text
 
-    def run_initial_action(self):
+    def initial_message(self):
         """
-        As inital action, print current player pool.
+        As initial message: current player pool.
         """
-        print("<ROLL PHASE>")
-        print(self.player.stringify_pool())
+        message = "<ROLL PHASE>\n" + \
+            self.player.stringify_pool() + "\n\n"
 
-    def parse_command(self, command):
+    def update(self, command):
         """
-        Parse the command obtained by prompt. Return True if
-        command is valid.
+        Update state given command. Return result dictionary
+        with the necessary information for parent state.
         """
         # add command
         if command.equals_param(0, "a"):
@@ -34,7 +34,9 @@ class RollState(PromptState):
         # empty hand command
         elif command.equals("e"):
             self.player.empty_hand()
-            return True
+            result = self.default_result()
+            result["message"] = "\n"
+            return result
 
         # roll command
         elif command.equals_param(0, "r"):
@@ -50,36 +52,44 @@ class RollState(PromptState):
         Run command that add a dice from dice pool to dice
         hand.
         """
+        result = self.default_result()
+
         # check if command is correct
         if not command.are_params_int():
-            return False
+            return result
 
         for i in command.list:
-            result = self.player.add_dice_to_hand(i)
-            if not result["success"]:
-                print(result["message"])
+            add_result = self.player.add_dice_to_hand(i)
+            if not add_result["success"]:
+                message = add_result["message"]
+                result["message"] += message + "\n"
 
-        return True
+        result["message"] += "\n"
+        return result
         
     def run_getback_command(self, command):
         """
         Run command that get back a dice from dice hand to 
         the dice pool.
         """
+        result = self.default_result()
+
         # check if command is correct
         if not command.are_params_int():
-            return False
+            return result
 
         # sort params in order to avoid IndexError in 
         # chopped list
         sorted_params = sorted(command.list, reverse=True)
 
         for i in sorted_params:
-            result = self.player.dice_hand.remove_idx(i)
-            if not result["success"]:
-                print(result["message"])
+            rem_result = self.player.dice_hand.remove_idx(i)
+            if not rem_result["success"]:
+                message = rem_result["message"]
+                result["message"] += message + "\n"
         
-        return True
+        result["message"] += "\n"
+        return result
 
     def parse_roll_command(self, command):
         """
@@ -89,15 +99,14 @@ class RollState(PromptState):
         """
         # normal roll
         if command.is_empty():
-            self.run_roll_command()
-            return True
+            return self.run_roll_command()
 
         # quick roll command
         elif command.len == 3 and command.are_params_int():
-            self.run_quick_roll_command(command)
-            return True
+            return self.run_quick_roll_command(command)
 
-        return False
+        # invalid command
+        return self.default_result()
 
     def run_roll_command(self):
         """
@@ -105,43 +114,78 @@ class RollState(PromptState):
         between roll command with or without int parameters.
         Return true if roll is successfull.
         """
+        result = self.default_result()
+
         # Go, dice roll!
-        result = self.player.roll_hand()
+        roll_result = self.player.roll_hand()
         
-        if not result["success"]: # roll failed
-            print(result["message"])
-            return
+        if not roll_result["success"]: # roll failed
+            result["message"] = roll_result["message"] + "\n"
+            return result
 
         # roll succeded
-        print("Roll result: " + result["string"])
+        result["message"] = "Roll result: " + \
+            roll_result["string"] + "\n"
 
         # check for summon
-        dimensions = result["dimensions"]
-        if not dimensions.is_empty():
-            if not self.player.can_dimension():
-                print(self.player.name + " reached " + \
-                    "dimension limit.")
-            else:
-                summon_state = SummonState(self.player, 
-                    self.opponent, dimensions)
-                summon_state.start()
+        dimensions = roll_result["dimensions"]
+        dim_result = self.can_dimension(dimensions)
 
-        # indicate that state is finished
-        self.finish = True
+        if dim_result["success"]: # dimension able
+            next_state = SummonState(self.player, self.
+                opponent, dimensions)
+            message = ""
+            message2 = next_state.initial_message()
+
+        else: # dimension unable
+            next_state = AttackState(self.player, self.
+                opponent)
+            message += dim_result["message"]
+            message2 = next_state.initial_message()
+
+        # generate result
+        result["nextstate"] = next_state
+        result["message"] += message + "\n"
+        result["message2"] = message2
+
+        return result
 
     def run_quick_roll_command(self, command):
         """
         Add the three dice in command to dice hand and then
         run roll command. Return True if roll is successfull.
         """
+        result = self.default_result()
+
         # add dice to dice hand
         indeces = command.list
-        result = self.player.add_dice_to_hand_quick(*indeces)
-        if not result["success"]:
-            print(result["message"])
+        add_result = self.player.add_dice_to_hand_quick(
+            *indeces)
+        if not roll_result["success"]:
+            result["message"] = add_result["message"]
+            return result
 
         # call run roll command without parameters
-        self.run_roll_command()
+        return self.run_roll_command()
+
+    def can_dimension(self, dimensions):
+        """
+        Check if current player can dimension after roll.
+        """
+        result = {}
+        if dimensions.is_empty(): # no dimensions in roll
+            result["success"] = False
+            result["message"] = ""
+
+        elif self.player.hit_dimension_limit(): # hit max dim
+            result["success"] = False
+            result["message"] = self.player.name + \
+                " reached dimension limit.\n")
+
+        else: # dimension possible
+            result["success"] = True
+
+        return result
 
 help_text = "\n\n\
 Hand commands: \n\

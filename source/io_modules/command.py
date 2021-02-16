@@ -78,15 +78,3 @@ class Command():
         # get new parameter list
         new_params = self.list[start:end]
         return Command(" ".join(map(str, new_params)))
-
-def run_prompt():
-    """
-    Run a command prompt were a player can input a command 
-    as string and it is converted into a Command object.
-    """
-    # get user input
-    string = input(">")
-        
-    # convert input into command
-    command = Command(string)
-    return command

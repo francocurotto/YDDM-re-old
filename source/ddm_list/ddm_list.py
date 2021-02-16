@@ -144,9 +144,6 @@ class DdmList():
         return self.list[i].stringify()
 
 # quick child class too short to have their own file
-class MonsterList(DdmList):
-    def __init__(self):
-        super().__init__("monster list", "monster")
 class ItemList(DdmList):
     def __init__(self):
         super().__init__("item list", "item")

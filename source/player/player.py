@@ -144,7 +144,7 @@ class Player():
         for side in sides:
             self.crest_pool.add_crests(side)
 
-    def can_dimension(self):
+    def hit_dimension_limit(self):
         """
         Check if player has hit the dimension limit.
         """
@@ -152,7 +152,7 @@ class Player():
         total_summons += len(self.item_list.list)
         total_summons += len(self.graveyard.list)
 
-        return total_summons < self.summon_limit
+        return total_summons >= self.summon_limit
 
     def prepare_attack(self, i):
         """
