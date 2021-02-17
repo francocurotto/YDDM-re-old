@@ -3,15 +3,15 @@
 #####################
 # add necessary folders to path
 import sys, glob
-dirlist = globglob("*/")
+dirlist = glob.glob("*/")
 dirlist.remove("__pycache__/")
 for dirname in dirlist:
     sys.path.append(dirname)
 
 # imports
-import setting
-from io_modules import CommandPrompt
-from duel import Duel
+import settings
+from command_prompt import CommandPrompt
+from duel_state import DuelState
 
 def main():
     """
@@ -21,18 +21,17 @@ def main():
     
     # create game elements
     cmd = CommandPrompt()
-    duel = Duel()
+    duel = DuelState()
 
     # initial display
-    message = duel.get_initial_message()
-    cmd.display(message)
+    cmd.display(duel.message)
 
     # start game loop
     while True:
         command = cmd.get_command()
-        result = duel.update(command)
-        cmd.display(result["message"])
-        if result["finished"]:
+        duel.update(command)
+        cmd.display(duel.message)
+        if duel.finished:
             break
 
 def initialize_game():

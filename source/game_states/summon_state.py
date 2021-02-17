@@ -1,5 +1,5 @@
-from duel_dubstate import DuelSubtate
-from attack_state import AttackState
+from duel_substate import DuelSubstate
+#from attack_state import AttackState
 
 class SummonState(DuelSubstate):
     """
@@ -9,65 +9,58 @@ class SummonState(DuelSubstate):
         super().__init__(player, opponent)
         self.dimensions = dimensions
         self.help_text = self.help_text + help_text
+        self.message = ""
 
-    def initial_message(self):
+    def set_initial_message(self):
         """
         As intial message: available dimensions.
         """
-        message = "Available summons:\n" + \
-            self.dimensions.stringify() + "\n" + \
-            "Select with number [s: skip].\n\n"
+        self.message  = "Available summons:\n"
+        self.message += self.dimensions.stringify() + "\n"
+        self.message += "Select with number [s: skip].\n\n"
 
     def update(self, command):
         """
-        Update state given command. Return result dictionary
-        with the necessary information for parent state.
+        Update state given command.
         """
+        # default values for update
+        from roll_state import RollState
+        self.next_state = SummonState(self.player, 
+            self.opponent, self.dimensions)
+        self.message = ""
+
         # print available summons command
         if command.equals("p", "as"):
-            result = self.default_result()
-            message = self.dimensions.stringify() + "\n"
-            result["message"] = message
-            return result
+            self.message  = self.dimensions.stringify()
+            self.message += "\n\n"
 
+        # skip dimension and go to next state
         elif command.equals("s"):
-            next_state = AttackState(self.player, 
-                self.opponent)
-            message = "\n"
-            message2 = next_state.initial_message()
-
-            # generate result
-            result["nextstate"] = next_state
-            result["message"] = message
-            result["message2"] = message2
-
-            return True
+            #self.next_state = AttackState(self.player, 
+            #    self.opponent)
+            self.next_state = RollState(self.opponent, 
+                self.player)
+            self.next_state.set_initial_message()
+            self.message = "\n"
 
         # dice dimension
         elif command.len == 1 and command.is_int(0):
-            result = self.default_result()
-
             # get dice to dimension
             i = command.list[0]
-            get_result = self.dimensions.get(i)
-            if not get_result["success"]:
-                message = get_result["message"] + "\n"
-                result["message"] = message
-                return result
+            dice = self.dimensions.get(i)
+            if not dice:
+                self.message  = self.dimensions.message
+                self.message +="\n\n"
+                return
 
             # dimension the dice!
-            self.player.dimension_dice(result["item"])
+            self.player.dimension_dice(dice)
 
-            next_state = AttackState(self.player, 
-                self.opponent)
-            message = "\n"
-            message2 = next_state.intial_message()
-            # generate result
-            result["nextstate"] = next_state
-            result["message"] = message
-            result["message2"] = message2
-
-            return result
+            # define next state
+            self.next_state = RollState(self.opponent, 
+                self.player)
+            self.next_state.set_initial_message()
+            self.message = "DIMENSION THE DICE!\n\n"
 
         # generic commands
         else:

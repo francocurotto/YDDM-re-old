@@ -1,5 +1,3 @@
-from prompt_state import PromptState
-
 class DefenseState(PromptState):
     """
     State where the opponent is asked if he wants to defend

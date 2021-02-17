@@ -1,4 +1,4 @@
-from duel_substate import DuelSubtate
+from duel_substate import DuelSubstate
 from summon_state import SummonState
 
 class RollState(DuelSubstate):
@@ -8,88 +8,85 @@ class RollState(DuelSubstate):
     def __init__(self, player, opponent):
         super().__init__(player, opponent)
         self.help_text = self.help_text + help_text
+        self.message = ""
 
-    def initial_message(self):
+    def set_initial_message(self):
         """
         As initial message: current player pool.
         """
-        message = "<ROLL PHASE>\n" + \
-            self.player.stringify_pool() + "\n\n"
+        self.message += self.player.name + " TURN\n"
+        self.message += "<ROLL PHASE>\n"
+        self.message += self.player.stringify_pool() + "\n\n"
 
     def update(self, command):
         """
-        Update state given command. Return result dictionary
-        with the necessary information for parent state.
+        Update state given command.
         """
+        # default values for update
+        self.next_state = RollState(self.player, 
+            self.opponent)
+        self.message = ""
+
         # add command
         if command.equals_param(0, "a"):
             subcommand = command.subcommand(1)
-            return self.run_add_command(subcommand)
+            self.run_add_command(subcommand)
 
         # get back command
         elif command.equals_param(0, "b"):
             subcommand = command.subcommand(1)
-            return self.run_getback_command(subcommand)
+            self.run_getback_command(subcommand)
 
         # empty hand command
         elif command.equals("e"):
             self.player.empty_hand()
-            result = self.default_result()
-            result["message"] = "\n"
-            return result
+            self.message = "\n"
 
         # roll command
         elif command.equals_param(0, "r"):
             subcommand = command.subcommand(1)
-            return self.parse_roll_command(subcommand)
+            self.parse_roll_command(subcommand)
 
         # generic commands
         else:
-            return super().parse_command(command)
+            return super().update(command)
 
     def run_add_command(self, command):
         """
         Run command that add a dice from dice pool to dice
         hand.
         """
-        result = self.default_result()
-
         # check if command is correct
         if not command.are_params_int():
-            return result
+            return
 
         for i in command.list:
-            add_result = self.player.add_dice_to_hand(i)
-            if not add_result["success"]:
-                message = add_result["message"]
-                result["message"] += message + "\n"
+            success = self.player.add_dice_to_hand(i)
+            if not success:
+                self.message = self.player.message + "\n"
 
-        result["message"] += "\n"
-        return result
+        self.message += "\n"
         
     def run_getback_command(self, command):
         """
         Run command that get back a dice from dice hand to 
         the dice pool.
         """
-        result = self.default_result()
-
         # check if command is correct
         if not command.are_params_int():
-            return result
+            return
 
         # sort params in order to avoid IndexError in 
         # chopped list
         sorted_params = sorted(command.list, reverse=True)
 
         for i in sorted_params:
-            rem_result = self.player.dice_hand.remove_idx(i)
-            if not rem_result["success"]:
-                message = rem_result["message"]
-                result["message"] += message + "\n"
+            dice = self.player.dice_hand.remove_idx(i)
+            if not dice:
+                self.message  = self.player.dice_hand.message
+                self.message += "\n"
         
-        result["message"] += "\n"
-        return result
+        self.message += "\n"
 
     def parse_roll_command(self, command):
         """
@@ -99,93 +96,75 @@ class RollState(DuelSubstate):
         """
         # normal roll
         if command.is_empty():
-            return self.run_roll_command()
+            self.run_roll_command()
 
         # quick roll command
         elif command.len == 3 and command.are_params_int():
-            return self.run_quick_roll_command(command)
-
-        # invalid command
-        return self.default_result()
+            self.run_quick_roll_command(command)
 
     def run_roll_command(self):
         """
         Run command that roll dice hand. Must differenciate
         between roll command with or without int parameters.
-        Return true if roll is successfull.
         """
-        result = self.default_result()
-
         # Go, dice roll!
         roll_result = self.player.roll_hand()
         
-        if not roll_result["success"]: # roll failed
-            result["message"] = roll_result["message"] + "\n"
-            return result
+        if not roll_result.sides: # roll failed
+            self.message = self.player.message + "\n\n"
+            return
 
         # roll succeded
-        result["message"] = "Roll result: " + \
-            roll_result["string"] + "\n"
+        self.message  = "GO DICE ROLL!\n"
+        self.message += roll_result.stringify_sides() + "\n"
 
         # check for summon
-        dimensions = roll_result["dimensions"]
-        dim_result = self.can_dimension(dimensions)
+        can_dim = self.can_dimension(roll_result.dimensions)
 
-        if dim_result["success"]: # dimension able
-            next_state = SummonState(self.player, self.
-                opponent, dimensions)
-            message = ""
-            message2 = next_state.initial_message()
+        # define next state
+        if can_dim: # dimension able
+            self.next_state = SummonState(self.player, self.
+                opponent, roll_result.dimensions)
 
         else: # dimension unable
-            next_state = AttackState(self.player, self.
-                opponent)
-            message += dim_result["message"]
-            message2 = next_state.initial_message()
+            #self.next_state = AttackState(self.player, self.
+            #    opponent)
+            self.next_state = RollState(self.opponent, self.player)
 
-        # generate result
-        result["nextstate"] = next_state
-        result["message"] += message + "\n"
-        result["message2"] = message2
-
-        return result
+        self.next_state.set_initial_message()
+        self.message +="\n"
 
     def run_quick_roll_command(self, command):
         """
         Add the three dice in command to dice hand and then
         run roll command. Return True if roll is successfull.
         """
-        result = self.default_result()
-
         # add dice to dice hand
-        indeces = command.list
-        add_result = self.player.add_dice_to_hand_quick(
-            *indeces)
-        if not roll_result["success"]:
-            result["message"] = add_result["message"]
-            return result
+        idxs = command.list
+        success = self.player.add_dice_to_hand_quick(*idxs)
+        if not success:
+            self.message = self.player.message + "\n\n"
+            return
 
         # call run roll command without parameters
-        return self.run_roll_command()
+        self.run_roll_command()
 
     def can_dimension(self, dimensions):
         """
         Check if current player can dimension after roll.
         """
-        result = {}
-        if dimensions.is_empty(): # no dimensions in roll
-            result["success"] = False
-            result["message"] = ""
+        # no dimension in roll
+        if dimensions.is_empty():
+            return False
 
-        elif self.player.hit_dimension_limit(): # hit max dim
-            result["success"] = False
-            result["message"] = self.player.name + \
-                " reached dimension limit.\n")
+        # hit maximum number of dimensions
+        elif self.player.hit_dimension_limit():
+            self.message = self.player.name + " reached " + \
+                "dimension limit.\n"
+            return False
 
-        else: # dimension possible
-            result["success"] = True
-
-        return result
+        # dimension possible
+        return True
 
 help_text = "\n\n\
 Hand commands: \n\

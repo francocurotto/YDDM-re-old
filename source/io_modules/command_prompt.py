@@ -10,7 +10,11 @@ class CommandPrompt():
         Get command by waiting for used test input.
         """
         # get user input
-        string = input(">")
+        try:
+            string = input(">")
+        except:
+            print("\nbye!")
+            exit()
             
         # convert input into command
         command = Command(string)
@@ -20,4 +24,4 @@ class CommandPrompt():
         """
         Display the message of the game.
         """
-        print(message)
+        print(message, end="")

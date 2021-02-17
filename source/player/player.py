@@ -96,12 +96,11 @@ class Player():
 
         if not roll_result.sides: # roll failed
             self.message = self.dice_hand.message
-            return False
 
         # is success add roll to crest pool
         self.add_roll_to_crest_pool(roll_result)
 
-        return True
+        return roll_result
 
     def dimension_dice(self, dice):
         """
@@ -160,7 +159,7 @@ class Player():
             2. checking that monster is not in cooldown
             3. checking that player has attack crests,
                 and substract crest in that case.
-        Returns a dictionary with the result.
+        Returns attacker monster.
         """
         # 1. get monster
         attacker = self.monster_list.get(i)

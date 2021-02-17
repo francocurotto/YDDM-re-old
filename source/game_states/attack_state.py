@@ -20,8 +20,7 @@ class AttackState(DuelSubstate):
 
     def update(self, command):
         """
-        Update state given command. Return result dictionary
-        with the necessary information for parent state.
+        Update state given command.
         """
         # finish attack phase command
         if command.equals("f"):

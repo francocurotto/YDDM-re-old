@@ -1,5 +1,3 @@
-from command import run_prompt
-
 class DuelSubstate():
     """
     Generic duel substate.
@@ -11,26 +9,20 @@ class DuelSubstate():
 
     def update(self, command):
         """
-        Update state given command. Return result dictionary
-        with the necessary information for parent state.
+        Update state given command.
         """
-        # create result
-        result = self.default_result()
-
         # quit (forfeit) command
         if command.equals("q"):
             self.player.forfeited = True
 
         # help text command
         elif command.equals("h"):
-            result["message"] = self.help_text + "\n"
+            self.message = self.help_text + "\n\n"
 
         # print command
         elif command.equals_param(0, "p"):
             subcommand = command.subcommand(1)
-            result["message"] = self.get_print(subcommand)
-
-        return result
+            self.message = self.get_print(subcommand)
 
     def get_print(self, command):
         """
@@ -67,18 +59,7 @@ class DuelSubstate():
         else: # invalid command
             return ""
 
-        return msg + "\n"
-
-    def default_result(self):
-        """
-        Generates the default result for an update.
-        """
-        result = {}
-        result["nextstate"] = self
-        result["message"]   = ""
-        result["message2"]  = ""
-
-        return result
+        return msg + "\n\n"
 
 help_text = "\
 General commands: \n\
