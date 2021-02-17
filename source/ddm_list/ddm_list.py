@@ -22,6 +22,7 @@ class DdmList():
         """
         # check if index is valid
         if 0 <= i < len(self.list):
+            self.message = ""
             return self.list[i]
 
         # if invalid return none
@@ -41,6 +42,7 @@ class DdmList():
         """
         # check if list is full
         if not self.is_full():
+            self.message = ""
             self.list.append(item)
             return True
 
@@ -55,6 +57,7 @@ class DdmList():
         """
         # check if item is in list
         if item in self.list:
+            self.message = ""
             i = self.list.index(item)
             return self.remove_idx(i)
 
@@ -72,7 +75,7 @@ class DdmList():
         item = self.get(i)
 
         # if item found, remove item
-        if item is not None:
+        if item:
             del(self.list[i])
 
         # return item

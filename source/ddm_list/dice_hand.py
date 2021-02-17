@@ -17,14 +17,14 @@ class DiceHand(DiceList):
             self.message = "Dice hand not yet completed."
             return RollResult()
        
-        else:
-            # get the rolled sides
-            sides = []
-            for dice in self.list:
-                sides.append(dice.roll())
+        # get the rolled sides
+        sides = []
+        for dice in self.list:
+            sides.append(dice.roll())
 
-            # generate roll result
-            roll_result = RollResult(self.list, sides)
+        # generate roll result
+        roll_result = RollResult(self.list, sides)
+        self.message = ""
 
         return roll_result
 

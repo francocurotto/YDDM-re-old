@@ -27,34 +27,34 @@ class Player():
         self.graveyard = Graveyard()
         self.monster_lord = MonsterLord()
         self.forfeited = False
+        self.message = ""
 
     def add_dice_to_hand(self, i):
         """
         Add dice at position i in dice pool to dice hand.
+        If operation fails return False.
         """
         # first get dice
-        result = self.dice_pool.get(i)
-        if not result["success"]:
-            return result
+        dice = self.dice_pool.get(i)
+        if not dice:
+            self.message = self.dice_pool.message
+            return False
         
-        dice = result["item"]
-
         # check if dice is in bin
         if dice in self.dice_bin.list:
-            result["success"] = False
-            result["message"] = "Dice already dimensioned."
-            return result
+            self.message = "Dice already dimensioned."
+            return False
 
         # check if dice is in hand already
         if dice in self.dice_hand.list:
-            result["success"] = False
-            result["message"] = "Dice already in hand."
-            return result
+            self.message = "Dice already in hand."
+            return False
 
         # finally, add dice to hand
-        result = self.dice_hand.add(dice)
+        success = self.dice_hand.add(dice)
+        self.message = self.dice_hand.message
 
-        return result
+        return success
 
     def add_dice_to_hand_quick(self, i1, i2, i3):
         """
@@ -67,19 +67,17 @@ class Player():
 
         # get the dice
         for i in indeces:
-            result = self.dice_pool.get(i)
+            dice = self.dice_pool.get(i)
             
             # check if the indeces are correct
-            if not result["success"]:
-                return result
+            if not dice:
+                self.message = self.dice_pool.message
+                return False
 
             # check that the dice are not dimensioned yet
-            if result["item"] in self.dice_bin.list:
-                result = {}
-                result["success"] = False
-                result["message"] = \
-                    "Dice already dimensioned."
-                return result
+            if dice in self.dice_bin.list:
+                self.message = "Dice already dimensioned."
+                return False
 
         # empty hand
         self.empty_hand()
@@ -88,21 +86,22 @@ class Player():
         for i in indeces:
             self.add_dice_to_hand(i)
 
-        return {"success" : True}
+        return True
 
     def roll_hand(self):
         """
         Roll dice in hand, and add roll to crest poll.
         """
-        result = self.dice_hand.roll()
+        roll_result = self.dice_hand.roll()
 
-        if not result["success"]: # roll failed
-            return result
+        if not roll_result.sides: # roll failed
+            self.message = self.dice_hand.message
+            return False
 
         # is success add roll to crest pool
-        self.add_roll_to_crest_pool(result["sides"])
+        self.add_roll_to_crest_pool(roll_result)
 
-        return result
+        return True
 
     def dimension_dice(self, dice):
         """
@@ -130,18 +129,18 @@ class Player():
         pool.
         """
         while True:
-            result = self.dice_hand.remove_idx(0)
+            dice = self.dice_hand.remove_idx(0)
             
             # remove will fail when there are no more dice
             # in dice hand
-            if not result["success"]:
+            if not dice:
                 break
 
-    def add_roll_to_crest_pool(self, sides):
+    def add_roll_to_crest_pool(self, roll_result):
         """
         Add the roll result to the crest pool.
         """
-        for side in sides:
+        for side in roll_result.sides:
             self.crest_pool.add_crests(side)
 
     def hit_dimension_limit(self):
@@ -164,30 +163,25 @@ class Player():
         Returns a dictionary with the result.
         """
         # 1. get monster
-        result = self.monster_list.get(i)
-        if not result["success"]:
-            return result
-        attacker = result["item"]
+        attacker = self.monster_list.get(i)
+        if not attacker:
+            self.message = self.monster_list.message
+            return None
 
         # 2. check if monster is in cooldown
-        result = {}
         if attacker.in_cooldown:
-            result["message"] = attacker.name + " has " + \
+            self.message = attacker.name + " has " + \
                 "already attacked."
-            result["success"] = False
-            return result
+            return None
         
         # 3. verify attack crest
         if self.crest_pool.attack == 0:
-            result["message"] = self.name + " has no " + \
-                "attack crests."
-            result["success"] = False
-            return result
+            self.message = self.name + " has no attack " + \
+                "crests."
+            return None
 
-        # if everything is ok, return success
-        result["attacker"] = attacker
-        result["success"] = True
-        return result
+        # if everything is ok, return attacker
+        return attacker
 
     def decooldown_monsters(self):
         """
