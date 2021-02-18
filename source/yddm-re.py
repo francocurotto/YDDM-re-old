@@ -21,17 +21,17 @@ def main():
     
     # create game elements
     cmd = CommandPrompt()
-    duel = DuelState()
+    duel_state = DuelState()
 
     # initial display
-    cmd.display(duel.message)
+    cmd.display(duel_state.message)
 
     # start game loop
     while True:
         command = cmd.get_command()
-        duel.update(command)
-        cmd.display(duel.message)
-        if duel.finished:
+        duel_state.update(command)
+        cmd.display(duel_state.message)
+        if duel_state.finished:
             break
 
 def initialize_game():

@@ -1,12 +1,13 @@
 from duel_substate import DuelSubstate
 #from attack_state import AttackState
 
-class SummonState(DuelSubstate):
+class DimensionState(DuelSubstate):
     """
-    State when player summon a monster/item after a roll.
+    State when player dimension a dice and summon a 
+    monster/item after a roll.
     """
-    def __init__(self, player, opponent, dimensions):
-        super().__init__(player, opponent)
+    def __init__(self, duel, dimensions, next_turn=False):
+        super().__init__(duel, next_turn)
         self.dimensions = dimensions
         self.help_text = self.help_text + help_text
         self.message = ""
@@ -23,10 +24,11 @@ class SummonState(DuelSubstate):
         """
         Update state given command.
         """
-        # default values for update
         from roll_state import RollState
-        self.next_state = SummonState(self.player, 
-            self.opponent, self.dimensions)
+
+        # default values for update
+        self.next_state = DimensionState(self.duel, 
+            self.dimensions)
         self.message = ""
 
         # print available summons command
@@ -38,8 +40,7 @@ class SummonState(DuelSubstate):
         elif command.equals("s"):
             #self.next_state = AttackState(self.player, 
             #    self.opponent)
-            self.next_state = RollState(self.opponent, 
-                self.player)
+            self.next_state = RollState(self.duel, True)
             self.next_state.set_initial_message()
             self.message = "\n"
 
@@ -57,17 +58,16 @@ class SummonState(DuelSubstate):
             self.player.dimension_dice(dice)
 
             # define next state
-            self.next_state = RollState(self.opponent, 
-                self.player)
+            self.next_state = RollState(self.duel, True)
             self.next_state.set_initial_message()
             self.message = "DIMENSION THE DICE!\n\n"
 
         # generic commands
         else:
-            return super().parse_command(command)
+            return super().update(command)
 
 help_text = "\n\n\
-Summon commands: \n\
+Dimension commands: \n\
     p as: print available summons \n\
     s   : skip dimension \n\
     #   : dimension dice"

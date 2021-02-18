@@ -1,12 +1,12 @@
 from duel_substate import DuelSubstate
-from summon_state import SummonState
+from dimension_state import DimensionState
 
 class RollState(DuelSubstate):
     """
     State when player has to roll its dice hand.
     """
-    def __init__(self, player, opponent):
-        super().__init__(player, opponent)
+    def __init__(self, duel, next_turn=False):
+        super().__init__(duel, next_turn)
         self.help_text = self.help_text + help_text
         self.message = ""
 
@@ -23,8 +23,7 @@ class RollState(DuelSubstate):
         Update state given command.
         """
         # default values for update
-        self.next_state = RollState(self.player, 
-            self.opponent)
+        self.next_state = RollState(self.duel)
         self.message = ""
 
         # add command
@@ -118,18 +117,18 @@ class RollState(DuelSubstate):
         self.message  = "GO DICE ROLL!\n"
         self.message += roll_result.stringify_sides() + "\n"
 
-        # check for summon
+        # check for dimensions
         can_dim = self.can_dimension(roll_result.dimensions)
 
         # define next state
         if can_dim: # dimension able
-            self.next_state = SummonState(self.player, self.
-                opponent, roll_result.dimensions)
+            self.next_state = DimensionState(self.duel,
+                roll_result.dimensions)
 
         else: # dimension unable
             #self.next_state = AttackState(self.player, self.
             #    opponent)
-            self.next_state = RollState(self.opponent, self.player)
+            self.next_state = RollState(self.duel, True)
 
         self.next_state.set_initial_message()
         self.message +="\n"

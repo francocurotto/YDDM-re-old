@@ -2,9 +2,13 @@ class DuelSubstate():
     """
     Generic duel substate.
     """
-    def __init__(self, player, opponent):
-        self.player = player
-        self.opponent = opponent
+    def __init__(self, duel, next_turn=False):
+        if not next_turn:
+            self.duel = duel
+        else:
+            self.duel = duel.next_turn_copy()
+        self.player = self.duel.player
+        self.opponent = self.duel.opponent
         self.help_text = help_text
 
     def update(self, command):
