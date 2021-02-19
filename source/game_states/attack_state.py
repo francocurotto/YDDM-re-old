@@ -1,13 +1,13 @@
-from functions import color
 from duel_substate import DuelSubstate
+from roll_state import RollState
 from defense_state import DefenseState
 
 class AttackState(DuelSubstate):
     """
     State where player can attack an opponent monster.
     """
-    def __init__(self, player, opponent):
-        super().__init__(player, opponent)
+    def __init__(self, duel, next_turn= False):
+        super().__init__(duel, next_turn)
         self.help_text = self.help_text + help_text
 
     def initial_message(self):
@@ -15,26 +15,29 @@ class AttackState(DuelSubstate):
         As initial message print player and opponent 
         summons.
         """
-        message = "<ATTACK PHASE> [f: finish]\n" + \
-            self.stringify_state() + "\n\n"
+        self.message  = "<ATTACK PHASE> [f: finish]\n"
+        self.message +=  self.stringify_state() + "\n\n"
 
     def update(self, command):
         """
         Update state given command.
         """
+        # default values for update
+        self.next_state = AttackState(self.duel)
+        self.message = ""
+
         # finish attack phase command
         if command.equals("f"):
-            self.finish =  True
-            return True
+            self.next_state = RollState(self.duel, True)
+            self.next_state.set_initial_message()
 
         # attack command
         elif is_attack_command(command):
             self.run_attack_command(command)
-            return True
         
         # generic commands
         else:
-            return super().parse_command(command)
+            super().parse_command(command)
         
     def run_attack_command(self, command):
         """
@@ -44,21 +47,20 @@ class AttackState(DuelSubstate):
         i0 = command.list[0]
 
         # get player monster
-        result = self.player.prepare_attack(i0)
-        if not result["success"]:
-            print(result["message"])
+        attacker = self.player.prepare_attack(i0)
+        if not attacker:
+            self.message = self.player.message
             return
-        attacker = result["attacker"]
             
         # distinguish between monster attack and ML attack
         if command.len == 2: # monster attack
             # get opponent monster
             i1 = command.list[1]
-            result = self.opponent.monster_list.get(i1)
-            if not result["success"]:
-                print(result["message"])
+            monster = self.opponent.monster_list.get(i1)
+            if not monster:
+                self.message = self.opponent.monster_list.\
+                    message
                 return
-            attacked = result["item"]
             
             # perform the attack
             self.attack_monster(attacker, attacked)
@@ -66,13 +68,6 @@ class AttackState(DuelSubstate):
         else: # command.len == 1 (ML attack)            
             # perform the attack
             self.attack_monster_lord(attacker)
-
-            # check if opponent dm is dead
-            if self.opponent.monster_lord.is_dead():
-                self.finish = True
-                print("")
-                print(self.player.name + " is the winner!")
-                return
 
         # print state info
         print("")

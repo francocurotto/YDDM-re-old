@@ -6,11 +6,10 @@ class DimensionState(DuelSubstate):
     State when player dimension a dice and summon a 
     monster/item after a roll.
     """
-    def __init__(self, duel, dimensions, next_turn=False):
-        super().__init__(duel, next_turn)
+    def __init__(self, duel, dimensions):
+        super().__init__(duel)
         self.dimensions = dimensions
         self.help_text = self.help_text + help_text
-        self.message = ""
 
     def set_initial_message(self):
         """
@@ -38,9 +37,7 @@ class DimensionState(DuelSubstate):
 
         # skip dimension and go to next state
         elif command.equals("s"):
-            #self.next_state = AttackState(self.player, 
-            #    self.opponent)
-            self.next_state = RollState(self.duel, True)
+            self.next_state = AttackState(self.duel)
             self.next_state.set_initial_message()
             self.message = "\n"
 
@@ -58,13 +55,13 @@ class DimensionState(DuelSubstate):
             self.player.dimension_dice(dice)
 
             # define next state
-            self.next_state = RollState(self.duel, True)
+            self.next_state = AttackState(self.duel)
             self.next_state.set_initial_message()
             self.message = "DIMENSION THE DICE!\n\n"
 
         # generic commands
         else:
-            return super().update(command)
+            super().update(command)
 
 help_text = "\n\n\
 Dimension commands: \n\

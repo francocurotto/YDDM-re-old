@@ -10,6 +10,7 @@ class DuelSubstate():
         self.player = self.duel.player
         self.opponent = self.duel.opponent
         self.help_text = help_text
+        self.message = ""
 
     def update(self, command):
         """

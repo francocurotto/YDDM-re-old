@@ -1,20 +1,20 @@
 from duel_substate import DuelSubstate
 from dimension_state import DimensionState
+from attack_state import AttackState
 
 class RollState(DuelSubstate):
     """
     State when player has to roll its dice hand.
     """
-    def __init__(self, duel, next_turn=False):
-        super().__init__(duel, next_turn)
+    def __init__(self, duel):
+        super().__init__(duel)
         self.help_text = self.help_text + help_text
-        self.message = ""
 
     def set_initial_message(self):
         """
         As initial message: current player pool.
         """
-        self.message += self.player.name + " TURN\n"
+        self.message  = self.player.name + " TURN\n"
         self.message += "<ROLL PHASE>\n"
         self.message += self.player.stringify_pool() + "\n\n"
 
@@ -44,11 +44,11 @@ class RollState(DuelSubstate):
         # roll command
         elif command.equals_param(0, "r"):
             subcommand = command.subcommand(1)
-            self.parse_roll_command(subcommand)
+            self.run_roll_command(subcommand)
 
         # generic commands
         else:
-            return super().update(command)
+            super().update(command)
 
     def run_add_command(self, command):
         """
@@ -87,15 +87,15 @@ class RollState(DuelSubstate):
         
         self.message += "\n"
 
-    def parse_roll_command(self, command):
+    def run_roll_command(self, command):
         """
         Distinguish between a normal roll command (no 
         paramenters) and a quick roll command (three int
-        paramters). Return True if roll is successfull.
+        paramters).
         """
         # normal roll
         if command.is_empty():
-            self.run_roll_command()
+            self.run_normal_roll_command()
 
         # quick roll command
         elif command.len == 3 and command.are_params_int():
@@ -103,8 +103,7 @@ class RollState(DuelSubstate):
 
     def run_roll_command(self):
         """
-        Run command that roll dice hand. Must differenciate
-        between roll command with or without int parameters.
+        Run command that roll dice hand.
         """
         # Go, dice roll!
         roll_result = self.player.roll_hand()
@@ -126,9 +125,7 @@ class RollState(DuelSubstate):
                 roll_result.dimensions)
 
         else: # dimension unable
-            #self.next_state = AttackState(self.player, self.
-            #    opponent)
-            self.next_state = RollState(self.duel, True)
+            self.next_state = AttackState(self.duel)
 
         self.next_state.set_initial_message()
         self.message +="\n"
@@ -136,7 +133,7 @@ class RollState(DuelSubstate):
     def run_quick_roll_command(self, command):
         """
         Add the three dice in command to dice hand and then
-        run roll command. Return True if roll is successfull.
+        run roll command.
         """
         # add dice to dice hand
         idxs = command.list
