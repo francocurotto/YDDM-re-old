@@ -1,48 +1,63 @@
-class DefenseState(PromptState):
+from duel_substate import DuelSubstate
+
+class DefenseState(DuelSubtate):
     """
     State where the opponent is asked if he wants to defend
     from the player attack.
     """
-    def __init__(self, player, opponent):
+    def __init__(self, player, opponent, attacker, attacked):
         super().__init__(player, opponent)
+        self.attacker = attacker
+        self.attacked = attacked
         self.help_text = self.help_text + help_text
 
-    def run_initial_action(self):
+    def run_message(self):
         """
         As initial action, ask the opponent if he/she wants
         to defend or not.
         """
-        # first check if oppontent has crests to defend
-        if self.opponent.crest_pool.defense == 0:
-            print(self.opponent.name + " has no defense " + \
-                  "crests.")
-            self.defend = False
-            self.finish = True
-        else:
-            print(self.opponent.name + ", do you want " +
-                  "to defend the attack? [y/n]")
+        self.message  = self.opponent.name + ", do you want"
+        self.message += " to defend the attack? [y/n]\n\n")
 
-    def parse_command(self, command):
+    def update(self, command):
         """
-        Parse the command obtained by prompt. Return True if
-        command is valid.
+        Update state given command.
+        """
+        # defense command
+        if command.equals("y") or command.equals("n"):
+            self.run_defense_command(command)
+
+        # generic commands
+        else:
+            super().update(command)
+
+    def run_defense_command(self, command):
+        """
+        Run command were a desition between defending or not
+        was taken.
         """
         # opponent defends
         if command.equals("y"):
             self.opponent.crest_pool.defense -= 1
-            self.defend = True
-            self.finish = True
-            return True
+            self.attacker.attack_monster(self.attacked,  
+                defend=True)
 
         # opponent does not defend
         elif command.equals("n"):
-            self.defend = False
-            self.finish = True
-            return True
+            self.attacker.attack_monster(self.attacked,  
+                defend=True)
 
-        # generic commands
-        else:
-            return super().parse_command(command)
+        # post attack actions
+        self.message = attacker.message "\n"
+
+        # check if any of the monsters is dead
+        self.duel.check_for_casualties()
+        self.message += self.duel.message + "\n\n"
+
+        # define next state
+        from attack_state import AttackState
+        self.next_state = AttackState(self.duel)
+        self.next_state.set_recurrent_message()
 
 help_text = "\
 Defense commands: \n\

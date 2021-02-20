@@ -1,13 +1,11 @@
 from duel_substate import DuelSubstate
-from dimension_state import DimensionState
-from attack_state import AttackState
 
 class RollState(DuelSubstate):
     """
     State when player has to roll its dice hand.
     """
-    def __init__(self, duel):
-        super().__init__(duel)
+    def __init__(self, duel, next_turn=False):
+        super().__init__(duel, next_turn)
         self.help_text = self.help_text + help_text
 
     def set_initial_message(self):
@@ -101,7 +99,7 @@ class RollState(DuelSubstate):
         elif command.len == 3 and command.are_params_int():
             self.run_quick_roll_command(command)
 
-    def run_roll_command(self):
+    def run_normal_roll_command(self):
         """
         Run command that roll dice hand.
         """
@@ -121,10 +119,12 @@ class RollState(DuelSubstate):
 
         # define next state
         if can_dim: # dimension able
+            from dimension_state import DimensionState
             self.next_state = DimensionState(self.duel,
                 roll_result.dimensions)
 
         else: # dimension unable
+            from attack_state import AttackState
             self.next_state = AttackState(self.duel)
 
         self.next_state.set_initial_message()
@@ -143,7 +143,7 @@ class RollState(DuelSubstate):
             return
 
         # call run roll command without parameters
-        self.run_roll_command()
+        self.run_normal_roll_command()
 
     def can_dimension(self, dimensions):
         """

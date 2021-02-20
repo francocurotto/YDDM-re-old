@@ -1,5 +1,4 @@
 from duel_substate import DuelSubstate
-#from attack_state import AttackState
 
 class DimensionState(DuelSubstate):
     """
@@ -23,8 +22,6 @@ class DimensionState(DuelSubstate):
         """
         Update state given command.
         """
-        from roll_state import RollState
-
         # default values for update
         self.next_state = DimensionState(self.duel, 
             self.dimensions)
@@ -55,6 +52,7 @@ class DimensionState(DuelSubstate):
             self.player.dimension_dice(dice)
 
             # define next state
+            from attack_state import AttackState
             self.next_state = AttackState(self.duel)
             self.next_state.set_initial_message()
             self.message = "DIMENSION THE DICE!\n\n"

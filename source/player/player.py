@@ -203,9 +203,7 @@ class Player():
                 self.send_to_graveyard(monster)
                 strlist.append(monster.name + " is dead.")
             
-        string = "\n".join(strlist)
-
-        return string
+        self.message = "\n".join(strlist)
 
     def send_to_graveyard(self, monster):
         """

@@ -59,6 +59,16 @@ class Duel():
 
         return False
 
+    def check_for_casualties(self):
+        """
+        Check if any of the players has a monster that has
+        died.
+        """
+        self.duel.player.check_for_casualties(self)
+        self.duel.message = self.player.message
+        self.duel.opponent.check_for_casualties(self)
+        self.duel.message = self.opponent.message
+
     def get_opponent(self, player):
         """
         Get opponent of player.

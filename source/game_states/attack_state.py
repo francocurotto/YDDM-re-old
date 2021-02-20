@@ -1,6 +1,4 @@
 from duel_substate import DuelSubstate
-from roll_state import RollState
-from defense_state import DefenseState
 
 class AttackState(DuelSubstate):
     """
@@ -10,13 +8,18 @@ class AttackState(DuelSubstate):
         super().__init__(duel, next_turn)
         self.help_text = self.help_text + help_text
 
-    def initial_message(self):
+    def set_initial_message(self):
         """
-        As initial message print player and opponent 
-        summons.
+        As initial message, print crests and monsters.
         """
         self.message  = "<ATTACK PHASE> [f: finish]\n"
         self.message +=  self.stringify_state() + "\n\n"
+
+    def set_recurrent_message(self):
+        """
+        As recurrent message, print crests and monsters.
+        """
+        self.message =  self.stringify_state() + "\n\n"
 
     def update(self, command):
         """
@@ -28,7 +31,9 @@ class AttackState(DuelSubstate):
 
         # finish attack phase command
         if command.equals("f"):
-            self.next_state = RollState(self.duel, True)
+            from roll_state import RollState
+            self.next_state = RollState(self.duel, 
+                next_turn=True)
             self.next_state.set_initial_message()
 
         # attack command
@@ -49,17 +54,17 @@ class AttackState(DuelSubstate):
         # get player monster
         attacker = self.player.prepare_attack(i0)
         if not attacker:
-            self.message = self.player.message
+            self.message = self.player.message + "\n\n"
             return
             
         # distinguish between monster attack and ML attack
         if command.len == 2: # monster attack
             # get opponent monster
             i1 = command.list[1]
-            monster = self.opponent.monster_list.get(i1)
+            attaked = self.opponent.monster_list.get(i1)
             if not monster:
                 self.message = self.opponent.monster_list.\
-                    message
+                    message + "\n\n"
                 return
             
             # perform the attack
@@ -69,9 +74,9 @@ class AttackState(DuelSubstate):
             # perform the attack
             self.attack_monster_lord(attacker)
 
-        # print state info
-        print("")
-        print(self.stringify_state())
+        # 
+        self.message = "\n"
+        self.next_state.set_recurrent_message()
 
     def attack_monster(self, attacker, attacked):
         """
@@ -82,25 +87,26 @@ class AttackState(DuelSubstate):
         self.player.crest_pool.attack -= 1
 
         # inform the battle situation
-        print(attacker.stringify_prebattle(attacked))
+        self.message = attacker.stringify_prebattle(attacked)
+        self.message += "\n"
 
-        # then get defense flag
-        defense_state = DefenseState(self.player, 
-            self.opponent)
-        defense_state.start()
-        defend = defense_state.defend
+        # if opponent has defense crests go to defense state
+        if self.opponent.crest_pool.defense_crest == 0:
+            from defense_state import DefenseState
+            self.next_state = DefenseState(self.duel,     
+                attacker, attacked)
+            self.next_state.set_initial_message()
+            return
 
-        # do the attack
-        message = attacker.attack_monster(attacked, defend)
-        print(message)
+        # else perform the attack with no defense
+        self.message += self.opponent.name
+        self.message += " has no defense crests."
+        attacker.attack_monster(attacked, defend=False)
+        self.message += attacker.message + "\n"
 
         # check if any of the monsters is dead
-        message = self.player.check_for_casualties()
-        if message:
-            print(message)
-        message = self.opponent.check_for_casualties()
-        if message:
-            print(message)
+        self.duel.check_for_casualties()
+        self.message += self.duel.message + "\n"
 
     def attack_monster_lord(self, attacker):
         """
@@ -109,8 +115,8 @@ class AttackState(DuelSubstate):
         """
         # check that opponent has no monster left
         if not self.opponent.monster_list.is_empty():
-            print("Cannot attack ML. Opponent still has " +
-                "monsters left.")
+            self.next_state.message = "Cannot attack ML." + \
+            "Opponent still has monsters left.\n"
             return
 
         # if everything went okay at this point the attack is
@@ -118,8 +124,8 @@ class AttackState(DuelSubstate):
         self.player.crest_pool.attack -= 1
 
         # do the attack
-        message = attacker.attack_ml(self.opponent)
-        print(message)
+        attacker.attack_ml(self.opponent)
+        self.message = attacker.message + "\n"
 
     def stringify_state(self):
         """
