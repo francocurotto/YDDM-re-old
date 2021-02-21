@@ -8,21 +8,21 @@ class RollState(DuelSubstate):
         super().__init__(duel, next_turn)
         self.help_text = self.help_text + help_text
 
-    def set_initial_message(self):
+    def set_start_message(self):
         """
-        As initial message: current player pool.
+        As start message show player pool.
         """
-        self.message  = self.player.name + " TURN\n"
-        self.message += "<ROLL PHASE>\n"
-        self.message += self.player.stringify_pool() + "\n\n"
+        self.start_message  = self.player.name + " TURN\n"
+        self.start_message += "<ROLL PHASE>\n"
+        self.start_message += \
+            self.player.stringify_pool() + "\n\n"
 
     def update(self, command):
         """
         Update state given command.
         """
         # default values for update
-        self.next_state = RollState(self.duel)
-        self.message = ""
+        self.next_state = self
 
         # add command
         if command.equals_param(0, "a"):
@@ -37,7 +37,7 @@ class RollState(DuelSubstate):
         # empty hand command
         elif command.equals("e"):
             self.player.empty_hand()
-            self.message = "\n"
+            self.log.add("\n")
 
         # roll command
         elif command.equals_param(0, "r"):
@@ -58,11 +58,9 @@ class RollState(DuelSubstate):
             return
 
         for i in command.list:
-            success = self.player.add_dice_to_hand(i)
-            if not success:
-                self.message = self.player.message + "\n"
+            self.player.add_dice_to_hand(i)
 
-        self.message += "\n"
+        self.log.add("\n")
         
     def run_getback_command(self, command):
         """
@@ -78,12 +76,9 @@ class RollState(DuelSubstate):
         sorted_params = sorted(command.list, reverse=True)
 
         for i in sorted_params:
-            dice = self.player.dice_hand.remove_idx(i)
-            if not dice:
-                self.message  = self.player.dice_hand.message
-                self.message += "\n"
+            self.player.dice_hand.remove_idx(i)
         
-        self.message += "\n"
+        self.log.add("\n")
 
     def run_roll_command(self, command):
         """
@@ -99,36 +94,32 @@ class RollState(DuelSubstate):
         elif command.len == 3 and command.are_params_int():
             self.run_quick_roll_command(command)
 
+        self.log.add("\n")
+
     def run_normal_roll_command(self):
         """
         Run command that roll dice hand.
         """
         # Go, dice roll!
         roll_result = self.player.roll_hand()
-        
+        dimensions = roll_result.dimensions
+
         if not roll_result.sides: # roll failed
-            self.message = self.player.message + "\n\n"
             return
 
         # roll succeded
-        self.message  = "GO DICE ROLL!\n"
-        self.message += roll_result.stringify_sides() + "\n"
-
-        # check for dimensions
-        can_dim = self.can_dimension(roll_result.dimensions)
+        self.log.add("GO DICE ROLL!\n")
+        self.log.add(roll_result.stringify_sides() + "\n")
 
         # define next state
-        if can_dim: # dimension able
-            from dimension_state import DimensionState
-            self.next_state = DimensionState(self.duel,
-                roll_result.dimensions)
+        if self.can_dimension(dimensions): # dimension able
+            self.dim_state.dimensions = dimensions
+            self.next_state = self.dim_state
 
         else: # dimension unable
-            from attack_state import AttackState
-            self.next_state = AttackState(self.duel)
+            self.next_state = self.attack_state
 
-        self.next_state.set_initial_message()
-        self.message +="\n"
+        self.next_state.set_start_message()
 
     def run_quick_roll_command(self, command):
         """
@@ -139,7 +130,6 @@ class RollState(DuelSubstate):
         idxs = command.list
         success = self.player.add_dice_to_hand_quick(*idxs)
         if not success:
-            self.message = self.player.message + "\n\n"
             return
 
         # call run roll command without parameters
@@ -155,8 +145,8 @@ class RollState(DuelSubstate):
 
         # hit maximum number of dimensions
         elif self.player.hit_dimension_limit():
-            self.message = self.player.name + " reached " + \
-                "dimension limit.\n"
+            self.log.add(self.player.name + " reached " + \
+                "dimension limit.\n")
             return False
 
         # dimension possible

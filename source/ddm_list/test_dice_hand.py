@@ -1,7 +1,9 @@
 import sys
+sys.path.append("../game_states")
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
-from dice_list import DiceList
+from logger import Logger
+from dice_list import DiceLibrary
 from dice_hand import DiceHand, RollResult
 
 print("Welcome to the dice hand test.\n\n\
@@ -14,16 +16,17 @@ Input r to roll the dice hand.\n\
 Input dr to display the roll result.\n\
 Input q to quit.\n")
 
-library = DiceList()
+log = Logger()
+library = DiceLibrary(log)
 library.fill_from_file("../databases/my_database.txt")
-hand = DiceHand()
+hand = DiceHand(log)
 
 # get a prefined set of dice to the dice hand
 hand.add(library.get(1))
 hand.add(library.get(3))
 hand.add(library.get(7))
 
-roll_result = RollResult()
+roll_result = RollResult(log)
 while True:
     command = input(">")
     

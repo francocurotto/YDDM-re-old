@@ -5,8 +5,8 @@ class MonsterList(DdmList):
     """
     List of summoned monsters.
     """
-    def __init__(self):
-        super().__init__("monster list", "monster")
+    def __init__(self, log):
+        super().__init__("monster list", "monster", log)
 
     def stringify_short(self, i):
         """

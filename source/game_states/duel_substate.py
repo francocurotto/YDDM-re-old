@@ -2,15 +2,20 @@ class DuelSubstate():
     """
     Generic duel substate.
     """
-    def __init__(self, duel, next_turn=False):
-        if not next_turn:
-            self.duel = duel
-        else:
-            self.duel = duel.next_turn_copy()
+    def __init__(self, duel, log):
+        self.duel = duel
+        self.log = log
         self.player = self.duel.player
         self.opponent = self.duel.opponent
         self.help_text = help_text
-        self.message = ""
+        self.start_message = ""
+
+    def log_start_message(self):
+        """
+        Log the starting message and reset.
+        """
+        self.log.add(self.start_messge)
+        self.start_message = ""
 
     def update(self, command):
         """
@@ -22,12 +27,12 @@ class DuelSubstate():
 
         # help text command
         elif command.equals("h"):
-            self.message = self.help_text + "\n\n"
+            self.log.add(self.help_text + "\n\n")
 
         # print command
         elif command.equals_param(0, "p"):
             subcommand = command.subcommand(1)
-            self.message = self.get_print(subcommand)
+            self.log.add(self.get_print(subcommand))
 
     def get_print(self, command):
         """

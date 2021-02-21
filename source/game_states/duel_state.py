@@ -1,23 +1,44 @@
+from logger import Logger
 from duel import Duel
 from roll_state import RollState
+from dimension_state import DimensionState
+from attack_state import AttackState
+from defense_state import DefenseState
 
 class DuelState():
     """
     A YDDM duel state.
     """
     def __init__(self):
-        self.duel = Duel()
-        self.state = RollState(self.duel)
-        self.initial_message()
+        self.log = Logger()
+        self.duel = Duel(self.log)
+
+        # duel substates
+        self.roll_state = RollState(self.duel, self.log)
+        self.dim_state  = DimensionState(self.duel, self.log)
+        self.atk_state  = AttackState(self.duel, self.log)
+        self.def_state  = DefenseState(self.duel, self.log)
+        
+        # add next state options to states
+        self.roll_state.dim_state = self.dim_state
+        self.roll_state.atk_state = self.atk_state
+        self.dim_state.atk_state = self.atk_state
+        self.atk_state.def_state  = self.def_state
+        self.atk_state.roll_state = self.roll_state
+        self.def_state.atk_state = self.atk_state
+
+        # set inital status
+        self.state = self.roll_state
+        self.log_start_message()
         self.finished = False
 
-    def initial_message(self):
+    def log_start_message(self):
         """
-        As initial message: duel started message.
+        Log starting duel message.
         """
-        self.message  = "GAME ON!\n"
-        self.state.set_initial_message()
-        self.message += self.state.message
+        self.log.add("GAME ON!\n")
+        self.state.set_start_message()
+        self.state.log_start_message()
 
     def update(self, command):
         """

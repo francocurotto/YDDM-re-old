@@ -1,7 +1,9 @@
 import sys
+sys.path.append("../game_states")
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
-from dice_list import DiceList
+from logger import Logger
+from dice_list import DiceLibrary
 from dice_pool import DicePool
 
 print("Welcome to the dice pool test.\n\n\
@@ -18,9 +20,10 @@ Input r<number> to remove a dice from the pool.\n\
 Input f to fill the dice pool with random dice.\n\
 Input q to quit.\n")
 
-library = DiceList()
+log = Logger()
+library = DiceLibrary(log)
 library.fill_from_file("../databases/my_database.txt")
-pool = DicePool()
+pool = DicePool(log)
 
 def get_dicenum(string):
     try:
@@ -51,12 +54,13 @@ while True:
 
         else: # print a specific dice
             dicenum = get_dicenum(command[2:])
-            if dicenum is None: continue
+            if not dicenum: 
+                continue
             dice = set.get(dicenum)
-            if dice is not None:
+            if dice:
                 print(dice.stringify() + "\n")
             else:
-                print(set.message + "\n")
+                print(set.log.flush())
 
     # add dice to pool
     elif command[0] == "a":
@@ -67,8 +71,8 @@ while True:
 
         # get dice from library
         dice = library.get_copy(dicenum)
-        if dice is None:
-            print(library.message + "\n")
+        if not dice:
+            print(library.log.flush())
             continue
 
         # add dice to pool
@@ -76,20 +80,21 @@ while True:
         if success:
             print("Dice added to pool.\n")
         else:
-            print(pool.message + "\n")
+            print(pool.log.flush())
                 
     # remove dice from dice pool
     elif command[0] == "r":
         # get dice number from command
         dicenum = get_dicenum(command[1:])
-        if dicenum is None: continue
+        if dicenum is None: 
+            continue
 
         # remove dice from pool
         dice = pool.remove_idx(dicenum)
-        if dice is not None:
+        if dice:
             print("Dice removed to pool.\n")
         else:
-            print(pool.message + "\n")
+            print(pool.log.flush())
 
     # fill with random dice
     elif command == "f":

@@ -24,13 +24,13 @@ def main():
     duel_state = DuelState()
 
     # initial display
-    cmd.display(duel_state.message)
+    cmd.display(duel_state.log)
 
     # start game loop
     while True:
         command = cmd.get_command()
         duel_state.update(command)
-        cmd.display(duel_state.message)
+        cmd.display(duel_state.log)
         if duel_state.finished:
             break
 

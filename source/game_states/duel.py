@@ -6,17 +6,16 @@ class Duel():
     """
     A duel were player are playing YDDM.
     """
-    def __init__(self):
+    def __init__(self, log):
+        self.log = log
         # For now, creates players with random pools
-        self.player1, self.player2 = random_init()
+        self.player1, self.player2 = self.random_init()
         self.players = [self.player1, self.player2]
 
         # define current player and opponent
         self.player = self.players[0]
         self.opponent = self.players[1]
         self.turn = 1
-        
-        self.message = ""
 
     def next_turn_copy(self):
         """
@@ -46,14 +45,14 @@ class Duel():
         for player in self.players:
             # Forfeit condition
             if player.forfeited:
-                self.message += player.name + " forfeited.\n"
+                self.log.add(player.name + " forfeited.\n")
                 return True
 
             # normal win condition (monster lord beaten)
             if player.monster_lord.is_dead():
                 opponent = self.get_opponent(player)
-                self.message += opponent.name + \
-                    " is the winner!\n" + \
+                self.log.add(opponent.name + 
+                    " is the winner!\n" +
                     "Broke all opponent's hearts.\n"
                 return True
 
@@ -65,9 +64,7 @@ class Duel():
         died.
         """
         self.player.check_for_casualties()
-        self.message = self.player.message
         self.opponent.check_for_casualties()
-        self.message = self.opponent.message
 
     def get_opponent(self, player):
         """
@@ -75,22 +72,22 @@ class Duel():
         """
         return (set(self.players) - set(player)).pop()
 
-def random_init():
-    """
-    Helper function to initialize a duel with two players 
-    with random dice pools.
-    """
-    # generate dice library
-    lib_filename = "databases/my_database.txt"
-    library = DiceList()
-    library.fill_from_file(lib_filename)
-
-    # generate players
-    player1 = Player("Player 1")
-    player2 = Player("Player 2")
-
-    # fill dice pool of players with random dice
-    player1.dice_pool.fill_random(library)
-    player2.dice_pool.fill_random(library)
-        
-    return player1, player2   
+    def random_init():
+        """
+        Helper function to initialize a duel with two players 
+        with random dice pools.
+        """
+        # generate dice library
+        lib_filename = "databases/my_database.txt"
+        library = DiceList()
+        library.fill_from_file(lib_filename)
+    
+        # generate players
+        player1 = Player("Player 1", self.log)
+        player2 = Player("Player 2", self.log)
+    
+        # fill dice pool of players with random dice
+        player1.dice_pool.fill_random(library)
+        player2.dice_pool.fill_random(library)
+            
+        return player1, player2   

@@ -15,19 +15,19 @@ class Player():
     """
     summon_limit = 10
 
-    def __init__(self, name):
+    def __init__(self, name, log):
         self.name = name
         self.color = None
-        self.dice_pool = DicePool()
-        self.dice_hand = DiceHand()
-        self.dice_bin = DiceList()
-        self.crest_pool = CrestPool()
-        self.monster_list = MonsterList()
-        self.item_list = ItemList()
-        self.graveyard = Graveyard()
+        self.log = log
+        self.dice_pool = DicePool(self.log)
+        self.dice_hand = DiceHand(self.log)
+        self.dice_bin = DiceList(self.log)
+        self.crest_pool = CrestPool(self.log)
+        self.monster_list = MonsterList(self.log)
+        self.item_list = ItemList(self.log)
+        self.graveyard = Graveyard(self.log)
         self.monster_lord = MonsterLord()
         self.forfeited = False
-        self.message = ""
 
     def add_dice_to_hand(self, i):
         """
@@ -37,22 +37,20 @@ class Player():
         # first get dice
         dice = self.dice_pool.get(i)
         if not dice:
-            self.message = self.dice_pool.message
             return False
         
         # check if dice is in bin
         if dice in self.dice_bin.list:
-            self.message = "Dice already dimensioned."
+            self.log.add("Dice already dimensioned.\n")
             return False
 
         # check if dice is in hand already
         if dice in self.dice_hand.list:
-            self.message = "Dice already in hand."
+            self.log.add("Dice already in hand.\n")
             return False
 
         # finally, add dice to hand
         success = self.dice_hand.add(dice)
-        self.message = self.dice_hand.message
 
         return success
 
@@ -71,12 +69,11 @@ class Player():
             
             # check if the indeces are correct
             if not dice:
-                self.message = self.dice_pool.message
                 return False
 
             # check that the dice are not dimensioned yet
             if dice in self.dice_bin.list:
-                self.message = "Dice already dimensioned."
+                self.log.add("Dice already dimensioned.\n")
                 return False
 
         # empty hand
@@ -94,10 +91,7 @@ class Player():
         """
         roll_result = self.dice_hand.roll()
 
-        if not roll_result.sides: # roll failed
-            self.message = self.dice_hand.message
-
-        # is success add roll to crest pool
+        # add roll to crest pool
         self.add_roll_to_crest_pool(roll_result)
 
         return roll_result
@@ -164,19 +158,18 @@ class Player():
         # 1. get monster
         attacker = self.monster_list.get(i)
         if not attacker:
-            self.message = self.monster_list.message
             return None
 
         # 2. check if monster is in cooldown
         if attacker.in_cooldown:
-            self.message = attacker.name + " has " + \
-                "already attacked."
+            self.log.add(attacker.name + " has already " +
+                "attacked.\n")
             return None
         
         # 3. verify attack crest
         if self.crest_pool.attack == 0:
-            self.message = self.name + " has no attack " + \
-                "crests."
+            self.log.add(self.name + " has no attack " +
+                "crests.\n")
             return None
 
         # if everything is ok, return attacker
@@ -203,7 +196,7 @@ class Player():
                 self.send_to_graveyard(monster)
                 strlist.append(monster.name + " is dead.")
             
-        self.message = "\n".join(strlist)
+        self.log.add("\n".join(strlist))
 
     def send_to_graveyard(self, monster):
         """

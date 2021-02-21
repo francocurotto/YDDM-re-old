@@ -8,25 +8,26 @@ class DdmList():
     successfull or not, by returning a boolean or item in 
     list.
     """
-    def __init__(self, name, itemname, limit=float("inf")):
+    def __init__(self, name, itemname, log,   
+        limit=float("inf")):
+
         self.list = []
         self.name = name
         self.itemname = itemname
+        self.log = log
         self.limit = limit
-        self.message = ""
-
+        
     def get(self, i):
         """
         Get item at index i. If index out of range, ignore
-        operation and return None and update message.
+        operation and return None.
         """
         # check if index is valid
         if 0 <= i < len(self.list):
-            self.message = ""
             return self.list[i]
 
         # if invalid return none
-        self.message = "Invalid index."
+        self.log.add("Invalid index.\n")
         return None
 
     def get_copy(self, i):
@@ -37,8 +38,7 @@ class DdmList():
 
     def add(self, item):
         """
-        Add item to list. If list if full, return false and 
-        update message.
+        Add item to list. If list if full, return false.
         """
         # check if list is full
         if not self.is_full():
@@ -47,7 +47,7 @@ class DdmList():
             return True
 
         # if full, operation unsuccessfull
-        self.message = self.name + " full."
+        self.log.add(self.name + " full.\n")
         return False
 
     def remove(self, item):
@@ -62,8 +62,8 @@ class DdmList():
             return self.remove_idx(i)
 
         # if not, operation unsuccessfull
-        self.message = self.itemname + " not in " + \
-            self.name + "."
+        self.log.add(self.itemname + " not in " + self.name + 
+            ".")
         return None
 
     def remove_idx(self, i):
@@ -124,8 +124,8 @@ class DdmList():
 
 # quick child class too short to have their own file
 class ItemList(DdmList):
-    def __init__(self):
-        super().__init__("item list", "item")
+    def __init__(self, log):
+        super().__init__("item list", "item", log)
 class Graveyard(DdmList):
-    def __init__(self):
-        super().__init__("graveyard", "summon")
+    def __init__(self, log):
+        super().__init__("graveyard", "summon", log)

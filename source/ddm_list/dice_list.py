@@ -6,8 +6,8 @@ class DiceList(DdmList):
     List of dice. Used as parent of dice library, dice pool 
     and dice hand.
     """
-    def __init__(self, name="dicelist", limit=float("inf")):
-        super().__init__(name, "dice", limit)
+    def __init__(self, name, log, limit=float("inf")):
+        super().__init__(name, "dice", log, limit)
         
     def fill_from_file(self, filename):
         """
@@ -20,3 +20,8 @@ class DiceList(DdmList):
         # add dice to dice list
         for dice in dice_list:
             self.add(dice)
+
+class DiceLibrary(DiceList):
+    def __init__(self, log):
+        super().__init__("library", log)
+

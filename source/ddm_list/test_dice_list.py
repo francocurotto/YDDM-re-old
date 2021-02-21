@@ -1,7 +1,9 @@
 import sys
+sys.path.append("../game_states")
 sys.path.append("../ddm_dice")
 sys.path.append("../summons")
-from dice_list import DiceList
+from logger import Logger
+from dice_list import DiceLibrary
 
 print("Welcome to the dice list test.\n\n\
 Here you can display a whole dice library in short version,\n\
@@ -13,7 +15,8 @@ Input d to display the whole library.\n\
 Input d<number> to display a specific dice.\n\
 Input q to quit.\n")
 
-library = DiceList()
+log = Logger()
+library = DiceLibrary(log)
 library.fill_from_file("../databases/my_database.txt")
 
 while True:
@@ -32,9 +35,9 @@ while True:
             print("Couldn't interpret the dice number.\n")
             continue
         dice = library.get(dicenum)
-        if dice is not None:
+        if dice:
             print(dice.stringify() + "\n")
         else:
-            print(library.message + "\n")
+            print(library.log.flush())
 
 print("Bye!")

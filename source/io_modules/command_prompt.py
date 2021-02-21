@@ -20,8 +20,8 @@ class CommandPrompt():
         command = Command(string)
         return command
 
-    def display(self, message):
+    def display(self, log):
         """
-        Display the message of the game.
+        Display the message of the game log.
         """
-        print(message, end="")
+        print(log.flush(), end="")

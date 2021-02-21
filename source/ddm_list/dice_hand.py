@@ -4,8 +4,8 @@ class DiceHand(DiceList):
     """
     Set of 3 dice used in a turn to make a roll.
     """
-    def __init__(self):
-        super().__init__("dice hand", 3)
+    def __init__(self, log):
+        super().__init__("dice hand", log, 3)
 
     def roll(self):
         """
@@ -14,8 +14,8 @@ class DiceHand(DiceList):
         """
         # if hand is not full, return default
         if not self.is_full():
-            self.message = "Dice hand not yet completed."
-            return RollResult()
+            self.log.add("Dice hand not yet completed.\n")
+            return RollResult(self.log)
        
         # get the rolled sides
         sides = []
@@ -23,8 +23,7 @@ class DiceHand(DiceList):
             sides.append(dice.roll())
 
         # generate roll result
-        roll_result = RollResult(self.list, sides)
-        self.message = ""
+        roll_result = RollResult(self.log, self.list, sides)
 
         return roll_result
 
@@ -34,7 +33,8 @@ class RollResult():
     parameters receives the rolled dice and the sides of the 
     rolls in the same order.
     """
-    def __init__(self, dices=[], sides=[]):
+    def __init__(self, log, dices=[], sides=[]):
+        self.log = log
         self.dices = dices
         self.sides = sides
         self.dimensions = self.get_dimensions()
@@ -49,7 +49,7 @@ class RollResult():
         for level in range(1,5):
             # dice that rolled a summon crest of a specific 
             # level
-            summon_dice = DiceList(3)
+            summon_dice = DiceList(self.log, 3)
             
             # go through dice roll (is expected that dice and 
             # side are in order) 
@@ -64,7 +64,7 @@ class RollResult():
                 return summon_dice
                 
         # no summon was found
-        return DiceList(3)
+        return DiceList(self.log, 3)
 
     def stringify_sides(self):
         """
