@@ -31,6 +31,10 @@ class AttackState(DuelSubstate):
 
         # finish attack phase command
         if command.equals("f"):
+            # decooldown monster
+            self.player.decooldown_monsters()
+
+            # finish turn
             from roll_state import RollState
             self.next_state = RollState(self.duel, 
                 next_turn=True)
@@ -42,7 +46,7 @@ class AttackState(DuelSubstate):
         
         # generic commands
         else:
-            super().parse_command(command)
+            super().update(command)
         
     def run_attack_command(self, command):
         """
@@ -61,8 +65,8 @@ class AttackState(DuelSubstate):
         if command.len == 2: # monster attack
             # get opponent monster
             i1 = command.list[1]
-            attaked = self.opponent.monster_list.get(i1)
-            if not monster:
+            attacked = self.opponent.monster_list.get(i1)
+            if not attacked:
                 self.message = self.opponent.monster_list.\
                     message + "\n\n"
                 return
@@ -74,9 +78,6 @@ class AttackState(DuelSubstate):
             # perform the attack
             self.attack_monster_lord(attacker)
 
-        # 
-        self.message = "\n"
-        self.next_state.set_recurrent_message()
 
     def attack_monster(self, attacker, attacked):
         """
@@ -91,7 +92,7 @@ class AttackState(DuelSubstate):
         self.message += "\n"
 
         # if opponent has defense crests go to defense state
-        if self.opponent.crest_pool.defense_crest == 0:
+        if self.opponent.crest_pool.defense > 0:
             from defense_state import DefenseState
             self.next_state = DefenseState(self.duel,     
                 attacker, attacked)
@@ -100,13 +101,17 @@ class AttackState(DuelSubstate):
 
         # else perform the attack with no defense
         self.message += self.opponent.name
-        self.message += " has no defense crests."
-        attacker.attack_monster(attacked, defend=False)
+        self.message += " has no defense crests.\n"
+        attacker.attack_monster(attacked, defending=False)
         self.message += attacker.message + "\n"
 
         # check if any of the monsters is dead
         self.duel.check_for_casualties()
         self.message += self.duel.message + "\n"
+
+        # update message
+        self.message += "\n"
+        self.next_state.set_recurrent_message()
 
     def attack_monster_lord(self, attacker):
         """

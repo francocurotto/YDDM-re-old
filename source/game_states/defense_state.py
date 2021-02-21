@@ -1,23 +1,23 @@
 from duel_substate import DuelSubstate
 
-class DefenseState(DuelSubtate):
+class DefenseState(DuelSubstate):
     """
     State where the opponent is asked if he wants to defend
     from the player attack.
     """
-    def __init__(self, player, opponent, attacker, attacked):
-        super().__init__(player, opponent)
+    def __init__(self, duel, attacker, attacked):
+        super().__init__(duel)
         self.attacker = attacker
         self.attacked = attacked
         self.help_text = self.help_text + help_text
 
-    def run_message(self):
+    def set_initial_message(self):
         """
         As initial action, ask the opponent if he/she wants
         to defend or not.
         """
         self.message  = self.opponent.name + ", do you want"
-        self.message += " to defend the attack? [y/n]\n\n")
+        self.message += " to defend the attack? [y/n]\n\n"
 
     def update(self, command):
         """
@@ -40,15 +40,15 @@ class DefenseState(DuelSubtate):
         if command.equals("y"):
             self.opponent.crest_pool.defense -= 1
             self.attacker.attack_monster(self.attacked,  
-                defend=True)
+                defending=True)
 
         # opponent does not defend
         elif command.equals("n"):
             self.attacker.attack_monster(self.attacked,  
-                defend=True)
+                defending=False)
 
         # post attack actions
-        self.message = attacker.message "\n"
+        self.message = self.attacker.message + "\n"
 
         # check if any of the monsters is dead
         self.duel.check_for_casualties()
