@@ -7,15 +7,14 @@ class Monster(Summon):
     """
     A monster in the board.
     """
-    def __init__(self, card):
-        super().__init__(card)
+    def __init__(self, card, log):
+        super().__init__(card, log)
         # attributes extracted from card
         self.attack = self.card.attack
         self.defense = self.card.defense
         self.life = self.card.life
         self.ability = self.card.ability
         self.in_cooldown = False
-        self.message = ""
 
     def attack_monster(self, attacked, defending):
         """
@@ -31,8 +30,8 @@ class Monster(Summon):
         # case non-defending monster
         else:
             attacked.life -= power
-            self.message = attacked.name + " received " + \
-                str(power) + " points of damage."
+            self.log.add(attacked.name + " received " +
+                str(power) + " points of damage.\n")
 
         # monster enters cooldown
         self.in_cooldown = True
@@ -49,9 +48,10 @@ class Monster(Summon):
         self.in_cooldown = True
 
         # create information string
-        self.message = self.name + " attacked " + \
-            opponent.name + " Monster Lord directly.\n"
-        self.message += opponent.monster_lord.stringify()
+        self.log.add(self.name + " attacked " +
+            opponent.name + " Monster Lord directly.\n")
+        self.log.add(opponent.monster_lord.stringify() + 
+            "\n")
 
     def attack_defending_monster(self, attacked, power):
         """
@@ -59,16 +59,16 @@ class Monster(Summon):
         points.
         """
         # defending message
-        self.message = attacked.name + " defends with " + \
-            str(attacked.defense) + ".\n"
+        self.log.add(attacked.name + " defends with " + \
+            str(attacked.defense) + ".\n")
 
         # if attack surpass defense, inflict damage in 
         # attacked monster
         if power > attacked.defense:
             damage = power - attacked.defense
             attacked.life -= damage
-            self.message += attacked.name + " received " + \
-                str(damage) + " points of damage."
+            self.log.add(attacked.name + " received " + \
+                str(damage) + " points of damage.\n")
 
         # if defense surpass attack, get retaliation damage
         # in attacker monster
@@ -78,7 +78,7 @@ class Monster(Summon):
         
         # attack and defense are equal
         else:
-            self.message += "No damage inflicted."
+            self.log.add("No damage inflicted.\n")
 
     def get_attacking_power(self, attacked):
         """
@@ -109,12 +109,12 @@ class Monster(Summon):
         # case retaliation damage is activated
         if retal_dmg:
             self.life -= damage
-            self.message += self.name + " received " + \
+            self.log.add(self.name + " received " + \
                 str(damage) + " points of damage in " + \
-                "retaliation."
+                "retaliation.\n")
         # case retaliation damage deactivated
         else:
-           self.message += "No damage inflicted."
+           self.log.add("No damage inflicted.")
             
     def has_advantage(self, attacked):
         """

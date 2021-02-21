@@ -130,3 +130,13 @@ that I completely separates the game logic with the inputs
 and outputs, that way it should be easy to replace the basic
 command line interface with something like urwid (one day, 
 hopefully).
+
+# 2021-02-21
+Oh my god. I had to do so much refactoring, and I basically 
+had to do it twice, because I didn't like the first 
+implementation, but I finally did it! Funnily enough the game 
+looks exactly the same, buuut, I was able to separate logic 
+and display, so in theory it should be easier to implement a
+decent UI later. I'm very happy with the results for now, and
+I only want to check for display errors like consecutive new
+lines. But after that, the dungeon implementation starts.

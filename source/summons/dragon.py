@@ -4,8 +4,8 @@ class Dragon(Monster):
     """
     A monster of type dragon.
     """
-    def __init__(self, card):
-        super().__init__(card)
+    def __init__(self, card, log):
+        super().__init__(card, log)
 
     def has_advantage_over_spellcaster(self):
         return True

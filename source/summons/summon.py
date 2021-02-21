@@ -2,12 +2,13 @@ class Summon():
     """
     Generic summon that is played in the board of the game.
     """
-    def __init__(self, card):
+    def __init__(self, card, log):
         # attributes extracted from card
         self.name = card.name
         self.level = card.level
         self.chars = card.chars
         self.card = card
+        self.log = log
 
     def is_monster(self):
         """

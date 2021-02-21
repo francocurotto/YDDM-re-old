@@ -14,8 +14,8 @@ class WarriorCard(MonsterCard):
         self.chars_unicode.update({"type" : "W"})
         self.chars_emoji  .update({"type" : "🥋"})
 
-    def summon(self):
+    def summon(self, log):
         """
         Return the monster as a summon.
         """
-        return Warrior(self)
+        return Warrior(self, log)

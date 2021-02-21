@@ -46,16 +46,13 @@ class DuelState():
         """
         # update state
         self.state.update(command)
-        self.message = self.state.message
 
         # check if winning condition is met
         # if duel finished, early return
         self.finished = self.duel.finished()
         if self.finished:
-            self.message += self.duel.message
             return
 
         # change state and duel
         self.state = self.state.next_state
-        self.duel = self.state.duel
-        self.message += self.state.message
+        self.state.log_start_message()

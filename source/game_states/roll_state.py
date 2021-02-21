@@ -4,18 +4,19 @@ class RollState(DuelSubstate):
     """
     State when player has to roll its dice hand.
     """
-    def __init__(self, duel, next_turn=False):
-        super().__init__(duel, next_turn)
+    def __init__(self, duel, log):
+        super().__init__(duel, log)
         self.help_text = self.help_text + help_text
 
     def set_start_message(self):
         """
         As start message show player pool.
         """
-        self.start_message  = self.player.name + " TURN\n"
+        self.start_message  = self.duel.player.name 
+        self.start_message += " TURN\n"
         self.start_message += "<ROLL PHASE>\n"
         self.start_message += \
-            self.player.stringify_pool() + "\n\n"
+            self.duel.player.stringify_pool() + "\n\n"
 
     def update(self, command):
         """
@@ -36,7 +37,7 @@ class RollState(DuelSubstate):
 
         # empty hand command
         elif command.equals("e"):
-            self.player.empty_hand()
+            self.duel.player.empty_hand()
             self.log.add("\n")
 
         # roll command
@@ -58,7 +59,7 @@ class RollState(DuelSubstate):
             return
 
         for i in command.list:
-            self.player.add_dice_to_hand(i)
+            self.duel.player.add_dice_to_hand(i)
 
         self.log.add("\n")
         
@@ -76,7 +77,7 @@ class RollState(DuelSubstate):
         sorted_params = sorted(command.list, reverse=True)
 
         for i in sorted_params:
-            self.player.dice_hand.remove_idx(i)
+            self.duel.player.dice_hand.remove_idx(i)
         
         self.log.add("\n")
 
@@ -89,19 +90,20 @@ class RollState(DuelSubstate):
         # normal roll
         if command.is_empty():
             self.run_normal_roll_command()
+            self.log.add("\n")
 
         # quick roll command
         elif command.len == 3 and command.are_params_int():
             self.run_quick_roll_command(command)
+            self.log.add("\n")
 
-        self.log.add("\n")
 
     def run_normal_roll_command(self):
         """
         Run command that roll dice hand.
         """
         # Go, dice roll!
-        roll_result = self.player.roll_hand()
+        roll_result = self.duel.player.roll_hand()
         dimensions = roll_result.dimensions
 
         if not roll_result.sides: # roll failed
@@ -115,11 +117,11 @@ class RollState(DuelSubstate):
         if self.can_dimension(dimensions): # dimension able
             self.dim_state.dimensions = dimensions
             self.next_state = self.dim_state
+            self.next_state.set_start_message()
 
         else: # dimension unable
-            self.next_state = self.attack_state
-
-        self.next_state.set_start_message()
+            self.next_state = self.atk_state
+            self.next_state.set_new_start_message()
 
     def run_quick_roll_command(self, command):
         """
@@ -127,8 +129,8 @@ class RollState(DuelSubstate):
         run roll command.
         """
         # add dice to dice hand
-        idxs = command.list
-        success = self.player.add_dice_to_hand_quick(*idxs)
+        i = command.list
+        success = self.duel.player.add_dice_to_hand_quick(*i)
         if not success:
             return
 
@@ -144,9 +146,9 @@ class RollState(DuelSubstate):
             return False
 
         # hit maximum number of dimensions
-        elif self.player.hit_dimension_limit():
-            self.log.add(self.player.name + " reached " + \
-                "dimension limit.\n")
+        elif self.duel.player.hit_dimension_limit():
+            self.log.add(self.duel.player.name + 
+                " reached dimension limit.\n")
             return False
 
         # dimension possible

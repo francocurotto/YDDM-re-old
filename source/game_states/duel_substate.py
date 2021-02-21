@@ -5,8 +5,6 @@ class DuelSubstate():
     def __init__(self, duel, log):
         self.duel = duel
         self.log = log
-        self.player = self.duel.player
-        self.opponent = self.duel.opponent
         self.help_text = help_text
         self.start_message = ""
 
@@ -14,7 +12,7 @@ class DuelSubstate():
         """
         Log the starting message and reset.
         """
-        self.log.add(self.start_messge)
+        self.log.add(self.start_message)
         self.start_message = ""
 
     def update(self, command):
@@ -23,7 +21,7 @@ class DuelSubstate():
         """
         # quit (forfeit) command
         if command.equals("q"):
-            self.player.forfeited = True
+            self.duel.player.forfeited = True
 
         # help text command
         elif command.equals("h"):
@@ -39,37 +37,37 @@ class DuelSubstate():
         Get asked print message.
         """
         if command.equals("p"): # display pool     
-            msg = self.player.stringify_pool()
+            s = self.duel.player.stringify_pool()
         elif command.equals("h"): # display hand
-            msg = self.player.dice_hand.stringify()
+            s = self.duel.player.dice_hand.stringify()
         elif command.equals("c"): # display crest pool
-            msg = self.player.crest_pool.stringify_short()
+            s = self.duel.player.crest_pool.stringify_short()
         elif command.equals("oc"): # display op. crest pool
-            msg = self.opponent.crest_pool.stringify_short()
+            s = self.duel.opponent.crest_pool.stringify_short()
         elif command.equals("s"): # display summons
-            msg = self.player.stringify_summons()
+            s = self.duel.player.stringify_summons()
         elif command.equals("os"): # display op. summons
-            msg = self.opponent.stringify_summons()
+            s = self.duel.opponent.stringify_summons()
         elif command.equals("m"): # display monsters
-            msg = self.player.monster_list.stringify()
+            s = self.duel.player.monster_list.stringify()
         elif command.equals("om"): # display op. monsters
-            msg = self.opponent.monster_list.stringify()
+            s = self.duel.opponent.monster_list.stringify()
         elif command.equals("i"): # display items
-            msg = self.player.item_list.stringify()
+            s = self.duel.player.item_list.stringify()
         elif command.equals("oi"): # display op. items
-            msg = self.opponent.item_list.stringify()
+            s = self.duel.opponent.item_list.stringify()
         elif command.equals("ml"): # display monster lord
-            msg = self.player.monster_lord.stringify()
+            s = self.duel.player.monster_lord.stringify()
         elif command.equals("oml"): # display op. monster lord
-            msg = self.opponent.monster_lord.stringify()
+            s = self.duel.opponent.monster_lord.stringify()
         elif command.equals("g"): # display graveyard
-            msg = self.player.graveyard.stringify()
+            s = self.duel.player.graveyard.stringify()
         elif command.equals("og"): # display op. graveyard
-            msg = self.opponent.graveyard.stringify()
+            s = self.duel.opponent.graveyard.stringify()
         else: # invalid command
             return ""
 
-        return msg + "\n\n"
+        return s + "\n\n"
 
 help_text = "\
 General commands: \n\

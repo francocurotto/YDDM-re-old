@@ -4,8 +4,8 @@ class Warrior(Monster):
     """
     A monster of type warrior.
     """
-    def __init__(self, card):
-        super().__init__(card)
+    def __init__(self, card, log):
+        super().__init__(card, log)
 
     def has_advantage_over_dragon(self):
         return True

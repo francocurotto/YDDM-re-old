@@ -5,38 +5,37 @@ class DimensionState(DuelSubstate):
     State when player dimension a dice and summon a 
     monster/item after a roll.
     """
-    def __init__(self, duel, dimensions):
-        super().__init__(duel)
-        self.dimensions = dimensions
+    def __init__(self, duel, log):
+        super().__init__(duel, log)
         self.help_text = self.help_text + help_text
 
-    def set_initial_message(self):
+    def set_start_message(self):
         """
-        As intial message: available dimensions.
+        As start message show available dimensions.
         """
-        self.message  = "Available summons:\n"
-        self.message += self.dimensions.stringify() + "\n"
-        self.message += "Select with number [s: skip].\n\n"
+        self.start_message  = "Available summons:\n"
+        self.start_message += \
+            self.dimensions.stringify() + "\n"
+        self.start_message += \
+            "Select with number [s: skip].\n\n"
 
     def update(self, command):
         """
         Update state given command.
         """
         # default values for update
-        self.next_state = DimensionState(self.duel, 
-            self.dimensions)
-        self.message = ""
+        self.next_state = self
 
         # print available summons command
         if command.equals("p", "as"):
-            self.message  = self.dimensions.stringify()
-            self.message += "\n\n"
+            self.log.add(self.dimensions.stringify())
+            self.log.add("\n\n")
 
         # skip dimension and go to next state
         elif command.equals("s"):
-            self.next_state = AttackState(self.duel)
-            self.next_state.set_initial_message()
-            self.message = "\n"
+            self.logger.add("\n")
+            self.next_state = self.atk_state
+            self.next_state.set_new_start_message()
 
         # dice dimension
         elif command.len == 1 and command.is_int(0):
@@ -44,18 +43,15 @@ class DimensionState(DuelSubstate):
             i = command.list[0]
             dice = self.dimensions.get(i)
             if not dice:
-                self.message  = self.dimensions.message
-                self.message +="\n\n"
                 return
 
             # dimension the dice!
-            self.player.dimension_dice(dice)
+            self.duel.player.dimension_dice(dice)
 
             # define next state
-            from attack_state import AttackState
-            self.next_state = AttackState(self.duel)
-            self.next_state.set_initial_message()
-            self.message = "DIMENSION THE DICE!\n\n"
+            self.log.add("DIMENSION THE DICE!\n\n")
+            self.next_state = self.atk_state
+            self.next_state.set_new_start_message()
 
         # generic commands
         else:

@@ -5,19 +5,18 @@ class DefenseState(DuelSubstate):
     State where the opponent is asked if he wants to defend
     from the player attack.
     """
-    def __init__(self, duel, attacker, attacked):
-        super().__init__(duel)
-        self.attacker = attacker
-        self.attacked = attacked
+    def __init__(self, duel, log):
+        super().__init__(duel, log)
         self.help_text = self.help_text + help_text
 
-    def set_initial_message(self):
+    def set_start_message(self):
         """
-        As initial action, ask the opponent if he/she wants
+        As start message ask the opponent if he/she wants
         to defend or not.
         """
-        self.message  = self.opponent.name + ", do you want"
-        self.message += " to defend the attack? [y/n]\n\n"
+        self.start_message  = self.duel.opponent.name
+        self.start_message += ", do you want to defend the "
+        self.start_message += "attack? [y/n]\n\n"
 
     def update(self, command):
         """
@@ -38,7 +37,7 @@ class DefenseState(DuelSubstate):
         """
         # opponent defends
         if command.equals("y"):
-            self.opponent.crest_pool.defense -= 1
+            self.duel.opponent.crest_pool.defense -= 1
             self.attacker.attack_monster(self.attacked,  
                 defending=True)
 
@@ -47,17 +46,21 @@ class DefenseState(DuelSubstate):
             self.attacker.attack_monster(self.attacked,  
                 defending=False)
 
-        # post attack actions
-        self.message = self.attacker.message + "\n"
 
         # check if any of the monsters is dead
         self.duel.check_for_casualties()
-        self.message += self.duel.message + "\n\n"
+        self.log.add("\n\n")
 
         # define next state
-        from attack_state import AttackState
-        self.next_state = AttackState(self.duel)
-        self.next_state.set_recurrent_message()
+        self.next_state = self.atk_state
+        self.next_state.set_start_message()
+
+    def add_monsters(self, attacker, attacked):
+        """
+        Add the participant monster to the state.
+        """
+        self.attacker = attacker
+        self.attacked = attacked
 
 help_text = "\
 Defense commands: \n\

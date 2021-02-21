@@ -17,11 +17,11 @@ class ItemCard(SummonCard):
         self.chars_unicode.update({"type" : "I"})
         self.chars_emoji  .update({"type" : "❓"})
 
-    def summon(self):
+    def summon(self, log):
         """
         Return the monster as a summon.
         """
-        return Item(self)
+        return Item(self, log)
 
     def stringify(self):
         """

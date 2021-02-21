@@ -21,8 +21,8 @@ class Player():
         self.log = log
         self.dice_pool = DicePool(self.log)
         self.dice_hand = DiceHand(self.log)
-        self.dice_bin = DiceList(self.log)
-        self.crest_pool = CrestPool(self.log)
+        self.dice_bin = DiceList("dice bin", self.log)
+        self.crest_pool = CrestPool()
         self.monster_list = MonsterList(self.log)
         self.item_list = ItemList(self.log)
         self.graveyard = Graveyard(self.log)
@@ -104,7 +104,7 @@ class Player():
         3. empty dice hand
         """
         # summon card from dice
-        summon = dice.card.summon()
+        summon = dice.card.summon(self.log)
         if summon.is_monster():
             self.monster_list.add(summon)
         elif summon.is_item():
@@ -121,13 +121,9 @@ class Player():
         Remove all dice from hand and release them in dice 
         pool.
         """
-        while True:
+        hand_len = len(self.dice_hand.list)
+        for _ in range(hand_len):
             dice = self.dice_hand.remove_idx(0)
-            
-            # remove will fail when there are no more dice
-            # in dice hand
-            if not dice:
-                break
 
     def add_roll_to_crest_pool(self, roll_result):
         """

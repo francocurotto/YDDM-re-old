@@ -1,6 +1,6 @@
 import copy
 from player import Player
-from dice_list import DiceList
+from dice_list import DiceLibrary
 
 class Duel():
     """
@@ -17,23 +17,13 @@ class Duel():
         self.opponent = self.players[1]
         self.turn = 1
 
-    def next_turn_copy(self):
-        """
-        Returns a copy of the duel but at one turn in 
-        advance.
-        """
-        next_turn_duel = copy.deepcopy(self)
-        next_turn_duel.advance_turn()
-        return next_turn_duel
-
     def advance_turn(self):
         """
         Update the duel as if a turn has finished.
         """
         self.turn += 1
         
-        # lame temp variable for swap
-        temp = self.opponent
+        temp = self.opponent # lame temp variable for swap
         self.opponent = self.player
         self.player = temp
 
@@ -53,7 +43,7 @@ class Duel():
                 opponent = self.get_opponent(player)
                 self.log.add(opponent.name + 
                     " is the winner!\n" +
-                    "Broke all opponent's hearts.\n"
+                    "Broke all opponent's hearts.\n")
                 return True
 
         return False
@@ -70,16 +60,16 @@ class Duel():
         """
         Get opponent of player.
         """
-        return (set(self.players) - set(player)).pop()
+        return (set(self.players) - set([player])).pop()
 
-    def random_init():
+    def random_init(self):
         """
         Helper function to initialize a duel with two players 
         with random dice pools.
         """
         # generate dice library
         lib_filename = "databases/my_database.txt"
-        library = DiceList()
+        library = DiceLibrary(self.log)
         library.fill_from_file(lib_filename)
     
         # generate players
