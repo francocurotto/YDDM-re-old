@@ -49,7 +49,7 @@ class RollResult():
         for level in range(1,5):
             # dice that rolled a summon crest of a specific 
             # level
-            summon_dice = DiceList(self.log, 3)
+            summon_dice = DiceList("dice list", self.log, 3)
             
             # go through dice roll (is expected that dice and 
             # side are in order) 
@@ -64,7 +64,7 @@ class RollResult():
                 return summon_dice
                 
         # no summon was found
-        return DiceList(self.log, 3)
+        return DiceList("dice list", self.log, 3)
 
     def stringify_sides(self):
         """

@@ -33,7 +33,7 @@ class DimensionState(DuelSubstate):
 
         # skip dimension and go to next state
         elif command.equals("s"):
-            self.logger.add("\n")
+            self.log.add("\n")
             self.next_state = self.atk_state
             self.next_state.set_new_start_message()
 
@@ -43,6 +43,7 @@ class DimensionState(DuelSubstate):
             i = command.list[0]
             dice = self.dimensions.get(i)
             if not dice:
+                self.log.add("\n")
                 return
 
             # dimension the dice!

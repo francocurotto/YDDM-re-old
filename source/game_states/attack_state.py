@@ -104,7 +104,7 @@ class AttackState(DuelSubstate):
 
         # check if any of the monsters is dead
         self.duel.check_for_casualties()
-        log.add("\n\n")
+        self.log.add("\n")
 
     def attack_monster_lord(self, attacker):
         """
@@ -123,7 +123,7 @@ class AttackState(DuelSubstate):
 
         # do the attack
         attacker.attack_ml(self.duel.opponent)
-        log.add("\n")
+        self.log.add("\n")
 
     def stringify_state(self):
         """

@@ -46,10 +46,9 @@ class DefenseState(DuelSubstate):
             self.attacker.attack_monster(self.attacked,  
                 defending=False)
 
-
         # check if any of the monsters is dead
         self.duel.check_for_casualties()
-        self.log.add("\n\n")
+        self.log.add("\n")
 
         # define next state
         self.next_state = self.atk_state

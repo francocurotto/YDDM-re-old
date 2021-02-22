@@ -186,13 +186,10 @@ class Player():
         graveyard and add a message to the return string.
         """
         # check if monster is dead
-        strlist = []
         for monster in self.monster_list.list:
             if monster.life <= 0:
                 self.send_to_graveyard(monster)
-                strlist.append(monster.name + " is dead.")
-            
-        self.log.add("\n".join(strlist))
+                self.log.add(monster.name + " is dead.\n")
 
     def send_to_graveyard(self, monster):
         """
