@@ -12,10 +12,6 @@ class SummonCard():
         self.name = params["name"]
         self.level = params["level"]
 
-        self.chars_ascii   = {}
-        self.chars_unicode = {}
-        self.chars_emoji   = {}
-
         self.chars = self.select_chars()
 
     def select_chars(self):

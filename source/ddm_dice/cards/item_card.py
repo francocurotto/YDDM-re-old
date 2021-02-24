@@ -7,15 +7,15 @@ class ItemCard(SummonCard):
     """
     An item card.
     """
+    # display icons
+    chars_ascii   = {"type" : "I"}
+    chars_unicode = {"type" : "I"}
+    chars_emoji   = {"type" : "❓"}
+
     def __init__(self, params):
         super().__init__(params)
         self.type = "Item"
         self.ability = params["ability"]
-
-        # display icons
-        self.chars_ascii  .update({"type" : "I"})
-        self.chars_unicode.update({"type" : "I"})
-        self.chars_emoji  .update({"type" : "❓"})
 
     def summon(self, log):
         """

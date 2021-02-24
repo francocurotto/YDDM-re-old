@@ -4,23 +4,23 @@ class MonsterCard(SummonCard):
     """
     Generic typeless monster card.
     """
+    # display icons
+    chars_ascii   = {"attack"  : "A",
+                     "defense" : "D",
+                     "life"    : "L"}
+    chars_unicode = {"attack"  : "⚔",
+                     "defense" : "⊚",
+                     "life"    : "❤"}
+    chars_emoji   = {"attack"  : "⚔️ ",
+                     "defense" : "🛡️ ",
+                     "life"    : "❤️ "}
+
     def __init__(self, params):
         super().__init__(params)
         self.attack = params["attack"]
         self.defense = params["defense"]
         self.life = params["life"]
         self.ability = params["ability"]
-
-        # display icons
-        self.chars_ascii  .update({"attack"  : "A",
-                                   "defense" : "D",
-                                   "life"    : "L"})
-        self.chars_unicode.update({"attack"  : "⚔",
-                                   "defense" : "⊚",
-                                   "life"    : "❤"})
-        self.chars_emoji  .update({"attack"  : "⚔️ ",
-                                   "defense" : "🛡️ ",
-                                   "life"    : "❤️ "})
 
     def stringify(self):
         """
