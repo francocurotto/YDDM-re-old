@@ -1,12 +1,12 @@
 from colorama import Fore
-from functions import color
+from functions import color, grayout
 
 class EmptyTile():
     """
     Tile with no dungeon path in it.
     """
     # display icons
-    char_ascii   = color("[]", Fore.BLACK)
+    char_ascii   = grayout("[]")
     char_unicode = color("██", Fore.BLACK)
     char_emoji   = "⬛" 
 
