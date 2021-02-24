@@ -1,4 +1,4 @@
-import copy
+from colorama import Fore
 from player import Player
 from dice_list import DiceLibrary
 
@@ -6,6 +6,7 @@ class Duel():
     """
     A duel were player are playing YDDM.
     """
+    
     def __init__(self, log):
         self.log = log
         # For now, creates players with random pools
@@ -73,11 +74,29 @@ class Duel():
         library.fill_from_file(lib_filename)
     
         # generate players
-        player1 = Player("Player 1", self.log)
-        player2 = Player("Player 2", self.log)
+        player1 = Player("Player 1", player1_attr, self.log)
+        player2 = Player("Player 2", player2_attr, self.log)
     
         # fill dice pool of players with random dice
         player1.dice_pool.fill_random(library)
         player2.dice_pool.fill_random(library)
             
         return player1, player2   
+
+#display icons
+player1_attr = {
+    "color"       : Fore.BLUE,
+    "emoji_chars" : {"heart"   : "💙",
+                     "tile"    : "🟦",
+                     "ML"      : "💙",
+                     "monster" : "👾",
+                     "item"    : "🧿"}
+}
+player2_attr = {
+    "color"       : Fore.RED,
+    "emoji_chars" : {"heart"   : "❤️ ",
+                     "tile"    : "🟥",
+                     "ML"      : "❤️ ",
+                     "monster" : "👹",
+                     "item"    : "🧧"}
+}

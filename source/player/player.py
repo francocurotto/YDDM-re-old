@@ -15,9 +15,8 @@ class Player():
     """
     summon_limit = 10
 
-    def __init__(self, name, log):
+    def __init__(self, name, attr, log):
         self.name = name
-        self.color = None
         self.log = log
         self.dice_pool = DicePool(self.log)
         self.dice_hand = DiceHand(self.log)
@@ -28,6 +27,22 @@ class Player():
         self.graveyard = Graveyard(self.log)
         self.monster_lord = MonsterLord()
         self.forfeited = False
+
+        # display icons
+        self.color = attr["color"]
+        self.ascii_chars = {
+            "heart"   : color("<3", self.color),
+            "tile"    : color("[]", self.color),
+            "ML"      : color("ML", self.color),
+            "monster" : color("M",  self.color),
+            "item"    : color("I",  self.color)}
+        self.unicode_chars = {
+            "heart"   : color("♥",  self.color),
+            "tile"    : color("██", self.color),
+            "ML"      : color("♛♥", self.color),
+            "monster" : color("ǒ",  self.color),
+            "item"    : color("⍰",  self.color)}
+        self.emoji_chars = attr["emoji_chars"]
 
     def add_dice_to_hand(self, i):
         """

@@ -1,9 +1,9 @@
 from duel_substate import DuelSubstate
 
-class DimensionState(DuelSubstate):
+class SummonState(DuelSubstate):
     """
-    State when player dimension a dice and summon a 
-    monster/item after a roll.
+    State when player choose the dice monster/item to summon 
+    after a roll.
     """
     def __init__(self, duel, log):
         super().__init__(duel, log)
@@ -11,7 +11,7 @@ class DimensionState(DuelSubstate):
 
     def set_start_message(self):
         """
-        As start message show available dimensions.
+        As start message show summons.
         """
         self.start_message  = "Available summons:\n"
         self.start_message += \
@@ -59,7 +59,7 @@ class DimensionState(DuelSubstate):
             super().update(command)
 
 help_text = "\n\n\
-Dimension commands: \n\
+Summon commands: \n\
     p as: print available summons \n\
-    s   : skip dimension \n\
-    #   : dimension dice"
+    s   : skip summon \n\
+    #   : summon dice"

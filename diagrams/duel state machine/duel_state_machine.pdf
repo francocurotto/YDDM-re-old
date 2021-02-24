@@ -227,33 +227,33 @@ closepath stroke
 14 /Times-Roman set_font
 202.1949 241.8 moveto 127 (dimension unable) alignedtext
 grestore
-% dimension1
+% summon1
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-265.6949 199 59.5901 18 ellipse_path stroke
+265.6949 199 51.9908 18 ellipse_path stroke
 0.66667 1 1 nodecolor
 14 /Times-Roman set_font
-227.6949 195.3 moveto 76 (Dimension) alignedtext
+233.6949 195.3 moveto 64 (Summon) alignedtext
 grestore
-% roll1->dimension1
+% roll1->summon1
 gsave
 1 setlinewidth
 0 0 0 edgecolor
 newpath 57.4894 199 moveto
-91.2999 199 149.4744 199 195.5912 199 curveto
+93.184 199 156.0336 199 203.1821 199 curveto
 stroke
 0 0 0 edgecolor
-newpath 195.8321 202.5001 moveto
-205.832 199 lineto
-195.832 195.5001 lineto
+newpath 203.2903 202.5001 moveto
+213.2902 199 lineto
+203.2902 195.5001 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 195.8321 202.5001 moveto
-205.832 199 lineto
-195.832 195.5001 lineto
+newpath 203.2903 202.5001 moveto
+213.2902 199 lineto
+203.2902 195.5001 lineto
 closepath stroke
 0 0 0 edgecolor
 14 /Times-Roman set_font
@@ -326,24 +326,24 @@ closepath stroke
 14 /Times-Roman set_font
 340.9892 175.1274 moveto 40 (finish) alignedtext
 grestore
-% dimension1->dungeon1
+% summon1->dungeon1
 gsave
 1 setlinewidth
 0 0 0 edgecolor
-newpath 325.7427 199 moveto
-335.6438 199 345.9377 199 355.8939 199 curveto
+newpath 318.066 199 moveto
+330.1734 199 343.2009 199 355.7036 199 curveto
 stroke
 0 0 0 edgecolor
-newpath 356.1165 202.5001 moveto
-366.1164 199 lineto
-356.1164 195.5001 lineto
+newpath 356.0508 202.5001 moveto
+366.0508 199 lineto
+356.0507 195.5001 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 356.1165 202.5001 moveto
-366.1164 199 lineto
-356.1164 195.5001 lineto
+newpath 356.0508 202.5001 moveto
+366.0508 199 lineto
+356.0507 195.5001 lineto
 closepath stroke
 grestore
 % defense1->dungeon1
@@ -400,33 +400,33 @@ closepath stroke
 14 /Times-Roman set_font
 202.1949 61.8 moveto 127 (dimension unable) alignedtext
 grestore
-% dimension2
+% summon2
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-265.6949 18 59.5901 18 ellipse_path stroke
+265.6949 18 51.9908 18 ellipse_path stroke
 0 1 1 nodecolor
 14 /Times-Roman set_font
-227.6949 14.3 moveto 76 (Dimension) alignedtext
+233.6949 14.3 moveto 64 (Summon) alignedtext
 grestore
-% roll2->dimension2
+% roll2->summon2
 gsave
 1 setlinewidth
 0 0 0 edgecolor
 newpath 57.4894 18 moveto
-91.2999 18 149.4744 18 195.5912 18 curveto
+93.184 18 156.0336 18 203.1821 18 curveto
 stroke
 0 0 0 edgecolor
-newpath 195.8321 21.5001 moveto
-205.832 18 lineto
-195.832 14.5001 lineto
+newpath 203.2903 21.5001 moveto
+213.2902 18 lineto
+203.2902 14.5001 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 195.8321 21.5001 moveto
-205.832 18 lineto
-195.832 14.5001 lineto
+newpath 203.2903 21.5001 moveto
+213.2902 18 lineto
+203.2902 14.5001 lineto
 closepath stroke
 0 0 0 edgecolor
 14 /Times-Roman set_font
@@ -490,24 +490,24 @@ closepath stroke
 14 /Times-Roman set_font
 488.1857 39.8 moveto 91 (defense able) alignedtext
 grestore
-% dimension2->dungeon2
+% summon2->dungeon2
 gsave
 1 setlinewidth
 0 0 0 edgecolor
-newpath 325.7427 18 moveto
-335.6438 18 345.9377 18 355.8939 18 curveto
+newpath 318.066 18 moveto
+330.1734 18 343.2009 18 355.7036 18 curveto
 stroke
 0 0 0 edgecolor
-newpath 356.1165 21.5001 moveto
-366.1164 18 lineto
-356.1164 14.5001 lineto
+newpath 356.0508 21.5001 moveto
+366.0508 18 lineto
+356.0507 14.5001 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 356.1165 21.5001 moveto
-366.1164 18 lineto
-356.1164 14.5001 lineto
+newpath 356.0508 21.5001 moveto
+366.0508 18 lineto
+356.0507 14.5001 lineto
 closepath stroke
 grestore
 % defense2->dungeon2

@@ -10,9 +10,9 @@ class SpellcasterCard(MonsterCard):
         self.type = "Spellcaster"
 
         # display icons
-        self.chars_ascii  .update({"type" : "S"})
-        self.chars_unicode.update({"type" : "S"})
-        self.chars_emoji  .update({"type" : "🧙"})
+        self.chars_ascii  ["type"] = "S"
+        self.chars_unicode["type"] = "S"
+        self.chars_emoji  ["type"] = "🧙"
     
     def summon(self, log):
         """

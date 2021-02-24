@@ -10,9 +10,9 @@ class WarriorCard(MonsterCard):
         self.type = "Warrior"
 
         # display icons
-        self.chars_ascii  .update({"type" : "W"})
-        self.chars_unicode.update({"type" : "W"})
-        self.chars_emoji  .update({"type" : "🥋"})
+        self.chars_ascii  ["type"] = "W"
+        self.chars_unicode["type"] = "W"
+        self.chars_emoji  ["type"] = "🥋"
 
     def summon(self, log):
         """

@@ -10,9 +10,9 @@ class UndeadCard(MonsterCard):
         self.type = "Undead"
 
         # display icons
-        self.chars_ascii  .update({"type" : "U"})
-        self.chars_unicode.update({"type" : "U"})
-        self.chars_emoji  .update({"type" : "🧟"})
+        self.chars_ascii  ["type"] = "U"
+        self.chars_unicode["type"] = "U"
+        self.chars_emoji  ["type"] = "🧟"
 
     def summon(self, log):
         """

@@ -115,8 +115,8 @@ class RollState(DuelSubstate):
 
         # define next state
         if self.can_dimension(dimensions): # dimension able
-            self.dim_state.dimensions = dimensions
-            self.next_state = self.dim_state
+            self.sum_state.dimensions = dimensions
+            self.next_state = self.sum_state
             self.next_state.set_start_message()
 
         else: # dimension unable

@@ -10,9 +10,9 @@ class BeastCard(MonsterCard):
         self.type = "Beast"
 
         # display icons
-        self.chars_ascii  .update({"type" : "B"})
-        self.chars_unicode.update({"type" : "B"})
-        self.chars_emoji  .update({"type" : "🐺"})
+        self.chars_ascii  ["type"] = "B"
+        self.chars_unicode["type"] = "B"
+        self.chars_emoji  ["type"] = "🐺"
 
     def summon(self, log):
         """
