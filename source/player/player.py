@@ -16,6 +16,26 @@ class Player():
     summon_limit = 10
 
     def __init__(self, name, attr, log):
+        # display icons
+        self.color = attr["color"]
+        self.chars_ascii = {
+            "heart"   : color("<3", self.color),
+            "tile"    : color("[]", self.color),
+            "ML"      : color("ML", self.color),
+            "monster" : color("MS", self.color),
+            "item"    : color("IT", self.color)}
+        self.chars_unicode = {
+            "heart"   : color("♥",  self.color),
+            "tile"    : color("██", self.color),
+            "ML"      : color("♛♥", self.color),
+            "monster" : color("òó", self.color),
+            "item"    : color("⍰⍰", self.color)}
+        self.chars_emoji = attr["emoji_chars"]
+        self.chars = self.select_chars()
+        self.ml_chars = {"heart" : self.chars["heart"],
+                         "tile"  : self.chars["ML"]}
+
+        # player parameters
         self.name = name
         self.log = log
         self.dice_pool = DicePool(self.log)
@@ -25,24 +45,8 @@ class Player():
         self.monster_list = MonsterList(self.log)
         self.item_list = ItemList(self.log)
         self.graveyard = Graveyard(self.log)
-        self.monster_lord = MonsterLord()
+        self.monster_lord = MonsterLord(self.ml_chars)
         self.forfeited = False
-
-        # display icons
-        self.color = attr["color"]
-        self.ascii_chars = {
-            "heart"   : color("<3", self.color),
-            "tile"    : color("[]", self.color),
-            "ML"      : color("ML", self.color),
-            "monster" : color("M",  self.color),
-            "item"    : color("I",  self.color)}
-        self.unicode_chars = {
-            "heart"   : color("♥",  self.color),
-            "tile"    : color("██", self.color),
-            "ML"      : color("♛♥", self.color),
-            "monster" : color("ǒ",  self.color),
-            "item"    : color("⍰",  self.color)}
-        self.emoji_chars = attr["emoji_chars"]
 
     def add_dice_to_hand(self, i):
         """
@@ -216,6 +220,22 @@ class Player():
         # set dead monster life to zero for consistency
         monster.life = 0
         self.graveyard.add(monster)
+
+    def select_chars(self):
+        """
+        Select the type of characters that will be used when
+        printing card information.
+        """
+        # weird import here so that the print_type parameter
+        # can be changed at runtime
+        from settings import print_type
+
+        if print_type == "ascii":
+            return self.chars_ascii
+        elif print_type == "unicode":
+            return self.chars_unicode
+        elif print_type == "emoji":
+            return self.chars_emoji
 
     def stringify_pool(self):
         """

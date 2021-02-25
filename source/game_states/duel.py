@@ -44,7 +44,7 @@ class Duel():
                 opponent = self.get_opponent(player)
                 self.log.add(opponent.name + 
                     " is the winner!\n" +
-                    "Broke all opponent's hearts.\n")
+                    "Destroyed all opponent's hearts.\n")
                 return True
 
         return False

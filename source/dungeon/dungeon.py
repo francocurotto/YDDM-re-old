@@ -29,6 +29,27 @@ class Dungeon():
                 row.append(EmptyTile())
             self.array.append(row)
 
+    def add_tile(self, tile, pos):
+        """
+        Tries to add tile to dungeon at position pos = (y,x).
+        If its not successfull for any reason, return False.
+        """
+        # check in bound
+        if not in_bound(pos):
+            log.add("Tile out of bound.")
+            return False
+        
+        # check space is not already occupied by other 
+        # dungeon tile
+        old_tile = self.array[y][x] 
+        if old_tile.is_dungeon():
+            log.add("Tile already ocuppied by dungeon.")
+            return False
+
+        # finally add tile
+        self.array[y][x] = tile
+        return True
+
     def select_chars(self):
         """
         Select the type of characters that will be used when
@@ -65,7 +86,7 @@ class Dungeon():
             # string before row
             prefix = str(i+1).rjust(2) + self.chars["block"]
             
-            # create los of row strings
+            # create list of row strings
             tile_list = [tile.stringify() for tile in row]
             tile_str  = "".join(tile_list)
 

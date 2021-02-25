@@ -5,19 +5,19 @@ class MonsterLord():
     The representation of the player in the dungeon. When
     the monster lord is beaten the game is over.
     """
-    def __init__(self):
+    def __init__(self, ml_chars):
         self.hearts = 3
         self.chars_ascii = {"type"    : "ML",
-                            "heart"   : "<3",
                             "noheart" : grayout("<3")}
         self.chars_unicode = {"type"    : "♛",
-                              "heart"   : "♥",
                               "noheart" : "♡"}
         self.chars_emoji = {"type"    : "👑",
-                            "heart"   : "❤️ ",
                             "noheart" : "🖤"}
 
         self.chars = self.select_chars()
+        # add player specific chars
+        self.chars["heart"] = ml_chars["heart"]
+        self.chars["tile"]  = ml_chars["tile"]
 
     def is_dead(self):
         """
