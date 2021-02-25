@@ -14,7 +14,8 @@ class Dungeon():
     WIDTH  = 19
     HEIGHT = 13
 
-    def __init__(self):
+    def __init__(self, log):
+        self.log = log
         self.array  = []
         self.fill_array()
         self.chars = self.select_chars()
@@ -29,26 +30,48 @@ class Dungeon():
                 row.append(EmptyTile())
             self.array.append(row)
 
-    def add_tile(self, tile, pos):
+    def add_dungeon_tile(self, tile, pos):
         """
-        Tries to add tile to dungeon at position pos = (y,x).
+        Tries to add dungeon tile to dungeon at position pos. 
         If its not successfull for any reason, return False.
         """
         # check in bound
-        if not in_bound(pos):
-            log.add("Tile out of bound.")
+        if not self.in_bound(pos):
+            self.log.add("Tile out of bound.\n")
             return False
         
         # check space is not already occupied by other 
         # dungeon tile
-        old_tile = self.array[y][x] 
+        old_tile = self.get_tile(pos)
         if old_tile.is_dungeon():
-            log.add("Tile already ocuppied by dungeon.")
+            self.log.add("Tile already ocuppied\n")
             return False
 
-        # finally add tile
-        self.array[y][x] = tile
+        # finally set the tile
+        self.set_tile(tile, pos)
         return True
+
+    def in_bound(self, pos):
+        """
+        Chack if a position, falls inside the dungeon array.
+        """
+        in_bound_y = 0 <= pos.y < len(self.array)
+        in_bound_x = 0 <= pos.x < len(self.array[0])
+
+        return in_bound_y and in_bound_x
+
+    def get_tile(self, pos):
+        """
+        Get tile at position pos (y,x).
+        """
+        return self.array[pos.y][pos.x]
+
+    def set_tile(self, tile, pos):
+        """
+        Set tile at position pos (y,x), replacing previous 
+        tile.
+        """
+        self.array[pos.y][pos.x] = tile
 
     def select_chars(self):
         """
@@ -123,3 +146,29 @@ class Dungeon():
         Create a row of blocks.
         """
         return "  " + (self.WIDTH+2)*self.chars["block"]
+
+class Pos():
+    """
+    Defines a position in the y-x plane. For the contstructor
+    a single string is given with the x dimension given as 
+    a letter (single character) and the y dimension as a 
+    number, in that order with no spaces.
+    """
+    def __init__(self, s):
+        try:
+            # correct for 1-indexing on user side
+            self.y = int(s[1:]) - 1
+            self.x = ord(s[0]) - 97
+            self.valid = True
+        except ValueError:
+            self.y = None
+            self.x = None
+            self.valid = False
+
+    def stringify(self):
+        """
+        Returns string version of object.
+        """
+        # correct for 0-indexing of python
+        return "(" + chr(self.x+97) + "," + \
+            str(self.y+1) + ")"

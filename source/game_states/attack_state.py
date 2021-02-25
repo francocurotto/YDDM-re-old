@@ -141,6 +141,9 @@ class AttackState(DuelSubstate):
         s += "\n"
         s += self.duel.opponent.name + " monsters:\n"
         s += self.duel.opponent.monster_list.stringify()
+        s += "\n\n"
+        s +="Dungeon:\n"
+        s += self.duel.dungeon.stringify()
         return s
 
 def is_attack_command(command):

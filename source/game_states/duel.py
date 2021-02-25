@@ -1,17 +1,21 @@
 from colorama import Fore
 from player import Player
 from dice_list import DiceLibrary
+from dungeon import Dungeon
 
 class Duel():
     """
     A duel were player are playing YDDM.
     """
-    
     def __init__(self, log):
         self.log = log
+
         # For now, creates players with random pools
         self.player1, self.player2 = self.random_init()
         self.players = [self.player1, self.player2]
+
+        # create dungeon
+        self.dungeon = Dungeon(self.log)
 
         # define current player and opponent
         self.player = self.players[0]

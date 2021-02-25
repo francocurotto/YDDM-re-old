@@ -5,6 +5,9 @@ class Tile():
     def __init__(self):
         self.char = self.select_char()
 
+    def is_dungeon(self):
+        return False
+
     def select_char(self):
         """
         Select the type of characters that will be used when
