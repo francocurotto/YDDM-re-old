@@ -26,7 +26,7 @@ class Player():
             "item"    : color("IT", self.color)}
         self.chars_unicode = {
             "heart"   : color("♥",  self.color),
-            "tile"    : color("██", self.color),
+            "tile"    : color("ロ", self.color),
             "ML"      : color("♛♥", self.color),
             "monster" : color("òó", self.color),
             "item"    : color("⍰⍰", self.color)}
