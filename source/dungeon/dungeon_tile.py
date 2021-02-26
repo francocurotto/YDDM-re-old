@@ -15,7 +15,8 @@ class DungeonTile(Tile):
         """
         Returns a string version of object.
         """
-        # if tile has something, return the tile version of it
+        # if tile has something, return the tile version of 
+        # it
         if self.content is not None:
             return self.content.stringify_tile()
         else:

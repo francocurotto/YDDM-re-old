@@ -1,4 +1,5 @@
 from empty_tile import EmptyTile
+from pos import Pos
 
 class Dungeon():
     """
@@ -14,11 +15,19 @@ class Dungeon():
     WIDTH  = 19
     HEIGHT = 13
 
-    def __init__(self, log):
+    def __init__(self, players, log):
         self.log = log
         self.array  = []
         self.fill_array()
         self.chars = self.select_chars()
+
+        # create initial tiles with monsterlord for each 
+        # player. Player 1:
+        tile = players[0].create_tile(player.monster_lord)
+        self.set_tile(tile, Pos(6,0))
+        # Player 2
+        tile = players[1].create_tile(player.monster_lord)
+        self.set_tile(tile, Pos(6,18))
         
     def fill_array(self):
         """
@@ -30,26 +39,60 @@ class Dungeon():
                 row.append(EmptyTile())
             self.array.append(row)
 
-    def add_dungeon_tile(self, tile, pos):
+    def set_net(self, net, pos, player, summon):
         """
-        Tries to add dungeon tile to dungeon at position pos. 
-        If its not successfull for any reason, return False.
+        Place net from player at position pos into dungeon.
+        First check that the net can be properly placed in
+        position. Return false if net cannot be placed.
         """
-        # check in bound
-        if not self.in_bound(pos):
-            self.log.add("Tile out of bound.\n")
-            return False
-        
-        # check space is not already occupied by other 
-        # dungeon tile
-        old_tile = self.get_tile(pos)
-        if old_tile.is_dungeon():
-            self.log.add("Tile already ocuppied\n")
-            return False
+        # update net with position
+        net.offset(pos)
 
-        # finally set the tile
-        self.set_tile(tile, pos)
-        return True
+        # check if net can be placed
+        success = self.check_net(net, player)
+        if not success:
+            return success
+
+        # if net can be placed, place it
+        for pos in net.pos_list:
+            if pos == Pos(0,0): # center pos => add summon
+                tile = player.create_tile(summon)
+            else: # if not center pos, create empty tile
+                tile = player.create_tile()
+
+            self.set_tile(tile, pos)
+
+        return success
+
+    def check_net(self, net, player):
+        """
+        Check if net can be properly placed in dungeon by
+        player.
+        """
+        # check in bound condition
+        for pos in net.pos_list:
+            if not self.in_bound(pos):
+                self.log.add("Dice net out of bound.\n")
+                return False
+
+        # check no overlaping condition
+        for pos in net.pos_list:
+            if self.overlaps(pos):
+                self.log.add("Dice net overlaps dungeon" + \
+                    "path\n")
+                return False
+
+        # check connection with player dungeon condition
+        for pos in net.pos_list:
+            neighbors = self.get_neighbors(pos)
+            for neighbor in neighbors:
+                if neighbor in player.tiles:
+                    # last condition so I can safely return
+                    # and escape of the nested loop. What
+                    # happened to the good old days of GOTO?
+                    return True
+
+        return False
 
     def in_bound(self, pos):
         """
@@ -59,6 +102,14 @@ class Dungeon():
         in_bound_x = 0 <= pos.x < len(self.array[0])
 
         return in_bound_y and in_bound_x
+
+    def overlaps(self, pos):
+        """
+        Checks if position overlaps with a dungeon tile 
+        already existing in the dungeon.
+        """
+        tile = self.get_tile(pos)
+        return tile.is_dungeon()
 
     def get_tile(self, pos):
         """
