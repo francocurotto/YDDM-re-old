@@ -7,7 +7,7 @@ class Dungeon():
     """
     # display icons
     chars_ascii   = {"block" : "[]"}
-    chars_unicode = {"block" : "██"}
+    chars_unicode = {"block" : "ロ"}
     chars_emoji   = {"block" : "🔲"}
 
     # dungeon fixed values
@@ -146,29 +146,3 @@ class Dungeon():
         Create a row of blocks.
         """
         return "  " + (self.WIDTH+2)*self.chars["block"]
-
-class Pos():
-    """
-    Defines a position in the y-x plane. For the contstructor
-    a single string is given with the x dimension given as 
-    a letter (single character) and the y dimension as a 
-    number, in that order with no spaces.
-    """
-    def __init__(self, s):
-        try:
-            # correct for 1-indexing on user side
-            self.y = int(s[1:]) - 1
-            self.x = ord(s[0]) - 97
-            self.valid = True
-        except ValueError:
-            self.y = None
-            self.x = None
-            self.valid = False
-
-    def stringify(self):
-        """
-        Returns string version of object.
-        """
-        # correct for 0-indexing of python
-        return "(" + chr(self.x+97) + "," + \
-            str(self.y+1) + ")"

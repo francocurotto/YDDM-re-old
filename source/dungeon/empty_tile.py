@@ -8,7 +8,7 @@ class EmptyTile(Tile):
     """
     # display icons
     char_ascii   = grayout("[]")
-    char_unicode = color("██", Fore.BLACK)
+    char_unicode = color("ロ", Fore.BLACK)
     char_emoji   = "⬛" 
 
     def __init__(self):
