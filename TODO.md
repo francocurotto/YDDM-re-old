@@ -1,6 +1,9 @@
 TODO:
 - Implement dungeon!!
-    - implement diferent nets
+    - implement dungeon_state
+- implement monster movement!!
+- reimplement attack so that is only valid when monsters are
+one square away from target
 
 Improvements:
 - remove check for player.check_for_casualties and just check

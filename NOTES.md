@@ -140,3 +140,24 @@ and display, so in theory it should be easier to implement a
 decent UI later. I'm very happy with the results for now, and
 I only want to check for display errors like consecutive new
 lines. But after that, the dungeon implementation starts.
+
+# 2021-02-27
+Start implementing the dungeon! And for now is looking pretty
+good. I run a test for dimensioning dice nets and it works
+like a charm. Next step: implement dungeon_state and 
+integrate the dungeon into the duel. At first the dungeon 
+will not serve any prupose but it will be good to see that
+the players are dimensioning properly and the dungeon is 
+displayed correctly.
+
+After that I have to implement monster movement. I have no 
+ideaaaa how I'll do it. I need to implement an algorithm that
+computes the shortest path between two points in the dungeon
+path, taking into account impossible cases and obstacles 
+(opponent monsters, items, monster lords). I know that I'll
+have to implement some type of well known shortest path 
+algorithm, but I'm not sure which one will be the simplest to
+do (Breadth-first search?). Also I don't remember if player's
+own monsters count as obstacles or if monsters can move 
+through them. I have to check that out. Maybe I'll have to
+finally download and play the game again?? Hahah.

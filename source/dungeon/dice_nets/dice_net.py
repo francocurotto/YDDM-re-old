@@ -61,3 +61,43 @@ class DiceNet():
         """
         for pos in self.pos_list:
             pos.flip_ud()
+
+def create_net(string, log):
+    #imports
+    from .net_t1 import NetT1
+    from .net_t2 import NetT2
+    from .net_z1 import NetZ1
+    from .net_z2 import NetZ2
+    from .net_x1 import NetX1
+    from .net_x2 import NetX2
+    from .net_m1 import NetM1
+    from .net_m2 import NetM2
+    from .net_s1 import NetS1
+    from .net_s2 import NetS2
+    from .net_l1 import NetL1
+
+    # conditional returns
+    if string == "T1":
+        return NetT1(log)
+    if string == "T2":
+        return NetT2(log)
+    if string == "Z1":
+        return NetZ1(log)
+    if string == "Z2":
+        return NetZ2(log)
+    if string == "X1":
+        return NetX1(log)
+    if string == "X2":
+        return NetX2(log)
+    if string == "M1":
+        return NetM1(log)
+    if string == "M2":
+        return NetM2(log)
+    if string == "S1":
+        return NetS1(log)
+    if string == "S2":
+        return NetS2(log)
+    if string == "L1":
+        return NetL1(log)
+    # invalid net name
+    return None

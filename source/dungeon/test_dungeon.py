@@ -10,7 +10,7 @@ from logger import Logger
 from duel import Duel
 from dungeon import Dungeon
 from dice_nets.pos import Pos
-from dice_nets.net_x1 import NetX1
+from dice_nets.dice_net import create_net
 
 #settings.print_type = "ascii"
 #settings.print_type = "unicode"
@@ -20,25 +20,33 @@ settings.library_path = "../" + settings.library_path
 log = Logger()
 duel = Duel(log)
 dungeon = Dungeon(duel.players, log)
-player = duel.players[0]
 
+i = False
 while True:
+    # get player
+    player = duel.players[i]
+    # update index
+    i = not i
+
     print(dungeon.stringify() + "\n")
-    command = input("Add a tile at <xy> ")
+    command = input("Add a net <net> <xy> <trans> ")
     if command == "q":
         break
     command_list = command.split()
+    if len(command_list) < 2:
+        continue
 
-    # split command
-    pos = Pos.from_string(command_list[0])
-    trans_list = command_list[1:]
+    # get net
+    dice_net = create_net(command_list[0], log)
+    if not dice_net:
+        continue
+    # get pos
+    pos = Pos.from_string(command_list[1])
     if not pos:
         continue
 
-    # create net
-    dice_net = NetX1(log)
-
     # apply transformations
+    trans_list = command_list[2:]
     success = dice_net.apply_trans(trans_list)
     if not success:
         print(log.flush())
