@@ -1,8 +1,6 @@
 TODO:
 - Implement dungeon!!
-    - implement player's create_tile
-    - test set_net from dungeon
-    - test setting net with different transformations
+    - implement diferent nets
 
 Improvements:
 - remove check for player.check_for_casualties and just check
