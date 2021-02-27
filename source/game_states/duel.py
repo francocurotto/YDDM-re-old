@@ -15,7 +15,7 @@ class Duel():
         self.players = [self.player1, self.player2]
 
         # create dungeon
-        self.dungeon = Dungeon(self.log)
+        self.dungeon = Dungeon(self.players, self.log)
 
         # define current player and opponent
         self.player = self.players[0]
@@ -73,9 +73,9 @@ class Duel():
         with random dice pools.
         """
         # generate dice library
-        lib_filename = "databases/my_database.txt"
+        from settings import library_path
         library = DiceLibrary(self.log)
-        library.fill_from_file(lib_filename)
+        library.fill_from_file(library_path)
     
         # generate players
         player1 = Player("Player 1", player1_attr, self.log)

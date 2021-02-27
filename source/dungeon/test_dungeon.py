@@ -1,40 +1,48 @@
-import sys
+import sys, glob
 sys.path.append("..")
-sys.path.append("../game_states")
-from colorama import Fore
+dirlist = glob.glob("../*/")
+dirlist.remove("../__pycache__/")
+for dirname in dirlist:
+    sys.path.append(dirname)
 
 import settings
-from functions import color
 from logger import Logger
+from duel import Duel
 from dungeon import Dungeon
-from pos import Pos
-from dungeon_tile import DungeonTile
+from dice_nets.pos import Pos
+from dice_nets.net_x1 import NetX1
 
 #settings.print_type = "ascii"
 #settings.print_type = "unicode"
 settings.print_type = "emoji"
+settings.library_path = "../" + settings.library_path
 
 log = Logger()
-dungeon = Dungeon(log)
-
-# choose char
-if settings.print_type == "ascii":
-    char = color("[]", Fore.BLUE)
-elif settings.print_type == "unicode":
-    char = color("ロ", Fore.BLUE)
-elif settings.print_type == "emoji":
-    char = "🟦"
+duel = Duel(log)
+dungeon = Dungeon(duel.players, log)
+player = duel.players[0]
 
 while True:
     print(dungeon.stringify() + "\n")
     command = input("Add a tile at <xy> ")
     if command == "q":
         break
-    pos = Pos.from_string(command)
+    command_list = command.split()
+
+    # split command
+    pos = Pos.from_string(command_list[0])
+    trans_list = command_list[1:]
     if not pos:
         continue
 
-    # create tile
-    dungeon_tile = DungeonTile(char)
-    dungeon.add_dungeon_tile(dungeon_tile, pos)
+    # create net
+    dice_net = NetX1(log)
+
+    # apply transformations
+    success = dice_net.apply_trans(trans_list)
+    if not success:
+        print(log.flush())
+        continue 
+
+    dungeon.set_net(dice_net, pos, player, None)
     print(log.flush())

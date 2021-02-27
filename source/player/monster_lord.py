@@ -53,3 +53,9 @@ class MonsterLord():
             string += self.chars["noheart"]
 
         return string
+
+    def stringify_tile(self):
+        """
+        Returns tile string version of object.
+        """
+        return self.chars["tile"]

@@ -3,28 +3,35 @@ class DiceNet():
     Positions of the tiles created when a dice is dimensioned
     (unfolded).
     """
+    def __init__(self, log):
+        self.log = log
+
     def apply_trans(self, trans_list):
         """
         Apply a list of transformations, identified by 
         strings to the net.
         """
         for trans in trans_list:
-            # turn clock-wise
-            if trans == "tcw":
+            if trans == "tcw": # turn clock-wise
                 self.turn_cw()
-            elif trans == "tccw":
+            elif trans == "tccw": # turn counter clock-wise
                 self.turn_ccw()
-            elif trans == "flr":
+            elif trans == "flr": # flip left-right
                 self.flip_lr()
-            elif trans == "fud":
+            elif trans == "fud": # flip up-down
                 self.flip_ud()
+            else: # invalid transformation
+                self.log.add("Invalid transformation\n")
+                return False
+
+        return True
 
     def offset(self, offset):
         """
         Move all positions on net an offset amount. 
         """
-        for pos in self.pos_list:
-            pos = pos + offset
+        new_pos = [pos + offset for pos in self.pos_list]
+        self.pos_list = new_pos
         
     def turn_cw(self):
         """

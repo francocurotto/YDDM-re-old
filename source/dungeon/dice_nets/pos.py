@@ -39,16 +39,16 @@ class Pos():
         Turn position clock-wise 90 degrees.
         """
         temp_y = self.y
-        self.y = -1*self.x
-        self.x = temp_y
+        self.y = self.x
+        self.x = -1*temp_y
 
     def turn_ccw(self):
         """
         Turn position counter clock-wise 90 degrees.
         """
         temp_y = self.y
-        self.y = self.x
-        self.x = -1*temp_y
+        self.y = -1*self.x
+        self.x = temp_y
 
     def flip_lr(self):
         """
@@ -63,6 +63,19 @@ class Pos():
         direction.
         """
         self.y = -1*self.y
+
+    def get_neighbors(self):
+        """
+        Return neighbor positions. Neighbors are considered
+        positions separated by one unit verically and 
+        horizontally only.
+        """
+        pos_l = Pos(self.y, self.x-1)
+        pos_r = Pos(self.y, self.x+1)
+        pos_u = Pos(self.y-1, self.x)
+        pos_d = Pos(self.y+1, self.x)
+
+        return [pos_l, pos_r, pos_u, pos_d]
 
     def stringify(self):
         """

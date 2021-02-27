@@ -1,5 +1,5 @@
 from empty_tile import EmptyTile
-from pos import Pos
+from dice_nets.pos import Pos
 
 class Dungeon():
     """
@@ -23,10 +23,12 @@ class Dungeon():
 
         # create initial tiles with monsterlord for each 
         # player. Player 1:
-        tile = players[0].create_tile(player.monster_lord)
+        player1 = players[0]
+        tile = player1.create_tile(player1.monster_lord)
         self.set_tile(tile, Pos(6,0))
         # Player 2
-        tile = players[1].create_tile(player.monster_lord)
+        player2 = players[1]
+        tile = player2.create_tile(player2.monster_lord)
         self.set_tile(tile, Pos(6,18))
         
     def fill_array(self):
@@ -78,7 +80,7 @@ class Dungeon():
         # check no overlaping condition
         for pos in net.pos_list:
             if self.overlaps(pos):
-                self.log.add("Dice net overlaps dungeon" + \
+                self.log.add("Dice net overlaps dungeon " + \
                     "path\n")
                 return False
 
@@ -92,11 +94,13 @@ class Dungeon():
                     # happened to the good old days of GOTO?
                     return True
 
+        self.log.add("Dice net does not connect with " + \
+            "dungeon path\n")
         return False
 
     def in_bound(self, pos):
         """
-        Chack if a position, falls inside the dungeon array.
+        Check if a position, falls inside the dungeon array.
         """
         in_bound_y = 0 <= pos.y < len(self.array)
         in_bound_x = 0 <= pos.x < len(self.array[0])
@@ -123,6 +127,21 @@ class Dungeon():
         tile.
         """
         self.array[pos.y][pos.x] = tile
+
+    def get_neighbors(self, pos):
+        """
+        get the neighbors tiles from tile at position pos.
+        Neighbors are considered tiles that are horizontal
+        and vertical adjacent only.
+        """
+        neighbor_pos_list = pos.get_neighbors()
+        neighbor_tiles = []
+        for neighbor_pos in neighbor_pos_list:
+            if self.in_bound(neighbor_pos):
+                neighbor_tile = self.get_tile(neighbor_pos)
+                neighbor_tiles.append(neighbor_tile)
+
+        return neighbor_tiles
 
     def select_chars(self):
         """

@@ -8,6 +8,7 @@ from ddm_list import ItemList
 from ddm_list import Graveyard
 from crest_pool import CrestPool
 from monster_lord import MonsterLord
+from dungeon_tile import DungeonTile
 
 class Player():
     """
@@ -46,6 +47,7 @@ class Player():
         self.item_list = ItemList(self.log)
         self.graveyard = Graveyard(self.log)
         self.monster_lord = MonsterLord(self.ml_chars)
+        self.tiles = []
         self.forfeited = False
 
     def add_dice_to_hand(self, i):
@@ -220,6 +222,15 @@ class Player():
         # set dead monster life to zero for consistency
         monster.life = 0
         self.graveyard.add(monster)
+
+    def create_tile(self, content=None):
+        """
+        Create a player tile (dungeon path) with content 
+        (None for no content).
+        """
+        tile = DungeonTile(self.chars["tile"], content)
+        self.tiles.append(tile)
+        return tile
 
     def select_chars(self):
         """

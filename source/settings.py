@@ -6,3 +6,7 @@ print_type = "emoji"
 # rules settings
 type_adv  = True
 retal_dmg = True
+
+# database settings
+library_path = "databases/my_database.txt"
+
