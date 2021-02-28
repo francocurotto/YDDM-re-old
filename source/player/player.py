@@ -29,7 +29,7 @@ class Player():
             "heart"   : color("♥",  self.color),
             "tile"    : color("ロ", self.color),
             "ML"      : color("♛♥", self.color),
-            "monster" : color("òó", self.color),
+            "monster" : color("♞♥", self.color),
             "item"    : color("⍰⍰", self.color)}
         self.chars_emoji = attr["emoji_chars"]
         self.chars = self.select_chars()

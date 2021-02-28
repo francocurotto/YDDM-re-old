@@ -161,3 +161,20 @@ do (Breadth-first search?). Also I don't remember if player's
 own monsters count as obstacles or if monsters can move 
 through them. I have to check that out. Maybe I'll have to
 finally download and play the game again?? Hahah.
+
+# 2021-02-28
+Okay so I had to download the game and play it again to 
+remember the movements mechanics, here is my summary:
+
+- Normal monsters cannot move through other monsters (from 
+same player or opponent). They cannot move through item also
+but they can step into them to activate them.
+- Tunnel monsters can move through other monsters (from same
+player or opponent), but cannot move through items. Their 
+movement crest cost is 1 per square.
+- Flying monsters can move through others monsters and 
+monsters can move through them, but cannot move through 
+items. They can only be attacked by other flying monsters or
+archer monsters. Their movement crest is 2 per square.
+- Warp vortex is a special item that summons a vortex, and
+other mosnters can move thourgh the vortex.
