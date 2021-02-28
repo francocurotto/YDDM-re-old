@@ -1,6 +1,6 @@
 TODO:
 - Implement dungeon!!
-    - implement dungeon_state
+    - implement dimension_state
 - implement monster movement!!
 - reimplement attack so that is only valid when monsters are
 one square away from target
