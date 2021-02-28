@@ -3,28 +3,34 @@ digraph duel {
     rankdir="LR";
     
     // nodes definition 
-    roll1    [label=<<font color="blue">Roll</font>>];
-    dungeon1 [label=<<font color="blue">Dungeon</font>>];
-    summon1  [label=<<font color="blue">Summon</font>>];
-    defense1 [label=<<font color="blue">Defense</font>>];
-    roll2    [label=<<font color="red">Roll</font>>];
-    dungeon2 [label=<<font color="red">Dungeon</font>>];
-    summon2  [label=<<font color="red">Summon</font>>];
-    defense2 [label=<<font color="red">Defense</font>>];
+    roll1      [label=<<font color="blue">Roll</font>>];
+    dungeon1   [label=<<font color="blue">Dungeon</font>>];
+    summon1    [label=<<font color="blue">Summon</font>>];
+    dimension1 [label=<<font color="blue">Dimension</font>>];
+    defense1   [label=<<font color="blue">Defense</font>>];
+    roll2      [label=<<font color="red">Roll</font>>];
+    dungeon2   [label=<<font color="red">Dungeon</font>>];
+    summon2    [label=<<font color="red">Summon</font>>];
+    defense2   [label=<<font color="red">Defense</font>>];
+    dimension2 [label=<<font color="red">Dimension</font>>];
 
     // player 1 duel states
-    roll1    -> dungeon1 [label="dimension unable", weight=0];
-    roll1    -> summon1 [label="dimension able"];
-    summon1  -> dungeon1;
-    dungeon1 -> defense1 [label="defense able", weight=0];
-    defense1 -> dungeon1;
+    roll1      -> dungeon1 [weight=0];
+    roll1      -> summon1 [label="can dim"];
+    summon1    -> dimension1;
+    summon1    -> dungeon1 [label="skip", weight=0];
+    dimension1 -> dungeon1;
+    dungeon1   -> defense1 [label="can def", weight=0];
+    defense1   -> dungeon1;
 
     // player 2 duel states
-    roll2    -> dungeon2 [label="dimension unable", weight=0];
-    roll2    -> summon2 [label="dimension able"];
-    summon2  -> dungeon2;
-    dungeon2 -> defense2 [label="defense able", weight=0];
-    defense2 -> dungeon2;
+    roll2      -> dungeon2 [weight=0];
+    roll2      -> summon2 [label="can dim"];
+    summon2    -> dimension2;
+    summon2    -> dungeon2 [label="skip", weight=0];
+    dimension2 -> dungeon2;
+    dungeon2   -> defense2 [label="can def", weight=0];
+    defense2   -> dungeon2;
 
     // turn transition states
     dungeon2 -> roll1 [taillabel="finish", labeldistance=4,constraint=false];

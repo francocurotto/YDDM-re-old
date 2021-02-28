@@ -13,14 +13,17 @@ class AttackState(DuelSubstate):
         As new start print state title and crests and 
         monsters.
         """
-        self.start_message  = "<ATTACK PHASE> [f: finish]\n"
-        self.start_message += self.stringify_state() + "\n\n"
+        self.start_message  = "<ATTACK PHASE> [f: finish]"
+        self.start_message += "\n\n"
+        self.start_message += self.duel.dungeon.stringify()
+        self.start_message += "\n\n"
 
     def set_start_message(self):
         """
         As start message print crests and monsters.
         """
-        self.start_message = self.stringify_state() + "\n\n"
+        self.start_message  = self.duel.dungeon.stringify()
+        self.start_message += "\n\n"
 
     def update(self, command):
         """
@@ -125,26 +128,26 @@ class AttackState(DuelSubstate):
         attacker.attack_ml(self.duel.opponent)
         self.log.add("\n")
 
-    def stringify_state(self):
-        """
-        Create a string with relevant information in for the
-        state.
-        """
-        s  = self.duel.player.name + " crests:\n"
-        s += self.duel.player.crest_pool.stringify_short()
-        s += "\n"
-        s += self.duel.player.name + " monsters:\n"
-        s += self.duel.player.monster_list.stringify()
-        s += "\n\n"
-        s += self.duel.opponent.name + " crests:\n"
-        s += self.duel.opponent.crest_pool.stringify_short()
-        s += "\n"
-        s += self.duel.opponent.name + " monsters:\n"
-        s += self.duel.opponent.monster_list.stringify()
-        s += "\n\n"
-        s +="Dungeon:\n"
-        s += self.duel.dungeon.stringify()
-        return s
+    #def stringify_state(self):
+    #    """
+    #    Create a string with relevant information in for the
+    #    state.
+    #    """
+    #    s  = self.duel.player.name + " crests:\n"
+    #    s += self.duel.player.crest_pool.stringify_short()
+    #    s += "\n"
+    #    s += self.duel.player.name + " monsters:\n"
+    #    s += self.duel.player.monster_list.stringify()
+    #    s += "\n\n"
+    #    s += self.duel.opponent.name + " crests:\n"
+    #    s += self.duel.opponent.crest_pool.stringify_short()
+    #    s += "\n"
+    #    s += self.duel.opponent.name + " monsters:\n"
+    #    s += self.duel.opponent.monster_list.stringify()
+    #    s += "\n\n"
+    #    s +="Dungeon:\n"
+    #    s += self.duel.dungeon.stringify()
+    #    return s
 
 def is_attack_command(command):
     """

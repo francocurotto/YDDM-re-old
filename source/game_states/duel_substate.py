@@ -64,6 +64,8 @@ class DuelSubstate():
             s = self.duel.player.graveyard.stringify()
         elif command.equals("og"): # display op. graveyard
             s = self.duel.opponent.graveyard.stringify()
+        elif command.equals("d"): # display dungeon
+            s = self.duel.dungeon.stringify()
         else: # invalid command
             return ""
 
@@ -88,4 +90,5 @@ Print commands: \n\
     p ml : print monster lord \n\
     p oml: print opponent monster lord \n\
     p g  : print graveyard \n\
-    p og : print opponent graveyard"
+    p og : print opponent graveyard\n\
+    p d  : print dungeon\n"
