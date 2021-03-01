@@ -14,8 +14,8 @@ class UndeadCard(MonsterCard):
         self.chars_unicode["type"] = "U"
         self.chars_emoji  ["type"] = "🧟"
 
-    def summon(self, log):
+    def summon(self, chars, log):
         """
         Return the monster as a summon.
         """
-        return Undead(self, log)
+        return Undead(self, chars, log)

@@ -7,14 +7,22 @@ class Monster(Summon):
     """
     A monster in the board.
     """
-    def __init__(self, card, log):
-        super().__init__(card, log)
+    # display icons
+    tile_char_ascii = "MS"
+    def __init__(self, card, chars, log):
+        super().__init__(card, chars, log)
         # attributes extracted from card
         self.attack = self.card.attack
         self.defense = self.card.defense
         self.life = self.card.life
-        self.ability = self.card.ability
         self.in_cooldown = False
+        self.tile_char = chars["monster"]
+
+    def add_to_player_list(self, player):
+        """
+        Add monster to the proper player list when summoning.
+        """
+        player.monster_list.add(self)
 
     def attack_monster(self, attacked, defending):
         """

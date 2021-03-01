@@ -175,6 +175,23 @@ movement crest cost is 1 per square.
 - Flying monsters can move through others monsters and 
 monsters can move through them, but cannot move through 
 items. They can only be attacked by other flying monsters or
-archer monsters. Their movement crest is 2 per square.
+archer monsters. They can attack any monster though. Their 
+movement crest is 2 per square.
 - Warp vortex is a special item that summons a vortex, and
-other mosnters can move thourgh the vortex.
+other monsters can move thourgh the vortex.
+
+# 2021-03-01
+To celebrate the start of the month, dungeon state 
+implemented! Tried summoning dice and is looking pretty good.
+Now it comes the hardest challenge yet, implement monster 
+movement, and then proper attack at 1 square distance. I 
+still have no idea how in the world I'm gonna implemented it.
+This could be a good breaking point to work in minor changes
+that I have listed in TODO. Anyways, really excited about how
+the game is turning out, and also a little afraid on how I'll
+continue.
+
+Just thinking right now, maybe I could start simple and 
+implement monster teleportation were I allow monster to move
+whereever they want, and so I can test proper attack easier 
+too. Good ideas!

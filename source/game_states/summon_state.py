@@ -31,28 +31,25 @@ class SummonState(DuelSubstate):
             self.log.add(self.dimensions.stringify())
             self.log.add("\n\n")
 
-        # skip dimension and go to next state
+        # skip summon and go to next state
         elif command.equals("s"):
             self.log.add("\n")
             self.next_state = self.atk_state
             self.next_state.set_new_start_message()
 
-        # dice dimension
+        # dice summon
         elif command.len == 1 and command.is_int(0):
-            # get dice to dimension
+            # get dice to summon
             i = command.list[0]
             dice = self.dimensions.get(i)
             if not dice:
                 self.log.add("\n")
                 return
 
-            # dimension the dice!
-            self.duel.player.dimension_dice(dice)
-
             # define next state
-            self.log.add("DIMENSION THE DICE!\n\n")
-            self.next_state = self.atk_state
-            self.next_state.set_new_start_message()
+            self.next_state = self.dim_state
+            self.next_state.dice = dice
+            self.next_state.set_start_message()
 
         # generic commands
         else:

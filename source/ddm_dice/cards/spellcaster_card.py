@@ -14,8 +14,8 @@ class SpellcasterCard(MonsterCard):
         self.chars_unicode["type"] = "S"
         self.chars_emoji  ["type"] = "🧙"
     
-    def summon(self, log):
+    def summon(self, chars, log):
         """
         Return the monster as a summon.
         """
-        return Spellcaster(self, log)
+        return Spellcaster(self, chars, log)

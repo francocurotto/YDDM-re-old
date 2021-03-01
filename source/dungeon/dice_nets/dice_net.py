@@ -1,3 +1,5 @@
+from .pos import Pos
+
 class DiceNet():
     """
     Positions of the tiles created when a dice is dimensioned
@@ -5,6 +7,15 @@ class DiceNet():
     """
     def __init__(self, log):
         self.log = log
+
+    def get_center_pos(self):
+        """
+        Returns the center position of net given by Pos(0,0).
+        """
+        for pos in self.pos_list:
+            if pos == Pos(0,0):
+                return pos
+        return None
 
     def apply_trans(self, trans_list):
         """
@@ -21,17 +32,17 @@ class DiceNet():
             elif trans == "fud": # flip up-down
                 self.flip_ud()
             else: # invalid transformation
-                self.log.add("Invalid transformation\n")
+                self.log.add("Invalid transformation\n\n")
                 return False
 
         return True
 
-    def offset(self, offset):
+    def offset(self, offset_pos):
         """
         Move all positions on net an offset amount. 
         """
-        new_pos = [pos + offset for pos in self.pos_list]
-        self.pos_list = new_pos
+        for pos in self.pos_list:
+            pos.offset(offset_pos)
         
     def turn_cw(self):
         """
@@ -75,29 +86,12 @@ def create_net(string, log):
     from .net_s1 import NetS1
     from .net_s2 import NetS2
     from .net_l1 import NetL1
+    net_class_list = [NetT1, NetT2, NetZ1, NetZ2, NetX1, NetX2,
+        NetM1, NetM2, NetS1, NetS2, NetL1]
 
-    # conditional returns
-    if string == "T1":
-        return NetT1(log)
-    if string == "T2":
-        return NetT2(log)
-    if string == "Z1":
-        return NetZ1(log)
-    if string == "Z2":
-        return NetZ2(log)
-    if string == "X1":
-        return NetX1(log)
-    if string == "X2":
-        return NetX2(log)
-    if string == "M1":
-        return NetM1(log)
-    if string == "M2":
-        return NetM2(log)
-    if string == "S1":
-        return NetS1(log)
-    if string == "S2":
-        return NetS2(log)
-    if string == "L1":
-        return NetL1(log)
+    # if string coincides with name return net instance
+    for net_class in net_class_list:
+        if string == net_class.name:
+            return net_class(log)
     # invalid net name
     return None

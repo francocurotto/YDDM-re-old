@@ -117,25 +117,25 @@ class Player():
 
         return roll_result
 
-    def dimension_dice(self, dice):
+    def summon_dice(self, dice):
         """
-        Dimension dice from dice hand. It involves:
+        Summon dice from dice hand. It involves:
         1. creating a summon from dice
         2. discarting dice to the dice bin
         3. empty dice hand
+        4. returns summon
         """
         # summon card from dice
-        summon = dice.card.summon(self.log)
-        if summon.is_monster():
-            self.monster_list.add(summon)
-        elif summon.is_item():
-            self.item_list.add(summon)
+        summon = dice.card.summon(self.chars, self.log)
+        summon.add_to_player_list(self)
 
         # discard summoned dice into dice bin
         self.dice_bin.add(dice)
 
         # empty dice hand
         self.empty_hand()
+
+        return summon
 
     def empty_hand(self):
         """

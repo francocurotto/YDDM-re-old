@@ -57,7 +57,7 @@ class Dungeon():
 
         # if net can be placed, place it
         for pos in net.pos_list:
-            if pos == Pos(0,0): # center pos => add summon
+            if pos == net.center_pos: # center => add summon
                 tile = player.create_tile(summon)
             else: # if not center pos, create empty tile
                 tile = player.create_tile()

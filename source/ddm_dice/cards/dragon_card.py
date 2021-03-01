@@ -14,8 +14,8 @@ class DragonCard(MonsterCard):
         self.chars_unicode["type"] = "D"
         self.chars_emoji  ["type"] = "🐲"
 
-    def summon(self, log):
+    def summon(self, chars, log):
         """
         Return the monster as a summon.
         """
-        return Dragon(self, log)
+        return Dragon(self, chars, log)

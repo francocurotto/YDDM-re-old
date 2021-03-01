@@ -2,6 +2,7 @@ from logger import Logger
 from duel import Duel
 from roll_state import RollState
 from summon_state import SummonState
+from dimension_state import DimensionState
 from attack_state import AttackState
 from defense_state import DefenseState
 
@@ -16,6 +17,7 @@ class DuelState():
         # duel substates
         self.roll_state = RollState(self.duel, self.log)
         self.sum_state  = SummonState(self.duel, self.log)
+        self.dim_state  = DimensionState(self.duel, self.log)
         self.atk_state  = AttackState(self.duel, self.log)
         self.def_state  = DefenseState(self.duel, self.log)
         
@@ -23,6 +25,8 @@ class DuelState():
         self.roll_state.sum_state = self.sum_state
         self.roll_state.atk_state = self.atk_state
         self.sum_state.atk_state = self.atk_state
+        self.sum_state.dim_state = self.dim_state
+        self.dim_state.atk_state = self.atk_state
         self.atk_state.def_state  = self.def_state
         self.atk_state.roll_state = self.roll_state
         self.def_state.atk_state = self.atk_state

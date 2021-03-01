@@ -77,19 +77,19 @@ class Pos():
 
         return [pos_l, pos_r, pos_u, pos_d]
 
+    def offset(self, pos):
+        """
+        Offset position by an amount given by other position.
+        """
+        self.y += pos.y
+        self.x += pos.x
+
     def stringify(self):
         """
         Returns string version of object.
         """
         # correct for python 0-indexing----v
         return chr(self.x+97) + str(self.y+1)
-
-    # redefinition of built-in operations
-    def __add__(self, other):
-        """
-        Redefinition of addition
-        """
-        return Pos(self.y + other.y, self.x + other.x)
 
     def __eq__(self, other):
         """

@@ -14,8 +14,8 @@ class BeastCard(MonsterCard):
         self.chars_unicode["type"] = "B"
         self.chars_emoji  ["type"] = "🐺"
 
-    def summon(self, log):
+    def summon(self, chars, log):
         """
         Return the monster as a summon.
         """
-        return Beast(self, log)
+        return Beast(self, chars, log)

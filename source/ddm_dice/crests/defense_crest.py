@@ -6,7 +6,7 @@ class DefenseCrest(Crest):
     """
     def __init__(self):
         self.char_ascii   = "D"
-        self.char_unicode = "⊚"
+        self.char_unicode = "⊝"
         self.char_emoji   = "🛡️ "
         super().__init__()
 

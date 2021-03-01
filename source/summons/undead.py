@@ -4,8 +4,8 @@ class Undead(Monster):
     """
     A monster of type undead.
     """
-    def __init__(self, card, log):
-        super().__init__(card, log)
+    def __init__(self, card, chars, log):
+        super().__init__(card, chars, log)
 
     def has_advantage_over_beast(self):
         return True

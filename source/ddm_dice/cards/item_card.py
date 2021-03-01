@@ -17,11 +17,11 @@ class ItemCard(SummonCard):
         self.type = "Item"
         self.ability = params["ability"]
 
-    def summon(self, log):
+    def summon(self, chars, log):
         """
         Return the monster as a summon.
         """
-        return Item(self, log)
+        return Item(self, chars, log)
 
     def stringify(self):
         """
