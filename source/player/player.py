@@ -27,7 +27,7 @@ class Player():
             "item"    : color("IT", self.color)}
         self.chars_unicode = {
             "heart"   : color("♥",  self.color),
-            "tile"    : color("ロ", self.color),
+            "tile"    : color("[]", self.color),
             "ML"      : color("♛♥", self.color),
             "monster" : color("♞♥", self.color),
             "item"    : color("⍰⍰", self.color)}
@@ -270,18 +270,4 @@ class Player():
 
         string = "\n".join(strlist)
         
-        return string
-
-    def stringify_summons(self):
-        """
-        Returns a string version of player summons, that is,
-        simply a combinations of player monsters and player
-        items.
-        """
-        string = ""
-        string += "Monsters:\n"
-        string += self.monster_list.stringify()
-        string += "\n"
-        string += "Items:\n"
-        string += self.item_list.stringify()
         return string

@@ -14,6 +14,10 @@ class Pos():
         coordinates for the y position (in that order). If
         the string is invalid, return None.
         """
+        # check if string is not none
+        if not string:
+            return None
+
         # test for string correct length
         if not (2 <= len(string) <= 3):
             return None

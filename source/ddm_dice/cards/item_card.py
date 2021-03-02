@@ -27,9 +27,9 @@ class ItemCard(SummonCard):
         """
         Returns a string version of object.
         """
-        string  = "NAME: " + self.name + "\n"
-        string += "TYPE: " + self.type + "\n"
-        string += "LEVEL: " + str(self.level) + "\n"
+        string  = "NAME:    " + self.name + "\n"
+        string += "TYPE:    " + self.type + "\n"
+        string += "LEVEL:   " + str(self.level) + "\n"
         string += "ABILITY: " + self.ability
 
         return string

@@ -8,7 +8,7 @@ class Dungeon():
     """
     # display icons
     chars_ascii   = {"block" : "[]"}
-    chars_unicode = {"block" : "ロ"}
+    chars_unicode = {"block" : "[]"}
     chars_emoji   = {"block" : "🔲"}
 
     # dungeon fixed values
@@ -119,6 +119,10 @@ class Dungeon():
         """
         Get tile at position pos (y,x).
         """
+        # check pos is in bound
+        if not self.in_bound(pos):
+            return None
+
         return self.array[pos.y][pos.x]
 
     def set_tile(self, tile, pos):

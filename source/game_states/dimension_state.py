@@ -35,12 +35,11 @@ class DimensionState(DuelSubstate):
         # skip dimension and go to next state
         if command.equals("s"):
             self.log.add("\n")
-            self.next_state = self.atk_state
+            self.next_state = self.dun_state
             self.next_state.set_new_start_message()
 
         # dice dimension
         elif self.check_dimension_command(command):
-
             # dimension the dice!
             summon = self.duel.player.summon_dice(self.dice)
             success = self.dungeon.set_net(self.dice_net, 
@@ -51,7 +50,7 @@ class DimensionState(DuelSubstate):
 
             # define next state
             self.log.add("DIMENSION THE DICE!\n\n")
-            self.next_state = self.atk_state
+            self.next_state = self.dun_state
             self.next_state.set_new_start_message()
 
         # generic commands
@@ -64,18 +63,26 @@ class DimensionState(DuelSubstate):
         It does not check if the dimension itself is valid,
         just that the command make sense.
         """
+        # check command length first:
+        if command.len < 2:
+            return False
+
+        # get command items
+        net_str = command.list[0]
+        pos_str = command.list[1]
+        trans_list = command.list[2:]
+
         # get net
-        self.dice_net = create_net(command.list[0], self.log)
+        self.dice_net = create_net(net_str, self.log)
         if not self.dice_net:
             return False
     
         # get pos
-        self.pos = Pos.from_string(command.list[1])
+        self.pos = Pos.from_string(pos_str)
         if not self.pos:
             return False
 
         # apply transformations
-        trans_list = command.list[2:]
         success = self.dice_net.apply_trans(trans_list)
         if not success:
             return False

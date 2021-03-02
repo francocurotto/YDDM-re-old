@@ -1,8 +1,10 @@
 from duel_substate import DuelSubstate
 
-class AttackState(DuelSubstate):
+class DungeonState(DuelSubstate):
     """
-    State where player can attack an opponent monster.
+    State where player do actions on the dungeon, that is,
+    move a monster, attack an opponent monster, or activate
+    monster effects.
     """
     def __init__(self, duel, log):
         super().__init__(duel, log)
@@ -13,7 +15,7 @@ class AttackState(DuelSubstate):
         As new start print state title and crests and 
         monsters.
         """
-        self.start_message  = "<ATTACK PHASE> [f: finish]"
+        self.start_message  = "<DUNGEON PHASE> [f: finish]"
         self.start_message += "\n\n"
         self.start_message += self.duel.dungeon.stringify()
         self.start_message += "\n\n"
@@ -32,7 +34,7 @@ class AttackState(DuelSubstate):
         # default values for update
         self.next_state = self
 
-        # finish attack phase command
+        # finish dungeon phase command
         if command.equals("f"):
             # decooldown monster
             self.duel.player.decooldown_monsters()
@@ -128,27 +130,6 @@ class AttackState(DuelSubstate):
         attacker.attack_ml(self.duel.opponent)
         self.log.add("\n")
 
-    #def stringify_state(self):
-    #    """
-    #    Create a string with relevant information in for the
-    #    state.
-    #    """
-    #    s  = self.duel.player.name + " crests:\n"
-    #    s += self.duel.player.crest_pool.stringify_short()
-    #    s += "\n"
-    #    s += self.duel.player.name + " monsters:\n"
-    #    s += self.duel.player.monster_list.stringify()
-    #    s += "\n\n"
-    #    s += self.duel.opponent.name + " crests:\n"
-    #    s += self.duel.opponent.crest_pool.stringify_short()
-    #    s += "\n"
-    #    s += self.duel.opponent.name + " monsters:\n"
-    #    s += self.duel.opponent.monster_list.stringify()
-    #    s += "\n\n"
-    #    s +="Dungeon:\n"
-    #    s += self.duel.dungeon.stringify()
-    #    return s
-
 def is_attack_command(command):
     """
     Check if a command is an attack command, either and 
@@ -158,7 +139,7 @@ def is_attack_command(command):
     return correct_len and command.are_params_int()
 
 help_text = "\n\n\
-Attack commands: \n\
+Dungeon commands: \n\
     #1 #2: player's monster #1 attacks opponent \n\
            monster's #2 \n\
     #    : player's monster # attacks opponent \n\

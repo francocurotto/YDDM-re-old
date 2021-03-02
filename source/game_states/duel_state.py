@@ -3,7 +3,7 @@ from duel import Duel
 from roll_state import RollState
 from summon_state import SummonState
 from dimension_state import DimensionState
-from attack_state import AttackState
+from dungeon_state import DungeonState
 from defense_state import DefenseState
 
 class DuelState():
@@ -18,18 +18,18 @@ class DuelState():
         self.roll_state = RollState(self.duel, self.log)
         self.sum_state  = SummonState(self.duel, self.log)
         self.dim_state  = DimensionState(self.duel, self.log)
-        self.atk_state  = AttackState(self.duel, self.log)
+        self.dun_state  = DungeonState(self.duel, self.log)
         self.def_state  = DefenseState(self.duel, self.log)
         
         # add next state options to states
         self.roll_state.sum_state = self.sum_state
-        self.roll_state.atk_state = self.atk_state
-        self.sum_state.atk_state = self.atk_state
+        self.roll_state.dun_state = self.dun_state
+        self.sum_state.dun_state = self.dun_state
         self.sum_state.dim_state = self.dim_state
-        self.dim_state.atk_state = self.atk_state
-        self.atk_state.def_state  = self.def_state
-        self.atk_state.roll_state = self.roll_state
-        self.def_state.atk_state = self.atk_state
+        self.dim_state.dun_state = self.dun_state
+        self.dun_state.def_state  = self.def_state
+        self.dun_state.roll_state = self.roll_state
+        self.def_state.dun_state = self.dun_state
 
         # set inital status
         self.state = self.roll_state

@@ -51,7 +51,7 @@ class DefenseState(DuelSubstate):
         self.log.add("\n")
 
         # define next state
-        self.next_state = self.atk_state
+        self.next_state = self.dun_state
         self.next_state.set_start_message()
 
     def add_monsters(self, attacker, attacked):

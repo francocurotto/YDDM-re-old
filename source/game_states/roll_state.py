@@ -120,7 +120,7 @@ class RollState(DuelSubstate):
             self.next_state.set_start_message()
 
         else: # dimension unable
-            self.next_state = self.atk_state
+            self.next_state = self.dun_state
             self.next_state.set_new_start_message()
 
     def run_quick_roll_command(self, command):

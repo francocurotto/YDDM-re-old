@@ -12,6 +12,7 @@ class Monster(Summon):
     def __init__(self, card, chars, log):
         super().__init__(card, chars, log)
         # attributes extracted from card
+        self.type = self.card.type
         self.attack = self.card.attack
         self.defense = self.card.defense
         self.life = self.card.life
@@ -168,6 +169,22 @@ class Monster(Summon):
         power = self.get_attacking_power(attacked)
         string += self.name + " is attacking with " + \
             str(power) + " points."
+
+        return string
+
+    def stringify(self):
+        """
+        Returns a string version of object.
+        """
+        string  = "NAME:    " + self.name + "\n"
+        string += "TYPE:    " + self.type + "\n"
+        string += "LEVEL:   " + str(self.level) + "\n"
+        string += "ATTACK:  " + get_attr_styled(
+            self.attack, self.card.attack) + "\n"
+        string += "DEFENSE: " + get_attr_styled(
+            self.defense, self.card.defense) + "\n"
+        string += "LIFE:    " + str(self.life) + "\n"
+        string += "ABILITY: " + self.ability
 
         return string
 

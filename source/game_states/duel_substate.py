@@ -1,3 +1,5 @@
+from dice_nets.pos import Pos
+
 class DuelSubstate():
     """
     Generic duel substate.
@@ -44,32 +46,37 @@ class DuelSubstate():
             s = self.duel.player.crest_pool.stringify_short()
         elif command.equals("oc"): # display op. crest pool
             s = self.duel.opponent.crest_pool.stringify_short()
-        elif command.equals("s"): # display summons
-            s = self.duel.player.stringify_summons()
-        elif command.equals("os"): # display op. summons
-            s = self.duel.opponent.stringify_summons()
-        elif command.equals("m"): # display monsters
-            s = self.duel.player.monster_list.stringify()
-        elif command.equals("om"): # display op. monsters
-            s = self.duel.opponent.monster_list.stringify()
-        elif command.equals("i"): # display items
-            s = self.duel.player.item_list.stringify()
-        elif command.equals("oi"): # display op. items
-            s = self.duel.opponent.item_list.stringify()
-        elif command.equals("ml"): # display monster lord
-            s = self.duel.player.monster_lord.stringify()
-        elif command.equals("oml"): # display op. monster lord
-            s = self.duel.opponent.monster_lord.stringify()
         elif command.equals("g"): # display graveyard
             s = self.duel.player.graveyard.stringify()
         elif command.equals("og"): # display op. graveyard
             s = self.duel.opponent.graveyard.stringify()
         elif command.equals("d"): # display dungeon
             s = self.duel.dungeon.stringify()
+        # display item at pos
+        elif pos := Pos.from_string(command.get_param(0)):
+            s = self.stringify_dungeon_pos(pos)
         else: # invalid command
             return ""
 
         return s + "\n\n"
+
+    def stringify_dungeon_pos(self, pos):
+        """
+        Returns string version of object at position pos in
+        dungeon.
+        """
+        # get tile
+        tile = self.duel.dungeon.get_tile(pos)
+        if not tile: # no tile => out of bound
+            return "Can't print, out of bound."
+            
+
+        # if tile has something to print
+        if not tile.is_dungeon() or not tile.content:
+            return "Tile empty, nothing to print."
+
+        # in case there is something, return string
+        return tile.content.stringify()
 
 help_text = "\
 General commands: \n\
@@ -77,18 +84,11 @@ General commands: \n\
     q   :  forfeit the duel \n\
 \n\
 Print commands: \n\
-    p p  : print pool \n\
-    p h  : print hand \n\
-    p c  : print crest pool \n\
-    p oc : print opponent crest pool \n\
-    p s  : print summons \n\
-    p os : print opponent summons \n\
-    p m  : print monsters \n\
-    p om : print opponent monsters \n\
-    p i  : print items \n\
-    p oi : print opponent items \n\
-    p ml : print monster lord \n\
-    p oml: print opponent monster lord \n\
-    p g  : print graveyard \n\
-    p og : print opponent graveyard\n\
-    p d  : print dungeon\n"
+    p p    : print pool \n\
+    p h    : print hand \n\
+    p c    : print crest pool \n\
+    p oc   : print opponent crest pool \n\
+    p g    : print graveyard \n\
+    p og   : print opponent graveyard\n\
+    p d    : print dungeon\n\
+    p <xy> : print item at position <xy>"

@@ -34,7 +34,7 @@ class SummonState(DuelSubstate):
         # skip summon and go to next state
         elif command.equals("s"):
             self.log.add("\n")
-            self.next_state = self.atk_state
+            self.next_state = self.dun_state
             self.next_state.set_new_start_message()
 
         # dice summon
