@@ -140,8 +140,6 @@ def is_attack_command(command):
 
 help_text = "\n\n\
 Dungeon commands: \n\
-    #1 #2: player's monster #1 attacks opponent \n\
-           monster's #2 \n\
-    #    : player's monster # attacks opponent \n\
-           dungeon master \n\
-    f    : finish phase."
+    m xy1 xy2: monster at xy1 moves to position xy2\n\
+    a xy1 xy2: monster at xy1 attacks monster at xy2\n\
+    f        : finish phase."
