@@ -178,7 +178,7 @@ class Player():
             return None
 
         # 2. check if monster is in cooldown
-        if attacker.in_cooldown:
+        if attacker.attack_cooldown:
             self.log.add(attacker.name + " has already " +
                 "attacked.\n")
             return None
@@ -198,7 +198,8 @@ class Player():
         cooldown, reset its state.
         """
         for monster in self.monster_list.list:
-            monster.in_cooldown = False
+            monster.move_cooldown = False
+            monster.attack_cooldown = False
 
     def check_for_casualties(self):
         """

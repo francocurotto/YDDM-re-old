@@ -63,24 +63,50 @@ class DungeonState(DuelSubstate):
         Run command that makes a player monster to move in
         the dungeon.
         """
-        # get tiles
+        # 1. get tiles
         tile_i, tile_f = self.get_tiles(command)
         if not tile_i or not tile_f:
             return
 
-        monster = self.get_player_monster(tile_i):
+        # 2. get monster
+        player = self.duel.player
+        monster = self.get_player_monster(tile_i)
         if not monster:
             return
 
-        # check destination tile
+        # 3. check that monster hasn't move yet
+        if monster.move_cooldown:
+            self.log.add("Monster already moved this " + \
+                "turn.\n\n")
+            return
+        
+        # 4. check destination tile occupancy
         if not tile_f.available_to_move():
             self.log.add("Destination already occupied.\n\n")
             return
 
-        # at this point everything is ok so move the monster
+        # 5. check valid path
+
+        # 6. check enough movement crests
+
+        # 7. everything is ok so move the monster
         tile_f.content = monster
         tile_i.remove_content()
+        monster.move_cooldown = True
         self.set_start_message()
+
+    #def run_attack_command(self, command):
+    #    """
+    #    Run command that makes a player monster attack.
+    #    """
+    # 1. get tiles
+    # 2. get monster/target
+    # 3. check cooldown
+    # 4. check range
+    # 5. check crest
+    # 6. if target is monster and opponent has defense crest:
+    #    call for defense state
+    # 7. else simply produce the defense
         
     def run_attack_command(self, command):
         """
@@ -200,12 +226,13 @@ class DungeonState(DuelSubstate):
         """
         # check if there is a monster at origin
         if not tile.has_monster():
-            self.log.add("No monster at origin.\n\n")
+            self.log.add("No monster at specified " + \
+                "position.\n\n")
             return None
 
         # check if monster is player monster
-        monster = tile_i.content
-        if monster not in self.player.monster_list:
+        monster = tile.content
+        if monster not in self.duel.player.monster_list.list:
             self.log.add("No player's monster.\n\n")
             return None
 
@@ -233,6 +260,6 @@ def is_attack_command(command):
 
 help_text = "\n\n\
 Dungeon commands: \n\
-    m xy1 xy2: monster at xy1 moves to position xy2\n\
-    a xy1 xy2: monster at xy1 attacks monster at xy2\n\
+    m xy1 xy2: move monster at xy1 to position xy2\n\
+    a xy1 xy2: use monster at xy1 to attack monster at xy2\n\
     f        : finish phase."

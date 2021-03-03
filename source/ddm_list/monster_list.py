@@ -14,7 +14,7 @@ class MonsterList(DdmList):
         monster is in cooldown state.
         """
         string = super().stringify_short(i)
-        if self.list[i].in_cooldown:
+        if self.list[i].attack_cooldown:
             string = grayout(string)
 
         return string

@@ -16,7 +16,8 @@ class Monster(Summon):
         self.attack = self.card.attack
         self.defense = self.card.defense
         self.life = self.card.life
-        self.in_cooldown = False
+        self.move_cooldown = False
+        self.attack_cooldown = False
         self.tile_char = chars["monster"]
 
     def add_to_player_list(self, player):
@@ -42,8 +43,8 @@ class Monster(Summon):
             self.log.add(attacked.name + " received " +
                 str(power) + " points of damage.\n")
 
-        # monster enters cooldown
-        self.in_cooldown = True
+        # monster enters attack cooldown
+        self.attack_cooldown = True
 
     def attack_ml(self, opponent):
         """
@@ -54,7 +55,7 @@ class Monster(Summon):
         opponent.monster_lord.hearts -= 1
 
         # monster enter cooldown
-        self.in_cooldown = True
+        self.attack_cooldown = True
 
         # create information string
         self.log.add(self.name + " attacked " +
