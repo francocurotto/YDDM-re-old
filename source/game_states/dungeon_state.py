@@ -44,6 +44,11 @@ class DungeonState(DuelSubstate):
             self.next_state = self.roll_state
             self.next_state.set_start_message()
 
+        # move command
+        elif is_move_command(command): 
+            subcommand = command.subcommand(1)
+            self.run_move_command(subcommand)
+
         # attack command
         elif is_attack_command(command):
             self.run_attack_command(command)
@@ -51,6 +56,28 @@ class DungeonState(DuelSubstate):
         # generic commands
         else:
             super().update(command)
+
+    def run_move_command(self, command):
+        """
+        Run command that makes a player monster to move in
+        the dungeon.
+        """
+        # get tiles
+        tile_i, tile_f = self.get_tiles(command)
+        if not tile_i or not tile_f:
+            return
+
+        # get monster from origin tile and remove it
+        content = tile_i.remove_content()
+        if not content or not content.is_monster():
+            self.log.add("No monster at origin.\n")
+            return
+        monster = content
+
+        # put monster in destination tile
+        success = tile_f.add_content(monster)
+        if not success:
+            self.log.add("Destination already occupied.")
         
     def run_attack_command(self, command):
         """
@@ -129,6 +156,45 @@ class DungeonState(DuelSubstate):
         # do the attack
         attacker.attack_ml(self.duel.opponent)
         self.log.add("\n")
+
+    def get_tiles(self, command):
+        """
+        Get initial and final tiles from command. Used in 
+        move and attack commands.
+        """
+        pos_i = Pos.from_string(command.list[0])
+        pos_f = Pos.from_string(command.list[1])
+
+        # check valid positions
+        if not pos_i or not pos_f:
+            return None, None
+
+        # check positions in bound
+        if not self.duel.dungeon.in_bound(pos_i):
+            self.log.add("Origin out of bound.\n")
+            return None, None
+        if not self.duel.dungeon.in_bound(pos_f):
+            self.log.add("Destination out of bound.\n")
+            return None, None
+
+        # check tiles are dungeon tiles
+        tile_i = self.duel.dungeon.get_tile(pos_i)
+        if not tile_i.is_dungeon():
+            self.log.add("Origin is no dungeon path.\n")
+            return None, None
+        tile_f = self.duel.dungeon.get_tile(pos_f)
+        if not tile_f.is_dungeon():
+            self.log.add("Destination is no dungeon path.\n")
+            return None, None
+
+        return tile_i, tile_f
+
+def is_move_command(command):
+    """
+    Check if command is a move command. NOTE: it does not 
+    check if the pos strings are valid or in bound.
+    """
+    return command.len == 3 and command.equals_param(0, "m")
 
 def is_attack_command(command):
     """

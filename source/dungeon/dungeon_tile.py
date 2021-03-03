@@ -8,6 +8,26 @@ class DungeonTile(Tile):
         self.char = char
         self.content = content # what it is over the tile
 
+    def remove_content(self):
+        """
+        Remove the current content (replaced by None), and
+        return it.
+        """
+        content = self.content
+        self.content = None
+        return content
+
+    def add_content(self, content):
+        """
+        Add content to tile. If tile is already occupied,
+        return False.
+        """
+        if not self.content:
+            self.content = content
+            return True
+
+        return False
+
     def is_dungeon(self):
         return True
 
