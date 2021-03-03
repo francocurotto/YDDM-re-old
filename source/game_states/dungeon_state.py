@@ -1,4 +1,5 @@
 from duel_substate import DuelSubstate
+from dice_nets.pos import Pos
 
 class DungeonState(DuelSubstate):
     """
@@ -67,17 +68,19 @@ class DungeonState(DuelSubstate):
         if not tile_i or not tile_f:
             return
 
-        # get monster from origin tile and remove it
-        content = tile_i.remove_content()
-        if not content or not content.is_monster():
-            self.log.add("No monster at origin.\n")
+        monster = self.get_player_monster(tile_i):
+        if not monster:
             return
-        monster = content
 
-        # put monster in destination tile
-        success = tile_f.add_content(monster)
-        if not success:
-            self.log.add("Destination already occupied.")
+        # check destination tile
+        if not tile_f.available_to_move():
+            self.log.add("Destination already occupied.\n\n")
+            return
+
+        # at this point everything is ok so move the monster
+        tile_f.content = monster
+        tile_i.remove_content()
+        self.set_start_message()
         
     def run_attack_command(self, command):
         """
@@ -171,30 +174,54 @@ class DungeonState(DuelSubstate):
 
         # check positions in bound
         if not self.duel.dungeon.in_bound(pos_i):
-            self.log.add("Origin out of bound.\n")
+            self.log.add("Origin out of bound.\n\n")
             return None, None
         if not self.duel.dungeon.in_bound(pos_f):
-            self.log.add("Destination out of bound.\n")
+            self.log.add("Destination out of bound.\n\n")
             return None, None
 
         # check tiles are dungeon tiles
         tile_i = self.duel.dungeon.get_tile(pos_i)
         if not tile_i.is_dungeon():
-            self.log.add("Origin is no dungeon path.\n")
+            self.log.add("Origin is no dungeon path.\n\n")
             return None, None
         tile_f = self.duel.dungeon.get_tile(pos_f)
         if not tile_f.is_dungeon():
-            self.log.add("Destination is no dungeon path.\n")
+            self.log.add("Destination is no dungeon " + \
+                "path.\n\n")
             return None, None
 
         return tile_i, tile_f
+
+    def get_player_monster(self, tile):
+        """
+        Get monster at tile and check that it correspond to
+        the current player.
+        """
+        # check if there is a monster at origin
+        if not tile.has_monster():
+            self.log.add("No monster at origin.\n\n")
+            return None
+
+        # check if monster is player monster
+        monster = tile_i.content
+        if monster not in self.player.monster_list:
+            self.log.add("No player's monster.\n\n")
+            return None
+
+        return tile.content
 
 def is_move_command(command):
     """
     Check if command is a move command. NOTE: it does not 
     check if the pos strings are valid or in bound.
     """
-    return command.len == 3 and command.equals_param(0, "m")
+    len_ok    = command.len == 3
+    param0_ok = command.equals_param(0, "m")
+    param1_ok = not command.is_int(1)
+    param2_ok = not command.is_int(2)
+
+    return len_ok and param0_ok and param1_ok and param2_ok
 
 def is_attack_command(command):
     """

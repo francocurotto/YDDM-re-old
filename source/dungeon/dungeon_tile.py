@@ -17,19 +17,24 @@ class DungeonTile(Tile):
         self.content = None
         return content
 
-    def add_content(self, content):
-        """
-        Add content to tile. If tile is already occupied,
-        return False.
-        """
-        if not self.content:
-            self.content = content
-            return True
-
-        return False
-
     def is_dungeon(self):
         return True
+
+    def has_monster(self):
+        """
+        Returns True if tile contains a monster.
+        """
+        # first check if it is empty
+        if self.content is None:
+            return False
+
+        return self.content.is_monster()
+
+    def available_to_move(self):
+        """
+        Returns True if a monster can move to tile.
+        """
+        return self.content is None or self.content.is_item()
 
     def stringify(self):
         """

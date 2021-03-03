@@ -15,8 +15,8 @@ class Pos():
         the string is invalid, return None.
         """
         # check if string is not none
-        if not string:
-            return None
+        #if not string:
+        #    return None
 
         # test for string correct length
         if not (2 <= len(string) <= 3):

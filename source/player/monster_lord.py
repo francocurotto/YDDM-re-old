@@ -25,6 +25,18 @@ class MonsterLord():
         """
         return self.hearts <= 0
 
+    def is_monster(self):
+        """
+        Necesary for checks in dungeon.
+        """
+        return False
+
+    def is_item(self):
+        """
+        Necesary for checks in dungeon.
+        """
+        return False
+
     def select_chars(self):
         """
         Select the type of characters that will be used when
