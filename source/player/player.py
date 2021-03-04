@@ -163,35 +163,6 @@ class Player():
 
         return total_summons >= self.summon_limit
 
-    def prepare_attack(self, i):
-        """
-        Prepares for an attack by:
-            1. getting the monster at index i
-            2. checking that monster is not in cooldown
-            3. checking that player has attack crests,
-                and substract crest in that case.
-        Returns attacker monster.
-        """
-        # 1. get monster
-        attacker = self.monster_list.get(i)
-        if not attacker:
-            return None
-
-        # 2. check if monster is in cooldown
-        if attacker.attack_cooldown:
-            self.log.add(attacker.name + " has already " +
-                "attacked.\n")
-            return None
-        
-        # 3. verify attack crest
-        if self.crest_pool.attack == 0:
-            self.log.add(self.name + " has no attack " +
-                "crests.\n")
-            return None
-
-        # if everything is ok, return attacker
-        return attacker
-
     def decooldown_monsters(self):
         """
         Used when a turn starts, all monsters that were in
