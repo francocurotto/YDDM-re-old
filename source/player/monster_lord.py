@@ -37,6 +37,12 @@ class MonsterLord():
         """
         return False
 
+    def is_monster_lord(self):
+        """
+        Necesary for checks in dungeon.
+        """
+        return True
+
     def select_chars(self):
         """
         Select the type of characters that will be used when

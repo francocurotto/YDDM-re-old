@@ -172,6 +172,15 @@ class Player():
             monster.move_cooldown = False
             monster.attack_cooldown = False
 
+    def owns_target(self, target):
+        """
+        Check if given target (monster of monster lord),
+        correspond to player's target.
+        """
+        owns_monster = target in self.monster_list.list
+        owns_ml = target is self.monster_lord
+        return owns_monster or owns_ml
+
     def check_for_casualties(self):
         """
         Iterates through monsters and check if any monster is

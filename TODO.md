@@ -1,5 +1,6 @@
 TODO:
 - implement proper distanced attack
+    - add check for monster deaths
 - implement monster movement!!
 
 Improvements:

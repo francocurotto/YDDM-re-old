@@ -23,6 +23,12 @@ class Summon():
         Default is method.
         """
         return False
+
+    def is_monster_lord(self):
+        """
+        Default is method.
+        """
+        return False
     
     def stringify(self):
         """

@@ -52,7 +52,8 @@ class DungeonState(DuelSubstate):
 
         # attack command
         elif is_attack_command(command):
-            self.run_attack_command(command)
+            subcommand = command.subcommand(1)
+            self.run_attack_command(subcommand)
         
         # generic commands
         else:
@@ -67,7 +68,7 @@ class DungeonState(DuelSubstate):
         tile_list = self.get_tiles(command)
         if not tile_list:
             return
-        [pos_i, tile_i, pos_f, tile_f] = res_list
+        [pos_i, tile_i, pos_f, tile_f] = tile_list
 
         # 2. get monster
         monster = self.get_player_monster(tile_i)
@@ -90,9 +91,8 @@ class DungeonState(DuelSubstate):
         # 6. check enough movement crests
 
         # 7. everything is ok so move the monster
-        self.duel.dungeon.move(tile_i, tile_f)
-        #tile_f.content = monster
-        #tile_i.remove_content()
+        tile_f.content = monster
+        tile_i.remove_content()
         monster.move_cooldown = True
         self.set_start_message()
 
@@ -104,7 +104,7 @@ class DungeonState(DuelSubstate):
         tile_list = self.get_tiles(command)
         if not tile_list:
             return
-        [pos_i, tile_i, pos_f, tile_f] = res_list
+        [pos_i, tile_i, pos_f, tile_f] = tile_list
 
         # 2. get monster
         monster = self.get_player_monster(tile_i)
@@ -112,7 +112,7 @@ class DungeonState(DuelSubstate):
             return
 
         # 3. get target
-        target = self.get_target(tile_f)
+        target = self.get_opponent_target(tile_f)
         if not target:
             return
 
@@ -124,12 +124,12 @@ class DungeonState(DuelSubstate):
 
         # 5. check range
         if pos_i.distance_to(pos_f) > 1:
-            self.log.add("Target out of range.")
+            self.log.add("Target out of range.\n\n")
             return
 
         # 6. check crest pool
-        if self.duel.player.crest_pool.attack_crest == 0:
-            self.log.add("Not enough attack crests.")
+        if self.duel.player.crest_pool.attack == 0:
+            self.log.add("Not enough attack crests.\n\n")
             return
 
         # 7. attack is valid, first reduce attack crest
@@ -146,14 +146,14 @@ class DungeonState(DuelSubstate):
                 self.next_state.set_start_message()
                 return
             else: # simply attack monster
-                self.log.add(self.duel.opponent.name)
-                self.log.add(" has no defense crests.\n")
+                self.log.add(self.duel.opponent.name + \
+                    " has no defense crests.\n\n")
                 monster.attack_monster(target, 
                     defending=False)
             # check for monster death
         # 8.b. if target is monster lord
         else:
-            monster.attack_ml()
+            monster.attack_ml(self.duel.opponent)
         self.next_state.set_start_message()
 
     def get_tiles(self, command):
@@ -191,10 +191,10 @@ class DungeonState(DuelSubstate):
 
     def get_player_monster(self, tile):
         """
-        Get monster at tile and check that it correspond to
+        Get monster at tile and check that it corresponds to
         the current player.
         """
-        # check if there is a monster at origin
+        # check if there is a monster at tile
         if not tile.has_monster():
             self.log.add("No monster at specified " + \
                 "position.\n\n")
@@ -203,7 +203,28 @@ class DungeonState(DuelSubstate):
         # check if monster is player monster
         monster = tile.content
         if monster not in self.duel.player.monster_list.list:
-            self.log.add("No player's monster.\n\n")
+            self.log.add("Can't move opponent's " + \
+                "monster.\n\n")
+            return None
+
+        return tile.content
+
+    def get_opponent_target(self, tile):
+        """
+        Get opponent target from attack at tile and check 
+        that it corresponds to a valid target.
+        """
+        # check if there is a target at tile
+        if not tile.has_target():
+            self.log.add("No target at specified " + \
+                "position.\n\n")
+            return None
+
+        # check if target is opponent monster lord or 
+        # opponent monster
+        target = tile.content
+        if not self.duel.opponent.owns_target(target):
+            self.log.add("Can't attack own.\n\n")
             return None
 
         return tile.content
@@ -226,7 +247,7 @@ def is_attack_command(command):
     not check if the pos strings are valid or in bound.
     """
     len_ok    = command.len == 3
-    param0_ok = command.equals_param(0, "m")
+    param0_ok = command.equals_param(0, "a")
     param1_ok = not command.is_int(1)
     param2_ok = not command.is_int(2)
 
@@ -235,5 +256,5 @@ def is_attack_command(command):
 help_text = "\n\n\
 Dungeon commands: \n\
     m xy1 xy2: move monster at xy1 to position xy2\n\
-    a xy1 xy2: use monster at xy1 to attack monster at xy2\n\
+    a xy1 xy2: use monster at xy1 to attack target at xy2\n\
     f        : finish phase."

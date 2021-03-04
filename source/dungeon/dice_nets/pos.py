@@ -88,6 +88,13 @@ class Pos():
         self.y += pos.y
         self.x += pos.x
 
+    def distance_to(self, pos2):
+        """
+        Calculates the manhattan distance to other position 
+        pos2.
+        """
+        return abs(self.y-pos2.y) + abs(self.x-pos2.x) 
+
     def stringify(self):
         """
         Returns string version of object.

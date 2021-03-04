@@ -30,6 +30,18 @@ class DungeonTile(Tile):
 
         return self.content.is_monster()
 
+    def has_target(self):
+        """
+        Returns True if tile has valid target (monster or
+        monster lord).
+        """
+        if self.content is None:
+            return False
+
+        is_monster = self.content.is_monster()
+        is_ml = self.content.is_monster_lord()
+        return is_monster or is_ml
+
     def available_to_move(self):
         """
         Returns True if a monster can move to tile.

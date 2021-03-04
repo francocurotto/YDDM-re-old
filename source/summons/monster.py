@@ -124,7 +124,7 @@ class Monster(Summon):
                 "retaliation.\n")
         # case retaliation damage deactivated
         else:
-           self.log.add("No damage inflicted.")
+           self.log.add("No damage inflicted.\n")
             
     def has_advantage(self, attacked):
         """
@@ -169,7 +169,7 @@ class Monster(Summon):
         # attaking power information
         power = self.get_attacking_power(attacked)
         string += self.name + " is attacking with " + \
-            str(power) + " points."
+            str(power) + " points.\n"
 
         return string
 
