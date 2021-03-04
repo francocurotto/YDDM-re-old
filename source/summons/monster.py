@@ -173,22 +173,6 @@ class Monster(Summon):
 
         return string
 
-    def stringify(self):
-        """
-        Returns a string version of object.
-        """
-        string  = "NAME:    " + self.name + "\n"
-        string += "TYPE:    " + self.type + "\n"
-        string += "LEVEL:   " + str(self.level) + "\n"
-        string += "ATTACK:  " + get_attr_styled(
-            self.attack, self.card.attack) + "\n"
-        string += "DEFENSE: " + get_attr_styled(
-            self.defense, self.card.defense) + "\n"
-        string += "LIFE:    " + str(self.life) + "\n"
-        string += "ABILITY: " + self.ability
-
-        return string
-
     def stringify_short(self):
         """
         Returns a one-liner string version of object.

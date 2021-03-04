@@ -14,10 +14,14 @@ class DimensionState(DuelSubstate):
         self.pos = None
         self.help_text = self.help_text + help_text
 
-    def set_start_message(self):
+    def restart(self):
         """
-        As start message show net names.
+        Restart state.
         """
+        # reset next state
+        self.next_state = self
+
+        # set start message
         self.start_message  = "Dimension Dice. "
         self.start_message += "Net types: [s: skip]\n"
         self.start_message += self.get_net_string()
@@ -29,14 +33,11 @@ class DimensionState(DuelSubstate):
         """
         Update state given command.
         """
-        # default values for update
-        self.next_state = self
-
         # skip dimension and go to next state
         if command.equals("s"):
             self.log.add("\n")
             self.next_state = self.dun_state
-            self.next_state.set_new_start_message()
+            self.next_state.restart_new()
 
         # dice dimension
         elif self.check_dimension_command(command):
@@ -51,7 +52,7 @@ class DimensionState(DuelSubstate):
             # define next state
             self.log.add("DIMENSION THE DICE!\n\n")
             self.next_state = self.dun_state
-            self.next_state.set_new_start_message()
+            self.next_state.restart_new()
 
         # generic commands
         else:

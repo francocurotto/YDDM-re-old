@@ -50,11 +50,31 @@ class DungeonTile(Tile):
 
     def stringify(self):
         """
-        Returns a string version of object.
+        Returns a string version of content. If no content,
+        returns message.
+        """
+        if self.content is not None:
+            return self.content.stringify()
+        else:
+            return super().stringify()
+
+    def stringify_short(self):
+        """
+        Returns a short string version of content. If no
+        content, returns message.
+        """
+        if self.content is not None:
+            return self.content.stringify_short()
+        else:
+            return super().stringify()
+
+    def stringify_tile(self):
+        """
+        Returns a tile string version of object.
         """
         # if tile has something, return the tile version of 
         # it
         if self.content is not None:
             return self.content.stringify_tile()
         else:
-            return super().stringify()
+            return super().stringify_tile()

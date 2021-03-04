@@ -1,11 +1,11 @@
 TODO:
-- implement proper distanced attack
-    - add check for monster deaths
+- test proper attack
 - implement monster movement!!
 
 Improvements:
-- remove check for player.check_for_casualties and just check
-for dead between figthting monsters (do after implement
-distanced attack)
 - find a way to automatically check terminal emoji/unicode
 capability
+
+Rules clarification:
+- Can monsters move after attack (if they do not move
+previously)?

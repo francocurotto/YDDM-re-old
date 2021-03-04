@@ -41,7 +41,7 @@ class DuelState():
         Log starting duel message.
         """
         self.log.add("GAME ON!\n")
-        self.state.set_start_message()
+        self.state.restart()
         self.state.log_start_message()
 
     def update(self, command):

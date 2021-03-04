@@ -9,22 +9,30 @@ class DungeonState(DuelSubstate):
     """
     def __init__(self, duel, log):
         super().__init__(duel, log)
+        self.pos_i  = None
+        self.tile_i = None
+        self.pos_f  = None
+        self.tile_f = None
         self.help_text = self.help_text + help_text
 
-    def set_new_start_message(self):
+    def restart_new(self):
         """
-        As new start print state title and crests and 
-        monsters.
+        Restart state comming from new turn.
         """
-        self.start_message  = "<DUNGEON PHASE> [f: finish]"
-        self.start_message += "\n\n"
-        self.start_message += self.duel.dungeon.stringify()
-        self.start_message += "\n\n"
+        self.restart()
 
-    def set_start_message(self):
+        # add title to start message
+        state_title = "<DUNGEON PHASE> [f: finish]\n\n"
+        self.start_message = state_title + self.start_message
+
+    def restart(self):
         """
-        As start message print crests and monsters.
+        Restart state.
         """
+        # reset next state
+        self.next_state = self
+
+        # set start message
         self.start_message  = self.duel.dungeon.stringify()
         self.start_message += "\n\n"
 
@@ -32,9 +40,6 @@ class DungeonState(DuelSubstate):
         """
         Update state given command.
         """
-        # default values for update
-        self.next_state = self
-
         # finish dungeon phase command
         if command.equals("f"):
             # decooldown monster
@@ -43,7 +48,7 @@ class DungeonState(DuelSubstate):
             # finish turn
             self.duel.advance_turn()
             self.next_state = self.roll_state
-            self.next_state.set_start_message()
+            self.next_state.restart()
 
         # move command
         elif is_move_command(command): 
@@ -65,13 +70,12 @@ class DungeonState(DuelSubstate):
         the dungeon.
         """
         # 1. get tiles
-        tile_list = self.get_tiles(command)
-        if not tile_list:
+        success = self.get_pos_and_tiles(command)
+        if not success:
             return
-        [pos_i, tile_i, pos_f, tile_f] = tile_list
 
         # 2. get monster
-        monster = self.get_player_monster(tile_i)
+        monster = self.get_player_monster(self.tile_i)
         if not monster:
             return
 
@@ -82,7 +86,7 @@ class DungeonState(DuelSubstate):
             return
         
         # 4. check destination tile occupancy
-        if not tile_f.available_to_move():
+        if not self.tile_f.available_to_move():
             self.log.add("Destination already occupied.\n\n")
             return
 
@@ -91,28 +95,27 @@ class DungeonState(DuelSubstate):
         # 6. check enough movement crests
 
         # 7. everything is ok so move the monster
-        tile_f.content = monster
-        tile_i.remove_content()
+        self.tile_f.content = monster
+        self.tile_i.remove_content()
         monster.move_cooldown = True
-        self.set_start_message()
+        self.restart()
 
     def run_attack_command(self, command):
         """
         Run command that makes a player monster attack.
         """
         # 1. get tiles
-        tile_list = self.get_tiles(command)
-        if not tile_list:
+        success = self.get_pos_and_tiles(command)
+        if not success:
             return
-        [pos_i, tile_i, pos_f, tile_f] = tile_list
 
         # 2. get monster
-        monster = self.get_player_monster(tile_i)
+        monster = self.get_player_monster(self.tile_i)
         if not monster:
             return
 
         # 3. get target
-        target = self.get_opponent_target(tile_f)
+        target = self.get_opponent_target(self.tile_f)
         if not target:
             return
 
@@ -123,7 +126,7 @@ class DungeonState(DuelSubstate):
             return
 
         # 5. check range
-        if pos_i.distance_to(pos_f) > 1:
+        if self.pos_i.distance_to(self.pos_f) > 1:
             self.log.add("Target out of range.\n\n")
             return
 
@@ -142,52 +145,63 @@ class DungeonState(DuelSubstate):
             if self.duel.opponent.crest_pool.defense > 0:
                 # trigger defense state
                 self.next_state = self.def_state
-                self.next_state.add_monsters(monster, target)
-                self.next_state.set_start_message()
+                self.next_state.get_params(self)
+                self.next_state.restart()
                 return
             else: # simply attack monster
                 self.log.add(self.duel.opponent.name + \
-                    " has no defense crests.\n\n")
+                    " has no defense crests.\n")
                 monster.attack_monster(target, 
                     defending=False)
-            # check for monster death
+            # check for monsters death
+            self.duel.player.check_for_death(self.tile_i)
+            self.duel.opponent.check_for_death(self.tile_f)
         # 8.b. if target is monster lord
         else:
             monster.attack_ml(self.duel.opponent)
-        self.next_state.set_start_message()
 
-    def get_tiles(self, command):
+        self.log.add("\n")
+        self.next_state.restart()
+
+    def get_pos_and_tiles(self, command):
         """
         Get initial and final tiles, and it respective pos 
-        from command. Used in move and attack commands.
+        from command. Return true if all the objects could be
+        obtained. Used in move and attack commands.
         """
         pos_i = Pos.from_string(command.list[0])
         pos_f = Pos.from_string(command.list[1])
 
         # check valid positions
         if not pos_i or not pos_f:
-            return None
+            return False
 
         # check positions in bound
         if not self.duel.dungeon.in_bound(pos_i):
             self.log.add("Origin out of bound.\n\n")
-            return None
+            return False
         if not self.duel.dungeon.in_bound(pos_f):
             self.log.add("Destination out of bound.\n\n")
-            return None
+            return False
 
         # check tiles are dungeon tiles
         tile_i = self.duel.dungeon.get_tile(pos_i)
         if not tile_i.is_dungeon():
             self.log.add("Origin is no dungeon path.\n\n")
-            return None
+            return False
         tile_f = self.duel.dungeon.get_tile(pos_f)
         if not tile_f.is_dungeon():
             self.log.add("Destination is no dungeon " + \
                 "path.\n\n")
-            return None
+            return False
 
-        return [pos_i, tile_i, pos_f, tile_f]
+        # if everyting went good, add pos and tiles to state
+        # paramenters and return True
+        self.pos_i  = pos_i
+        self.tile_i = tile_i
+        self.pos_f  = pos_f
+        self.tile_f = tile_f
+        return True
 
     def get_player_monster(self, tile):
         """

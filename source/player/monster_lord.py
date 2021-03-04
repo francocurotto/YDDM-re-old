@@ -72,6 +72,12 @@ class MonsterLord():
 
         return string
 
+    def stringify_short(self):
+        """
+        Returns a short string version of object.
+        """
+        return self.stringify()
+
     def stringify_tile(self):
         """
         Returns tile string version of object.

@@ -7,12 +7,17 @@ class SummonState(DuelSubstate):
     """
     def __init__(self, duel, log):
         super().__init__(duel, log)
+        self.dimensions = None
         self.help_text = self.help_text + help_text
 
-    def set_start_message(self):
+    def restart(self):
         """
-        As start message show summons.
+        Restart state.
         """
+        # reset next state
+        self.next_state = self
+
+        # set start message
         self.start_message  = "Available summons:\n"
         self.start_message += \
             self.dimensions.stringify() + "\n"
@@ -23,9 +28,6 @@ class SummonState(DuelSubstate):
         """
         Update state given command.
         """
-        # default values for update
-        self.next_state = self
-
         # print available summons command
         if command.equals("p", "as"):
             self.log.add(self.dimensions.stringify())
@@ -49,7 +51,7 @@ class SummonState(DuelSubstate):
             # define next state
             self.next_state = self.dim_state
             self.next_state.dice = dice
-            self.next_state.set_start_message()
+            self.next_state.restart()
 
         # generic commands
         else:

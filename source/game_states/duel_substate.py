@@ -34,9 +34,14 @@ class DuelSubstate():
             subcommand = command.subcommand(1)
             self.log.add(self.get_print(subcommand))
 
+        # print command
+        elif command.equals_param(0, "ps"):
+            subcommand = command.subcommand(1)
+            self.log.add(self.get_print_short(subcommand))
+
     def get_print(self, command):
         """
-        Get asked print message.
+        Get print message.
         """
         if command.equals("p"): # display pool     
             s = self.duel.player.stringify_pool()
@@ -54,34 +59,42 @@ class DuelSubstate():
             s = self.duel.dungeon.stringify()
         # display item at pos
         elif pos := Pos.from_string(command.get_param(0)):
-            s = self.stringify_dungeon_pos(pos)
+            s = self.stringify_dungeon_pos(pos, short=False)
         else: # invalid command
             return ""
 
         return s + "\n\n"
 
-    def stringify_dungeon_pos(self, pos):
+    def get_print_short(self, command):
+        """
+        Get short print message.
+        """
+        # display item at pos
+        if pos := Pos.from_string(command.get_param(0)):
+            s = self.stringify_dungeon_pos(pos, short=True)
+        else: # invalid command
+            return ""
+        return s + "\n\n"
+
+    def stringify_dungeon_pos(self, pos, short):
         """
         Returns string version of object at position pos in
-        dungeon.
+        dungeon. If short is True, return short version.
         """
         # get tile
         tile = self.duel.dungeon.get_tile(pos)
         if not tile: # no tile => out of bound
             return "Can't print, out of bound."
-            
-
-        # if tile has something to print
-        if not tile.is_dungeon() or not tile.content:
-            return "Tile empty, nothing to print."
-
-        # in case there is something, return string
-        return tile.content.stringify()
+        
+        if short:
+            return tile.stringify_short()
+        else:
+            return tile.stringify()
 
 help_text = "\
 General commands: \n\
-    h   : print help \n\
-    q   :  forfeit the duel \n\
+    h : print help \n\
+    q :  forfeit the duel \n\
 \n\
 Print commands: \n\
     p p    : print pool \n\

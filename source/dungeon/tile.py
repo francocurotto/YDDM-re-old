@@ -28,4 +28,16 @@ class Tile():
         """
         Returns a string version of object.
         """
+        return "Can't print, nothing here."
+
+    def stringify_short(self):
+        """
+        Returns a short string version of object.
+        """
+        return "Can't print, nothing here."
+
+    def stringify_tile(self):
+        """
+        Returns a tile string version of object.
+        """
         return self.char

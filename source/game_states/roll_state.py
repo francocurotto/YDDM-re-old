@@ -8,10 +8,14 @@ class RollState(DuelSubstate):
         super().__init__(duel, log)
         self.help_text = self.help_text + help_text
 
-    def set_start_message(self):
+    def restart(self):
         """
-        As start message show player pool.
+        Restart state.
         """
+        # reset next state
+        self.next_state = self
+
+        # set start message
         self.start_message  = self.duel.player.name 
         self.start_message += " TURN\n"
         self.start_message += "<ROLL PHASE>\n"
@@ -22,9 +26,6 @@ class RollState(DuelSubstate):
         """
         Update state given command.
         """
-        # default values for update
-        self.next_state = self
-
         # add command
         if command.equals_param(0, "a"):
             subcommand = command.subcommand(1)
@@ -115,13 +116,13 @@ class RollState(DuelSubstate):
 
         # define next state
         if self.can_dimension(dimensions): # dimension able
-            self.sum_state.dimensions = dimensions
             self.next_state = self.sum_state
-            self.next_state.set_start_message()
+            self.next_state.dimensions = dimensions
+            self.next_state.restart()
 
         else: # dimension unable
             self.next_state = self.dun_state
-            self.next_state.set_new_start_message()
+            self.next_state.restart_new()
 
     def run_quick_roll_command(self, command):
         """

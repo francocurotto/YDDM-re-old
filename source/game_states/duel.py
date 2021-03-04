@@ -53,13 +53,14 @@ class Duel():
 
         return False
 
-    def check_for_casualties(self):
+    def check_for_casualties(self, attacker, attacked):
         """
         Check if any of the players has a monster that has
-        died.
+        died after an attack. If one monster is death,
+        remove from dungeon.
         """
-        self.player.check_for_casualties()
-        self.opponent.check_for_casualties()
+        self.player.check_for_death(attacker)
+        self.opponent.check_for_death(attacked)
 
     def get_opponent(self, player):
         """

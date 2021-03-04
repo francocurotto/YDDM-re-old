@@ -184,7 +184,7 @@ class Dungeon():
             prefix = str(i+1).rjust(2) + self.chars["block"]
             
             # create list of row strings
-            tile_list = [tile.stringify() for tile in row]
+            tile_list = [t.stringify_tile() for t in row]
             tile_str  = "".join(tile_list)
 
             # string after row

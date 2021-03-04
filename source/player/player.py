@@ -181,17 +181,17 @@ class Player():
         owns_ml = target is self.monster_lord
         return owns_monster or owns_ml
 
-    def check_for_casualties(self):
+    def check_for_death(self, tile):
         """
-        Iterates through monsters and check if any monster is
-        dead. For every dead monster, send it to the,
-        graveyard and add a message to the return string.
+        Check if monster in tile is death (assumes monster in
+        tie is owned). If confirmed dead, send to
+        graveyard and remove from tile.
         """
-        # check if monster is dead
-        for monster in self.monster_list.list:
-            if monster.life <= 0:
-                self.send_to_graveyard(monster)
-                self.log.add(monster.name + " is dead.\n")
+        monster = tile.content
+        if monster.life <= 0:
+            self.log.add(monster.name + " is dead.\n")
+            self.send_to_graveyard(monster)
+            tile.remove_content()
 
     def send_to_graveyard(self, monster):
         """
@@ -199,9 +199,9 @@ class Player():
         graveyard. It is assumed that the monster is in the 
         summoned list.
         """
-        self.monster_list.remove(monster)
         # set dead monster life to zero for consistency
         monster.life = 0
+        self.monster_list.remove(monster)
         self.graveyard.add(monster)
 
     def create_tile(self, content=None):
