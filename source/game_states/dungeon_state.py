@@ -91,10 +91,19 @@ class DungeonState(DuelSubstate):
             return
 
         # 5. check valid path
+        path = self.duel.dungeon.get_path(self.pos_i, 
+            self.pos_f)
+        if not path:
+            self.log.add("Invalid movement path.\n\n")
 
         # 6. check enough movement crests
+        move_cost = len(path) - 1
+        if self.duel.player.crest_pool.movement < move_cost:
+            self.log.add("Not enough movement crests.\n\n")
+            return
 
         # 7. everything is ok so move the monster
+        self.duel.player.crest_pool -= move_cost
         self.tile_f.content = monster
         self.tile_i.remove_content()
         monster.move_cooldown = True

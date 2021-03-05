@@ -147,6 +147,16 @@ class Dungeon():
 
         return neighbor_tiles
 
+    def get_path(self, pos_i, pos_f):
+        """
+        Return a path along the dungeon from pos_i to pos_f,
+        considering the rules of DDM. The returned path is a 
+        list of positions from start to finish. If no path is 
+        found, return None.
+        """
+        #TODO: path search algorithm
+        return [pos_i, pos_f]
+
     def select_chars(self):
         """
         Select the type of characters that will be used when

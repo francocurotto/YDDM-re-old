@@ -1,11 +1,9 @@
 TODO:
-- test proper attack
+- test teleport movement with cost
 - implement monster movement!!
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode
 capability
-
-Rules clarification:
-- Can monsters move after attack (if they do not move
-previously)?
+- reimplement monster lord so that it is from the same family 
+than monster items?
