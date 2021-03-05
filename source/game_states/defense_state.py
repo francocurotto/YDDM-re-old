@@ -47,13 +47,11 @@ class DefenseState(DuelSubstate):
         # opponent defends
         if command.equals("y"):
             self.duel.opponent.crest_pool.defense -= 1
-            attacker.attack_monster(self.attacked,
-                defending=True)
+            attacker.attack_monster(attacked, defending=True)
 
         # opponent does not defend
         elif command.equals("n"):
-            attacker.attack_monster(self.attacked,
-                defending=False)
+            attacker.attack_monster(attacked,defending=False)
 
         # check if any of the monsters is dead
         self.duel.player.check_for_death(self.tile_i)
