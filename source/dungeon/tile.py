@@ -34,7 +34,7 @@ class Tile():
         """
         Returns a short string version of object.
         """
-        return "Can't print, nothing here."
+        return self.stringify()
 
     def stringify_tile(self):
         """

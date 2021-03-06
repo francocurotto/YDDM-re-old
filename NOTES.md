@@ -195,3 +195,10 @@ Just thinking right now, maybe I could start simple and
 implement monster teleportation were I allow monster to move
 whereever they want, and so I can test proper attack easier 
 too. Good ideas!
+
+# 2021-03-06
+I have jsut finished testing teleport movement with 1 
+movement crest cost, and proper attack between monsters at
+correct range. All that is left is to implement proper 
+movement and I'll have a proper game, that it will only be 
+missing monster and items abilities. So close!

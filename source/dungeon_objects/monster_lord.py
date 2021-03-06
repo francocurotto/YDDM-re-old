@@ -1,6 +1,7 @@
 from functions import grayout
+from target import Target
 
-class MonsterLord():
+class MonsterLord(Target):
     """
     The representation of the player in the dungeon. When
     the monster lord is beaten the game is over.
@@ -17,25 +18,13 @@ class MonsterLord():
         self.chars = self.select_chars()
         # add player specific chars
         self.chars["heart"] = ml_chars["heart"]
-        self.chars["tile"]  = ml_chars["tile"]
+        self.tile_char      = ml_chars["tile"]
 
     def is_dead(self):
         """
         Check if monster lord has been beaten.
         """
         return self.hearts <= 0
-
-    def is_monster(self):
-        """
-        Necesary for checks in dungeon.
-        """
-        return False
-
-    def is_item(self):
-        """
-        Necesary for checks in dungeon.
-        """
-        return False
 
     def is_monster_lord(self):
         """
@@ -77,9 +66,3 @@ class MonsterLord():
         Returns a short string version of object.
         """
         return self.stringify()
-
-    def stringify_tile(self):
-        """
-        Returns tile string version of object.
-        """
-        return self.chars["tile"]

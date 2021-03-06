@@ -1,5 +1,6 @@
 from empty_tile import EmptyTile
 from dice_nets.pos import Pos
+from dungeon_object import DungeonObject
 
 class Dungeon():
     """
@@ -60,7 +61,7 @@ class Dungeon():
             if pos == net.center_pos: # center => add summon
                 tile = player.create_tile(summon)
             else: # if not center pos, create empty tile
-                tile = player.create_tile()
+                tile = player.create_tile(DungeonObject())
 
             self.set_tile(tile, pos)
 

@@ -1,6 +1,8 @@
-class Summon():
+from dungeon_object import DungeonObject
+
+class Summon(DungeonObject):
     """
-    Generic summon that is played in the board of the game.
+    Summon generated from a dice dimension.
     """
     def __init__(self, card, color, log):
         # attributes extracted from card
@@ -12,24 +14,6 @@ class Summon():
         self.color = color
         self.log = log
 
-    def is_monster(self):
-        """
-        Default is method.
-        """
-        return False
-
-    def is_item(self):
-        """
-        Default is method.
-        """
-        return False
-
-    def is_monster_lord(self):
-        """
-        Default is method.
-        """
-        return False
-    
     def stringify(self):
         """
         Returns a string version of object.
@@ -42,8 +26,3 @@ class Summon():
         """
         return self.card.stringify_short()
 
-    def stringify_tile(self):
-        """
-        Returns tile string version of object.
-        """
-        return self.tile_char

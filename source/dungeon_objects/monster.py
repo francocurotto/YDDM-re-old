@@ -2,8 +2,9 @@ from colorama import Fore
 from settings import type_adv, retal_dmg
 from functions import color
 from summon import Summon
+from target import Target
 
-class Monster(Summon):
+class Monster(Summon, Target):
     """
     A monster in the board.
     """

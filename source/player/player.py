@@ -204,7 +204,7 @@ class Player():
         self.monster_list.remove(monster)
         self.graveyard.add(monster)
 
-    def create_tile(self, content=None):
+    def create_tile(self, content):
         """
         Create a player tile (dungeon path) with content 
         (None for no content).

@@ -86,7 +86,7 @@ class DungeonState(DuelSubstate):
             return
         
         # 4. check destination tile occupancy
-        if not self.tile_f.available_to_move():
+        if self.tile_f.content.is_target():
             self.log.add("Destination already occupied.\n\n")
             return
 
@@ -103,7 +103,7 @@ class DungeonState(DuelSubstate):
             return
 
         # 7. everything is ok so move the monster
-        self.duel.player.crest_pool -= move_cost
+        self.duel.player.crest_pool.movement -= move_cost
         self.tile_f.content = monster
         self.tile_i.remove_content()
         monster.move_cooldown = True
@@ -218,7 +218,7 @@ class DungeonState(DuelSubstate):
         the current player.
         """
         # check if there is a monster at tile
-        if not tile.has_monster():
+        if not tile.content.is_monster():
             self.log.add("No monster at specified " + \
                 "position.\n\n")
             return None
@@ -238,7 +238,7 @@ class DungeonState(DuelSubstate):
         that it corresponds to a valid target.
         """
         # check if there is a target at tile
-        if not tile.has_target():
+        if not tile.content.is_target():
             self.log.add("No target at specified " + \
                 "position.\n\n")
             return None
