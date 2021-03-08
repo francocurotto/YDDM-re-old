@@ -1,3 +1,4 @@
+from functions import color_fg
 from tile import Tile
 from dungeon_object import DungeonObject
 
@@ -5,9 +6,16 @@ class DungeonTile(Tile):
     """
     A dungeon tile where monsters can exist and move.
     """
-    def __init__(self, char, content):
-        self.char = char
+    def __init__(self, color, content):
+        self.char_ascii   = color_fg("[]", color)
+        self.char_unicode = color_fg("[]", color)
+        if color == "blue":
+            self.char_emoji = "🟦" 
+        elif color == "red":
+            self.char_emoji = "🟥" 
+
         self.content = content # what it is over the tile
+        super().__init__()
 
     def remove_content(self):
         """

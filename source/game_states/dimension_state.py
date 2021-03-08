@@ -1,6 +1,7 @@
 from duel_substate import DuelSubstate
 from dice_nets.dice_net import create_net
 from dice_nets.pos import Pos
+from dungeon_tile import DungeonTile
 
 class DimensionState(DuelSubstate):
     """
@@ -96,12 +97,12 @@ class DimensionState(DuelSubstate):
         names.
         """
         # get normal tile char
-        tile_char = self.duel.player.chars["tile"]
+        color = self.duel.player.color
+        tile_char = DungeonTile(color, None).char
         
         # get center tile char
-        summon = self.dice.card.summon(
-            self.duel.player.chars, self.log)
-        center_char = summon.tile_char
+        summon = self.dice.card.summon(color, self.log)
+        center_char = summon.chars["tile"]
 
         # create net string from base net string
         net_str = base_net_str.replace("[]", tile_char)

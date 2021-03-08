@@ -1,6 +1,5 @@
-from colorama import Fore
 from settings import type_adv, retal_dmg
-from functions import color
+from functions import color_fg
 from summon import Summon
 from target import Target
 
@@ -10,8 +9,12 @@ class Monster(Summon, Target):
     """
     # display icons
     tile_char_ascii = "MS"
-    def __init__(self, card, chars, log):
-        super().__init__(card, chars, log)
+    def __init__(self, card, color, log):
+        #display chars
+        self.chars_ascii   = {"tile" : color_fg("MS", color)}
+        self.chars_unicode = {"tile" : color_fg("♞♥", color)}
+        super().__init__(card, color, log)
+
         # attributes extracted from card
         self.type = self.card.type
         self.attack = self.card.attack
@@ -19,7 +22,6 @@ class Monster(Summon, Target):
         self.life = self.card.life
         self.move_cooldown = False
         self.attack_cooldown = False
-        self.tile_char = chars["monster"]
 
     def add_to_player_list(self, player):
         """
@@ -212,8 +214,8 @@ def get_attr_styled(current, original):
     """
     string = str(current)
     if current > original: # buff style
-        string = color(string, Fore.CYAN)
+        string = color_fr(string, "cyan")
     elif current < original: # debuff style
-        string = color(string, Fore.RED)
+        string = color(string, "red")
 
     return string.rjust(2)

@@ -1,3 +1,4 @@
+from functions import color_bg
 from dungeon_object import DungeonObject
 
 class Summon(DungeonObject):
@@ -8,11 +9,15 @@ class Summon(DungeonObject):
         # attributes extracted from card
         self.name = card.name
         self.level = card.level
-        self.chars = card.chars
         self.ability = card.ability
+        self.chars = card.chars
         self.card = card
         self.color = color
         self.log = log
+
+        self.chars_emoji = {"tile" : \
+            color_bg(self.card.chars_emoji["type"], color)}
+        self.chars.update(self.select_chars())
 
     def stringify(self):
         """
@@ -25,4 +30,3 @@ class Summon(DungeonObject):
         Returns one-liner string version of object.
         """
         return self.card.stringify_short()
-

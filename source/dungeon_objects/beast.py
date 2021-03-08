@@ -4,8 +4,8 @@ class Beast(Monster):
     """
     A monster of type beast.
     """
-    def __init__(self, card, chars, log):
-        super().__init__(card, chars, log)
+    def __init__(self, card, color, log):
+        super().__init__(card, color, log)
 
     def has_advantage_over_warrior(self):
         return True

@@ -10,7 +10,7 @@ class ItemCard(SummonCard):
     # display icons
     chars_ascii   = {"type" : "I"}
     chars_unicode = {"type" : "I"}
-    chars_emoji   = {"type" : "❓"}
+    chars_emoji   = {"type" : "❔"}
 
     def __init__(self, params):
         super().__init__(params)

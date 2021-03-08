@@ -1,5 +1,4 @@
-from colorama import Fore
-from functions import color, grayout
+from functions import grayout
 from tile import Tile
 
 class EmptyTile(Tile):
@@ -8,7 +7,7 @@ class EmptyTile(Tile):
     """
     # display icons
     char_ascii   = grayout("[]")
-    char_unicode = color("[]", Fore.BLACK)
+    char_unicode = grayout("[]")
     char_emoji   = "⬛" 
 
     def __init__(self):

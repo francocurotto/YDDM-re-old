@@ -1,4 +1,4 @@
-from functions import grayout
+from functions import color_fg, color_bg, grayout
 from target import Target
 
 class MonsterLord(Target):
@@ -6,19 +6,30 @@ class MonsterLord(Target):
     The representation of the player in the dungeon. When
     the monster lord is beaten the game is over.
     """
-    def __init__(self, ml_chars):
+    heart_emoji = {"blue" : "💙",
+                   "red"  : "❤️ "}
+    def __init__(self, color):
+        self.color = color
         self.hearts = 3
-        self.chars_ascii = {"type"    : "ML",
-                            "noheart" : grayout("<3")}
-        self.chars_unicode = {"type"    : "♛",
-                              "noheart" : "♡"}
-        self.chars_emoji = {"type"    : "👑",
-                            "noheart" : "🖤"}
+        
+        # display characters
+        self.chars_ascii = {
+            "type"    : "ML",
+            "heart"   : color_fg("<3", self.color),
+            "noheart" : grayout("<3"),
+            "tile"    : color_fg("ML", self.color)}
+        self.chars_unicode = {
+            "type"    : "♛",
+            "heart"   : color_fg("♥", self.color),
+            "noheart" : "♡",
+            "tile"    : color_fg("♛♥", self.color)}
+        self.chars_emoji = {
+            "type"    : "👑",
+            "heart"   : self.heart_emoji[self.color],
+            "noheart" : "🖤",
+            "tile"    : color_bg("👑", self.color)}
 
         self.chars = self.select_chars()
-        # add player specific chars
-        self.chars["heart"] = ml_chars["heart"]
-        self.tile_char      = ml_chars["tile"]
 
     def is_dead(self):
         """
@@ -31,19 +42,6 @@ class MonsterLord(Target):
         Necesary for checks in dungeon.
         """
         return True
-
-    def select_chars(self):
-        """
-        Select the type of characters that will be used when
-        printing monster lord information.
-        """
-        from settings import print_type
-        if print_type == "ascii":
-            return self.chars_ascii
-        elif print_type == "unicode":
-            return self.chars_unicode
-        elif print_type == "emoji":
-            return self.chars_emoji
 
     def stringify(self):
         """

@@ -1,12 +1,15 @@
+from functions import color_fg
 from summon import Summon
 
 class Item(Summon):
     """
     An item in the board.
     """
-    def __init__(self, card, chars, log):
-        super().__init__(card, chars, log)
-        self.tile_char = chars["item"]
+    def __init__(self, card, color, log):
+        # display chars
+        self.chars_ascii   = {"tile" : color_fg("IT", color)}
+        self.chars_unicode = {"tile" : color_fg("??", color)}
+        super().__init__(card, color, log)
 
     def add_to_player_list(self, player):
         """

@@ -1,5 +1,4 @@
-from colorama import Fore
-from functions import color, grayout
+from functions import color_fg, grayout
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from dice_list import DiceList
@@ -16,25 +15,18 @@ class Player():
     """
     summon_limit = 10
 
-    def __init__(self, name, attr, log):
+    def __init__(self, name, color, log):
         # display icons
-        self.color = attr["color"]
-        self.chars_ascii = {
-            "heart"   : color("<3", self.color),
-            "tile"    : color("[]", self.color),
-            "ML"      : color("ML", self.color),
-            "monster" : color("MS", self.color),
-            "item"    : color("IT", self.color)}
-        self.chars_unicode = {
-            "heart"   : color("♥",  self.color),
-            "tile"    : color("[]", self.color),
-            "ML"      : color("♛♥", self.color),
-            "monster" : color("♞♥", self.color),
-            "item"    : color("⍰⍰", self.color)}
-        self.chars_emoji = attr["emoji_chars"]
-        self.chars = self.select_chars()
-        self.ml_chars = {"heart" : self.chars["heart"],
-                         "tile"  : self.chars["ML"]}
+        self.color = color
+        #TODO delete
+        #self.chars_ascii = {
+        #    "heart"   : color_fg("<3", self.color),
+        #    "tile"    : color_fg("[]", self.color)}
+        #self.chars_unicode = {
+        #    "heart"   : color("♥",  self.color),
+        #    "tile"    : color("[]", self.color)}
+        #self.chars_emoji = attr["emoji_chars"]
+        #self.chars = self.select_chars()
 
         # player parameters
         self.name = name
@@ -46,7 +38,7 @@ class Player():
         self.monster_list = MonsterList(self.log)
         self.item_list = ItemList(self.log)
         self.graveyard = Graveyard(self.log)
-        self.monster_lord = MonsterLord(self.ml_chars)
+        self.monster_lord = MonsterLord(self.color)
         self.tiles = []
         self.forfeited = False
 
@@ -126,7 +118,7 @@ class Player():
         4. returns summon
         """
         # summon card from dice
-        summon = dice.card.summon(self.chars, self.log)
+        summon = dice.card.summon(self.color, self.log)
         summon.add_to_player_list(self)
 
         # discard summoned dice into dice bin
@@ -209,25 +201,9 @@ class Player():
         Create a player tile (dungeon path) with content 
         (None for no content).
         """
-        tile = DungeonTile(self.chars["tile"], content)
+        tile = DungeonTile(self.color, content)
         self.tiles.append(tile)
         return tile
-
-    def select_chars(self):
-        """
-        Select the type of characters that will be used when
-        printing card information.
-        """
-        # weird import here so that the print_type parameter
-        # can be changed at runtime
-        from settings import print_type
-
-        if print_type == "ascii":
-            return self.chars_ascii
-        elif print_type == "unicode":
-            return self.chars_unicode
-        elif print_type == "emoji":
-            return self.chars_emoji
 
     def stringify_pool(self):
         """
@@ -241,7 +217,7 @@ class Player():
             
             # case in hand
             if dice in self.dice_hand.list:
-                dice_str = color(dice_str, Fore.GREEN)
+                dice_str = color_fg(dice_str, "green")
 
             # case dimensioned
             elif dice in self.dice_bin.list:
