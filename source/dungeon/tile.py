@@ -3,6 +3,7 @@ class Tile():
     Generic dungeon tile.
     """
     def __init__(self):
+        self.visited = False # used only for path calculation
         self.char = self.select_char()
 
     def is_dungeon(self):

@@ -86,16 +86,3 @@ class Duel():
         player2.dice_pool.fill_random(library)
             
         return player1, player2   
-
-# TODO delete
-#display icons
-#player1_attr = {
-#    "color"       : Fore.BLUE,
-#    "emoji_chars" : {"heart"   : "💙",
-#                     "tile"    : "🟦"}
-#}
-#player2_attr = {
-#    "color"       : Fore.RED,
-#    "emoji_chars" : {"heart"   : "❤️ ",
-#                     "tile"    : "🟥"}
-#}

@@ -1,6 +1,7 @@
 from empty_tile import EmptyTile
 from dice_nets.pos import Pos
 from dungeon_object import DungeonObject
+from path import Path
 
 class Dungeon():
     """
@@ -155,8 +156,37 @@ class Dungeon():
         list of positions from start to finish. If no path is 
         found, return None.
         """
-        #TODO: path search algorithm
-        return [pos_i, pos_f]
+        # initial condition
+        path_queue = [Path([pos_i])]
+
+        # breadth-first search
+        final_path = None
+        while path_queue:
+            # pop current path
+            path = path_queue.pop(0)
+            
+            # check finish condition
+            if path.end() == pos_f:
+                final_path = path
+                break
+
+            # expand path in one tile in all possible 
+            # directions and add the to the queue
+            new_paths = path.expand(self)
+            path_queue += new_paths
+        
+        self.devisit_tiles()
+
+        return final_path
+
+    def devisit_tiles(self):
+        """
+        Remove the visit flag for all tiles. Used after path
+        computation.
+        """
+        for row in self.array:
+            for tile in row:
+                tile.visited = False
 
     def select_chars(self):
         """

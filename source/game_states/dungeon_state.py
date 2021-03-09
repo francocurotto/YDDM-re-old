@@ -95,9 +95,11 @@ class DungeonState(DuelSubstate):
             self.pos_f)
         if not path:
             self.log.add("Invalid movement path.\n\n")
+            return 
+        print("DEBUG:" + path.stringify())
 
         # 6. check enough movement crests
-        move_cost = len(path) - 1
+        move_cost = len(path.list) - 1
         if self.duel.player.crest_pool.movement < move_cost:
             self.log.add("Not enough movement crests.\n\n")
             return

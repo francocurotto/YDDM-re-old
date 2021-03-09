@@ -16,20 +16,9 @@ class Player():
     summon_limit = 10
 
     def __init__(self, name, color, log):
-        # display icons
-        self.color = color
-        #TODO delete
-        #self.chars_ascii = {
-        #    "heart"   : color_fg("<3", self.color),
-        #    "tile"    : color_fg("[]", self.color)}
-        #self.chars_unicode = {
-        #    "heart"   : color("♥",  self.color),
-        #    "tile"    : color("[]", self.color)}
-        #self.chars_emoji = attr["emoji_chars"]
-        #self.chars = self.select_chars()
-
         # player parameters
         self.name = name
+        self.color = color
         self.log = log
         self.dice_pool = DicePool(self.log)
         self.dice_hand = DiceHand(self.log)
