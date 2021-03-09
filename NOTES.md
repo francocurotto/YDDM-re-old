@@ -202,3 +202,16 @@ movement crest cost, and proper attack between monsters at
 correct range. All that is left is to implement proper 
 movement and I'll have a proper game, that it will only be 
 missing monster and items abilities. So close!
+
+# 2021-03-09
+OMG! The proper movement has been implemented. In the end, 
+the only thing that I had to do is implement my version of
+Breadth-first search, and it worked perfectly. Even I didn't
+optimized it, it works really fast, it acuatally make sense, 
+because the maximum path of the game are actually not that 
+long. The game is just so fun. 
+
+The next step is to implement a simple curses interface, just
+so that you don't have to print the necessary information all
+the time. It will still work with prompt commands though,
+better controls are for future work.

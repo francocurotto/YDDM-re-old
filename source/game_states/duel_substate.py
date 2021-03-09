@@ -30,12 +30,12 @@ class DuelSubstate():
             self.log.add(self.help_text + "\n\n")
 
         # print command
-        elif command.equals_param(0, "p"):
+        elif is_print_command(command):
             subcommand = command.subcommand(1)
             self.log.add(self.get_print(subcommand))
 
         # print command
-        elif command.equals_param(0, "ps"):
+        elif is_print_short_command(command):
             subcommand = command.subcommand(1)
             self.log.add(self.get_print_short(subcommand))
 
@@ -90,6 +90,26 @@ class DuelSubstate():
             return tile.stringify_short()
         else:
             return tile.stringify()
+
+def is_print_command(command):
+    """
+    Check if command is print command.
+    """
+    len_ok    = command.len == 2
+    param0_ok = command.equals_param(0, "p")
+    param1_ok = not command.is_int(1)
+
+    return len_ok and param0_ok and param1_ok
+
+def is_print_short_command(command):
+    """
+    Check if command is print command.
+    """
+    len_ok    = command.len == 2
+    param0_ok = command.equals_param(0, "ps")
+    param1_ok = not command.is_int(1)
+
+    return len_ok and param0_ok and param1_ok
 
 help_text = "\
 General commands: \n\
