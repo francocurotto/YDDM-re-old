@@ -24,9 +24,6 @@ class Side():
         """
         Returns a string version of object.
         """
-        #if self.multiplier <= 1:
-        #    return self.crest.stringify()
-
         return self.crest.stringify() + str(self.multiplier)
 
 def parse_side_string(string):

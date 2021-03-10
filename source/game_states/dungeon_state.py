@@ -96,7 +96,7 @@ class DungeonState(DuelSubstate):
         if not path:
             self.log.add("Invalid movement path.\n\n")
             return 
-        print("DEBUG:" + path.stringify())
+        #print("DEBUG:" + path.stringify())
 
         # 6. check enough movement crests
         move_cost = len(path.list) - 1

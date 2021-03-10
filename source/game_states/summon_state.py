@@ -37,7 +37,7 @@ class SummonState(DuelSubstate):
         elif command.equals("s"):
             self.log.add("\n")
             self.next_state = self.dun_state
-            self.next_state.set_new_start_message()
+            self.next_state.restart_new()
 
         # dice summon
         elif command.len == 1 and command.is_int(0):
