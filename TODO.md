@@ -1,8 +1,9 @@
 TODO:
-- refactor attack command?
 - Implement curses interface
 
 Minor changes
+- ditch unicode print type and use two-char ascii icons to 
+have width compatibility with emoji print type?
 - Add limit to crest pool and add appropiate space to crest 
 number
 - Make dice pool be 1-indexing
