@@ -22,6 +22,9 @@ class DdmList():
         Get item at index i. If index out of range, ignore
         operation and return None.
         """
+        # distinguish between int and user command
+        i = sanitize_int(i)
+
         # check if index is valid
         if 0 <= i < len(self.list):
             return self.list[i]
@@ -71,6 +74,9 @@ class DdmList():
         Remove item at index i. If index out of range, return 
         none and update message.
         """
+        # distinguish between int and user command
+        i = sanitize_int(i)
+
         # get item to remove
         item = self.get(i)
 
@@ -108,8 +114,8 @@ class DdmList():
         Return the short string version of item at position i 
         from the DdmList.
         """
-        # add summon number
-        string = str(i).rjust(3) + ". "
+        # add summon number, convert to 1-indexing
+        string = str(i+1).rjust(3) + ". "
         # add dice short string
         string += self.list[i].stringify_short()
 
@@ -121,6 +127,19 @@ class DdmList():
         the dice library.
         """
         return self.list[i].stringify()
+
+def sanitize_int(i):
+    """
+    Distinguish between int object and string representing an
+    int. If string, it is assumed that it comes from an user
+    input, therefore it must be corrected for 0-indexing.
+    """
+    # case int
+    if isinstance(i, int):
+        return i
+
+    # case string
+    return int(i) - 1
 
 # quick child class too short to have their own file
 class ItemList(DdmList):

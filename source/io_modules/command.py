@@ -7,13 +7,6 @@ class Command():
         self.list = string.split()
         self.len = len(self.list)
 
-        # if input represents an int, convert into int
-        for i, item in enumerate(self.list):
-            try:
-                self.list[i] = int(item)
-            except ValueError:
-                pass
-
     def get_param(self, i):
         """
         Get parameter from command at position i. Return None 
@@ -42,7 +35,13 @@ class Command():
         """
         Check if command item at position i is int.
         """
-        return isinstance(self.get_param(i), int)
+        param = self.get_param(i)
+        try:
+            int(param)
+        # case string or None
+        except (ValueError, TypeError):
+            return False
+        return True
 
     def are_params_int(self):    
         """
@@ -53,10 +52,10 @@ class Command():
         if self.is_empty():
             return False
 
-        for param in self.list:
-            if not isinstance(param, int):
+        # check if each individual item is int 
+        for i in range(self.len):
+            if not self.is_int(i):
                 return False
-
         return True
 
     def is_empty(self):
