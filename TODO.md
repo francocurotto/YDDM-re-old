@@ -1,12 +1,10 @@
 TODO:
 - Implement curses interface
-
-Minor changes
-- ditch unicode print type and use two-char ascii icons to 
-have width compatibility with emoji print type?
-- Add limit to crest pool and add appropiate space to crest 
-number
+    - Reorganize file structure in preparation of curses 
+    interface
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode
 capability
+- command to print pool dice (only useful to check monster
+ability)

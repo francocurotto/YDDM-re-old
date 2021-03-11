@@ -8,7 +8,9 @@ class CrestPool():
     """
     The crest pool from a player.
     """
-    def __init__(self):
+    crest_limit = 99
+    def __init__(self, log):
+        self.log = log
         self.movement = 0
         self.attack   = 0
         self.defense  = 0
@@ -20,8 +22,14 @@ class CrestPool():
         Adds the crests from the a dice side to the crest 
         pool.
         """
-        side.crest.add_to_pool(self, side.multiplier)
-
+        crest = side.crest
+        multiplier = side.multiplier
+        hit_limit = crest.add_to_pool(self, multiplier)
+        
+        # clip on crest limit
+        if hit_limit:
+            self.log.add("Crest limit reached.\n")
+            
     def stringify(self):
         """
         Returns a string version of object.
@@ -29,19 +37,19 @@ class CrestPool():
         string = ""
         # movement crests
         string += MovementCrest().stringify()
-        string += ": " + str(self.movement) + "\n"
+        string += ":" + str(self.movement).rjust(2) + "\n"
         # attack crests
         string += AttackCrest().stringify()
-        string += ": " + str(self.attack) + "\n"
+        string += ":" + str(self.attack).rjust(2) + "\n"
         # defense crests
         string += DefenseCrest().stringify()
-        string += ": " + str(self.defense) + "\n"
+        string += ":" + str(self.defense).rjust(2) + "\n"
         # magic crests
         string += MagicCrest().stringify()
-        string += ": " + str(self.magic) + "\n"
+        string += ":" + str(self.magic).rjust(2) + "\n"
         # trap crests
         string += TrapCrest().stringify()
-        string += ": " + str(self.trap)
+        string += ":" + str(self.trap).rjust(2)
         
         return string
 
@@ -50,7 +58,5 @@ class CrestPool():
         Returns a one-liner string version of object.
         """
         string = self.stringify()
-        string = string.replace(": ", ":")  # remove spaces
-        string = string.replace(":  ", ":") # after ":"
-        string = string.replace("\n"," ")
+        string = string.replace("\n","|")
         return string

@@ -12,6 +12,15 @@ class TrapCrest(Crest):
 
     def add_to_pool(self, pool, multiplier):
         """
-        Add the trap crest to pool.
+        Add the trap crest to pool. Return True if crest
+        limit is hit.
         """
         pool.trap += multiplier
+
+        # clip on crest limit
+        if pool.trap > pool.crest_limit:
+            pool.trap = pool.crest_limit
+            return True
+
+        return False
+

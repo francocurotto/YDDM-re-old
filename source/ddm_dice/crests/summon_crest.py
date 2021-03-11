@@ -21,4 +21,4 @@ class SummonCrest(Crest):
         Since this is a summon crests, don't add anything
         to the crest pool.
         """
-        pass
+        return False

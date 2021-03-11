@@ -12,6 +12,15 @@ class MovementCrest(Crest):
 
     def add_to_pool(self, pool, multiplier):
         """
-        Add the movement crest to pool.
+        Add the movement crest to pool. Return True if crest
+        limit is hit.
         """
         pool.movement += multiplier
+
+        # clip on crest limit
+        if pool.movement > pool.crest_limit:
+            pool.movement = pool.crest_limit
+            return True
+
+        return False
+

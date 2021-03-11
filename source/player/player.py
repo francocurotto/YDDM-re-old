@@ -23,7 +23,7 @@ class Player():
         self.dice_pool = DicePool(self.log)
         self.dice_hand = DiceHand(self.log)
         self.dice_bin = DiceList("dice bin", self.log)
-        self.crest_pool = CrestPool()
+        self.crest_pool = CrestPool(self.log)
         self.monster_list = MonsterList(self.log)
         self.item_list = ItemList(self.log)
         self.graveyard = Graveyard(self.log)

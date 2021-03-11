@@ -12,6 +12,15 @@ class MagicCrest(Crest):
 
     def add_to_pool(self, pool, multiplier):
         """
-        Add the magic crest to pool.
+        Add the magic crest to pool. Return True if crest
+        limit is hit.
         """
         pool.magic += multiplier
+
+        # clip on crest limit
+        if pool.magic > pool.crest_limit:
+            pool.magic = pool.crest_limit
+            return True
+
+        return False
+

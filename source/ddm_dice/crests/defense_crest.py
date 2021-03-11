@@ -12,6 +12,15 @@ class DefenseCrest(Crest):
 
     def add_to_pool(self, pool, multiplier):
         """
-        Add the attack defense to pool.
+        Add the attack defense to pool. Return True if crest
+        limit is hit.
         """
         pool.defense += multiplier
+
+        # clip on crest limit
+        if pool.defense > pool.crest_limit:
+            pool.defense = pool.crest_limit
+            return True
+
+        return False
+

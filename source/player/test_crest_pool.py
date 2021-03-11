@@ -1,7 +1,9 @@
 import sys
 sys.path.append("../ddm_dice")
+sys.path.append("../game_states")
 from dice import Dice, create_random_dice_string
 from crest_pool import CrestPool
+from logger import Logger
 
 print("Welcome to the crest pool test.\n\n\
 Here you can create a random dice, roll the dice, and\n\
@@ -16,7 +18,8 @@ Input ds to display the crest pool in short format.")
 
 # create an initial random dice and crest pool
 dice = Dice(create_random_dice_string())
-pool = CrestPool()
+log  = Logger() 
+pool = CrestPool(log)
 
 while True:
     print("")
@@ -35,6 +38,7 @@ while True:
         rolled_side = dice.roll()
         print("Rolled side: " + rolled_side.stringify())
         pool.add_crests(rolled_side)
+        print(log.flush(),end="")
 
     elif command == "dc":
         print("Crest pool:")
