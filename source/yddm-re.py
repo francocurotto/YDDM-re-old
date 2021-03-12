@@ -20,16 +20,16 @@ def main():
     initialize_game()
     
     # create game elements
-    iom = CommandPrompt()
-    #iom = CursesIO()
+    #iom = CommandPrompt()
+    iom = CursesIO()
     duel_state = DuelState()
 
     # initial display
     iom.display(duel_state)
 
     # start game loop
-    while True:
-    #while False:
+    #while True:
+    while False:
         command = iom.get_command()
         duel_state.update(command)
         iom.display(duel_state)
