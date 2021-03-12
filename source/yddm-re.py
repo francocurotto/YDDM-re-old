@@ -2,15 +2,15 @@
 # Main  game script #
 #####################
 # add necessary folders to path
-import sys, glob
-dirlist = glob.glob("*/")
-dirlist.remove("__pycache__/")
-for dirname in dirlist:
-    sys.path.append(dirname)
-
+import sys
+from functions import get_all_modules
+modlist = get_all_modules()
+[sys.path.append(modname) for modname in modlist]
+    
 # imports
 import settings
 from command_prompt import CommandPrompt
+from curses_io import CursesIO
 from duel_state import DuelState
 
 def main():
@@ -20,19 +20,24 @@ def main():
     initialize_game()
     
     # create game elements
-    cmd = CommandPrompt()
+    iom = CommandPrompt()
+    #iom = CursesIO()
     duel_state = DuelState()
 
     # initial display
-    cmd.display(duel_state.log)
+    iom.display(duel_state)
 
     # start game loop
     while True:
-        command = cmd.get_command()
+    #while False:
+        command = iom.get_command()
         duel_state.update(command)
-        cmd.display(duel_state.log)
+        iom.display(duel_state)
         if duel_state.finished:
             break
+
+    # finish game gracefully
+    iom.terminate()
 
 def initialize_game():
     """

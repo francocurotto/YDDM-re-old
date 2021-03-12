@@ -2,7 +2,7 @@ from command import Command
 
 class CommandPrompt():
     """
-    Input Output method based in command prompt.
+    Input/output method based in command prompt.
     """
 
     def get_command(self):
@@ -20,8 +20,14 @@ class CommandPrompt():
         command = Command(string)
         return command
 
-    def display(self, log):
+    def display(self, game_state):
         """
         Display the message of the game log.
         """
-        print(log.flush(), end="")
+        print(game_state.log.flush(), end="")
+
+    def terminate(self):
+        """
+        Terminate the IO.
+        """
+        pass

@@ -114,8 +114,10 @@ class DdmList():
         Return the short string version of item at position i 
         from the DdmList.
         """
+        # get the digit lendth of list
+        jlength = len(str(len(self.list)))
         # add summon number, convert to 1-indexing
-        string = str(i+1).rjust(3) + ". "
+        string = str(i+1).rjust(jlength) + ". "
         # add dice short string
         string += self.list[i].stringify_short()
 
