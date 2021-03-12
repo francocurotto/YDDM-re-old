@@ -1,7 +1,6 @@
 TODO:
 - Implement curses interface
-    - Reorganize file structure in preparation of curses 
-    interface
+    - fix dungeon print
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode
