@@ -16,6 +16,7 @@ class CursesIO():
         curses.cbreak() # necessary in this mode?
         self.stdscr.keypad(True)
         curses.curs_set(False)
+        curses.start_color()
 
         # initial refresh with title
         self.stdscr.addstr(0, 56, "YDDM-re")

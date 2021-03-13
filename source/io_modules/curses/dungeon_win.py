@@ -6,7 +6,7 @@ class DungeonWin(Window):
     """
     # dungeon dimensions
     dy = 17
-    dx = 44
+    dx = 46
     def __init__(self, parwin, y, x):
         super().__init__(parwin, self.dy, self.dx, y, x)
 

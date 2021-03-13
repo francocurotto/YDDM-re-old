@@ -1,4 +1,5 @@
 import curses
+from ansi_translator import ANSITranslator
 
 class Window():
     """
@@ -6,6 +7,7 @@ class Window():
     """
     def __init__(self, parwin, dy, dx, y, x):
         self.win = parwin.derwin(dy, dx, y, x)
+        self.translator = ANSITranslator()
 
     def addstr(self, win, string):
         """
@@ -16,10 +18,16 @@ class Window():
         """
         str_list = string.split("\n")
         for i, line in enumerate(str_list):
-            try:
-                win.addstr(i, 0, line)
-            except curses.error:
-                pass
+            # move cursor to the start of the line
+            win.move(i,0)
+            # get curses color from ANSI escape characters
+            ctuple_list = self.translator.get_ctuples(line)
+            for ctuple in ctuple_list:
+                # try/except to bypass stupid curses error
+                try:
+                    win.addstr(ctuple[0], ctuple[1])
+                except curses.error:
+                    pass
 
     def add_win(self, string):
         """
