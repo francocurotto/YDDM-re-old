@@ -1,5 +1,5 @@
 from settings import type_adv, retal_dmg
-from functions import color_fg
+from color_functions import color_fg
 from summon import Summon
 from target import Target
 
@@ -11,8 +11,10 @@ class Monster(Summon, Target):
     tile_char_ascii = "MS"
     def __init__(self, card, color, log):
         #display chars
-        self.chars_ascii   = {"tile" : color_fg("MS", color)}
-        self.chars_unicode = {"tile" : color_fg("♞♥", color)}
+        self.chars_ascii   = {
+            "tile" : color_fg("M"+card.chars["type"], color)}
+        self.chars_unicode = {
+            "tile" : color_fg("♟"+card.chars["type"], color)}
         super().__init__(card, color, log)
 
         # attributes extracted from card

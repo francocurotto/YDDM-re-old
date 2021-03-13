@@ -21,19 +21,6 @@ class DungeonObject():
         """
         return self.is_target() or self.is_item()
 
-    def select_chars(self):
-        """
-        Select the type of characters that will be used when
-        printing object information.
-        """
-        from settings import print_type
-        if print_type == "ascii":
-            return self.chars_ascii
-        elif print_type == "unicode":
-            return self.chars_unicode
-        elif print_type == "emoji":
-            return self.chars_emoji
-
     def stringify(self):
         """
         Returns a string version of object.

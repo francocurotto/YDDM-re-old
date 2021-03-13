@@ -11,7 +11,7 @@ class MonsterCard(SummonCard):
                               "life"    : "L"}
         self.chars_unicode = {"attack"  : "⚔",
                               "defense" : "⊝",
-                              "life"    : "❤"}
+                              "life"    : "♥"}
         self.chars_emoji   = {"attack"  : "⚔️ ",
                               "defense" : "🛡️ ",
                               "life"    : "❤️ "}

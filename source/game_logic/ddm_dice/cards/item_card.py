@@ -1,5 +1,3 @@
-import sys
-sys.path.append("..")
 from .summon_card import SummonCard
 from item import Item
 

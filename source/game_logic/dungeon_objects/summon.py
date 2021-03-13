@@ -1,4 +1,5 @@
-from functions import color_bg
+from color_functions import color_bg
+from char_functions import select_chars
 from dungeon_object import DungeonObject
 
 class Summon(DungeonObject):
@@ -17,7 +18,9 @@ class Summon(DungeonObject):
 
         self.chars_emoji = {"tile" : \
             color_bg(self.card.chars_emoji["type"], color)}
-        self.chars.update(self.select_chars())
+        tile_char = select_chars(self.chars_ascii,
+            self.chars_unicode, self.chars_emoji)
+        self.chars.update(tile_char)
 
     def stringify(self):
         """

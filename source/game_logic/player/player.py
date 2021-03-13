@@ -1,4 +1,4 @@
-from functions import color_fg, grayout
+from color_functions import color_fg, grayout
 from dice_pool import DicePool
 from dice_hand import DiceHand
 from dice_list import DiceList

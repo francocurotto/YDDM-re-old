@@ -1,4 +1,4 @@
-from functions import grayout
+from color_functions import grayout
 from ddm_list import DdmList
 
 class MonsterList(DdmList):

@@ -1,4 +1,5 @@
-from functions import color_fg, color_bg, grayout
+from color_functions import color_fg, color_bg, grayout
+from char_functions import select_chars
 from target import Target
 
 class MonsterLord(Target):
@@ -29,7 +30,8 @@ class MonsterLord(Target):
             "noheart" : "🖤",
             "tile"    : color_bg("👑", self.color)}
 
-        self.chars = self.select_chars()
+        self.chars = select_chars(self.chars_ascii, 
+            self.chars_unicode, self.chars_emoji)
 
     def is_dead(self):
         """

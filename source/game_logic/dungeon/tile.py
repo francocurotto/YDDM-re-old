@@ -1,29 +1,16 @@
+from char_functions import select_chars
+
 class Tile():
     """
     Generic dungeon tile.
     """
     def __init__(self):
         self.visited = False # used only for path calculation
-        self.char = self.select_char()
+        self.char = select_chars(self.char_ascii, 
+            self.char_unicode, self.char_emoji)
 
     def is_dungeon(self):
         return False
-
-    def select_char(self):
-        """
-        Select the type of characters that will be used when
-        printing the tile.
-        """
-        # weird import here so that the print_type parameter
-        # can be changed at runtime
-        from settings import print_type
-        
-        if print_type == "ascii":
-            return self.char_ascii
-        elif print_type == "unicode":
-            return self.char_unicode
-        elif print_type == "emoji":
-            return self.char_emoji
 
     def stringify(self):
         """

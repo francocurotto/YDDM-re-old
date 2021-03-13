@@ -1,4 +1,4 @@
-from functions import color_fg
+from color_functions import color_fg
 from summon import Summon
 
 class Item(Summon):

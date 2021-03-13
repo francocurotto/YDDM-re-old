@@ -15,7 +15,7 @@ class CursesIO():
         curses.noecho()
         curses.cbreak() # necessary in this mode?
         self.stdscr.keypad(True)
-        curses.curs_set(0)
+        curses.curs_set(False)
 
         # initial refresh with title
         self.stdscr.addstr(0, 56, "YDDM-re")
@@ -31,6 +31,10 @@ class CursesIO():
         self.winlist = [self.poolwin, self.pcrestwin,
             self.ocrestwin, self.dungeonwin]
 
+    def get_command(self):
+        from command import Command
+        return Command("q")
+
     def display(self, game_state):
         """
         Display game given current game status.
@@ -43,8 +47,9 @@ class CursesIO():
         """
         Terminate the IO.
         """
-        input("")
+        self.stdscr.getkey()
         curses.nocbreak()
         self.stdscr.keypad(False)
         curses.echo()
-        curses.curs_set(1)
+        curses.curs_set(True)
+        curses.endwin()

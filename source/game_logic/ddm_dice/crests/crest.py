@@ -1,29 +1,18 @@
-import sys
-sys.path.append("..")
+from char_functions import select_chars
 
 class Crest():
     """
     A generic crest from a dice's side.
     """
     def __init__(self):
-        self.char = self.select_char()
+        self.char = select_chars(self.char_ascii, 
+            self.char_unicode, self.char_emoji)
 
     def is_summon(self):
         """
         Negate summon type (overwritten is SummonCrest).
         """
         return False
-
-    def select_char(self):
-        # weird import here so that the print_type parameter
-        # can be changed at runtime
-        from settings import print_type
-        if print_type == "ascii":
-            return self.char_ascii
-        elif print_type == "unicode":
-            return self.char_unicode
-        elif print_type == "emoji":
-            return self.char_emoji
 
     def stringify(self):
         """

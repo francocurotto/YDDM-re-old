@@ -1,3 +1,4 @@
+from char_functions import select_chars
 from empty_tile import EmptyTile
 from dice_nets.pos import Pos
 from dungeon_object import DungeonObject
@@ -21,7 +22,8 @@ class Dungeon():
         self.log = log
         self.array  = []
         self.fill_array()
-        self.chars = self.select_chars()
+        self.chars = select_chars(self.chars_ascii,
+            self.chars_unicode, self.chars_emoji)
 
         # create initial tiles with monsterlord for each 
         # player. Player 1:
@@ -187,22 +189,6 @@ class Dungeon():
         for row in self.array:
             for tile in row:
                 tile.visited = False
-
-    def select_chars(self):
-        """
-        Select the type of characters that will be used when
-        printing the dungeon.
-        """
-        # weird import here so that the print_type parameter
-        # can be changed at runtime
-        from settings import print_type
-        
-        if print_type == "ascii":
-            return self.chars_ascii
-        elif print_type == "unicode":
-            return self.chars_unicode
-        elif print_type == "emoji":
-            return self.chars_emoji
 
     def stringify(self):
         """

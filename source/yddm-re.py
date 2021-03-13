@@ -3,7 +3,7 @@
 #####################
 # add necessary folders to path
 import sys
-from functions import get_all_modules
+from functions.module_functions import get_all_modules
 modlist = get_all_modules()
 [sys.path.append(modname) for modname in modlist]
     
@@ -17,19 +17,16 @@ def main():
     """
     Main game function.
     """
-    initialize_game()
+    iom = initialize_game()
     
     # create game elements
-    #iom = CommandPrompt()
-    iom = CursesIO()
     duel_state = DuelState()
 
     # initial display
     iom.display(duel_state)
 
     # start game loop
-    #while True:
-    while False:
+    while True:
         command = iom.get_command()
         duel_state.update(command)
         iom.display(duel_state)
@@ -43,10 +40,32 @@ def initialize_game():
     """
     Do all the necessary tasks when initializing the game.
     """
-    # set print type if given as commandline input
-    print_types = ["ascii", "unicode", "emoji"]
-    if len(sys.argv) >= 2 and sys.argv[1] in print_types:
-        settings.print_type = sys.argv[1]
+    # expected command line inputs
+    print_types = {"ascii", "unicode", "emoji"}
+    iomodules = {"cmd", "curses"}
+
+    # get print type
+    print_type = set(sys.argv) & print_types
+    if len(print_type) == 1:
+        settings.print_type = print_type.pop()
+
+    # get io module
+    iomodule = set(sys.argv) & iomodules
+    if len(iomodule) == 1:
+        iomodule = get_iomodule(iomodule.pop())
+    else: # default io module
+        iomodule = CommandPrompt()
+
+    return iomodule
+
+def get_iomodule(module_name):
+    """
+    Get the appropiate iomodule from name.
+    """
+    if module_name == "cmd":
+        return CommandPrompt()
+    elif module_name == "curses":
+        return CursesIO()
 
 if __name__ == "__main__":
     main()
