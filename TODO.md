@@ -1,6 +1,6 @@
 TODO:
 - Implement curses interface
-    - fix dungeon print
+    - implement command prompt
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode
