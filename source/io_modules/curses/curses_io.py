@@ -3,6 +3,7 @@ from pool_win import PoolWin
 from player_crest_win import PlayerCrestWin
 from opponent_crest_win import OpponentCrestWin
 from dungeon_win import DungeonWin
+from prompt_win import PromptWin
 
 class CursesIO():
     """
@@ -27,14 +28,17 @@ class CursesIO():
         self.pcrestwin = PlayerCrestWin(self.stdscr, 18, 0)
         self.ocrestwin = OpponentCrestWin(self.stdscr, 21, 0)
         self.dungeonwin = DungeonWin(self.stdscr, 1, 65)
+        self.promptwin = PromptWin(self.stdscr, 18, 32)
 
         # group all windows
         self.winlist = [self.poolwin, self.pcrestwin,
-            self.ocrestwin, self.dungeonwin]
+            self.ocrestwin, self.dungeonwin, self.promptwin]
 
     def get_command(self):
-        from command import Command
-        return Command("q")
+        """
+        Get commmand from prompt.
+        """
+        return self.promptwin.get_command()
 
     def display(self, game_state):
         """

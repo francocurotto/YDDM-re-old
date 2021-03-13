@@ -19,8 +19,8 @@ class RollState(DuelSubstate):
         self.start_message  = self.duel.player.name 
         self.start_message += " TURN\n"
         self.start_message += "<ROLL PHASE>\n"
-        self.start_message += \
-            self.duel.player.stringify_pool() + "\n\n"
+        #self.start_message += \
+        #    self.duel.player.stringify_pool() + "\n\n"
 
     def update(self, command):
         """

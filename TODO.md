@@ -1,6 +1,7 @@
 TODO:
 - Implement curses interface
     - implement command prompt
+        - fix long log strings in prompt error
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode
