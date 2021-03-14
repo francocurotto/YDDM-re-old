@@ -27,8 +27,11 @@ class DimensionState(DuelSubstate):
         self.start_message += "Net types: [s: skip]\n"
         self.start_message += self.get_net_string()
         self.start_message += "\n\n"
-        self.start_message += self.duel.dungeon.stringify()
-        self.start_message += "\n\n"
+        from global_vars import verbose
+        if verbose:
+            self.start_message += \
+                self.duel.dungeon.stringify()
+            self.start_message += "\n\n"
 
     def update(self, command):
         """

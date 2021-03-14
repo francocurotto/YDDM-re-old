@@ -1,4 +1,5 @@
 import curses
+import global_vars
 from pool_win import PoolWin
 from player_crest_win import PlayerCrestWin
 from opponent_crest_win import OpponentCrestWin
@@ -10,13 +11,15 @@ class CursesIO():
     Input/output method based in curses library.
     """
     def __init__(self):
+        # change the verbosity
+        global_vars.verbose = False
+
         # do all the curses preamble
         self.stdscr = curses.initscr()
-        #curses.start_color() # necessary for colors?
         curses.noecho()
         curses.cbreak() # necessary in this mode?
         self.stdscr.keypad(True)
-        curses.curs_set(False)
+        #curses.curs_set(False)
         curses.start_color()
 
         # initial refresh with title
@@ -56,5 +59,5 @@ class CursesIO():
         curses.nocbreak()
         self.stdscr.keypad(False)
         curses.echo()
-        curses.curs_set(True)
+        #curses.curs_set(True)
         curses.endwin()

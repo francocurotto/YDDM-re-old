@@ -24,12 +24,12 @@ class DuelState():
         # add next state options to states
         self.roll_state.sum_state = self.sum_state
         self.roll_state.dun_state = self.dun_state
-        self.sum_state.dun_state = self.dun_state
-        self.sum_state.dim_state = self.dim_state
-        self.dim_state.dun_state = self.dun_state
+        self.sum_state.dun_state  = self.dun_state
+        self.sum_state.dim_state  = self.dim_state
+        self.dim_state.dun_state  = self.dun_state
         self.dun_state.def_state  = self.def_state
         self.dun_state.roll_state = self.roll_state
-        self.def_state.dun_state = self.dun_state
+        self.def_state.dun_state  = self.dun_state
 
         # set inital status
         self.state = self.roll_state

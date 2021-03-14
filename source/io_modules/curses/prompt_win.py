@@ -9,7 +9,7 @@ class PromptWin(BoxedWin):
     """
     def __init__(self, parwin, y, x):
         title = "Prompt"
-        super().__init__(parwin, title, 16, 79, y, x)
+        super().__init__(parwin, title, 17, 79, y, x)
 
         # decorate with prompt indicator
         self.add_contwin(">")
@@ -30,6 +30,7 @@ class PromptWin(BoxedWin):
         """
         self.inputbox.edit()
         string = self.inputbox.gather()
+        self.inputwin.clear()
         return Command(string)
 
     def refresh(self, game_state):

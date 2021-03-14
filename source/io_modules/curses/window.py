@@ -20,6 +20,7 @@ class Window():
         for i, line in enumerate(str_list):
             # move cursor to the start of the line
             win.move(i,0)
+            
             # get curses color from ANSI escape characters
             ctuple_list = self.translator.get_ctuples(line)
             for ctuple in ctuple_list:

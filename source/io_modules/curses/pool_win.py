@@ -12,5 +12,4 @@ class PoolWin(BoxedWin):
         """
         Get the content to display from the game state.
         """
-        dice_pool = game_state.duel.player.dice_pool
-        return dice_pool.stringify()
+        return game_state.duel.player.stringify_pool()

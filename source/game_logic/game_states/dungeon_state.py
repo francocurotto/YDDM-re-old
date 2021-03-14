@@ -33,8 +33,11 @@ class DungeonState(DuelSubstate):
         self.next_state = self
 
         # set start message
-        self.start_message  = self.duel.dungeon.stringify()
-        self.start_message += "\n\n"
+        from global_vars import verbose
+        if verbose:
+            self.start_message = \
+                self.duel.dungeon.stringify()
+            self.start_message += "\n\n"
 
     def update(self, command):
         """
