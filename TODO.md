@@ -2,7 +2,6 @@ TODO:
 - Implement curses interface
     - fix get back behavior
     - change net list display in curses to be spread
-- Make player turn message more visible
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode

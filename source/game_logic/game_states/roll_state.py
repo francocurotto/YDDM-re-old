@@ -16,7 +16,8 @@ class RollState(DuelSubstate):
         self.next_state = self
 
         # set start message
-        self.start_message  = self.duel.player.name 
+        self.start_message += "  \n" # hack space for curses
+        self.start_message += self.duel.player.name 
         self.start_message += " TURN\n"
         self.start_message += "<ROLL PHASE>\n"
         
