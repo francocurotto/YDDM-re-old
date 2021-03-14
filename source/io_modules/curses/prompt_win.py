@@ -1,6 +1,6 @@
 from curses.textpad import Textbox
 from boxed_win import BoxedWin
-from window import Window
+from output_win import OutputWin
 from command import Command
 
 class PromptWin(BoxedWin):
@@ -12,16 +12,16 @@ class PromptWin(BoxedWin):
         super().__init__(parwin, title, 17, 79, y, x)
 
         # decorate with prompt indicator
-        self.add_contwin(">")
+        (y, x) = self.contwin.getmaxyx()
+        self.contwin.addstr(y-1, 0, ">")
         self.contwin.refresh()
 
         # create input window/textbox
-        (y, x) = self.contwin.getmaxyx()
-        self.inputwin = self.contwin.derwin(1, x-1, 0, 1)
+        self.inputwin = self.contwin.derwin(1, x-1, y-1, 1)
         self.inputbox = Textbox(self.inputwin)
 
         # create output window
-        self.outputwin = Window(self.contwin, y-1, x, 1, 0)
+        self.outwin = OutputWin(self.contwin, y-1, x, 0, 0)
 
     def get_command(self):
         """
@@ -38,6 +38,4 @@ class PromptWin(BoxedWin):
         Refresh prompt by showing game state log in output
         window.
         """
-        self.outputwin.win.clear()
-        self.outputwin.add_win(game_state.log.flush())
-        self.outputwin.win.refresh()
+        self.outwin.refresh(game_state)

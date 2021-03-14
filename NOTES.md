@@ -215,3 +215,19 @@ The next step is to implement a simple curses interface, just
 so that you don't have to print the necessary information all
 the time. It will still work with prompt commands though,
 better controls are for future work.
+
+# 2021-03-14
+Impresingly enough, it didn't take too much to implement the
+curses interface (it still requires some fixes, but very 
+minor ones). It's acutally really simple and it leverages 
+most of the work from the command prompt interface.In any 
+case, it is still really imresive, and it is a joy to play.
+It still lacks items/monsters abilities and you have to input
+commands via text, but still, to looks like an acutal game!
+
+The roadmap from now it should be to implement the abilities
+and to implement a better interface qith urwid. However, at
+this point I should think if I should do some promotion, I
+was thinking to start simple with a short video in reddit,
+and a simple explanation in the title. While I think about it
+I'll fix the issues that I mentioned earlier.

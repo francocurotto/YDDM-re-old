@@ -1,8 +1,8 @@
 TODO:
 - Implement curses interface
-    - implement command prompt
-        - fix disapearing message after invalid command
-        - fix long log strings in prompt error
+    - fix get back behavior
+    - change net list display in curses to be spread
+- Make player turn message more visible
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode

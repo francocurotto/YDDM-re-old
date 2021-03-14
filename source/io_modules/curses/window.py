@@ -34,4 +34,11 @@ class Window():
         """
         Add string to main window.
         """
+        self.win.clear()
         self.addstr(self.win, string)
+
+    def refresh(self):
+        """
+        Refresh window.
+        """
+        self.win.refresh()
