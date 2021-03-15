@@ -21,8 +21,8 @@ class RollState(DuelSubstate):
         self.start_message += " TURN\n"
         self.start_message += "<ROLL PHASE>\n"
         
-        from global_vars import verbose
-        if verbose:
+        from settings import iomodule
+        if iomodule.name == "cmd":
             self.start_message += \
                 self.duel.player.stringify_pool() + "\n\n"
 
@@ -77,12 +77,9 @@ class RollState(DuelSubstate):
         if not command.are_params_int():
             return
 
-        # sort params in order to avoid IndexError in 
-        # chopped list
-        sorted_params = sorted(command.list, reverse=True)
-
-        for i in sorted_params:
-            self.duel.player.dice_hand.remove_idx(i)
+        for i in command.list:
+            #self.duel.player.dice_hand.remove_idx(i)
+            self.duel.player.remove_dice_from_hand(i)
         
         self.log.add("\n")
 

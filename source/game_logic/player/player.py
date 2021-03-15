@@ -87,6 +87,31 @@ class Player():
 
         return True
 
+    def remove_dice_from_hand(self, i):
+        """
+        Remove dice at position i in dice pool from dice 
+        hand. If operation fails return None.
+        """
+        # first get dice
+        dice = self.dice_pool.get(i)
+        if not dice:
+            return False
+        
+        # check if dice is in bin
+        if dice in self.dice_bin.list:
+            self.log.add("Dice already dimensioned.\n")
+            return False
+
+        # check if dice is in hand already
+        if dice not in self.dice_hand.list:
+            self.log.add("Dice not in hand.\n")
+            return False
+
+        # finally, add dice to hand
+        dice = self.dice_hand.remove(dice)
+
+        return dice
+
     def roll_hand(self):
         """
         Roll dice in hand, and add roll to crest poll.

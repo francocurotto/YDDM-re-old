@@ -1,7 +1,5 @@
 TODO:
-- Implement curses interface
-    - fix get back behavior
-    - change net list display in curses to be spread
+- refactor log into a task made by iomodule
 
 Improvements:
 - find a way to automatically check terminal emoji/unicode

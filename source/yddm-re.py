@@ -52,20 +52,21 @@ def initialize_game():
     # get io module
     iomodule = set(sys.argv) & iomodules
     if len(iomodule) == 1:
-        iomodule = get_iomodule(iomodule.pop())
-    else: # default io module
-        iomodule = CommandPrompt()
+        settings.iomodule = get_iomodule(iomodule.pop())
 
-    return iomodule
+    else: # default io module
+        settings.iomodule = CommandPrompt("cmd")
+
+    return settings.iomodule
 
 def get_iomodule(module_name):
     """
     Get the appropiate iomodule from name.
     """
     if module_name == "cmd":
-        return CommandPrompt()
+        return CommandPrompt(module_name)
     elif module_name == "curses":
-        return CursesIO()
+        return CursesIO(module_name)
 
 if __name__ == "__main__":
     main()

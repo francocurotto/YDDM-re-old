@@ -1,5 +1,4 @@
 import curses
-import global_vars
 from pool_win import PoolWin
 from player_crest_win import PlayerCrestWin
 from opponent_crest_win import OpponentCrestWin
@@ -10,9 +9,8 @@ class CursesIO():
     """
     Input/output method based in curses library.
     """
-    def __init__(self):
-        # change the verbosity
-        global_vars.verbose = False
+    def __init__(self, name):
+        self.name = name
 
         # do all the curses preamble
         self.stdscr = curses.initscr()

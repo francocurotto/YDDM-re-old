@@ -4,6 +4,8 @@ class CommandPrompt():
     """
     Input/output method based in command prompt.
     """
+    def __init__(self, name):
+        self.name = name
 
     def get_command(self):
         """

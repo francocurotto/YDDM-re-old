@@ -33,8 +33,8 @@ class DungeonState(DuelSubstate):
         self.next_state = self
 
         # set start message
-        from global_vars import verbose
-        if verbose:
+        from settings import iomodule
+        if iomodule.name == "cmd":
             self.start_message = \
                 self.duel.dungeon.stringify()
             self.start_message += "\n\n"
