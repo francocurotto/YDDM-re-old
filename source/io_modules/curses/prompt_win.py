@@ -9,7 +9,7 @@ class PromptWin(BoxedWin):
     """
     def __init__(self, parwin, y, x):
         title = "Prompt"
-        super().__init__(parwin, title, 17, 79, y, x)
+        super().__init__(parwin, title, 16, 79, y, x)
 
         # decorate with prompt indicator
         (y, x) = self.contwin.getmaxyx()
@@ -28,9 +28,11 @@ class PromptWin(BoxedWin):
         Get input string from input box, and then turn it
         into a command.
         """
+        self.inputwin.move(0,0)
         self.inputbox.edit()
         string = self.inputbox.gather()
         self.inputwin.clear()
+        self.inputwin.refresh()
         return Command(string)
 
     def refresh(self, game_state):

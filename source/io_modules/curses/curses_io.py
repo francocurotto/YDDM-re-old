@@ -15,9 +15,6 @@ class CursesIO():
         # do all the curses preamble
         self.stdscr = curses.initscr()
         curses.noecho()
-        curses.cbreak() # necessary in this mode?
-        self.stdscr.keypad(True)
-        #curses.curs_set(False)
         curses.start_color()
 
         # initial refresh with title
@@ -54,8 +51,5 @@ class CursesIO():
         Terminate the IO.
         """
         self.stdscr.getkey()
-        curses.nocbreak()
-        self.stdscr.keypad(False)
         curses.echo()
-        #curses.curs_set(True)
         curses.endwin()

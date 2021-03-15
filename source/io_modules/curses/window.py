@@ -6,7 +6,14 @@ class Window():
     Generic windown for curses interface.
     """
     def __init__(self, parwin, dy, dx, y, x):
-        self.win = parwin.derwin(dy, dx, y, x)
+        try:
+            self.win = parwin.derwin(dy, dx, y, x)
+        except curses.error:
+            curses.echo()
+            curses.endwin()
+            print("Curses error. Probably because the " + \
+                "window was too small to play the game.")
+            exit()
         self.translator = ANSITranslator()
 
     def addstr(self, win, string):
