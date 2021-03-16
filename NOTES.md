@@ -146,7 +146,7 @@ Start implementing the dungeon! And for now is looking pretty
 good. I run a test for dimensioning dice nets and it works
 like a charm. Next step: implement dungeon_state and 
 integrate the dungeon into the duel. At first the dungeon 
-will not serve any prupose but it will be good to see that
+will not serve any propose but it will be good to see that
 the players are dimensioning properly and the dungeon is 
 displayed correctly.
 
@@ -178,7 +178,7 @@ items. They can only be attacked by other flying monsters or
 archer monsters. They can attack any monster though. Their 
 movement crest is 2 per square.
 - Warp vortex is a special item that summons a vortex, and
-other monsters can move thourgh the vortex.
+other monsters can move through the vortex.
 
 # 2021-03-01
 To celebrate the start of the month, dungeon state 
@@ -197,7 +197,7 @@ whereever they want, and so I can test proper attack easier
 too. Good ideas!
 
 # 2021-03-06
-I have jsut finished testing teleport movement with 1 
+I have just finished testing teleport movement with 1 
 movement crest cost, and proper attack between monsters at
 correct range. All that is left is to implement proper 
 movement and I'll have a proper game, that it will only be 
@@ -207,7 +207,7 @@ missing monster and items abilities. So close!
 OMG! The proper movement has been implemented. In the end, 
 the only thing that I had to do is implement my version of
 Breadth-first search, and it worked perfectly. Even I didn't
-optimized it, it works really fast, it acuatally make sense, 
+optimized it, it works really fast, it actually make sense, 
 because the maximum path of the game are actually not that 
 long. The game is just so fun. 
 
@@ -217,17 +217,41 @@ the time. It will still work with prompt commands though,
 better controls are for future work.
 
 # 2021-03-14
-Impresingly enough, it didn't take too much to implement the
+Impressively enough, it didn't take too much to implement the
 curses interface (it still requires some fixes, but very 
-minor ones). It's acutally really simple and it leverages 
-most of the work from the command prompt interface.In any 
-case, it is still really imresive, and it is a joy to play.
+minor ones). It's actually really simple and it leverages 
+most of the work from the command prompt interface. In any 
+case, it is still really impressive, and it is a joy to play.
 It still lacks items/monsters abilities and you have to input
-commands via text, but still, to looks like an acutal game!
+commands via text, but still, to looks like an actual game!
 
 The roadmap from now it should be to implement the abilities
-and to implement a better interface qith urwid. However, at
+and to implement a better interface with urwid. However, at
 this point I should think if I should do some promotion, I
 was thinking to start simple with a short video in reddit,
 and a simple explanation in the title. While I think about it
 I'll fix the issues that I mentioned earlier.
+
+# 2021-03-16
+So I did the fixes, they were more complicated than expected
+and I'm not totally convinced in the way the curses and the 
+command line interface actually coexists (the game logic has 
+to know which interface has to know what interface the user 
+is using for some minor printing decisions), but considering 
+that these interface are just secondary, I'll leave it as it 
+is for now. 
+
+Before I proceed with the abilities implementation, with will
+be a monumental task, I want to implement a kind of save 
+system, so that I can save duels, and replayed the later.
+This will be useful for debugging, as I can create 
+predetermined scenarios to test the abilities for bugs.
+
+Story time, the other day I was doing a test run of the game
+in my phone using the command line mode (it was brilliant,
+it essentially works as a mobile version!). The game turn out
+to be really fun, and it was really close, then suddenly at a
+turning point I accidentally input 'q' for forfeiting instead
+of 'f' for finish turn, and all the game was lost :(. As you
+can see, I have more than one motivation to implement the
+save protocol.
