@@ -14,7 +14,7 @@ class PromptWin(BoxedWin):
         # decorate with prompt indicator
         (y, x) = self.contwin.getmaxyx()
         self.contwin.addstr(y-1, 0, ">")
-        self.contwin.refresh()
+        self.contwin.noutrefresh()
 
         # create input window/textbox
         self.inputwin = self.contwin.derwin(1, x-1, y-1, 1)

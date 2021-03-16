@@ -10,7 +10,7 @@ class BoxedWin(Window):
         # decorate window
         self.win.border()
         self.win.addstr(0, 2, title)
-        self.win.refresh()
+        self.win.noutrefresh()
 
         # create content window
         self.contwin = self.win.derwin(dy-2, dx-2, 1, 1)
@@ -21,7 +21,7 @@ class BoxedWin(Window):
         """
         content = self.get_content(game_state)
         self.add_contwin(content)
-        self.contwin.refresh()
+        self.contwin.noutrefresh()
 
     def add_contwin(self, content):
         """

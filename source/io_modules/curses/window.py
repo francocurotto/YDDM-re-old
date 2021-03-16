@@ -48,4 +48,4 @@ class Window():
         """
         Refresh window.
         """
-        self.win.refresh()
+        self.win.noutrefresh()

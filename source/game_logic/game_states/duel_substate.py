@@ -57,13 +57,16 @@ class DuelSubstate():
             s = self.duel.opponent.graveyard.stringify()
         elif command.equals("d"): # display dungeon
             s = self.duel.dungeon.stringify()
+        elif command.is_int(0): # display card in pool
+            s = self.stringify_dice_pool(command.list[0])
         # display item at pos
         elif pos := Pos.from_string(command.get_param(0)):
             s = self.stringify_dungeon_pos(pos, short=False)
         else: # invalid command
             return ""
-
-        return s + "\n\n"
+        
+        # if string is not empty add an additional newline
+        return s + "\n\n" if s else s + "\n"
 
     def get_print_short(self, command):
         """
@@ -75,6 +78,16 @@ class DuelSubstate():
         else: # invalid command
             return ""
         return s + "\n\n"
+
+    def stringify_dice_pool(self, i):
+        """
+        Returns string version of card in dice pool at 
+        position i. If invalid index, return nothing.
+        """
+        dice = self.duel.player.dice_pool.get(i)
+        if not dice:
+            return ""
+        return dice.stringify()
 
     def stringify_dungeon_pos(self, pos, short):
         """
@@ -97,9 +110,8 @@ def is_print_command(command):
     """
     len_ok    = command.len == 2
     param0_ok = command.equals_param(0, "p")
-    param1_ok = not command.is_int(1)
 
-    return len_ok and param0_ok and param1_ok
+    return len_ok and param0_ok
 
 def is_print_short_command(command):
     """

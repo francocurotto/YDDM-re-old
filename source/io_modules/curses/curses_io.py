@@ -19,7 +19,7 @@ class CursesIO():
 
         # initial refresh with title
         self.stdscr.addstr(0, 56, "YDDM-re")
-        self.stdscr.refresh()
+        self.stdscr.noutrefresh()
 
         # define initial windows
         self.poolwin = PoolWin(self.stdscr, 1, 0)
@@ -45,6 +45,7 @@ class CursesIO():
         # refresh all the windows in the game
         for win in self.winlist:
             win.refresh(game_state)
+        curses.doupdate()
 
     def terminate(self):
         """
