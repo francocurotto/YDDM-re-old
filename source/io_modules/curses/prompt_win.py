@@ -9,7 +9,7 @@ class PromptWin(BoxedWin):
     """
     def __init__(self, parwin, y, x):
         title = "Prompt"
-        super().__init__(parwin, title, 16, 79, y, x)
+        super().__init__(parwin, title, 16, 66, y, x)
 
         # decorate with prompt indicator
         (y, x) = self.contwin.getmaxyx()

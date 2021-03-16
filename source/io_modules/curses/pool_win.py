@@ -6,7 +6,7 @@ class PoolWin(BoxedWin):
     """
     def __init__(self, parwin, y, x):
         title = "Dice Pool"
-        super().__init__(parwin, title, 17, 64, y, x)
+        super().__init__(parwin, title, 17, 66, y, x)
 
     def get_content(self, game_state):
         """

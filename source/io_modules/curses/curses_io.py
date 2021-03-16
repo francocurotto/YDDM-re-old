@@ -23,10 +23,10 @@ class CursesIO():
 
         # define initial windows
         self.poolwin = PoolWin(self.stdscr, 1, 0)
-        self.pcrestwin = PlayerCrestWin(self.stdscr, 18, 0)
-        self.ocrestwin = OpponentCrestWin(self.stdscr, 21, 0)
-        self.dungeonwin = DungeonWin(self.stdscr, 1, 65)
-        self.promptwin = PromptWin(self.stdscr, 18, 32)
+        self.dungeonwin = DungeonWin(self.stdscr, 1, 67)
+        self.promptwin = PromptWin(self.stdscr, 18, 0)
+        self.pcrestwin = PlayerCrestWin(self.stdscr, 19, 67)
+        self.ocrestwin = OpponentCrestWin(self.stdscr, 23,67)
 
         # group all windows
         self.winlist = [self.poolwin, self.pcrestwin,

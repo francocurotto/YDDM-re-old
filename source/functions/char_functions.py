@@ -35,8 +35,12 @@ def test_print_length():
     Test the get_print_length function for various emoji 
     characters.
     """
-    chars = ["⭐", "⬆️", "⚔️", "🛡️", "✡️", "⚡",
-             "🧙", "🧟", "🐺", "🥋", "🐲"]
+    dice_chars    = ["⭐", "⬆️", "⚔️", "🛡️", "✡️", "⚡"]
+    summon_chars  = ["❤️", "🧙", "🧟", "🐺", "🥋", "🐲"]
+    ml_chars      = ["👑", "💙", "🖤"]
+    dungeon_chars = ["🔲", "⬛", "🟦", "🟥"]
+    chars = dice_chars + summon_chars + ml_chars + \
+        dungeon_chars
     for char in chars:
         print(char + ":" + str(get_print_length(char)))
 

@@ -1,3 +1,4 @@
+import settings
 from duel_substate import DuelSubstate
 
 class RollState(DuelSubstate):
@@ -21,8 +22,7 @@ class RollState(DuelSubstate):
         self.start_message += " TURN\n"
         self.start_message += "<ROLL PHASE>\n"
         
-        from settings import iomodule
-        if iomodule.name == "cmd":
+        if settings.verbose:
             self.start_message += \
                 self.duel.player.stringify_pool() + "\n\n"
 

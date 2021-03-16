@@ -1,3 +1,4 @@
+import settings
 from duel_substate import DuelSubstate
 from dice_nets.dice_net import create_net
 from dice_nets.pos import Pos
@@ -28,8 +29,7 @@ class DimensionState(DuelSubstate):
         self.start_message += self.get_net_string()
         self.start_message += "\n\n"
         
-        from settings import iomodule
-        if iomodule.name == "cmd":
+        if settings.verbose:
             self.start_message += \
                 self.duel.dungeon.stringify()
             self.start_message += "\n\n"
@@ -109,17 +109,12 @@ class DimensionState(DuelSubstate):
         center_char = summon.chars["tile"]
 
         # create net string from base net string
-        from settings import iomodule
-        if iomodule.name == "cmd":
-            base_net_str = base_net_cmd
-        elif iomodule.name == "curses":
-            base_net_str = base_net_curses
         net_str = base_net_str.replace("[]", tile_char)
         net_str = net_str.replace("()", center_char)
 
         return net_str
 
-base_net_cmd = "\
+base_net_str = "\
   T1     T2     Z1     Z2     X1     X2   \n\
 [][][] [][]   [][]   [][]     []     []   \n\
   ()     ()[]   ()     ()   []()[] []()   \n\
@@ -132,14 +127,6 @@ base_net_cmd = "\
   [][]   [][]   []     [][] ()[]          \n\
     []     []   []     []     []          \n\
                               []"
-
-base_net_curses = "\
-  T1     T2     Z1     Z2     X1     X2     M1   M2     S1     S2     L1  \n\
-[][][] [][]   [][]   [][]     []     []   [][]   []     []     []     []  \n\
-  ()     ()[]   ()     ()   []()[] []()     ()   []()   []()[] []()   []  \n\
-  []     []     []     [][]   []     [][]   [][]   [][]   []     [][] ()[]\n\
-  []     []     [][]   []     []     []       []     []   []     []     []\n\
-                                                                        []"
 
 help_text = "\n\n\
 Dimension commands: \n\

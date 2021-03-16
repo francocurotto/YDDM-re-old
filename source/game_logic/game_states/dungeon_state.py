@@ -1,3 +1,4 @@
+import settings
 from duel_substate import DuelSubstate
 from dice_nets.pos import Pos
 
@@ -33,8 +34,7 @@ class DungeonState(DuelSubstate):
         self.next_state = self
 
         # set start message
-        from settings import iomodule
-        if iomodule.name == "cmd":
+        if settings.verbose:
             self.start_message = \
                 self.duel.dungeon.stringify()
             self.start_message += "\n\n"
