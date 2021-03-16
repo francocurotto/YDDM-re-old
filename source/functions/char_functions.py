@@ -30,19 +30,86 @@ def get_print_length(char):
     curses.endwin()
     return pos2[1] - pos1[1]
 
-def test_print_length():
+def test_chars(print_type):
     """
-    Test the get_print_length function for various emoji 
-    characters.
+    Test character display.
     """
-    dice_chars    = ["⭐", "⬆️", "⚔️", "🛡️", "✡️", "⚡"]
-    summon_chars  = ["❤️", "🧙", "🧟", "🐺", "🥋", "🐲"]
-    ml_chars      = ["👑", "💙", "🖤"]
-    dungeon_chars = ["🔲", "⬛", "🟦", "🟥"]
-    chars = dice_chars + summon_chars + ml_chars + \
-        dungeon_chars
-    for char in chars:
-        print(char + ":" + str(get_print_length(char)))
+    for char_dict in char_list:
+        # get char
+        if print_type == "unicode":
+            char = char_dict["unicode"]
+        elif print_type == "emoji":
+            char = char_dict["emoji"]
+
+        print_length = get_print_length(char)
+        
+        line  = char + " "
+        line += char_dict["info"].ljust(13)
+        line += str(print_length)
+        print(line)
+
+char_list = [
+    # crests
+    {"emoji"   : "⭐",
+     "unicode" : "★",
+     "info"    : "summon"},
+    {"emoji"   : "⬆️ ",
+     "unicode" : "⬆",
+     "info"    : "movement"},
+    {"emoji"   : "⚔️ ",
+     "unicode" : "⚔",
+     "info"    : "attack"},
+    {"emoji"   : "🛡️ ",
+     "unicode" : "⊝",
+     "info"    : "defense"},
+    {"emoji"   : "✡️ ",
+     "unicode" : "✡",
+     "info"    : "magic"},
+    {"emoji"   : "⚡",
+     "unicode" : "⊗",
+     "info"    : "trap"},
+     # summon
+    {"emoji"   : "❤️ ",
+     "unicode" : "♥",
+     "info"    : "life"},
+    {"emoji"   : "🧙",
+     "unicode" : "S",
+     "info"    : "spellcaster"},
+    {"emoji"   : "🧟",
+     "unicode" : "U",
+     "info"    : "undead"},
+    {"emoji"   : "🐺",
+     "unicode" : "B",
+     "info"    : "beast"},
+    {"emoji"   : "🥋",
+     "unicode" : "W",
+     "info"    : "warrior"},
+    {"emoji"   : "🐲",
+     "unicode" : "D",
+     "info"    : "dragon"},
+     # monster lord
+    {"emoji"   : "👑",
+     "unicode" : "♛",
+     "info"    : "monster lord"},
+    {"emoji"   : "💙",
+     "unicode" : "♥",
+     "info"    : "heart"},
+    {"emoji"   : "🖤",
+     "unicode" : "♡",
+     "info"    : "no heart"},
+     # dungeon
+    {"emoji"   : "🔲",
+     "unicode" : "[]",
+     "info"    : "block"},
+    {"emoji"   : "⬛",
+     "unicode" : "[]",
+     "info"    : "empty tile"},
+    {"emoji"   : "🟦",
+     "unicode" : "[]",
+     "info"    : "blue tile"},
+    {"emoji"   : "🟥",
+     "unicode" : "[]",
+     "info"    : "red tile"}]
 
 if __name__ == "__main__":
-    test_print_length()
+    test_chars("emoji")

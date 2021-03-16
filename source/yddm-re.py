@@ -57,6 +57,12 @@ def initialize_game():
     else: # default io module
         iomodule = get_iomodule("cmd")
 
+    # check for char test
+    if len(sys.argv) > 1 and sys.argv[1] == "test_chars":
+        from char_functions import test_chars
+        test_chars(settings.print_type)
+        exit()
+
     return iomodule
 
 def get_iomodule(module_name):
