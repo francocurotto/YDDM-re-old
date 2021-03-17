@@ -18,7 +18,11 @@ class CursesIO():
         curses.start_color()
 
         # initial refresh with title
-        self.stdscr.addstr(0, 56, "YDDM-re")
+        try:
+            self.stdscr.addstr(0, 56, "YDDM-re")
+        except curses.error:
+            self.terminate()
+            exit()
         self.stdscr.noutrefresh()
 
         # define initial windows
