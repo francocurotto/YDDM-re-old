@@ -8,7 +8,9 @@ modlist = get_all_modules()
 [sys.path.append(modname) for modname in modlist]
     
 # imports
+import argparse
 import settings
+import char_functions
 from command_prompt import CommandPrompt
 from curses_io import CursesIO
 from duel_state import DuelState
@@ -17,7 +19,11 @@ def main():
     """
     Main game function.
     """
-    iom = initialize_game()
+    args = parse_args()
+    if args.test_chars:
+        test_chars()
+
+    iom = get_iomodule(args.io_module)
     
     # create game elements
     duel_state = DuelState()
@@ -36,34 +42,30 @@ def main():
     # finish game gracefully
     iom.terminate()
 
-def initialize_game():
+def parse_args():
     """
-    Do all the necessary tasks when initializing the game.
+    Parse user command line arguments.
     """
-    # expected command line inputs
-    print_types = {"ascii", "unicode", "emoji"}
-    iomodules = {"cmd", "curses"}
+    parser = argparse.ArgumentParser(
+        description="Yugioh Dungeon Dice Monsters " +
+            "reimplementation.")
+    parser.add_argument("-p", "--print_type", 
+        choices=["ascii", "unicode", "emoji"], 
+        default="emoji",
+        help="Type of character to do the 'graphics'")
+    parser.add_argument("-io", "--io_module", 
+        choices=["cmd", "curses"],
+        default="curses",
+        help="Input/output method for the game")
+    parser.add_argument("-tc", "--test_chars",  
+        action="store_true",
+        help="Test for the proper display of characters " +
+            "in the game and exit")
+    args = parser.parse_args()
 
-    # get print type
-    print_type = set(sys.argv) & print_types
-    if len(print_type) == 1:
-        settings.print_type = print_type.pop()
+    settings.print_type = args.print_type
 
-    # get io module
-    iomodule = set(sys.argv) & iomodules
-    if len(iomodule) == 1:
-        iomodule = get_iomodule(iomodule.pop())
-
-    else: # default io module
-        iomodule = get_iomodule("cmd")
-
-    # check for char test
-    if len(sys.argv) > 1 and sys.argv[1] == "test_chars":
-        from char_functions import test_chars
-        test_chars(settings.print_type)
-        exit()
-
-    return iomodule
+    return args
 
 def get_iomodule(module_name):
     """
@@ -76,5 +78,13 @@ def get_iomodule(module_name):
         settings.verbose = False
         return CursesIO(module_name)
 
+def test_chars():   
+    """
+    Instead of running the game, test for the proper display
+    of the characters.
+    """
+    char_functions.test_chars(settings.print_type)
+    exit()
+    
 if __name__ == "__main__":
     main()
