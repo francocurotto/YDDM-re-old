@@ -1,4 +1,5 @@
 import curses
+from color_functions import color_fg, grayout
 
 def select_chars(chars_ascii, chars_unicode, chars_emoji):
     """
@@ -24,6 +25,7 @@ def get_print_length(char):
     postion to have a more accurate measurement.
     """
     stdscr = curses.initscr()
+    stdscr.move(0,0)
     pos1 = stdscr.getyx()
     stdscr.addstr(char)
     pos2 = stdscr.getyx()
@@ -45,7 +47,7 @@ def test_chars(print_type):
 
         print_length = get_print_length(char)
         
-        line  = char.ljust(3)
+        line = char + "\t"
         line += char_dict["info"].ljust(13)
         line += str(print_length)
         print(line)
@@ -112,7 +114,7 @@ char_list = [
      "info"    : "heart"},
     {"emoji"   : "🖤",
      "unicode" : "♡",
-     "ascii"   : "<3",
+     "ascii"   : grayout("<3"),
      "info"    : "no heart"},
      # dungeon
     {"emoji"   : "🔲",
@@ -120,16 +122,16 @@ char_list = [
      "ascii"   : "[]",
      "info"    : "block"},
     {"emoji"   : "⬛",
-     "unicode" : "[]",
-     "ascii"   : "[]",
+     "unicode" : grayout("[]"),
+     "ascii"   : grayout("[]"),
      "info"    : "empty tile"},
     {"emoji"   : "🟦",
-     "unicode" : "[]",
-     "ascii"   : "[]",
+     "unicode" : color_fg("[]", "blue"),
+     "ascii"   : color_fg("[]", "blue"),
      "info"    : "blue tile"},
     {"emoji"   : "🟥",
-     "unicode" : "[]",
-     "ascii"   : "[]",
+     "unicode" : color_fg("[]", "red"),
+     "ascii"   : color_fg("[]", "red"),
      "info"    : "red tile"}]
 
 if __name__ == "__main__":
