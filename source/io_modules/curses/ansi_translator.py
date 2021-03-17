@@ -18,7 +18,7 @@ class ANSITranslator():
                             curses.COLOR_BLACK)
         curses.init_pair(5, curses.COLOR_GREEN, # green fg
                             curses.COLOR_BLACK) 
-        curses.init_pair(5, curses.COLOR_BLACK, # black fg
+        curses.init_pair(6, curses.COLOR_BLACK, # black fg
                             curses.COLOR_BLACK) 
 
         # ansi-curses translation dict

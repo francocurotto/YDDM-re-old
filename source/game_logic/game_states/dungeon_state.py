@@ -231,7 +231,7 @@ class DungeonState(DuelSubstate):
         # check if monster is player monster
         monster = tile.content
         if monster not in self.duel.player.monster_list.list:
-            self.log.add("Can't move opponent's " + \
+            self.log.add("Can't use opponent's " + \
                 "monster.\n\n")
             return None
 
