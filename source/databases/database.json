@@ -1,0 +1,10 @@
+[
+{"NAME"   : "B. eye White Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 30,
+"LIFE"    : 50,
+"ABILITY" : "Fly",
+"DICE"    : "SMM2A4DG"}
+]
