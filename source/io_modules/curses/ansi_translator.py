@@ -18,16 +18,20 @@ class ANSITranslator():
                             curses.COLOR_BLACK)
         curses.init_pair(5, curses.COLOR_GREEN, # green fg
                             curses.COLOR_BLACK) 
+        curses.init_pair(5, curses.COLOR_BLACK, # black fg
+                            curses.COLOR_BLACK) 
 
         # ansi-curses translation dict
         self.ansi_dict = {
-            "\x1b[0m"  : curses.color_pair(0), # standard
-            "\x1b[44m" : curses.color_pair(1), # blue bg
-            "\x1b[41m" : curses.color_pair(2), # red bg
-            "\x1b[34m" : curses.color_pair(3), # blue fg
-            "\x1b[31m" : curses.color_pair(4), # red fg
-            "\x1b[32m" : curses.color_pair(5), # green fg
-            "\x1b[30m\x1b[1m" : curses.A_DIM}  # grayout
+            "\x1b[0m"  : curses.color_pair(0),  # standard
+            "\x1b[44m" : curses.color_pair(1),  # blue bg
+            "\x1b[41m" : curses.color_pair(2),  # red bg
+            "\x1b[34m" : curses.color_pair(3),  # blue fg
+            "\x1b[31m" : curses.color_pair(4),  # red fg
+            "\x1b[32m" : curses.color_pair(5),  # green fg
+            "\x1b[30m\x1b[1m" : curses.A_BOLD + 
+                curses.color_pair(6)}           # grayout
+            #"\x1b[30m\x1b[1m" : curses.A_DIM}  # grayout
 
     def get_ctuples(self, line):
         """
