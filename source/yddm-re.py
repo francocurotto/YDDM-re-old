@@ -26,7 +26,7 @@ def main():
     iom = get_iomodule(args.io_module)
     
     # create game elements
-    duel_state = DuelState()
+    duel_state = DuelState(args.pool1, args.pool2)
 
     # initial display
     iom.display(duel_state)
@@ -49,7 +49,8 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Yugioh Dungeon Dice Monsters " +
             "reimplementation.")
-    parser.add_argument("-p", "--print_type", 
+    # display arguments
+    parser.add_argument("-pt", "--print_type", 
         choices=["ascii", "unicode", "emoji"], 
         default="emoji",
         help="Type of character to do the 'graphics'")
@@ -61,8 +62,19 @@ def parse_args():
         action="store_true",
         help="Test for the proper display of characters " +
             "in the game and exit")
+    # duel arguments
+    parser.add_argument("-p1", "--pool1",
+        default=None,
+        help="File with Player 1's dice pool. If not " +
+            "given use random pool")
+    parser.add_argument("-p2", "--pool2",
+        default=None,
+        help="File with Player 2's dice pool. If not " +
+            "given use random pool")
+    args = parser.parse_args()
     args = parser.parse_args()
 
+    # process some arguments
     settings.print_type = args.print_type
 
     return args

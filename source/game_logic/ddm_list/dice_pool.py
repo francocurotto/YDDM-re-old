@@ -1,5 +1,6 @@
 import random
 from dice_list import DiceList
+from ddm_dice_parser import DdmDiceParser
 
 class DicePool(DiceList):
     """
@@ -13,9 +14,12 @@ class DicePool(DiceList):
         Fill the dice pool with random dice from a dice 
         library.
         """
+        parser = DdmDiceParser() 
+        library_items = list(dice_library.items())
         # add random dices until the dice pull is full
         while not self.is_full():
             # random index
-            i = random.choice(range(len(dice_library.list)))
-            dice = dice_library.get_copy(i)
+            i = random.choice(range(len(library_items)))
+            id, params = library_items[i]
+            dice = parser.create_ddm_dice(params)
             self.add(dice)

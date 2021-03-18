@@ -1,10 +1,1211 @@
-[
-{"NAME"   : "B. eye White Dragon",
+{
+"001" : {
+"NAME"    : "B. eye White Dragon",
 "TYPE"    : "DRAGON",
 "LEVEL"   : 4,
 "ATTACK"  : 40,
 "DEFENSE" : 30,
 "LIFE"    : 50,
 "ABILITY" : "Fly",
-"DICE"    : "SMM2A4DG"}
-]
+"DICE"    : "SMM2A4DG"},
+
+"002" : {
+"NAME"    : "Mystical Elf",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Restores 1 heart to all allies. (dimension)",
+"DICE"    : "SSSSM2G4"},
+
+"003" : {
+"NAME"    : "Hitotsu-me Giant",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSA2D2G"},
+
+"004" : {
+"NAME"    : "Baby Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Fly, No family pros or cons.",
+"DICE"    : "SSSSAG"},
+
+"005" : {
+"NAME"    : "Ryu-kishin",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSMA2A2"},
+
+"006" : {
+"NAME"    : "Feral Imp",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 20,
+"LIFE"    : 10,
+"ABILITY" : "Prevents all flying. (In play)",
+"DICE"    : "SSSM3A5D"},
+
+"007" : {
+"NAME"    : "Winged Dragon #1",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Fly, Prevents all tunneling. (In play)",
+"DICE"    : "SSSM2M3G"},
+
+"008" : {
+"NAME"    : "Mushroom Man",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSA2G"},
+
+"009" : {
+"NAME"    : "Shadow Specter",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSA2G"},
+
+"010" : {
+"NAME"    : "Swamp Battleguard",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Attack crests raises attack by 10 once a turn. (on attack) [A X 1]",
+"DICE"    : "SSSM2A2T"},
+
+"011" : {
+"NAME"    : "Battle Steer",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSM3DT4"},
+
+"012" : {
+"NAME"    : "Flame Swordsman",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSMM2A2"},
+
+"013" : {
+"NAME"    : "Time Wizard",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 0,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Destroys monster with least attack. (dimension)",
+"DICE"    : "SSSSM2M3"},
+
+"014" : {
+"NAME"    : "R Leg of Forbidden",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 0,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSM2M3A2D"},
+
+"015" : {
+"NAME"    : "L Leg of Forbidden",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 0,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSM2ADG"},
+
+"016" : {
+"NAME"    : "R Arm of Forbidden",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 0,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSM2M3A4D2"},
+
+"017" : {
+"NAME"    : "L Arm of Forbidden",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 0,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSMM3AD"},
+
+"018" : {
+"NAME"    : "Exodia of Forbidden",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Automatic win if the 4 limbs exist. (Dimension)",
+"DICE"    : "SMM7A2D4T"},
+
+"019" : {
+"NAME"    : "Summoned Skull",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 20,
+"LIFE"    : 40,
+"ABILITY" : "N/A",
+"DICE"    : "SM3M4ADG"},
+
+"020" : {
+"NAME"    : "Battle Ox",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSM2DG2"},
+
+"021" : {
+"NAME"    : "Beaver Warrior",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSM2A2"},
+
+"022" : {
+"NAME"    : "Rock Ogre Grotto #1",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises defense of all spellcaster monsters by 10 (in play)",
+"DICE"    : "SSSSG2T"},
+
+"023" : {
+"NAME"    : "Zombie Warrior",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises attack of all Zombie monsters by 10. (in play)",
+"DICE"    : "SSSSAD2"},
+
+"024" : {
+"NAME"    : "Koumori Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSMAD"},
+
+"025" : {
+"NAME"    : "Saggi the Dark Clown",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Reduces damage to one ally by 10. [D X 2]",
+"DICE"    : "SSSSDT"},
+
+"026" : {
+"NAME"    : "Dark Magician",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 20,
+"LIFE"    : 30,
+"ABILITY" : "N/A",
+"DICE"    : "SM2AD2GT"},
+
+"027" : {
+"NAME"    : "The Snake Hair",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Fly, Raises defense of all zombie monsters by 10. (in play)",
+"DICE"    : "SSSSMG"},
+
+"028" : {
+"NAME"    : "Gaia the Dragon Champion",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 30,
+"LIFE"    : 40,
+"ABILITY" : "Fly",
+"DICE"    : "SM4A3DG2T"},
+
+"029" : {
+"NAME"    : "Gaia The Fierce Knight",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 20,
+"LIFE"    : 40,
+"ABILITY" : "Able to attack flying monsters.",
+"DICE"    : "SMADG3T"},
+
+"030" : {
+"NAME"    : "Curse of Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Fly",
+"DICE"    : "SSMM3AD3"},
+
+"031" : {
+"NAME"    : "Dragon Piper",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 0,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Limits Dragon monsters 1 move/ 2 turns. (in play)",
+"DICE"    : "SSSSDG"},
+
+"032" : {
+"NAME"    : "Celtic Guardian",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSM3G3T"},
+
+"033" : {
+"NAME"    : "Faceless Mage",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 30,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSM3M3AD2"},
+
+"034" : {
+"NAME"    : "Karbonala Warrior",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises attack of all warriors by 10. (in play)",
+"DICE"    : "SSSSM2T"},
+
+"035" : {
+"NAME"    : "Rogue Doll",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Restores 1 heart to 2 allied monsters. (Dimension) [P X 3]",
+"DICE"    : "SSMAAD"},
+
+"036" : {
+"NAME"    : "Sangan",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSD2G4"},
+
+"037" : {
+"NAME"    : "Killer Needle",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Able to attack flying monsters",
+"DICE"    : "SSSSMA"},
+
+"038" : {
+"NAME"    : "Giant Flea",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSMT"},
+
+"039" : {
+"NAME"    : "Larvae Moth",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSMD"},
+
+"040" : {
+"NAME"    : "Great Moth",
+"TYPE"    : "BEAST",
+"LEVEL"   : 3,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 40,
+"ABILITY" : "Fly",
+"DICE"    : "SSMM2AD"},
+
+"041" : {
+"NAME"    : "Kuriboh",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSA4D2"},
+
+"042" : {
+"NAME"    : "Mammoth Graveyard",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Tunneling,  Raises attack of all Beats monsters by 10. (in play)",
+"DICE"    : "SSSSM5G2"},
+
+"043" : {
+"NAME"    : "Harpie Lady",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Fly, Destroys one tunneling monster. (Dimension) [P X 3]",
+"DICE"    : "SSSMMG3"},
+
+"044" : {
+"NAME"    : "Harpie Lady Sisters",
+"TYPE"    : "BEAST",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Destroys all tunnellers. (Dimension) [P X 4]",
+"DICE"    : "SSM2A3DT2"},
+
+"045" : {
+"NAME"    : "Perfectly Ultimate",
+"TYPE"    : "BEAST",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 40,
+"LIFE"    : 50,
+"ABILITY" : "Fly",
+"DICE"    : "SM4A2DTT2"},
+
+"046" : {
+"NAME"    : "Thousand Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 2,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSM2A7D"},
+
+"047" : {
+"NAME"    : "Jellyfish",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises defense of all Beast monsters by 10 (In Play)",
+"DICE"    : "SSSSMG2"},
+
+"048" : {
+"NAME"    : "Cocoon of Evolution",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 40,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSAGT3"},
+
+"049" : {
+"NAME"    : "Giant rock soldier",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 30,
+"LIFE"    : 20,
+"ABILITY" : "Removes one obstacle. [P X 2]",
+"DICE"    : "SSSM2D2T"},
+
+"050" : {
+"NAME"    : "Red-eyes B. Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 20,
+"LIFE"    : 30,
+"ABILITY" : "Fly",
+"DICE"    : "SM2AD2G2T2"},
+
+"051" : {
+"NAME"    : "Castle of D. Magic",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "Reduces damage by 20 when attacked. [D X 2]",
+"DICE"    : "SSSMDD"},
+
+"052" : {
+"NAME"    : "Metal Guardian",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 30,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSMAD"},
+
+"053" : {
+"NAME"    : "Mystic Horseman",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 40,
+"ABILITY" : "Adds damage to attack once per turn. [P X 1]",
+"DICE"    : "SSSM2AD"},
+
+"054" : {
+"NAME"    : "Rapid Horseman",
+"TYPE"    : "BEAST",
+"LEVEL"   : 3,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 40,
+"ABILITY" : "Attack crest raises attack by 10 up to twice/turn. (In attack) [A X ?]",
+"DICE"    : "SSM2A2DG"},
+
+"055" : {
+"NAME"    : "Clown Zombie",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Tunneling, No family pros or cons.",
+"DICE"    : "SSSSM2T4"},
+
+"056" : {
+"NAME"    : "Pumpking the King of Ghosts",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 30,
+"LIFE"    : 30,
+"ABILITY" : "Reduces damage by 30 when attacked. [D X 3]",
+"DICE"    : "SSMA2D3G2"},
+
+"057" : {
+"NAME"    : "Battle Warrior",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 1,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Adds 1 attacks crest to own crest pool. (Dimension) Able to attack flying monsters.",
+"DICE"    : "SSSSAG"},
+
+"058" : {
+"NAME"    : "The 13th Grave",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 2,
+"ATTACK"  : 0,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Tunneling, Removes 1 heart from enemy and self. [P X 2]",
+"DICE"    : "SSSM7AG"},
+
+"059" : {
+"NAME"    : "Petit Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises attack of dragon monsters by 10. (In Play)",
+"DICE"    : "SSSSAT"},
+
+"060" : {
+"NAME"    : "Aqua Madoor",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 20,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSA2T"},
+
+"061" : {
+"NAME"    : "B. Skull Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 40,
+"LIFE"    : 40,
+"ABILITY" : "Fly",
+"DICE"    : "SM3AAD3G"},
+
+"062" : {
+"NAME"    : "Beautiful Headhuntress",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSM4DDG2"},
+
+"063" : {
+"NAME"    : "Yaranzo",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Trades 3 crests in own pool for 1. (Dimension)",
+"DICE"    : "SSSM2AD"},
+
+"064" : {
+"NAME"    : "Kanan the Swordmistress",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 2,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSM2DD"},
+
+"065" : {
+"NAME"    : "Stuffed Animal",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSM2D"},
+
+"066" : {
+"NAME"    : "Three-legged zombies",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 1,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSAD4"},
+
+"067" : {
+"NAME"    : "Flying Penguin",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSDGT"},
+
+"068" : {
+"NAME"    : "Millennium Shield",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 3,
+"ATTACK"  : 0,
+"DEFENSE" : 40,
+"LIFE"    : 10,
+"ABILITY" : "This item can't move.",
+"DICE"    : "SSM3AA3D4"},
+
+"069" : {
+"NAME"    : "Black Luster Soldier",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 30,
+"LIFE"    : 50,
+"ABILITY" : "N/A",
+"DICE"    : "SM2ADGT2"},
+
+"070" : {
+"NAME"    : "Fiend's Mirror",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSAD2T2"},
+
+"071" : {
+"NAME"    : "Jirai Gumo",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Tunneling",
+"DICE"    : "SSSSD6G"},
+
+"072" : {
+"NAME"    : "Sanga of the Thunder",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 30,
+"ABILITY" : "Shifts damage to an ally [T X 3]",
+"DICE"    : "SMM3A3DT"},
+
+"073" : {
+"NAME"    : "Kazejin",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 30,
+"ABILITY" : "Shifts damage to an ally [T X 3]",
+"DICE"    : "SM3ADGT"},
+
+"074" : {
+"NAME"    : "Suijin",
+"TYPE"    : "BEAST",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 30,
+"ABILITY" : "Shifts damage to an ally [T X 3]",
+"DICE"    : "SMAD2GT"},
+
+"075" : {
+"NAME"    : "Gate Guardian",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 40,
+"LIFE"    : 50,
+"ABILITY" : "Shifts damage to an ally.",
+"DICE"    : "SM2AD2G3T2"},
+
+"076" : {
+"NAME"    : "Ryu-kishin Powered",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSM3AD"},
+
+"077" : {
+"NAME"    : "B. eye Ultimate Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 50,
+"DEFENSE" : 40,
+"LIFE"    : 60,
+"ABILITY" : "Movement limited to 1 square per turn.",
+"DICE"    : "SMADG2T"},
+
+"078" : {
+"NAME"    : "Parrot Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Fly,  Raises defense of all dragon monsters by 10. (In play)",
+"DICE"    : "SSSSM2T"},
+
+"079" : {
+"NAME"    : "Mystic Lamp",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises defense of all spellcaster monsters by  10. (In play)",
+"DICE"    : "SSSSGG"},
+
+"080" : {
+"NAME"    : "Pendulum Machine",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 30,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSMAG3T"},
+
+"081" : {
+"NAME"    : "Zoa",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSM4ADD2"},
+
+"082" : {
+"NAME"    : "Metal Zoa",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 30,
+"ABILITY" : "N/A",
+"DICE"    : "SM8AD8GT4"},
+
+"083" : {
+"NAME"    : "Dancing Elf",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 1,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSAT"},
+
+"084" : {
+"NAME"    : "Man-eater Bug",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSMA2"},
+
+"085" : {
+"NAME"    : "Gemini Elf",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 40,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSMAD3T4"},
+
+"086" : {
+"NAME"    : "Skelengel",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Raises defense of all warrior monsters by 10 (In Play)",
+"DICE"    : "SSSSMG"},
+
+"087" : {
+"NAME"    : "Hane-Hane",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSD4G"},
+
+"088" : {
+"NAME"    : "Penguin soldier",
+"TYPE"    : "BEAST",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSM2M3"},
+
+"089" : {
+"NAME"    : "Twin-headed Thunder Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 3,
+"ATTACK"  : 40,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSMA2G2T2"},
+
+"090" : {
+"NAME"    : "Witch's Apprentice",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSSSM2T"},
+
+"091" : {
+"NAME"    : "Meteor Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 3,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 30,
+"ABILITY" : "Fly",
+"DICE"    : "SSM3M4DG"},
+
+"092" : {
+"NAME"    : "Meteor B. Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 20,
+"LIFE"    : 30,
+"ABILITY" : "Fly",
+"DICE"    : "SMADGT"},
+
+"093" : {
+"NAME"    : "Dokurorider",
+"TYPE"    : "UNDEAD",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 20,
+"ABILITY" : "N/A",
+"DICE"    : "SSMAD2G2"},
+
+"094" : {
+"NAME"    : "Magician of Black Chaos",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 30,
+"LIFE"    : 40,
+"ABILITY" : "N/A",
+"DICE"    : "SMA2DGT"},
+
+"095" : {
+"NAME"    : "Slot machine",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 30,
+"ABILITY" : "N/A",
+"DICE"    : "SSM2A2DT"},
+
+"096" : {
+"NAME"    : "Red Archery Girl",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : " N/A",
+"DICE"    : "SSSSMD2"},
+
+"097" : {
+"NAME"    : "Dark-eyes Illusionist",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Negates attack & effect on 1 ally [T X 5]",
+"DICE"    : "SMA2D2GT3"},
+
+"098" : {
+"NAME"    : "Relinquished",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 1,
+"ATTACK"  : 0,
+"DEFENSE" : 0,
+"LIFE"    : 10,
+"ABILITY" : "Sacrifices self to steal 1 enemy. [P X 10]",
+"DICE"    : "SSSSDT3"},
+
+"099" : {
+"NAME"    : "Thousand-eyes Restrict",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Gain control of 1 foe/turn. [P X 8]",
+"DICE"    : "SM2AD2G5T"},
+
+"100" : {
+"NAME"    : "Lord of D.",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "Protects all dragon monsters. (In Play)",
+"DICE"    : "SSSMAG2"},
+
+"101" : {
+"NAME"    : "R. eye B. M. Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 40,
+"DEFENSE" : 40,
+"LIFE"    : 30,
+"ABILITY" : "Fly",
+"DICE"    : "SM2ADG3T2"},
+
+"102" : {
+"NAME"    : "Barrel Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 30,
+"LIFE"    : 40,
+"ABILITY" : "N/A",
+"DICE"    : "SM6DGT2T2"},
+
+"103" : {
+"NAME"    : "Jinzo",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 10,
+"ABILITY" : "N/A",
+"DICE"    : "SSMA3D2T"},
+
+"104" : {
+"NAME"    : "Dark Magician Girl",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Obtains Attack and Defense of all destroyed spellcaster monsters. (Dimension)",
+"DICE"    : "SSMADT"},
+
+"105" : {
+"NAME"    : "Twin-Headed Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 1,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Tunneling, Adds 1 trap crest to own crest pool. (Dimension)",
+"DICE"    : "SSSSDG2"},
+
+"106" : {
+"NAME"    : "Gator Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 30,
+"ABILITY" : "Reduces attack damage by Defense crest X 10. [D X ?]",
+"DICE"    : "SSSMDT"},
+
+"107" : {
+"NAME"    : "Blast Lizard",
+"TYPE"    : "BEAST",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Destroys 1 foe Add 1 magic crest/level. [P X 3]",
+"DICE"    : "SSSADT4"},
+
+"108" : {
+"NAME"    : "Knight of Twin Swords",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 2,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 30,
+"ABILITY" : "Moves 2 squares for 1 movement crests. Attacks 1 foe up to 3 times/turn. (on attack) [A X ?]",
+"DICE"    : "SSSMAD"},
+
+"109" : {
+"NAME"    : "Thunder Ball",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 3,
+"ATTACK"  : 10,
+"DEFENSE" : 10,
+"LIFE"    : 30,
+"ABILITY" : "Rolls to destroy one foe. Add 1 defense crest per level. [P X 3]",
+"DICE"    : "SSMM3A2D2"},
+
+"110" : {
+"NAME"    : "Magician Dragon",
+"TYPE"    : "DRAGON",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 40,
+"ABILITY" : "Adds enemy defense to own defense. [T X 3] Destroys all within 3 x 3 grid. [P X 3]",
+"DICE"    : "SSM4ADD3"},
+
+"111" : {
+"NAME"    : "Strike Ninja",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 10,
+"LIFE"    : 20,
+"ABILITY" : "Moves 3 squares for 1 movement crest. Protects self from attacks and effects. [T X 2]",
+"DICE"    : "SSMM3AD"},
+
+"112" : {
+"NAME"    : "Mighty Mage",
+"TYPE"    : "SPELLCASTER",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 50,
+"ABILITY" : "Attacks an enemy 2 squares away. {P X 1]",
+"DICE"    : "SM2M4AGT"},
+
+"113" : {
+"NAME"    : "Crocozaurus",
+"TYPE"    : "BEAST",
+"LEVEL"   : 4,
+"ATTACK"  : 30,
+"DEFENSE" : 20,
+"LIFE"    : 50,
+"ABILITY" : "Attack crests raises attack by 10 max. 3 times/turn. (on attack) [A X ?]",
+"DICE"    : "SMA2DGT3"},
+
+"114" : {
+"NAME"    : "Orgoth the Relentless",
+"TYPE"    : "WARRIOR",
+"LEVEL"   : 3,
+"ATTACK"  : 20,
+"DEFENSE" : 20,
+"LIFE"    : 30,
+"ABILITY" : "Raises attack by 10.",
+"DICE"    : "SSMM3A2D"},
+
+"115" : {
+"NAME"    : "Medical Aid Kit",
+"TYPE"    : "ITEM",
+"LEVEL"   : 2,
+"ABILITY" : "Restores 2 hearts to a monster.",
+"DICE"    : "SSSM5AT"},
+
+"116" : {
+"NAME"    : "Exploding Disk",
+"TYPE"    : "ITEM",
+"LEVEL"   : 3,
+"ABILITY" : "Removes 2 hearts from a monster.",
+"DICE"    : "SSM2M3D2G2"},
+
+"117" : {
+"NAME"    : "Time Machine",
+"TYPE"    : "ITEM",
+"LEVEL"   : 1,
+"ABILITY" : "Returns monster to its last lactation.",
+"DICE"    : "SSSSDT"},
+
+"118" : {
+"NAME"    : "Energy Disk",
+"TYPE"    : "ITEM",
+"LEVEL"   : 1,
+"ABILITY" : "Raises a monster's attack by 20.",
+"DICE"    : "SSSSM3M4"},
+
+"119" : {
+"NAME"    : "Trap Bandit",
+"TYPE"    : "ITEM",
+"LEVEL"   : 1,
+"ABILITY" : "Destroys 1 trap crest in own crest pool.",
+"DICE"    : "SSSSMT"},
+
+"120" : {
+"NAME"    : "Declaration of Despair",
+"TYPE"    : "ITEM",
+"LEVEL"   : 1,
+"ABILITY" : "Destroys 1 magic crest in own crest pool.",
+"DICE"    : "SSSSM2G"},
+
+"121" : {
+"NAME"    : "Gluminizer",
+"TYPE"    : "ITEM",
+"LEVEL"   : 2,
+"ABILITY" : "Doubles movement cost for all. (Dimension)",
+"DICE"    : "SSSM2AD2"},
+
+"122" : {
+"NAME"    : "Resurrection Scroll",
+"TYPE"    : "ITEM",
+"LEVEL"   : 2,
+"ABILITY" : "Resurrects 1 destroyed ally.",
+"DICE"    : "SSSM2G2T"},
+
+"123" : {
+"NAME"    : "Warp Vortex",
+"TYPE"    : "ITEM",
+"LEVEL"   : 3,
+"ABILITY" : "Moves Monster to another Vortex. (Dimension)",
+"DICE"    : "SSMADT"},
+
+"124" : {
+"NAME"    : "Crater Creator",
+"TYPE"    : "ITEM",
+"LEVEL"   : 4,
+"ABILITY" : "Destroys all monsters in the dungeon.",
+"DICE"    : "SM4AA2DG4"}
+}

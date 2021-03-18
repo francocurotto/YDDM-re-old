@@ -1,17 +1,20 @@
+import os, json
+from dice_pool import DicePool
 from player import Player
-from dice_list import DiceLibrary
+from ddm_dice_parser import DdmDiceParser
 from dungeon import Dungeon
 
 class Duel():
     """
     A duel were player are playing YDDM.
     """
-    def __init__(self, log):
+    def __init__(self, pfile1, pfile2, log):
         self.log = log
 
         # For now, creates players with random pools
-        self.player1, self.player2 = self.random_init()
-        self.players = [self.player1, self.player2]
+        self.players = self.create_players(pfile1, pfile2)
+        self.player1 = self.players[0]
+        self.player2 = self.players[1]
 
         # create dungeon
         self.dungeon = Dungeon(self.players, self.log)
@@ -67,22 +70,52 @@ class Duel():
         """
         return (set(self.players) - set([player])).pop()
 
-    def random_init(self):
+    def create_players(self, pfile1, pfile2):
         """
         Helper function to initialize a duel with two players 
-        with random dice pools.
+        with the given pools (or random pools).
         """
         # generate dice library
         from settings import library_path
-        library = DiceLibrary(self.log)
-        library.fill_from_file(library_path)
+        library = json.load(open(library_path))
+
+        # generate players pools
+        pool1 = self.create_pool(pfile1, library)
+        pool2 = self.create_pool(pfile2, library)
     
         # generate players
-        player1 = Player("Player 1", "blue", self.log)
-        player2 = Player("Player 2", "red", self.log)
+        player1 = Player("Player 1", "blue", pool1, self.log)
+        player2 = Player("Player 2", "red",  pool2, self.log)
     
-        # fill dice pool of players with random dice
-        player1.dice_pool.fill_random(library)
-        player2.dice_pool.fill_random(library)
-            
-        return player1, player2   
+        return [player1, player2]   
+
+    def create_pool(self, pool_file, library):
+        """
+        Create a dice pool given the information of the dice 
+        file and library. If not dice file, create random 
+        pool.
+        """
+        # create dice pool
+        dice_pool = DicePool(self.log)
+
+        # check if pool file argument was given
+        if not pool_file:
+            dice_pool.fill_random(library)
+            return dice_pool
+        
+        # check if pool file exists
+        if not os.path.isfile(pool_file):
+            print("File " + pool_file + " not found.")
+            exit()
+
+        # try to get json data from file
+        id_list = json.load(open(pool_file))
+
+        # create dice list
+        parser = DdmDiceParser()
+        for id in id_list:
+            params = library[id]
+            ddm_dice = parser.create_ddm_dice(params)
+            dice_pool.add(ddm_dice)
+
+        return dice_pool

@@ -8,8 +8,8 @@ class SummonCard():
     name_crop = 15 # name length limit for short print
     
     def __init__(self, params):
-        self.name = params["name"]
-        self.level = params["level"]
+        self.name = params["NAME"]
+        self.level = params["LEVEL"]
 
         self.chars = select_chars(self.chars_ascii, 
             self.chars_unicode, self.chars_emoji)

@@ -8,20 +8,3 @@ class DiceList(DdmList):
     """
     def __init__(self, name, log, limit=float("inf")):
         super().__init__(name, "dice", log, limit)
-        
-    def fill_from_file(self, filename):
-        """
-        Fill dice list from dice obtained from file.
-        """
-        # generate list of dice from parser
-        parser = DdmDiceParser()
-        dice_list = parser.parse_ddm_dice(filename)
-
-        # add dice to dice list
-        for dice in dice_list:
-            self.add(dice)
-
-class DiceLibrary(DiceList):
-    def __init__(self, log):
-        super().__init__("library", log)
-

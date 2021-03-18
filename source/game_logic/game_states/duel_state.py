@@ -10,9 +10,9 @@ class DuelState():
     """
     A YDDM duel state.
     """
-    def __init__(self):
+    def __init__(self, pfile1, pfile2):
         self.log = Logger()
-        self.duel = Duel(self.log)
+        self.duel = Duel(pfile1, pfile2, self.log)
 
         # duel substates
         self.roll_state = RollState(self.duel, self.log)

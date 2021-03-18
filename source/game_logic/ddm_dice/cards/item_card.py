@@ -13,7 +13,7 @@ class ItemCard(SummonCard):
     def __init__(self, params):
         super().__init__(params)
         self.type = "Item"
-        self.ability = params["ability"]
+        self.ability = params["ABILITY"]
 
     def summon(self, chars, log):
         """

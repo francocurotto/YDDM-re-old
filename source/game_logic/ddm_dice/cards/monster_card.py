@@ -17,10 +17,10 @@ class MonsterCard(SummonCard):
                               "life"    : "❤️ "}
         # rest of parameters
         super().__init__(params)
-        self.attack = params["attack"]
-        self.defense = params["defense"]
-        self.life = params["life"]
-        self.ability = params["ability"]
+        self.attack = params["ATTACK"]
+        self.defense = params["DEFENSE"]
+        self.life = params["LIFE"]
+        self.ability = params["ABILITY"]
 
     def stringify(self):
         """

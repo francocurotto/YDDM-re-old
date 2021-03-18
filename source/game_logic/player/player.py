@@ -15,12 +15,12 @@ class Player():
     """
     summon_limit = 10
 
-    def __init__(self, name, color, log):
+    def __init__(self, name, color, dice_pool, log):
         # player parameters
         self.name = name
         self.color = color
         self.log = log
-        self.dice_pool = DicePool(self.log)
+        self.dice_pool = dice_pool
         self.dice_hand = DiceHand(self.log)
         self.dice_bin = DiceList("dice bin", self.log)
         self.crest_pool = CrestPool(self.log)
