@@ -20,6 +20,6 @@ class DicePool(DiceList):
         while not self.is_full():
             # random index
             i = random.choice(range(len(library_items)))
-            id, params = library_items[i]
+            dice_id, params = library_items[i]
             dice = parser.create_ddm_dice(params)
             self.add(dice)
