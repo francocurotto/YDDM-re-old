@@ -1,9 +1,12 @@
 import sys
+sys.path.append("../..")
+sys.path.append("../../functions")
 sys.path.append("../game_states")
 sys.path.append("../ddm_dice")
-sys.path.append("../summons")
+sys.path.append("../dungeon_objects")
+import settings
 from logger import Logger
-from dice_list import DiceLibrary
+from dice_list import DiceList
 from dice_hand import DiceHand, RollResult
 
 print("Welcome to the dice hand test.\n\n\
@@ -17,8 +20,9 @@ Input dr to display the roll result.\n\
 Input q to quit.\n")
 
 log = Logger()
-library = DiceLibrary(log)
-library.fill_from_file("../databases/my_database.txt")
+library = DiceList("library", log)
+settings.library_path = ("../../databases/library.yaml")
+library.fill_from_library()
 hand = DiceHand(log)
 
 # get a prefined set of dice to the dice hand

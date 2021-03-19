@@ -1,9 +1,12 @@
-import sys
+import sys, yaml
+sys.path.append("../..")
+sys.path.append("../../functions")
 sys.path.append("../game_states")
 sys.path.append("../ddm_dice")
-sys.path.append("../summons")
+sys.path.append("../dungeon_objects")
+import settings
 from logger import Logger
-from dice_list import DiceLibrary
+from dice_list import DiceList
 
 print("Welcome to the dice list test.\n\n\
 Here you can display a whole dice library in short version,\n\
@@ -16,8 +19,9 @@ Input d<number> to display a specific dice.\n\
 Input q to quit.\n")
 
 log = Logger()
-library = DiceLibrary(log)
-library.fill_from_file("../databases/my_database.txt")
+library = DiceList("library", log)
+settings.library_path = ("../../databases/library.yaml")
+library.fill_from_library()
 
 while True:
     command = input(">")

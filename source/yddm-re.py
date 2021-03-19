@@ -19,10 +19,10 @@ def main():
     """
     Main game function.
     """
+    # parse command line arguments
     args = parse_args()
-    if args.test_chars:
-        test_chars()
 
+    # create input/output module
     iom = get_iomodule(args.io_module)
     
     # create game elements
@@ -58,10 +58,6 @@ def parse_args():
         choices=["cmd", "curses"],
         default="curses",
         help="Input/output method for the game")
-    parser.add_argument("-tc", "--test_chars",  
-        action="store_true",
-        help="Test for the proper display of characters " +
-            "in the game and exit")
     # duel arguments
     parser.add_argument("-p1", "--pool1",
         default=None,
@@ -90,13 +86,5 @@ def get_iomodule(module_name):
         settings.verbose = False
         return CursesIO(module_name)
 
-def test_chars():   
-    """
-    Instead of running the game, test for the proper display
-    of the characters.
-    """
-    char_functions.test_chars(settings.print_type)
-    exit()
-    
 if __name__ == "__main__":
     main()

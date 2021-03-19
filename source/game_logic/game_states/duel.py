@@ -1,7 +1,7 @@
 import os, yaml
+from settings import library_path
 from dice_pool import DicePool
 from player import Player
-from ddm_dice_parser import DdmDiceParser
 from dungeon import Dungeon
 
 class Duel():
@@ -75,13 +75,9 @@ class Duel():
         Helper function to initialize a duel with two players 
         with the given pools (or random pools).
         """
-        # generate dice library
-        from settings import library_path
-        library = yaml.full_load(open(library_path))
-
         # generate players pools
-        pool1 = self.create_pool(pfile1, library)
-        pool2 = self.create_pool(pfile2, library)
+        pool1 = self.create_pool(pfile1)
+        pool2 = self.create_pool(pfile2)
     
         # generate players
         player1 = Player("Player 1", "blue", pool1, self.log)
@@ -89,7 +85,7 @@ class Duel():
     
         return [player1, player2]   
 
-    def create_pool(self, pool_file, library):
+    def create_pool(self, pool_file):
         """
         Create a dice pool given the information of the dice 
         file and library. If not dice file, create random 
@@ -100,22 +96,20 @@ class Duel():
 
         # check if pool file argument was given
         if not pool_file:
-            dice_pool.fill_random(library)
+            dice_pool.fill_random()
             return dice_pool
         
         # check if pool file exists
         if not os.path.isfile(pool_file):
-            print("File " + pool_file + " not found.")
-            exit()
+            self.log.add("File " + pool_file + " not " +
+            "found.\nUsing random dice pool instead.\n")
+            dice_pool.fill_random()
+            return dice_pool
 
         # try to get yaml data from file
         id_list = yaml.full_load(open(pool_file))
 
-        # create dice list
-        parser = DdmDiceParser()
-        for dice_id in id_list:
-            params = library[dice_id]
-            ddm_dice = parser.create_ddm_dice(params)
-            dice_pool.add(ddm_dice)
+        # fill dice pool
+        dice_pool.fill_from_ids(id_list)
 
         return dice_pool
