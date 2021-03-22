@@ -30,7 +30,7 @@ class DicePool(DiceList):
         library = get_library()
         keys = library.keys()
         for id in id_list:
-            if id in library.keys:
+            if id in keys:
                 params = library[id]
             else:
                 self.log.add("Invalid dice ID " + str(id) +

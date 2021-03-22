@@ -46,6 +46,7 @@ def test_chars(print_type):
             char = char_dict["emoji"]
 
         print_length = get_print_length(char)
+        #print_length = len(char.encode("utf-8"))
         
         line = char + "\t"
         line += char_dict["info"].ljust(13)
@@ -58,19 +59,19 @@ char_list = [
      "unicode" : "★",
      "ascii"   : "S",
      "info"    : "summon"},
-    {"emoji"   : "⬆️ ",
+    {"emoji"   : "⬆️",
      "unicode" : "⬆",
      "ascii"   : "M",
      "info"    : "movement"},
-    {"emoji"   : "⚔️ ",
+    {"emoji"   : "⚔️",
      "unicode" : "⚔",
      "ascii"   : "A",
      "info"    : "attack"},
-    {"emoji"   : "🛡️ ",
+    {"emoji"   : "🛡️",
      "unicode" : "⊝",
      "ascii"   : "D",
      "info"    : "defense"},
-    {"emoji"   : "✡️ ",
+    {"emoji"   : "✡️",
      "unicode" : "✡",
      "ascii"   : "G",
      "info"    : "magic"},
@@ -79,7 +80,7 @@ char_list = [
      "ascii"   : "T",
      "info"    : "trap"},
      # summon
-    {"emoji"   : "❤️ ",
+    {"emoji"   : "❤️",
      "unicode" : "♥",
      "ascii"   : "L",
      "info"    : "life"},
