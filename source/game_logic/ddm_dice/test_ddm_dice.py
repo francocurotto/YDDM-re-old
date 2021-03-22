@@ -2,9 +2,14 @@
 Script for testing a ddm dice object.
 """
 import sys
-sys.path.append("../summons")
+sys.path.append("../..")
+sys.path.append("../../functions")
+sys.path.append("../dungeon_objects")
+sys.path.append("../ddm_list")
+sys.path.append("../game_states")
 import random
-from ddm_dice_parser import DdmDiceParser
+from dice_list import DiceList
+from logger import Logger
 
 print("Welcome to the ddm dice test.\n\n\
 Here you can create radom ddm dice from a database file and\n\
@@ -17,8 +22,9 @@ Input ss to show dice info in short form.\n\
 Input q to quit.\n")
 
 # create ddm dice list
-parser = DdmDiceParser()
-ddm_dice_list = parser.parse_ddm_dice("test_monsters.txt")
+log = Logger()
+ddm_dice_list = DiceList("library", log)
+ddm_dice_list.fill_from_library("../../databases/library.yaml")
 
 ddm_dice = None
 while True:
@@ -28,8 +34,8 @@ while True:
         break
     
     if command == "g": # get ddm dice from database
-        ddm_dice = random.choice(ddm_dice_list)
-        print("dd dice obtained.\n")
+        ddm_dice = random.choice(ddm_dice_list.list)
+        print("ddm dice obtained.\n")
 
     if command == "s":
         if ddm_dice is None:

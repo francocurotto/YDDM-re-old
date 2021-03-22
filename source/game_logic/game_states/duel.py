@@ -1,7 +1,8 @@
-import os, json
+import os, yaml
+from settings import library_path
+from library_functions import get_library
 from dice_pool import DicePool
 from player import Player
-from ddm_dice_parser import DdmDiceParser
 from dungeon import Dungeon
 
 class Duel():
@@ -75,9 +76,8 @@ class Duel():
         Helper function to initialize a duel with two players 
         with the given pools (or random pools).
         """
-        # generate dice library
-        from settings import library_path
-        library = json.load(open(library_path))
+        # create library
+        library = get_library()
 
         # generate players pools
         pool1 = self.create_pool(pfile1, library)
@@ -105,17 +105,15 @@ class Duel():
         
         # check if pool file exists
         if not os.path.isfile(pool_file):
-            print("File " + pool_file + " not found.")
-            exit()
+            self.log.add("File " + pool_file + " not " +
+            "found.\nUsing random dice pool instead.\n")
+            dice_pool.fill_random()
+            return dice_pool
 
-        # try to get json data from file
-        id_list = json.load(open(pool_file))
+        # try to get yaml data from file
+        id_list = yaml.full_load(open(pool_file))
 
-        # create dice list
-        parser = DdmDiceParser()
-        for id in id_list:
-            params = library[id]
-            ddm_dice = parser.create_ddm_dice(params)
-            dice_pool.add(ddm_dice)
+        # fill dice pool
+        dice_pool.fill_from_ids(id_list, library)
 
         return dice_pool

@@ -1,6 +1,9 @@
 """
 Script for testing the dice object and its internal attributes.
 """
+import sys
+sys.path.append("../..")
+sys.path.append("../../functions")
 from dice import Dice, create_random_dice_string
 
 print("Welcome to the dice test.\n\n\

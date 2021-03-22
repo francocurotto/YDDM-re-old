@@ -8,5 +8,5 @@ type_adv  = True
 retal_dmg = True
 
 # database settings
-library_path = "databases/database.json"
+library_path = "databases/library.yaml"
 

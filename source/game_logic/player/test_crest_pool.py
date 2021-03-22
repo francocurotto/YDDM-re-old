@@ -1,4 +1,6 @@
 import sys
+sys.path.append("../..")
+sys.path.append("../../functions")
 sys.path.append("../ddm_dice")
 sys.path.append("../game_states")
 from dice import Dice, create_random_dice_string
