@@ -9,12 +9,12 @@ class DicePool(DiceList):
     def __init__(self, log):
         super().__init__("dice pool", log, 15)
 
-    def fill_random(self):
+    def fill_random(self, library):
         """
         Fill the dice pool with random dice from a dice 
         library.
         """
-        library_items = list(get_library().items())
+        library_items = list(library.items())
         # add random dices until the dice pull is full
         while not self.is_full():
             # random index
@@ -22,12 +22,11 @@ class DicePool(DiceList):
             dice = create_ddm_dice(params)
             self.add(dice)
 
-    def fill_from_ids(self, id_list):
+    def fill_from_ids(self, id_list, library):
         """
         Fill dice pool from id an id list. The dice is 
         extracted from the dice library with the same ids.
         """
-        library = get_library()
         keys = library.keys()
         for id in id_list:
             if id in keys:

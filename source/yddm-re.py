@@ -19,6 +19,7 @@ def main():
     """
     Main game function.
     """
+    import time; t = time.time()
     # parse command line arguments
     args = parse_args()
 
@@ -30,6 +31,7 @@ def main():
 
     # initial display
     iom.display(duel_state)
+    print(time.time()-t)
 
     # start game loop
     while True:

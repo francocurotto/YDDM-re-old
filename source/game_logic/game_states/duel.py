@@ -1,5 +1,6 @@
 import os, yaml
 from settings import library_path
+from library_functions import get_library
 from dice_pool import DicePool
 from player import Player
 from dungeon import Dungeon
@@ -75,9 +76,12 @@ class Duel():
         Helper function to initialize a duel with two players 
         with the given pools (or random pools).
         """
+        # create library
+        library = get_library()
+
         # generate players pools
-        pool1 = self.create_pool(pfile1)
-        pool2 = self.create_pool(pfile2)
+        pool1 = self.create_pool(pfile1, library)
+        pool2 = self.create_pool(pfile2, library)
     
         # generate players
         player1 = Player("Player 1", "blue", pool1, self.log)
@@ -85,7 +89,7 @@ class Duel():
     
         return [player1, player2]   
 
-    def create_pool(self, pool_file):
+    def create_pool(self, pool_file, library):
         """
         Create a dice pool given the information of the dice 
         file and library. If not dice file, create random 
@@ -96,7 +100,7 @@ class Duel():
 
         # check if pool file argument was given
         if not pool_file:
-            dice_pool.fill_random()
+            dice_pool.fill_random(library)
             return dice_pool
         
         # check if pool file exists
@@ -110,6 +114,6 @@ class Duel():
         id_list = yaml.full_load(open(pool_file))
 
         # fill dice pool
-        dice_pool.fill_from_ids(id_list)
+        dice_pool.fill_from_ids(id_list, library)
 
         return dice_pool
