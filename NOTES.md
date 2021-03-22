@@ -255,3 +255,17 @@ turning point I accidentally input 'q' for forfeiting instead
 of 'f' for finish turn, and all the game was lost :(. As you
 can see, I have more than one motivation to implement the
 save protocol.
+
+# 2021-03-23
+It's been a while, but I've been thinking lately and I think
+that for the project to move forward I have to make some very
+important decision about the scope of the project itself.
+This includes, which mode of gameplay and UI to implement in
+the final product.
+
+After a while I decided to stop this repository and start a
+new one focusing in the final UI implemented in urwid and
+a game mode based in fighting a AI, just like in the GBA 
+game. For this reason this repository will no longer be 
+developed any further. Let's see if I'm able to pull off the
+ambitious new project from here.
